@@ -1,0 +1,101 @@
+<!-- Main navigation -->
+<header>
+    <!--Navbar-->
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <mdb-navbar-brand>
+            <a class="logo navbar-brand waves-light" mdbWavesEffect href="#"><strong>easyJobs</strong></a>
+        </mdb-navbar-brand>
+    </mdb-navbar>
+
+    <!-- Navbar -->
+    <!-- Full Page Intro -->
+    <div class="view">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-blue-grey-strong d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row pt-lg-5 mt-lg-5">
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft"
+                        data-wow-delay="0.3s">
+                        <h1 class="display-4 font-weight-bold">Helping Your Business Move Up</h1>
+                        <hr class="hr-light">
+                        <h6 class="mb-3">get your job matched with the right candidate .</h6>
+                        <a mdbBtn color="white" outline="true" mdbWavesEffect>Learn more</a>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-6 col-xl-5 mb-4">
+                        <!--Form-->
+                        <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
+
+                            <mdb-card-body class="z-depth-2">
+                                <form [formGroup]="eregisterForm">
+                                    <!--Header-->
+                                    <div class="text-center">
+                                        <h3 class="blue-text">
+                                            <strong>Register</strong>
+                                        </h3>
+                                        <hr>
+                                    </div>
+                                    <!--Body-->
+                                    <div class="md-form">
+                                        <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                                        <input type="text" id="companyName" class="form-control" mdbInput mdbValidate
+                                            formControlName="nameInput">
+                                        <label for="companyName">Your company name</label>
+                                        <mdb-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                                            Please tell us your company name</mdb-error>
+                                    </div>
+                                    <div class="md-form">
+                                        <div class="input-group">
+                                            <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                                            <input type="text" id="companyEmail" class="form-control" mdbInput
+                                                mdbValidate formControlName="defaultFormEmail">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">@example.com</span>
+                                            </div>
+                                     
+                                        <label for="companyEmail">Your company email</label>
+                                    </div>
+                                        <small id="emailHelp2" class="form-text text-muted">We'll never share your email
+                                            with anyone.</small>
+                                        <mdb-error
+                                            *ngIf="defaultFormEmail.invalid && (defaultFormEmail.dirty || defaultFormEmail.touched)">
+                                            <span *ngIf="defaultFormEmail.errors.required">Email is required</span>
+                                            <span *ngIf="defaultFormEmail.errors.email">This email address is not
+                                                valid</span>
+                                        </mdb-error>
+
+
+
+                                    </div>
+
+                                    <div class="text-center mt-3">
+                                        <button mdbBtn color="indigo" outline="true" rounded="true" block="true"
+                                            class="my-4 waves-effect z-depth-0" mdbWavesEffect type="submit"
+                                            (click)="onSubmit()">Register</button>
+
+                                        <!-- Register -->
+                                        <h6>Already have account?
+                                            <a [routerLink]="['/elogin']"><strong>Sign in</strong></a>
+                                        </h6>
+                                    </div>
+                                </form>
+                            </mdb-card-body>
+
+                        </mdb-card>
+                        <!--/.Form-->
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Content -->
+        </div>
+        <!-- Mask & flexbox options-->
+    </div>
+    <!-- Full Page Intro -->
+</header>
+<!-- Main navigation -->
