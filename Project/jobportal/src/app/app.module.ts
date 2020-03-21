@@ -18,6 +18,9 @@ import { HeaderForGuestComponent } from './shared/components/header-for-guest/he
 import { HeaderForEmployerComponent } from './shared/components/header-for-employer/header-for-employer.component';
 import { HeaderForCandidateComponent } from './shared/components/header-for-candidate/header-for-candidate.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { GuestDashboardComponent } from './shared/components/guest-dashboard/guest-dashboard.component';
+import { SearchJobComponent } from './shared/components/search-job/search-job.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     HeaderForGuestComponent,
     HeaderForEmployerComponent,
     HeaderForCandidateComponent,
-    FooterComponent
+    FooterComponent,
+    GuestDashboardComponent,
+    SearchJobComponent,
+
   ],
   imports: [
     BrowserModule,
