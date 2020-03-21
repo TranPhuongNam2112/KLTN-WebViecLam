@@ -1,0 +1,46 @@
+
+//responsive
+// mobile
+@media (min-width: 306px) { 
+    .text-button{
+        font-size: 20px;
+    }
+    .form-control{
+        height: 60px;
+        font-size: 20px;
+     }
+}
+//ipad
+@media (min-width: 768px) {
+    .text-button{
+        font-size: 22px;
+    }
+    .form-control{
+        height: 60px;
+        font-size: 22px;
+     }
+}
+//ipad pro
+@media (min-width: 992px) {
+    .text-button{
+        font-size: 16px;
+    }
+    .form-control{
+        height: 50px;
+     }
+}
+//laptop
+@media (min-width: 1200px) {
+    .text-button{
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .form-control{
+       height: 50px;
+       font-size: 16px;
+    }
+    h5{
+        letter-spacing: 1px;
+    }
+}
+
