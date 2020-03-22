@@ -1,3 +1,4 @@
+<app-header-for-guest></app-header-for-guest>
 <!-- Main navigation -->
 <section>
     <!-- Full Page Intro -->
@@ -15,7 +16,7 @@
                             data-wow-delay="0.3s"><strong>Don't miss your jobs</strong></h1>
                         <br />
                         <br />
-                        <a  mdbBtn color="primary" rounded="true" mdbWavesEffect>
+                        <a [routerLink]="['./login']" mdbBtn color="primary" rounded="true" mdbWavesEffect>
                             <mdb-icon fas icon="user" class="left"></mdb-icon><strong>Sign in now!</strong>
                         </a>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
@@ -86,3 +87,4 @@
     <!-- List Jobs -->
 </section>
 <!-- Main navigation -->
+<app-footer></app-footer>

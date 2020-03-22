@@ -14,13 +14,15 @@
                 <a class="nav-link waves-light" mdbWavesEffect>All Jobs<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Sign In</a>
+                 <a [routerLink]="['./login']" class="nav-link waves-light" mdbWavesEffect>Sign In</a> 
+                
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Register</a>
+                <a  [routerLink]="['./register']" class="nav-link waves-light" mdbWavesEffect>Register</a>
             </li>
             <li>
-                <button mdbBtn type="button" size ="md" color="secondary" rounded="true" mdbWavesEffect><strong>For Employer</strong></button>
+                <button mdbBtn type="button" size="md" color="secondary" rounded="true" mdbWavesEffect><strong>For
+                        Employer</strong></button>
             </li>
         </ul>
         <!-- Links -->
