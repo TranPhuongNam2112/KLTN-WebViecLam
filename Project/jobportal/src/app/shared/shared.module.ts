@@ -9,18 +9,19 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputsModule, InputUtilitiesModule, WavesModule, ButtonsModule, CollapseModule } from 'angular-bootstrap-md';
+
 @NgModule({
   declarations: [
     SearchJobComponent,
-   
     HeaderForEmployerComponent,
     HeaderForCandidateComponent,
     FooterComponent,
+   
+  
   ],
   imports: [
     CommonModule,
     MDBBootstrapModule.forRoot(),
-    
     FormsModule,
     ReactiveFormsModule,
     InputsModule,
@@ -39,10 +40,10 @@ import { InputsModule, InputUtilitiesModule, WavesModule, ButtonsModule, Collaps
     WavesModule,
     ButtonsModule,
     CollapseModule,
-   
     HeaderForEmployerComponent,
     HeaderForCandidateComponent,
     FooterComponent,
+   
   ]
 })
 export class SharedModule {
@@ -54,6 +55,7 @@ export class SharedModule {
         HeaderForEmployerComponent,
         HeaderForCandidateComponent,
         FooterComponent,
+      
       ]
     }
   }

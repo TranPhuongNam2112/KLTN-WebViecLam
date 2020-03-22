@@ -3,7 +3,7 @@
     <!--Navbar-->
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <mdb-navbar-brand>
-            <a class="logo navbar-brand waves-light" mdbWavesEffect href="#"><strong>easyJobs</strong></a>
+            <a class="logo navbar-brand waves-light" mdbWavesEffect [routerLink]="['../']"><strong>easyJobs</strong></a>
         </mdb-navbar-brand>
     </mdb-navbar>
 
@@ -79,7 +79,7 @@
 
                                         <!-- Register -->
                                         <h6>Already have account?
-                                            <a [routerLink]="['/elogin']"><strong>Sign in</strong></a>
+                                            <a [routerLink]="['../login']"><strong>Sign in</strong></a>
                                         </h6>
                                     </div>
                                 </form>

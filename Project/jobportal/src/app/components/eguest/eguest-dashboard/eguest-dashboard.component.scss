@@ -1,0 +1,106 @@
+/* Required for full background image */
+
+html,
+body,
+header,
+.view {
+  min-height: 90vh !important;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vh;
+  }
+}
+
+.top-nav-collapse {
+  background-color: #78909c !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+
+@media (max-width: 991px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #78909c !important;
+  }
+}
+
+h1 {
+  letter-spacing: 8px;
+}
+
+h5 {
+  letter-spacing: 3px;
+}
+
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
+}
+.container-2{
+    background-color: #80A6FF;
+}
+//responsive
+// mobile
+@media (min-width: 306px) { 
+    .display-3{
+        font-size: 24px;
+        
+    }
+    .display-4{
+        font-size: 18px;
+        
+    }
+    .subtext-header{
+        font-size: 16px;
+    }
+    .view {
+        max-height: 20px;
+        
+      }
+}
+//ipad
+@media (min-width: 768px) {
+    .display-3{
+        font-size: 45px;
+    }
+    .display-4{
+        font-size: 25px;
+    }
+    .view {
+        min-height: 50vh !important;
+      }
+}
+
+//ipad pro
+@media (min-width: 992px) {
+    .display-3{
+        font-size: 50px;
+    }
+    .display-4{
+        font-size: 35px;
+    }
+    .view {
+        min-height: 40vh !important;
+      }
+}
+
+//laptop
+@media (min-width: 1200px) {
+    .display-3{
+        font-size: 60px;
+    }
+    .display-4{
+        font-size: 30px;
+    }
+   
+    .view {
+        min-height: 95vh !important;
+      }
+     
+}

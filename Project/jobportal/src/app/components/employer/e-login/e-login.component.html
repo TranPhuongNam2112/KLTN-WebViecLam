@@ -3,7 +3,7 @@
     <!--Navbar-->
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <mdb-navbar-brand>
-            <a class="logo navbar-brand waves-light" mdbWavesEffect href="#"><strong>easyJobs</strong></a>
+            <a class="logo navbar-brand waves-light" mdbWavesEffect [routerLink]="['../']"><strong>easyJobs</strong></a>
         </mdb-navbar-brand>
     </mdb-navbar>
 
@@ -77,12 +77,12 @@
                                     <div class="text-center mt-3">
                                         <button mdbBtn color="indigo" outline="true" rounded="true" block="true"
                                             class="my-4 waves-effect z-depth-0" mdbWavesEffect type="submit"
-                                            (click)="onSubmit()">Sign
+                                            (click)="onSubmit()" >Sign
                                             in</button>
 
                                         <!-- Register -->
                                         <p>Don't have an accout yet?
-                                            <a [routerLink]="['/eregister']"><strong>Register now!</strong></a>
+                                            <a [routerLink]="['../register']"><strong>Register now!</strong></a>
                                         </p>
 
                                     </div>

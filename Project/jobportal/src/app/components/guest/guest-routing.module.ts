@@ -5,7 +5,7 @@ import {GuestDashboardComponent} from './guest-dashboard/guest-dashboard.compone
 import {CLoginComponent } from '../candidate/c-login/c-login.component';
 import {CRegisterComponent} from '../candidate/c-register/c-register.component';
 import {GuestComponent } from './guest.component';
-import {HeaderForGuestComponent } from '../../shared/components/header-for-guest/header-for-guest.component';
+
  const routes: Routes = [ 
    {
     path: '',
