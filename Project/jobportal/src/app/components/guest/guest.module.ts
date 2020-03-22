@@ -8,6 +8,7 @@ import { GuestDashboardComponent } from './guest-dashboard/guest-dashboard.compo
 import { CLoginComponent } from '../candidate/c-login/c-login.component';
 import { CRegisterComponent } from '../candidate/c-register/c-register.component';
 import {HeaderForGuestComponent } from '../../shared/components/header-for-guest/header-for-guest.component';
+import {ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 
 
 
@@ -18,6 +19,7 @@ import {HeaderForGuestComponent } from '../../shared/components/header-for-guest
     CRegisterComponent,
     GuestComponent,
     HeaderForGuestComponent,
+    ForgotPassComponent,
     
   ],
   imports: [

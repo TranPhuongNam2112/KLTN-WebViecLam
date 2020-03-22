@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-e-register',
   templateUrl: './e-register.component.html',
@@ -22,5 +23,6 @@ export class ERegisterComponent implements OnInit {
     this.eregisterForm.controls.defaultFormEmail.markAsTouched();
     this.eregisterForm.controls.nameInput.markAsTouched();
   }
+  
 
 }
