@@ -4,21 +4,25 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputsModule,InputUtilitiesModule, WavesModule, ButtonsModule, CollapseModule } from 'angular-bootstrap-md';
 
+
+
+
 import { SearchJobComponent } from './components/search-job/search-job.component';
-
 import { HeaderForEmployerComponent } from './components/header-for-employer/header-for-employer.component';
-import { HeaderForCandidateComponent } from './components/header-for-candidate/header-for-candidate.component';
-import { FooterComponent } from './components/footer/footer.component';
 
+import { FooterComponent } from './components/footer/footer.component';
+import { ForgotPassComponent} from './components/forgot-pass/forgot-pass.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 
 @NgModule({
   declarations: [
     SearchJobComponent,
     HeaderForEmployerComponent,
-    HeaderForCandidateComponent,
+  
     FooterComponent,
-
+    ForgotPassComponent,
+    ChangePassComponent,
    
   
   ],
@@ -31,7 +35,8 @@ import { FooterComponent } from './components/footer/footer.component';
     InputUtilitiesModule,
     WavesModule,
     ButtonsModule,
-    CollapseModule
+    CollapseModule,
+   
   ],
   exports: [
     SearchJobComponent,
@@ -43,10 +48,11 @@ import { FooterComponent } from './components/footer/footer.component';
     WavesModule,
     ButtonsModule,
     CollapseModule,
+    ChangePassComponent,
     HeaderForEmployerComponent,
-    HeaderForCandidateComponent,
-    FooterComponent,
   
+    FooterComponent,
+    ForgotPassComponent,
    
   ]
 })
@@ -57,9 +63,10 @@ export class SharedModule {
       providers: [
         SearchJobComponent,
         HeaderForEmployerComponent,
-        HeaderForCandidateComponent,
+      
         FooterComponent,
-   
+        ForgotPassComponent,
+        ChangePassComponent
       ]
     }
   }

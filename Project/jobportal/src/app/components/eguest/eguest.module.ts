@@ -9,13 +9,15 @@ import { HeaderForEguestComponent } from '../../shared/components/header-for-egu
 import { EguestDashboardComponent } from './eguest-dashboard/eguest-dashboard.component';
 import { ELoginComponent} from '../employer/e-login/e-login.component';
 import { ERegisterComponent} from '../employer/e-register/e-register.component';
+import { EforgotPassComponent } from './eforgot-pass/eforgot-pass.component';
 @NgModule({
   declarations: [
     EguestComponent,
     HeaderForEguestComponent,
     EguestDashboardComponent,
     ELoginComponent,
-    ERegisterComponent
+    ERegisterComponent,
+    EforgotPassComponent
   ],
   imports: [
     CommonModule,

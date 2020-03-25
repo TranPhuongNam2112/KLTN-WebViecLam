@@ -1,0 +1,45 @@
+
+// mobile
+@media (min-width: 306px) { 
+    .custom{
+        width: 40vh; 
+    }
+    .view{
+        margin-top: -50px;
+        padding-top: 20px;
+        min-height: 100vh;
+    }
+}
+//ipad
+@media (min-width: 768px) {
+    .custom{
+        width: 50vh; 
+    }
+    .view{
+        margin-top: -50px;
+        padding-top: 20px;
+        min-height: 100vh;
+    }
+}
+//ipad pro
+@media (min-width: 992px) {
+    .custom{
+        width: 48vh; 
+    }
+    .view{
+        margin-top: -50px;
+        padding-top: 20px;
+        min-height: 60vh;
+    }
+}
+//laptop
+@media (min-width: 1200px) {
+    .custom{
+        width: 150vh; 
+    }
+    .view{
+        margin-top: -50px;
+        padding-top: 20px;
+        min-height:100vh;
+    }
+}

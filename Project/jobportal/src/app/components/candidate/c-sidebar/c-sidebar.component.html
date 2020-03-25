@@ -1,0 +1,68 @@
+<app-header-for-candidate></app-header-for-candidate>
+<div class="view bg-light">
+  <div class="container border rounded border-white pt-5 mb-5 mt-5">
+    <div class="d-flex ">
+      <!-- Card -->
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- Card image -->
+          <img class="test card-img-top border rounded-circle border-white" src="./assets/images/candidate/ava.jpg"
+            alt="Card image cap">
+          <div class="d-flex justify-content-end">
+            <label class=" btn-bs-file btn btn-md btn-success">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <input type="file" />
+            </label></div>
+        </div>
+        <!-- Card -->
+        <div class="col-lg-12">
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills hidden-xs hidden-sm" orientation="vertical">
+            <li ngbNavItem="top" class="sidebav">
+              <a ngbNavLink class="white-text"><strong>Manage Profile</strong></a>
+
+              <ng-template ngbNavContent>
+                <app-manage-profile></app-manage-profile>
+              </ng-template>
+              <hr />
+            </li>
+
+            <!-- save job start -->
+            <li ngbNavItem="middle" ngbDropdown class="sidebav">
+              <a ngbNavLink class="white-text"><strong>Save Jobs</strong></a>
+
+              <ng-template ngbNavContent>
+                <app-savejob></app-savejob>
+              </ng-template>
+              <hr />
+            </li>
+            <!-- save job end -->
+
+            <!-- fit job start -->
+            <li ngbNavItem="middle-2" ngbDropdown class="sidebav">
+              <a ngbNavLink class="white-text"><strong>Fit Jobs</strong></a>
+
+              <ng-template ngbNavContent>
+                <app-fitjob></app-fitjob>
+              </ng-template>
+              <hr />
+            </li>
+            <!-- fit job end -->
+
+            <!-- change pass satrt -->
+            <li ngbNavItem="bottom" class="sidebav">
+              <a ngbNavLink class="white-text"><strong>Change pass</strong></a>
+              <ng-template ngbNavContent>
+               <app-change-pass></app-change-pass> 
+             
+              </ng-template>
+              <hr />
+            </li>
+            <!-- chang pas end -->
+          </ul>
+        </div>
+      </div>
+      <div [ngbNavOutlet]="nav" class="ml-4"></div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

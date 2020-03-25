@@ -1,0 +1,351 @@
+<div class="view bg-white border rounded border-weight-white" >
+    <p class="pl-3  font-weight-bold text-primary h5">Update your profile</p>
+    <nav ngbNav #nav="ngbNav" class="nav-tabs ">
+       
+        <ng-container ngbNavItem >
+            <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
+                Personalities</a>
+            <ng-template ngbNavContent>
+                <!-- màn hình thông tin cá nhân -->
+                <div class="custom pr-5">
+                    <form class="mt-5 ml-5  mr-5 ">
+                        <div class="row ">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">First
+                                        Name</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="dark-grey-text font-weight-bold " for="exampleInputPassword1">Last
+                                        Name</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-lg-2 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text font-weight-bold"
+                                        for="exampleInputEmail1">Gender</label>
+                                    <select class="custom-select custom-select mb-3">
+                                        <option selected>Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+                            <!-- date picker birthday -->
+                            <div class="col-lg-4 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="dark-grey-text font-weight-bold"
+                                        for="exampleInputPassword1">Birthday</label>
+                                    <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <div class="input-group mb-3">
+                                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                                [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                                                [maxDate]="{year: 2001, month: 12, day: 31}">
+                                                <div class="input-group-append">
+                                                  <button mdbBtn color="primary" outline="true" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
+                                                    mdbWavesEffect (click)="d.toggle()"><i class="fas fa-calendar-plus"></i></button>
+                                                </div>
+                                              </div>
+                                            <!-- <div class="input-group mb-3">
+                                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                                    [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                                                    [maxDate]="{year: 2001, month: 12, day: 31}">
+                                                <div class="input-group-prepend">
+                                                    <button  mdbBtn color="primary" mdbWavesEffect (click)="d.toggle()"
+                                                        type="button"> <i class="fas fa-calendar-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </form>
+
+                                   
+
+                                </div>
+                            </div>
+                            <!-- date picker birthday -->
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="dark-grey-text font-weight-bold"
+                                        for="exampleInputPassword1">Phone</label>
+                                    <input type="tel" class="form-control" id="exampleInputPassword1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="dark-grey-text font-weight-bold" for="exampleInputEmail1">Home
+                                Address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
+                    </form>
+                </div>
+                <!-- màn hình thông tin cá nhân -->
+            </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem>
+            <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
+                Experiments</a>
+            <ng-template ngbNavContent>
+                <!-- màn hình kinh nghiệm làm việc -->
+
+                <div class="custom pr-5">
+                    <!-- alert -->
+                    <ngb-alert class="ml-3" *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}
+                    </ngb-alert>
+                    <div class="row mt-5 justify-content-start">
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3 ml-3">
+                            <div class="bg-primary  mt-2 pt-1 pb-1  pl-1  border rounded border-primary">
+                                <input type="checkbox" class="mr-2 mt-1" aria-label="Checkbox for following text input"
+                                    (click)="changeSuccessMessage()">
+                                <label class="text-light"> I have no experiment</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 ml-3">
+                            <button type="button" class="btn btn-primary" (click)="openLg(experiment)"><i
+                                    class="fa fa-plus mr-2"></i>Add
+                                experiments</button>
+                        </div>
+                    </div>
+                    <div class="ml-3 mt-3 mb-5">
+                        <ngb-toast class="bg-warning white-text" style="min-width: 100% ;" *ngIf="show"
+                            header="Get started" [autohide]="false" (hide)="close()">
+                            Press Add to fill your profile
+                        </ngb-toast>
+                        <p *ngIf="!show">
+                            <button type="button" class="btn btn-warning white-text" (click)="openLg(experiment)"><i
+                                    class="fa fa-plus mr-2"></i>Add
+                                experiments</button></p>
+                    </div>
+                </div>
+                <!-- màn hình kinh nghiệm làm việc -->
+            </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem>
+            <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
+                Educations</a>
+            <ng-template ngbNavContent>
+                <!-- màn kình học vấn -->
+                 <!-- màn hình kinh nghiệm làm việc -->
+                 <div class="custom pr-5" >
+                    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}
+                    </ngb-alert>
+                    <div class="row mt-5 justify-content-start">
+                        <div class="col-lg-4 col-md-6 col-sm-12 ml-3">
+                            <button type="button" class="btn btn-primary" (click)="openLg(education)"><i
+                                    class="fa fa-plus mr-2"></i>Add
+                                educations</button>
+                       </div>
+                    </div>
+                    <div class="ml-3 mt-3 mb-5">
+                        <ngb-toast class="bg-warning white-text" style="min-width: 100% ;" *ngIf="show"
+                            header="Get started" [autohide]="false" (hide)="close()">
+                            Press Add to fill your profile
+                        </ngb-toast>
+                       
+                    </div>
+                </div>
+                <!-- màn hình kinh nghiệm làm việc -->
+                <!-- màn hình học vấn -->
+            </ng-template>
+        </ng-container>
+
+    </nav>
+    <!-- modal add kinh nghiem -->
+    <ng-template #experiment let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Add experiments</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body mr-3">
+            <form>
+                <div class="row ">
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <div class="form-group ">
+                            <label class="dark-grey-text  font-weight-bold " for="companyName">Company Name</label>
+                            <input type="text" class="form-control" id="companyName">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold " for="jobTitle">Job Position</label>
+                            <input type="text" class="form-control" id="jobTitle">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- date picker birthday -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold"
+                                for="jobStartDay">Start Day</label>
+                            <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                            [(ngModel)]="model" ngbDatepicker #ds="ngbDatepicker"
+                                            [maxDate]="{year: 2001, month: 12, day: 31}">
+                                        <div class="input-group-append">
+                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2" size="md"  mdbWavesEffect  (click)="ds.toggle()"
+                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr />
+
+                        </div>
+                    </div>
+
+
+                    <!-- date picker birthday -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold"
+                                for="jobEndDay">End Day</label>
+                            <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                            [(ngModel)]="model" ngbDatepicker #de="ngbDatepicker"
+                                            [maxDate]="{year: 2001, month: 12, day: 31}">
+                                        <div class="input-group-append">
+                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2" size="md" 
+                                             mdbWavesEffect  (click)="de.toggle()"
+                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr />
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="dark-grey-text font-weight-bold" for="jobDescription">Description</label>
+                    <textarea type="text" class="form-control" id="jobDescription"></textarea>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        </div>
+    </ng-template>
+    <!-- modal add kinh nghiem -->
+
+    <!-- modal add education -->
+    <ng-template #education let-modal>
+        <div class="modal-header" >
+            <h4 class="modal-title" id="modal-basic-title">Add educations</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body mr-3">
+            <form>
+                <div class="row ">
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <div class="form-group ">
+                            <label class="dark-grey-text  font-weight-bold " for="major">Major</label>
+                            <input type="text" class="form-control" id="major">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold " for="gpa">GPA</label>
+                            <input type="number" class="form-control" id="gpa">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- date picker birthday -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold"
+                                for="eduStartDay">Start Day</label>
+                            <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                            [(ngModel)]="model" ngbDatepicker #eds="ngbDatepicker"
+                                            [maxDate]="{year: 2001, month: 12, day: 31}">
+                                        <div class="input-group-append">
+                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2" 
+                                            size="md"  mdbWavesEffect  (click)="eds.toggle()"
+                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- date picker birthday -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold"
+                                for="eduEndDay">End Day</label>
+                            <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                            [(ngModel)]="model" ngbDatepicker #ede="ngbDatepicker"
+                                            [maxDate]="{year: 2001, month: 12, day: 31}">
+                                        <div class="input-group-append">
+                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                             size="md"  mdbWavesEffect  (click)="ede.toggle()"
+                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>                   
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        </div>
+    </ng-template>
+    <!-- modal add education -->
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

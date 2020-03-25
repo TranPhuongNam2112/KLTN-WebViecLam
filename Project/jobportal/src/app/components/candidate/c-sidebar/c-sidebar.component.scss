@@ -1,0 +1,42 @@
+.container{
+    background-color: #3D4A6B;
+    
+}
+.btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+// mobile
+@media (min-width: 306px) { 
+    
+     
+}
+//ipad
+@media (min-width: 768px) {
+    .sidebav{
+        width: 20vh;
+      }
+}
+//ipad pro
+@media (min-width: 992px) {
+    .sidebav{
+        width: 20vh;
+      }
+}
+//laptop
+@media (min-width: 1200px) {
+    .sidebav{
+        width: 30vh;
+      }
+}
+
+

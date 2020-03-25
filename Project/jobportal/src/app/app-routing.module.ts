@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { GuestModule} from './components/guest/guest.module';
 import { EguestModule} from './components/eguest/eguest.module';
+import { CandidateModule} from './components/candidate/candidate.module';
 const routes: Routes = [
-  { path: '', redirectTo: 'guest', pathMatch: 'full' },
+  { path: '', redirectTo: 'candidate', pathMatch: 'full' },
   { //lazy loading
     path: 'guest',
     loadChildren: './components/guest/guest.module#GuestModule'
@@ -11,6 +12,10 @@ const routes: Routes = [
 { //lazy loading
   path: 'eguest',
   loadChildren: './components/eguest/eguest.module#EguestModule'
+},
+{ //lazy loading
+  path: 'candidate',
+  loadChildren: './components/candidate/candidate.module#CandidateModule'
 },
 
 ];
