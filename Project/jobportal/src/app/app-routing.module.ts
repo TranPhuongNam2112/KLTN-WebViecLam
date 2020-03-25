@@ -4,7 +4,7 @@ import { GuestModule} from './components/guest/guest.module';
 import { EguestModule} from './components/eguest/eguest.module';
 import { CandidateModule} from './components/candidate/candidate.module';
 const routes: Routes = [
-  { path: '', redirectTo: 'candidate', pathMatch: 'full' },
+  { path: '', redirectTo: 'eguest', pathMatch: 'full' },
   { //lazy loading
     path: 'guest',
     loadChildren: './components/guest/guest.module#GuestModule'

@@ -2,7 +2,11 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" [containerInside]="false">
     <!-- Navbar brand -->
     <mdb-navbar-brand>
-        <a class="navbar-brand"  [routerLink]="['../guest']">
+        <!-- <a class="navbar-brand"  [routerLink]="['../guest']"> -->
+            <!-- test -->
+            <a class="navbar-brand"  [routerLink]="['/guest']">
+                <!-- test -->
+
             <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
         </a>
     </mdb-navbar-brand>
@@ -14,11 +18,11 @@
                 <a class="nav-link waves-light" mdbWavesEffect><strong>All Jobs</strong><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                 <a [routerLink]="['./login']" class="nav-link waves-light" mdbWavesEffect><strong>Sign In</strong></a> 
+                 <a [routerLink]="['/guest/login']" class="nav-link waves-light" mdbWavesEffect><strong>Sign In</strong></a> 
                 
             </li>
             <li class="nav-item">
-                <a  [routerLink]="['./register']" class="nav-link waves-light" mdbWavesEffect><strong>Register</strong></a>
+                <a  [routerLink]="['/guest/register']" class="nav-link waves-light" mdbWavesEffect><strong>Register</strong></a>
             </li>
             <li>
                 <button mdbBtn type="button" size="md" color="secondary" rounded="true" mdbWavesEffect [routerLink]="['../eguest']"><strong>For

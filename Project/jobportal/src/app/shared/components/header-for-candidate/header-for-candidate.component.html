@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" [containerInside]="false">
     <!-- Navbar brand -->
     <mdb-navbar-brand>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" [routerLink]="['/candidate']">
             <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
         </a>
     </mdb-navbar-brand>
@@ -13,11 +13,9 @@
             <li class="nav-item active">
                 <a class="nav-link waves-light" mdbWavesEffect><strong>All Jobs</strong><span class="sr-only">(current)</span></a>
             </li>
+            
             <li class="nav-item">
-                <a [routerLink]="['./manageprofile']" class="nav-link waves-light" mdbWavesEffect><strong>Fit Jobs</strong></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect><strong>My Account</strong></a>
+                <a [routerLink]="['/candidate/manage']" class="nav-link waves-light" mdbWavesEffect><strong>My Account</strong></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">

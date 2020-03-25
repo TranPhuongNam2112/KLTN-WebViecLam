@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" [containerInside]="false">
     <!-- Navbar brand -->
     <mdb-navbar-brand>
-        <a class="navbar-brand" [routerLink]="['../eguest']">
+        <a class="navbar-brand" [routerLink]="['/eguest']">
             <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
         </a>
     </mdb-navbar-brand>
@@ -12,11 +12,11 @@
         <ul class="navbar-nav ml-auto">
             
             <li class="nav-item">
-                 <a  [routerLink]="['./login']" class="nav-link waves-light" mdbWavesEffect><strong>Sign In</strong></a> 
+                 <a  [routerLink]="['/eguest/login']" class="nav-link waves-light" mdbWavesEffect><strong>Sign In</strong></a> 
                 
             </li>
             <li class="nav-item">
-                <a [routerLink]="['./register']"  class="nav-link waves-light" mdbWavesEffect><strong>Register</strong></a>
+                <a [routerLink]="['/eguest/register']"  class="nav-link waves-light" mdbWavesEffect><strong>Register</strong></a>
             </li>
             <li>
                 <button mdbBtn type="button" size="md" color="secondary" rounded="true" mdbWavesEffect [routerLink]="['../guest']"><strong>Jobseeker's Site</strong></button>

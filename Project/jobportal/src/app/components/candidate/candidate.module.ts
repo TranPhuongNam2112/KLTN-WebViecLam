@@ -11,6 +11,7 @@ import { ManageProfileComponent } from './manage-profile/manage-profile.componen
 import { CandidateComponent } from './candidate.component';
 import { CSidebarComponent } from './c-sidebar/c-sidebar.component';
 import {HeaderForCandidateComponent} from '../../shared/components/header-for-candidate/header-for-candidate.component';
+import { CandidateDashboardComponent } from './candidate-dashboard/candidate-dashboard.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {HeaderForCandidateComponent} from '../../shared/components/header-for-ca
     CSidebarComponent,
     SavejobComponent,
     FitjobComponent,
-    HeaderForCandidateComponent
+    HeaderForCandidateComponent,
+    CandidateDashboardComponent
   ],
   imports: [
     CommonModule,
