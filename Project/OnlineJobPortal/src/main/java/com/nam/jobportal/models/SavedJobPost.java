@@ -1,66 +1,79 @@
 package com.nam.jobportal.models;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
 
-@Document(collection="saved_job_post")
-public class SavedJobPost {
+
+@Entity
+@Table(name="saved_job_post")
+public class SavedJobPost implements Serializable {
+
+	@EmbeddedId
+	private SavedJobPostId savedJobPostId;
+
+	@ManyToOne
+	@MapsId("candidateId")
+	private Candidate candidate;
+
+	@ManyToOne
+	@MapsId("jobpostId")
+	private JobPost jobpost;
 	
-	@Id
-	private String id;
-	
-	private int employer_account_id;
-	
-	private int candidate_id;
-	
-	private Date saved_date;
-	
+	@Column
+	private Date saveddate;
+
+
 	public SavedJobPost() {
 		
 	}
 
-	public SavedJobPost(int employer_account_id, int candidate_id, Date saved_date) {
-		super();
-		this.employer_account_id = employer_account_id;
-		this.candidate_id = candidate_id;
-		this.saved_date = saved_date;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public int getEmployer_account_id() {
-		return employer_account_id;
-	}
-
-	public void setEmployer_account_id(int employer_account_id) {
-		this.employer_account_id = employer_account_id;
-	}
-
-	public int getCandidate_id() {
-		return candidate_id;
-	}
-
-	public void setCandidate_id(int candidate_id) {
-		this.candidate_id = candidate_id;
-	}
-
-	public Date getSaved_date() {
-		return saved_date;
-	}
-
-	public void setSaved_date(Date saved_date) {
-		this.saved_date = saved_date;
+	
+	public SavedJobPost(Candidate candidate, JobPost jobpost) {
+		this.candidate = candidate;
+		this.jobpost = jobpost;
 	}
 	
-	
-	
+	@Override
+    public int hashCode() {
+        return Objects.hash(candidate.getId(), jobpost.getId(), saveddate);
+    }
 
+
+	public Candidate getCandidate() {
+		return candidate;
+	}
+
+
+	public void setCandidate(Candidate candidate) {
+		this.candidate = candidate;
+	}
+
+
+	public JobPost getJobpost() {
+		return jobpost;
+	}
+
+
+	public void setJobpost(JobPost jobpost) {
+		this.jobpost = jobpost;
+	}
+
+
+	public Date getSaveddate() {
+		return saveddate;
+	}
+
+
+	public void setSaveddate(Date saveddate) {
+		this.saveddate = saveddate;
+	}
+	
 }

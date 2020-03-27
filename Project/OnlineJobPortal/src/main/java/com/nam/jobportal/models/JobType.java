@@ -1,45 +1,36 @@
 package com.nam.jobportal.models;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="job_type")
+@Entity
+@Table(name="job_type")
 public class JobType {
 	
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Indexed(unique=true)
-	private int job_type_id;
-	
-	@NotBlank
 	private String job_type_name;
 
 	public JobType() {
 		
 	}
 
-	public JobType(@NotBlank String job_type_name) {
+	public JobType(String job_type_name) {
 		this.job_type_name = job_type_name;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getJob_type_id() {
-		return job_type_id;
-	}
-
-	public void setJob_type_id(int job_type_id) {
-		this.job_type_id = job_type_id;
 	}
 
 	public String getJob_type_name() {
@@ -49,5 +40,5 @@ public class JobType {
 	public void setJob_type_name(String job_type_name) {
 		this.job_type_name = job_type_name;
 	}
-	
+
 }

@@ -1,93 +1,93 @@
 package com.nam.jobportal.models;
 
 import java.util.Date;
+import java.util.Set;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-@Document(collection="job_post")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@Entity
+@Table(name = "job_post")
 public class JobPost {
-	
+
 	@Id
-	private String id;
-	
-	@Indexed(unique=true)
-	private int post_id;
-	
-	@NotBlank
-	private int posted_by;
-	
-	@NotBlank
-	private int job_type_id;
-	
-	@NotBlank
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "posted_by", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private Employer employer;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "job_type_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private JobType jobtype;
+
 	private String industry;
-	
+
 	private Date created_date;
-	
-	@NotBlank
+
 	private String job_description;
+
+	@OneToOne
+	@JoinColumn(name="job_location_id")
+	private JobLocation joblocation;
 	
-	@NotBlank
-	private int job_location_id;
+	@OneToMany(mappedBy = "jobpost", cascade = CascadeType.ALL)
+    private Set<SavedJobPost> savedjobpost;
 	
-	@NotBlank
 	private Date expired_date;
-	
-	@NotBlank
-	private int salary;
 
-	public JobPost() {
-		
-	}
+	private Long salary;
 
-	public JobPost(@NotBlank int posted_by, @NotBlank int job_type_id, @NotBlank String industry, Date created_date,
-			@NotBlank String job_description, @NotBlank int job_location_id, @NotBlank Date expired_date,
-			@NotBlank int salary) {
-		super();
-		this.posted_by = posted_by;
-		this.job_type_id = job_type_id;
+	public JobPost(String industry, Date created_date, String job_description, Date expired_date, Long salary) {
 		this.industry = industry;
 		this.created_date = created_date;
 		this.job_description = job_description;
-		this.job_location_id = job_location_id;
 		this.expired_date = expired_date;
 		this.salary = salary;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getPost_id() {
-		return post_id;
+	public Employer getEmployer() {
+		return employer;
 	}
 
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 
-	public int getPosted_by() {
-		return posted_by;
+	public JobType getJobtype() {
+		return jobtype;
 	}
 
-	public void setPosted_by(int posted_by) {
-		this.posted_by = posted_by;
-	}
-
-	public int getJob_type_id() {
-		return job_type_id;
-	}
-
-	public void setJob_type_id(int job_type_id) {
-		this.job_type_id = job_type_id;
+	public void setJobtype(JobType jobtype) {
+		this.jobtype = jobtype;
 	}
 
 	public String getIndustry() {
@@ -114,12 +114,12 @@ public class JobPost {
 		this.job_description = job_description;
 	}
 
-	public int getJob_location_id() {
-		return job_location_id;
+	public JobLocation getJoblocation() {
+		return joblocation;
 	}
 
-	public void setJob_location_id(int job_location_id) {
-		this.job_location_id = job_location_id;
+	public void setJoblocation(JobLocation joblocation) {
+		this.joblocation = joblocation;
 	}
 
 	public Date getExpired_date() {
@@ -130,13 +130,15 @@ public class JobPost {
 		this.expired_date = expired_date;
 	}
 
-	public int getSalary() {
+	public Long getSalary() {
 		return salary;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(Long salary) {
 		this.salary = salary;
 	}
 	
 	
+	
+
 }

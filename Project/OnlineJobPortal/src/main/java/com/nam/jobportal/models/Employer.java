@@ -3,19 +3,27 @@ package com.nam.jobportal.models;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import org.bson.types.Binary;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Document(collection="employer")
+@Entity
+@Table(name = "employer")
 public class Employer {
-	
+
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Indexed(unique=true)
 	private String companyname;
 	
 	private String description;
@@ -24,29 +32,32 @@ public class Employer {
 	
 	private String websiteurl;
 	
-	private Set<Binary> companyimage = new HashSet<>();
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private UserAccount userAccount;
 	
-	private int accountid;
+	@OneToMany(mappedBy = "employer", cascade = CascadeType.ALL)
+	private Set<SavedCandidate> savedCandidates = new HashSet<>();
 
 	public Employer() {
 		
 	}
 
-	public Employer(String companyname, String description, Date establishmentdate, String websiteurl,
-			Set<Binary> companyimage) {
+	public Employer(String companyname, String description, Date establishmentdate, String websiteurl, SavedCandidate...savedCandidates ) {
 		super();
 		this.companyname = companyname;
 		this.description = description;
 		this.establishmentdate = establishmentdate;
 		this.websiteurl = websiteurl;
-		this.companyimage = companyimage;
+		for(SavedCandidate savedCandidate : savedCandidates) savedCandidate.setEmployer(this);
+        this.savedCandidates = Stream.of(savedCandidates).collect(Collectors.toSet());
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -82,20 +93,11 @@ public class Employer {
 		this.websiteurl = websiteurl;
 	}
 
-	public Set<Binary> getCompanyimage() {
-		return companyimage;
+	public UserAccount getUserAccount() {
+		return userAccount;
 	}
 
-	public void setCompanyimage(Set<Binary> companyimage) {
-		this.companyimage = companyimage;
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
 	}
-
-	public int getAccountid() {
-		return accountid;
-	}
-
-	public void setAccountid(int accountid) {
-		this.accountid = accountid;
-	}
-
 }

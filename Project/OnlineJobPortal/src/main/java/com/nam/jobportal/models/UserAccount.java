@@ -1,34 +1,38 @@
 package com.nam.jobportal.models;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.bson.types.Binary;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.nam.jobportal.annotations.ValidPassword;
 
 
-@Document(collection="user_account")
+@Entity
+@Table(	name = "user_account", 
+		uniqueConstraints = { 
+			@UniqueConstraint(columnNames = "email") 
+		})
 public class UserAccount {
 
-	@Transient
-	public static final String SEQUENCE_NAME = "useraccount_sequence";
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	@Indexed(unique=true)
-	private int useraccount_id;
 
 	@NotBlank
 	@Size(max=20)
@@ -37,48 +41,49 @@ public class UserAccount {
 	@NotBlank
 	@Size(max=30)
 	private String lastname;
-
-	private String contactnumber;
 	
-
-	@Email
 	@NotBlank
-	@Indexed(unique=true)
+	@Size(max = 50)
+	@Email
 	private String email;
 
 	@NotBlank
-	@ValidPassword
+	@Size(max = 120)
 	private String password;
 
-	@DBRef
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	
-	private Date registrationdate;
-
-	private boolean isactive;
-
-	private Binary image;
-
 	private boolean enabled;
+	
 
+
+    @OneToOne(mappedBy = "userAccount")
+    private Candidate candidate;
+    
+    @OneToOne(mappedBy = "userAccount")
+    private Employer employer;
+    
 	public UserAccount() {
-
+		
 	}
 
-	public String getId() {
+	public UserAccount(String firstname, String lastname, String email, String password) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getUseraccount_id() {
-		return useraccount_id;
-	}
-
-	public void setUseraccount_id(int useraccount_id) {
-		this.useraccount_id = useraccount_id;
 	}
 
 	public String getFirstname() {
@@ -95,14 +100,6 @@ public class UserAccount {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public String getContactnumber() {
-		return contactnumber;
-	}
-
-	public void setContactnumber(String contactnumber) {
-		this.contactnumber = contactnumber;
 	}
 
 	public String getEmail() {
@@ -129,38 +126,12 @@ public class UserAccount {
 		this.roles = roles;
 	}
 
-	public Date getRegistrationdate() {
-		return registrationdate;
-	}
-
-	public void setRegistrationdate(Date registrationdate) {
-		this.registrationdate = registrationdate;
-	}
-
-	public boolean isIsactive() {
-		return isactive;
-	}
-
-	public void setIsactive(boolean isactive) {
-		this.isactive = isactive;
-	}
-
-	public Binary getImage() {
-		return image;
-	}
-
-	public void setImage(Binary image) {
-		this.image = image;
-	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+		this.enabled = false;
 	}
-
-	
 	
 }

@@ -2,20 +2,46 @@ package com.nam.jobportal.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "education")
 public class Education {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String university_college;
-	
+
 	private String major;
-	
+
 	private Date start_date;
-	
+
 	private Date completion_date;
-	
+
 	private int gpa;
-	
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "account_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private Candidate candidate;
+
 	public Education() {
-		
+
 	}
 
 	public Education(String university_college, String major, Date start_date, Date completion_date, int gpa) {
@@ -66,7 +92,12 @@ public class Education {
 	public void setGpa(int gpa) {
 		this.gpa = gpa;
 	}
-	
-	
-	
+
+	public Candidate getCandidate() {
+		return candidate;
+	}
+
+	public void setCandidate(Candidate candidate) {
+		this.candidate = candidate;
+	}
 }

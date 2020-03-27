@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.bson.types.Binary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,36 +15,26 @@ import com.nam.jobportal.models.UserAccount;
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private Long id;
 
-	
 	private String firstname;
 
 	private String lastname;
-
-	private String contactnumber;
 	
-
 	private String email;
-	
-	private Binary image;
-	
 	
 	@JsonIgnore
 	private String password;
-
+	
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(String id, String firstname, String lastname, String contactnumber, String email, String password,
-			Binary image,
+	public UserDetailsImpl(Long id, String firstname, String lastname, String email, String password, boolean enabled,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.contactnumber = contactnumber;
 		this.email = email;
 		this.password = password;
-		this.image = image;
 		this.authorities = authorities;
 	}
 
@@ -58,10 +47,9 @@ public class UserDetailsImpl implements UserDetails {
 				useraccount.getId(), 
 				useraccount.getFirstname(), 
 				useraccount.getLastname(),
-				useraccount.getContactnumber(),
 				useraccount.getEmail(),
-				useraccount.getPassword(), 
-				useraccount.getImage(), 
+				useraccount.getPassword(),
+				useraccount.isEnabled(),
 				authorities);
 		
 	}
@@ -71,7 +59,7 @@ public class UserDetailsImpl implements UserDetails {
 		return authorities;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -84,7 +72,6 @@ public class UserDetailsImpl implements UserDetails {
 		return password;
 	}
 	
-
 	public String getFirstname() {
 		return firstname;
 	}
@@ -92,14 +79,10 @@ public class UserDetailsImpl implements UserDetails {
 	public String getLastname() {
 		return lastname;
 	}
-
-	public String getContactnumber() {
-		return contactnumber;
-	}
-
-
-	public Binary getImage() {
-		return image;
+	
+	@Override
+	public String getUsername() {
+		return email;
 	}
 
 	@Override
@@ -131,11 +114,4 @@ public class UserDetailsImpl implements UserDetails {
 		UserDetailsImpl user = (UserDetailsImpl) o;
 		return Objects.equals(id, user.id);
 	}
-
-	@Override
-	public String getUsername() {
-		return email;
-	}
-
-
 }

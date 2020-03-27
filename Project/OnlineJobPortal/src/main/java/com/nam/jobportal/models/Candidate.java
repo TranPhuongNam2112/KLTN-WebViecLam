@@ -3,65 +3,79 @@ package com.nam.jobportal.models;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import org.bson.types.Binary;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Document(collection="candidate")
+
+@Entity
+@Table(	name = "candidate", 
+uniqueConstraints = { 
+		@UniqueConstraint(columnNames = "phone_number") 
+})
 public class Candidate {
 
 	@Id
-	private String id;
-	
-	@Indexed(unique=true)
-	private int candidateid;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String phone_number;
+
 	private String homeaddress;
-	
+
 	private String gender;
-	
+
 	private Date DoB;
-	
-	private Binary CV;
-	
-	private Set<Experience> experiences = new HashSet<>();
-	
-	private Set<Education> educations = new HashSet<>();
-	
-	private int accountid;
 
-	public Candidate() {
+	private String CV;
 
-	}
+	private String image;
 
-	public Candidate(String homeaddress, String gender, Date doB, Binary cV, Set<Experience> experiences,
-			Set<Education> educations, int accountid) {
-		super();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account_id", referencedColumnName = "id")
+	private UserAccount userAccount;
+
+	@OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+	private Set<SavedJobPost> savedJobPosts = new HashSet<>();
+	
+	@OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+	private Set<SavedCandidate> savedCandidates = new HashSet<>();
+
+	public Candidate(String phone_number, String homeaddress, String gender, Date doB, String cV, String image, SavedJobPost... savedJobPosts) {
+		this.phone_number = phone_number;
 		this.homeaddress = homeaddress;
 		this.gender = gender;
-		DoB = doB;
-		CV = cV;
-		this.experiences = experiences;
-		this.educations = educations;
-		this.accountid = accountid;
+		this.DoB = doB;
+		this.CV = cV;
+		this.image = image;
+		for(SavedJobPost savedJobPost : savedJobPosts) savedJobPost.setCandidate(this);;
+        this.savedJobPosts = Stream.of(savedJobPosts).collect(Collectors.toSet());
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getCandidateid() {
-		return candidateid;
+	public String getPhone_number() {
+		return phone_number;
 	}
 
-	public void setCandidateid(int candidateid) {
-		this.candidateid = candidateid;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 
 	public String getHomeaddress() {
@@ -88,37 +102,30 @@ public class Candidate {
 		DoB = doB;
 	}
 
-	public Binary getCV() {
+	public String getCV() {
 		return CV;
 	}
 
-	public void setCV(Binary cV) {
+	public void setCV(String cV) {
 		CV = cV;
 	}
 
-	public Set<Experience> getExperiences() {
-		return experiences;
+	public String getImage() {
+		return image;
 	}
 
-	public void setExperiences(Set<Experience> experiences) {
-		this.experiences = experiences;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
-	public Set<Education> getEducations() {
-		return educations;
+	public UserAccount getUserAccount() {
+		return userAccount;
 	}
 
-	public void setEducations(Set<Education> educations) {
-		this.educations = educations;
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
 	}
 
-	public int getAccountid() {
-		return accountid;
-	}
 
-	public void setAccountid(int accountid) {
-		this.accountid = accountid;
-	}
-	
 
 }

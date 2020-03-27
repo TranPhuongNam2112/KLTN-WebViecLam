@@ -1,55 +1,59 @@
 package com.nam.jobportal.models;
 
 import java.util.Date;
+import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
 
-@Document(collection="saved_candidate")
+
+@Entity
+@Table(name="saved_candidate")
 public class SavedCandidate {
+	
+	@EmbeddedId
+	private SavedCandidateId savedCandidateId;
 
-	@Id
-	private String id;
-	
-	private int candidate_id;
-	
-	private int employer_account_id;
-	
+	@ManyToOne
+	@MapsId("candidateId")
+	private Candidate candidate;
+
+	@ManyToOne
+	@MapsId("employerId")
+	private Employer employer;
+
+	@Column
 	private Date saved_date;
-	
+
 	public SavedCandidate() {
-		
+
 	}
 
-	public SavedCandidate(int candidate_id, int employer_account_id, Date saved_date) {
-		super();
-		this.candidate_id = candidate_id;
-		this.employer_account_id = employer_account_id;
-		this.saved_date = saved_date;
+	public SavedCandidate(Employer employer, Candidate candidate) {
+		this.employer = employer;
+		this.candidate = candidate;
 	}
 
-	public String getId() {
-		return id;
+	public Employer getEmployer() {
+		return employer;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 
-	public int getCandidate_id() {
-		return candidate_id;
+	public Candidate getCandidate() {
+		return candidate;
 	}
 
-	public void setCandidate_id(int candidate_id) {
-		this.candidate_id = candidate_id;
-	}
-
-	public int getEmployer_account_id() {
-		return employer_account_id;
-	}
-
-	public void setEmployer_account_id(int employer_account_id) {
-		this.employer_account_id = employer_account_id;
+	public void setCandidate(Candidate candidate) {
+		this.candidate = candidate;
 	}
 
 	public Date getSaved_date() {
@@ -59,6 +63,9 @@ public class SavedCandidate {
 	public void setSaved_date(Date saved_date) {
 		this.saved_date = saved_date;
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(employer.getId(), candidate.getId(), saved_date);
+	}
 }

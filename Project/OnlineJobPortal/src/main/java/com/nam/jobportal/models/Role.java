@@ -1,36 +1,47 @@
 package com.nam.jobportal.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Document(collection="role")
+
+@Entity
+@Table(name = "roles")
 public class Role {
-	 @Id
-	  private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-	  private ERole name;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
+	private ERole name;
 
-	  public Role() {
+	public Role() {
 
-	  }
+	}
 
-	  public Role(ERole name) {
-	    this.name = name;
-	  }
+	public Role(ERole name) {
+		this.name = name;
+	}
 
-	  public String getId() {
-	    return id;
-	  }
+	public Integer getId() {
+		return id;
+	}
 
-	  public void setId(String id) {
-	    this.id = id;
-	  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-	  public ERole getName() {
-	    return name;
-	  }
+	public ERole getName() {
+		return name;
+	}
 
-	  public void setName(ERole name) {
-	    this.name = name;
-	  }
+	public void setName(ERole name) {
+		this.name = name;
+	}
 }

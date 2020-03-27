@@ -1,22 +1,15 @@
 package com.nam.jobportal.repository;
 
-import java.util.List;
+import java.util.Optional;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nam.jobportal.models.*;
+import com.nam.jobportal.models.UserAccount;
 
 
-public interface UserAccountRepository extends MongoRepository<UserAccount, String> {
-	List<UserAccount> findAll();
-	List<UserAccount> saveAll();
-	UserAccount findByRole_id(String role_id);
-	List<UserAccount> findByEnabled(boolean enabled);
-	List<UserAccount> findByIs_active(boolean is_active);
-	UserAccount findByUseraccount_id(int useraccount_id);
-	UserAccount findByEmail(String email);
-	UserAccount findByContactnumber(String contactnumber);
+public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
+	Optional<UserAccount> findByEmail(String email);
+
 	Boolean existsByEmail(String email);
-	boolean existByEmail(String email);
 
 }

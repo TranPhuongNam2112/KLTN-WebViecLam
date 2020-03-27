@@ -1,50 +1,49 @@
 package com.nam.jobportal.models;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="job_location")
+
+@Entity
+@Table(name="job_location")
 public class JobLocation {
-	
+
 	@Id
-	private int id;
-	
-	@Indexed(unique=true)
-	private int job_location_id;
-	
-	@NotBlank
+	private Long id;
+
+	@OneToOne(mappedBy="joblocation")
+	private JobPost jobpost;
+
 	private String street_address;
-	
-	@NotBlank
+
 	private String city_province;
-	
+
 	public JobLocation() {
-		
+
 	}
 
-	public JobLocation(@NotBlank String street_address, @NotBlank String city_province) {
-		super();
+	public JobLocation(String street_address, String city_province) {
 		this.street_address = street_address;
 		this.city_province = city_province;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getJob_location_id() {
-		return job_location_id;
+	public JobPost getJobpost() {
+		return jobpost;
 	}
 
-	public void setJob_location_id(int job_location_id) {
-		this.job_location_id = job_location_id;
+	public void setJobpost(JobPost jobpost) {
+		this.jobpost = jobpost;
 	}
 
 	public String getStreet_address() {
@@ -62,5 +61,6 @@ public class JobLocation {
 	public void setCity_province(String city_province) {
 		this.city_province = city_province;
 	}
+
 	
 }
