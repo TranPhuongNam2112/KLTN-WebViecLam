@@ -12,13 +12,5 @@ import com.nam.jobportal.models.Candidate;
 import com.nam.jobportal.repository.CandidateRepository;
 
 public class CandidateDashboardController {
-	@Autowired
-	CandidateRepository candidateRepository;
-	
-	@GetMapping(value = "/addresses", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Iterable<Candidate> queryOverCandidate(
-	  @QuerydslPredicate(root = Candidate.class) Predicate predicate) {
-	    BooleanBuilder builder = new BooleanBuilder();
-	    return candidateRepository.findAll(builder.and(predicate));
-	}
+
 }

@@ -35,7 +35,7 @@ public class Education {
 	private int gpa;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "account_id", nullable = false)
+	@JoinColumn(name = "candidate_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Candidate candidate;
