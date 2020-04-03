@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../_services/auth.service';
+
 
 @Component({
   selector: 'app-e-register',
@@ -8,7 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ERegisterComponent implements OnInit {
   eregisterForm: FormGroup;
-  constructor() { }
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  constructor(private authService: AuthService) { }
+
 
   ngOnInit(): void {
     this.eregisterForm = new FormGroup({
@@ -22,6 +29,17 @@ export class ERegisterComponent implements OnInit {
   onSubmit() {
     this.eregisterForm.controls.defaultFormEmail.markAsTouched();
     this.eregisterForm.controls.nameInput.markAsTouched();
+    this.authService.register(this.eregisterForm).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
   }
   
 

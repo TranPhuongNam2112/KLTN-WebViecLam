@@ -23,7 +23,11 @@
                         <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
 
                             <mdb-card-body class="z-depth-2">
-                                <form [formGroup]="eregisterForm">
+                                <form [formGroup]="eregisterForm"
+                                *ngIf="!isSuccessful"
+                                (ngSubmit)="f.form.valid && onSubmit()"
+                                #f="ngForm"
+                                novalidate>
                                     <!--Header-->
                                     <div class="text-center">
                                         <h3 class="blue-text">
