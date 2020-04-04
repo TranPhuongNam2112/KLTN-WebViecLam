@@ -1,0 +1,140 @@
+<!-- <app-header-for-employer></app-header-for-employer> -->
+
+<main>
+    <div class="container mt-5 pt-5 ">
+        <form class="border border-grey pt-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
+            <p class="dark-grey-text mb-2 h4 font-weight-light">
+                <mdb-icon fas icon="envelope" class="ml-3 mr-1"></mdb-icon>Account information
+            </p>
+            <div class="row">
+                <div class="col-3">
+                    <p class="pt-2 dark-grey-text h6 d-flex justify-content-end">Email address</p>
+                </div>
+                <div class="col-5">
+                    <p class="pt-2 dark-grey-text  h6 font-weight-normal d-flex justify-content-start">
+                        employer@gmail.com</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5  d-flex justify-content-end">
+                    <button class="font-weight-bold mb-5" size="md" mdbBtn type="button" color="warning" outline="true"
+                        mdbWavesEffect>Change Password</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+    <!-- company profile start -->
+    <div class="container mt-3  ">
+        <form class="border border-grey pt-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
+            <p class="dark-grey-text mb-2 h4 font-weight-light">
+                <mdb-icon far icon="building" class="ml-3 mr-1"></mdb-icon>My Company profile
+            </p>
+            <div class="row ml-3 ">
+                <div class="col-lg-8 col-sm-12 col-md-12">
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold " for="companyName">Company
+                            Name</label>
+                        <input type="text" class="form-control" id="companyName">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row ml-3 ">
+
+                <div class="col-lg-8 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="dark-grey-text font-weight-bold " for="webURL">Web URL</label>
+                        <small id="optional" class="ml-2 text-muted">(Optional)</small>
+                        <input type="text" class="form-control" id="webURL">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ml-3">
+                <div class="col-lg-4 col-sm-12 col-md-12 l-3">
+                    <div class="form-group ">
+                        <label class="dark-grey-text font-weight-bold" for="numEmp">Company Size</label>
+                        <small id="optional" class="ml-2 text-muted">(Optional)</small>
+                        <select class="custom-select custom-select mb-3">
+                            <option selected>Less than 100</option>
+                            <option value="1">100-500</option>
+                            <option value="2">500-1000</option>
+                            <option value="3">More than 1000</option>
+                        </select>
+
+                    </div>
+                </div>
+                <!-- date picker birthday -->
+                <div class="col-lg-5 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="dark-grey-text font-weight-bold" for="exampleInputPassword1">Establish Day</label>
+                        <small id="optional" class="ml-2 text-muted">(Optional)</small>
+
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                                        ngbDatepicker #d="ngbDatepicker" [maxDate]="{year: 2020, month: 1, day: 31}">
+                                    <div class="input-group-append">
+                                        <button mdbBtn color="primary" outline="true" size="md" class="m-0 px-3 py-2"
+                                            type="button" id="button-addon2" mdbWavesEffect (click)="d.toggle()"><i
+                                                class="fas fa-calendar-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row ml-3 ">
+                <div class="col-lg-4 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="dark-grey-text font-weight-bold" for="phoneCompany">Phone</label>
+                        <input type="tel" class="form-control" id="phoneCompany">
+                    </div>
+                </div>
+            </div>
+            <div class="row ml-3 ">
+
+                <div class="col-lg-8 col-sm-12 col-md-12">
+                    <div class="form-group">
+
+                        <label class="dark-grey-text font-weight-bold" for="descriptionCom">Company Profile</label>
+                        <small id="optional" class="ml-2 text-muted">(Optional)</small>
+                        <textarea type="text" class="form-control" id="descriptionCom"></textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-8  d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
+
+            </div>
+
+
+        </form>
+    </div>
+    <!-- company profile end -->
+    <!-- company logo start -->
+    <div class="container mt-3 mb-5 ">
+        <form class="border border-grey pt-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
+            <p class="dark-grey-text mb-2 h4 font-weight-light">
+                <mdb-icon far icon="building" class="ml-3 mr-1"></mdb-icon>Company Logo
+            </p>
+            <div class="ml-5">
+                <img [src]="url" height="200" class="border rounded border-weight-light ">  <br />
+                <input type='file' (change)="onSelectFile($event)">
+            </div>
+            <div class="col-8  d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
+
+            </div>
+        </form>
+    </div>
+    <!-- company logo end -->
+
+</main>
+<app-footer></app-footer>

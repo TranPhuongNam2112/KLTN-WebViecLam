@@ -6,6 +6,7 @@ import {CLoginComponent } from '../candidate/c-login/c-login.component';
 import {CRegisterComponent} from '../candidate/c-register/c-register.component';
 import {GuestComponent } from './guest.component';
 import { ForgotPassComponent} from './forgot-pass/forgot-pass.component';
+import {ValidateAccComponent } from './validate-acc/validate-acc.component';
  const routes: Routes = [ 
    {
     path: '',
@@ -26,6 +27,10 @@ import { ForgotPassComponent} from './forgot-pass/forgot-pass.component';
       {
         path: 'forgot-pass',
         component: ForgotPassComponent
+      },
+      {
+        path: 'validate',
+        component: ValidateAccComponent
       },
     ]
   }

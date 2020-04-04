@@ -6,6 +6,7 @@ import { CandidateComponent} from './candidate.component';
 // import {FitjobComponent } from './manage-job/fitjob/fitjob.component';
 import { CandidateDashboardComponent } from './candidate-dashboard/candidate-dashboard.component';
 import {CSidebarComponent} from './c-sidebar/c-sidebar.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -16,6 +17,7 @@ const routes: Routes = [
         path: '',
         component: CandidateDashboardComponent
       },
+    
       {
         path: 'manage',
         component: CSidebarComponent

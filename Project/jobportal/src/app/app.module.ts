@@ -7,15 +7,16 @@ import {SharedModule} from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ValidateAccComponent } from './components/candidate/validate-acc/validate-acc.component';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+//import {HeaderForEmployerComponent} from './shared/components/header-for-employer/header-for-employer.component';
+// import {HeaderForCandidateComponent} from './shared/components/header-for-candidate/header-for-candidate.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    ValidateAccComponent,
-   
-   
+    AppComponent, 
+    //HeaderForEmployerComponent,
+    // HeaderForCandidateComponent
   ],
   imports: [
     SharedModule.forRoot(),
@@ -23,10 +24,11 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BrowserAnimationsModule,
     // GuestModule,
     AppRoutingModule,
+    HttpClientModule
 
    
   ],
-  providers: [  ],
+  providers: [ authInterceptorProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

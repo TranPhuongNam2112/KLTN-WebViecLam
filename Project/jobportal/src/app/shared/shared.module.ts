@@ -8,22 +8,21 @@ import { InputsModule,InputUtilitiesModule, WavesModule, ButtonsModule, Collapse
 
 
 import { SearchJobComponent } from './components/search-job/search-job.component';
-import { HeaderForEmployerComponent } from './components/header-for-employer/header-for-employer.component';
-
 import { FooterComponent } from './components/footer/footer.component';
 import { ForgotPassComponent} from './components/forgot-pass/forgot-pass.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-
-
+import { ValidateAccComponent } from './components/validate-acc/validate-acc.component';
+import { LoginComponent } from './components/login/login.component';
+//import {HeaderForEmployerComponent} from './components/header-for-employer/header-for-employer.component';
 @NgModule({
   declarations: [
     SearchJobComponent,
-    HeaderForEmployerComponent,
-  
     FooterComponent,
     ForgotPassComponent,
     ChangePassComponent,
-   
+    ValidateAccComponent,
+  //  HeaderForEmployerComponent,
+    LoginComponent,
   
   ],
   imports: [
@@ -49,11 +48,11 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     ButtonsModule,
     CollapseModule,
     ChangePassComponent,
-    HeaderForEmployerComponent,
-  
+   // HeaderForEmployerComponent,
+    ValidateAccComponent,
     FooterComponent,
     ForgotPassComponent,
-   
+    LoginComponent
   ]
 })
 export class SharedModule {
@@ -62,11 +61,12 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         SearchJobComponent,
-        HeaderForEmployerComponent,
-      
+       // HeaderForEmployerComponent,
+        ValidateAccComponent,
         FooterComponent,
         ForgotPassComponent,
-        ChangePassComponent
+        ChangePassComponent,
+        LoginComponent
       ]
     }
   }
