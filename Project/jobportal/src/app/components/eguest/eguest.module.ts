@@ -10,6 +10,8 @@ import { EguestDashboardComponent } from './eguest-dashboard/eguest-dashboard.co
 import { ELoginComponent} from '../employer/e-login/e-login.component';
 import { ERegisterComponent} from '../employer/e-register/e-register.component';
 import { EforgotPassComponent } from './eforgot-pass/eforgot-pass.component';
+import { EvalidateAccComponent } from './evalidate-acc/evalidate-acc.component';
+
 @NgModule({
   declarations: [
     EguestComponent,
@@ -17,7 +19,8 @@ import { EforgotPassComponent } from './eforgot-pass/eforgot-pass.component';
     EguestDashboardComponent,
     ELoginComponent,
     ERegisterComponent,
-    EforgotPassComponent
+    EforgotPassComponent,
+    EvalidateAccComponent
   ],
   imports: [
     CommonModule,

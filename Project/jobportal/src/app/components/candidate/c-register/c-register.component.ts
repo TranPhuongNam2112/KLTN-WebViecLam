@@ -1,25 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../shared/services/auth.service';
 @Component({
   selector: 'app-c-register',
   templateUrl: './c-register.component.html',
   styleUrls: ['./c-register.component.scss']
 })
 export class CRegisterComponent implements OnInit {
-  registerForm: FormGroup;
-  constructor() { }
+  // registerForm: FormGroup;
+  registerForm:any = {};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      defaultFormEmail: new FormControl(null, [Validators.required, Validators.email]),
-      nameInput: new FormControl(null, Validators.required)
-    });
+    this.registerForm.role="candidate";
   }
-  get defaultFormEmail() { return this.registerForm.get('defaultFormEmail'); }
-  get nameInput() { return this.registerForm.get('nameInput'); }
   onSubmit() {
-    this.registerForm.controls.defaultFormEmail.markAsTouched();
-    this.registerForm.controls.nameInput.markAsTouched();
+    this.authService.register(this.registerForm).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
   }
 
 }

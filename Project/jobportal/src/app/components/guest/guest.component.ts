@@ -10,6 +10,8 @@ export class GuestComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
 }

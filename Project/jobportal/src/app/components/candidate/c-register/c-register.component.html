@@ -20,75 +20,104 @@
                         <mdb-card-body class="px-lg-5 pt-0">
 
                             <!-- Form -->
-                            <form [formGroup]="registerForm" class="text-center" style="color: #757575;">
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6">
+                            <form *ngIf="!isSuccessful" name="registerForm" (ngSubmit)="f.form.valid && onSubmit()"
+                                #f="ngForm" novalidate>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-6 col-xs-6 d-flex justify-content-center">
                                         <!--Facebook-->
                                         <button type="button" mdbBtn size="lg" color="fb" class="btn btn-indigo"
-                                            mdbWavesEffect><i
-                                                class="fab fa-facebook-f left"></i><span>Facebook</span></button>
+                                            mdbWavesEffect> <span>Facebook</span></button>
                                     </div>
 
-                                    <div class="col-md-6 col-xs-6">
+                                    <div class="col-md-6 col-xs-6 d-flex justify-content-center">
                                         <button type="button" mdbBtn size="lg" mdbBtn color="gplus"
-                                            class="btn btn-danger" mdbWavesEffect><i
-                                                class="fab fa-google-plus left"></i>Google
+                                            class="btn btn-danger" mdbWavesEffect> Google
                                         </button>
                                     </div>
                                 </div>
                                 <hr />
-                                <h6>or register with</h6>
-
+                            
+                                <div  class="row">
                                 <!-- Name -->
-                                <div class="md-form">
-                                    <input type="text" id="materialContactFormName" class="form-control" mdbInput mdbValidate
-                                      formControlName="nameInput" />
-                                    <label for="materialContactFormName">Name</label>
-                                    <mdb-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">Please tell us your name</mdb-error>
-                                    
-                                  </div>
-
-
-                                <!-- Email -->
-                                <div class="md-form">
-                                    <div class="input-group">
-                                    <input type="email" id="materialLoginFormEmail" class="form-control" mdbInput
-                                        mdbValidate formControlName="defaultFormEmail">
-                                    <label for="materialLoginFormEmail">E-mail</label>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="basic-addon2">@example.com</span>
+                                <div class="col-6">
+                                <div class="form-group">
+                                    <label for="firstname">Firstname</label>
+                                    <input type="text" class="form-control" name="firstname"
+                                        [(ngModel)]="registerForm.firstname" required minlength="3" maxlength="20"
+                                        #firstname="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
+                                        <div *ngIf="firstname.errors.required">Firstname is required</div>
+                                        <div *ngIf="firstname.errors.minlength">
+                                            Firstname must be at least 3 characters
+                                        </div>
+                                        <div *ngIf="firstname.errors.maxlength">
+                                            Firstname must be at most 20 characters
+                                        </div>
                                     </div>
                                 </div>
-                                    <mdb-error
-                                        *ngIf="defaultFormEmail.invalid && (defaultFormEmail.dirty || defaultFormEmail.touched)">
-                                        <span *ngIf="defaultFormEmail.errors.required">Email is required</span>
-                                        <span *ngIf="defaultFormEmail.errors.email">This email address is not
-                                            valid</span>
-                                    </mdb-error>
-                                </div>
-
-
-
-                                <div class="d-flex justify-content-around">
-                                   
-                                    <div>
-                                        <!-- Forgot password -->
-                                        <h6>If you are an <strong>Employer</strong>, please</h6>
-                                        <a [routerLink]="['../../eguest/register']">click here to Register</a>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="lastname">Lastname</label>
+                                    <input type="text" class="form-control" name="lastname"
+                                        [(ngModel)]="registerForm.lastname" required minlength="3" maxlength="20"
+                                        #lastname="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
+                                        <div *ngIf="lastname.errors.required">Lastname is required</div>
+                                        <div *ngIf="lastname.errors.minlength">
+                                            Lastname must be at least 3 characters
+                                        </div>
+                                        <div *ngIf="lastname.errors.maxlength">
+                                            Lastname must be at most 20 characters
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email"
+                                        [(ngModel)]="registerForm.email" required email #email="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                                        <div *ngIf="email.errors.required">Email is required</div>
+                                        <div *ngIf="email.errors.email">
+                                            Email must be a valid email address
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password"
+                                        [(ngModel)]="registerForm.password" required minlength="6"
+                                        #password="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                                        <div *ngIf="password.errors.required">Password is required</div>
+                                        <div *ngIf="password.errors.minlength">
+                                            Password must be at least 6 characters
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- role -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="role" [(ngModel)]="registerForm.role"
+                                        required #role="ngModel" disabled style="display: none;" />
                                 </div>
 
                                 <!-- Sign in button -->
-                                <button mdbBtn color="indigo" outline="true" rounded="true" block="true"
-                                    class="my-4 waves-effect z-depth-0" mdbWavesEffect type="submit"
-                                    (click)="onSubmit()">Register</button>
 
-                                <!-- Register -->
-                                <h6>Already have account?
-                                    <a [routerLink]="['../login']"><strong>Sign in</strong></a>
-                                </h6>
-
+                                <div class="form-group">
+                                    <button mdbBtn color="primary" outline="true" rounded="true" block="true"
+                                        class="my-4 waves-effect z-depth-0"
+                                        mdbWavesEffect><strong>Register</strong></button>
+                                </div>
+                                <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                                    Signup failed!<br />{{ errorMessage }}
+                                </div>
                             </form>
+                            <div class="alert alert-success" *ngIf="isSuccessful">
+                                Your registration is successful!
+                                <a [routerLink]="['../login']"><strong>Sign in</strong></a>
+                            </div>
                             <!-- Form -->
                         </mdb-card-body>
                     </mdb-card>

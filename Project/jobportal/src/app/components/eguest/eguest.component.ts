@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eguest.component.scss']
 })
 export class EguestComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-
+  
 }

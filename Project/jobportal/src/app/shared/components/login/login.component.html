@@ -1,0 +1,90 @@
+<!-- Full Page Login -->
+<div class="view">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-blue-grey-strong d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container">
+            <!--Grid row-->
+            <div class="row pt-lg-5 mt-lg-5">
+                <!--Grid column-->
+                <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft"
+                    data-wow-delay="0.3s">
+                    <h1 class="display-4 font-weight-bold">Helping Your Business Move Up</h1>
+                    <hr class="hr-light">
+                    <h6 class="mb-3">get your job matched with the right candidate .</h6>
+                    <!-- <a mdbBtn color="white" outline="true" mdbWavesEffect [routerLink]="['../']">Learn more</a> -->
+                    <a mdbBtn color="white" outline="true" mdbWavesEffect>Learn more</a>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-6 col-xl-5 mb-4">
+                    <!--Form-->
+                    <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
+                        <mdb-card-body class="z-depth-2">
+                            <form *ngIf="!isLoggedIn" name="loginForm" (ngSubmit)="f.form.valid && onSubmit()"
+                                #f="ngForm" novalidate>
+                                <div class="text-center">
+                                    <h3 class="blue-text">
+                                        <strong>Sign in</strong>
+                                    </h3>
+                                    <hr>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="loginForm.email"
+                                        required email #email="ngModel" />
+                                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid">
+                                        <div *ngIf="email.errors.required">Email is required</div>
+                                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password"
+                                        [(ngModel)]="loginForm.password" required minlength="8" #password="ngModel" />
+                                    <div class="alert alert-danger" role="alert"
+                                        *ngIf="f.submitted && password.invalid">
+                                        <div *ngIf="password.errors.required">Password is required</div>
+                                        <div *ngIf="password.errors.minlength">
+                                            Password must be at least 8 characters
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-block"  >
+                                            Sign in
+                                        </button>
+                                    </div>
+                                    <!-- Register -->
+                                    <!-- <p>Don't have an accout yet? -->
+                                        <!-- <a [routerLink]="['../register']"><strong>Register now!</strong></a> -->
+                                        <!-- <a><strong>Register now!</strong></a>
+                                    </p> -->
+                                </div>
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                                        <!-- Login failed: {{ errorMessage }} -->
+                                        Login failed! Error email or password
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            <div class="alert alert-success" *ngIf="isLoggedIn">
+                                <!-- Logged in as {{ roles }}. -->
+                                Login successful!
+                              </div>
+                        </mdb-card-body>
+                    </mdb-card>
+                    <!--/.Form-->
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+</div>
+<!-- Full Page Login -->
