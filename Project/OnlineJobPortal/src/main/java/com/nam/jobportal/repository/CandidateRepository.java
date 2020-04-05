@@ -13,21 +13,22 @@ import com.nam.jobportal.models.Candidate;
 
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
-	Page<Candidate> findByGenderNamed(@Param("gender") String gender, Pageable paging);
+	Page<Candidate> findCandidateByGender(String gender, Pageable paging);
 	
-	@Query("SELECT c FROM Candidate c JOIN c.account_id a WHERE " +
-            "LOWER(a.email) LIKE LOWER(CONCAT('%',:email, '%'))")
-    Slice<Candidate> findByEmail(@Param("email") String email, Pageable pageable);
+	@Query(value ="SELECT c FROM Candidate c JOIN c.account_id a WHERE " +
+            "LOWER(a.email) LIKE LOWER(CONCAT('%',:email, '%'))", nativeQuery = true)
+    Page<Candidate> findByEmail(@Param("email") String email, Pageable pageable);
 	
 	@Query("SELECT c FROM Candidate c WHERE " +
             "LOWER(c.phone_number) LIKE LOWER(CONCAT('%',:phone_number, '%'))")
-	Slice<Candidate> findByPhoneNumber(@Param("phone_number") String phone_number, Pageable pageable);
+	Page<Candidate> findByPhoneNumber(@Param("phone_number") String phone_number, Pageable pageable);
 	
 	@Query("SELECT COUNT(c) FROM Candidate c")
     Long numberofCandidates();
 	
-	Slice<Candidate> findAllByDoBBetween(Date startDate,
+	Page<Candidate> findAllByDoBBetween(Date startDate,
 		      Date endDate, Pageable pageable);
+	
 	
 	
 }

@@ -37,7 +37,7 @@ public class CandidateService {
 	{
 		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 
-		Page<Candidate> pagedResult = candidateRepository.findByGenderNamed(gender, paging);
+		Page<Candidate> pagedResult = candidateRepository.findCandidateByGender(gender, paging);
 
 		if(pagedResult.hasContent()) {
 			return pagedResult.getContent();
