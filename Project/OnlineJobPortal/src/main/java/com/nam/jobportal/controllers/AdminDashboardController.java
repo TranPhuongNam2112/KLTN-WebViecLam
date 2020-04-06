@@ -21,34 +21,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nam.jobportal.dao.ICandidateDAO;
 import com.nam.jobportal.models.Candidate;
 import com.nam.jobportal.repository.CandidateRepository;
 import com.nam.jobportal.repository.EmployerRepository;
 import com.nam.jobportal.services.CandidateService;
 import com.nam.jobportal.specification.CandidateSpecificationsBuilder;
+import com.nam.jobportal.specification.SearchCriteria;
 import com.nam.jobportal.specification.SpecSearchCriteria;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/admin/")
 public class AdminDashboardController {
+	
+	@Autowired
+    private ICandidateDAO service;
+	
 	@Autowired
 	CandidateService candidateService;
 	
 	@Autowired
 	CandidateRepository candidateRepository;
-	@RequestMapping(method = RequestMethod.GET, value = "/users")
+	@RequestMapping(method = RequestMethod.GET, value = "/candidate")
 	@ResponseBody
-	public List<Candidate> search(@RequestParam(value = "search", required = false) String search) {
-		 CandidateSpecificationsBuilder builder = new CandidateSpecificationsBuilder();
-	        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
-	        Matcher matcher = pattern.matcher(search + ",");
-	        while (matcher.find()) {
-	            builder.with(matcher.group(1), matcher.group(2), matcher.group(3), matcher.group(4), matcher.group(5));
-	        }
-	         
-	        Specification<Candidate> spec = builder.build();
-	        return candidateRepository.findAll(spec);
+    public List<Candidate> search(@RequestParam(value = "search", required = false) String search) {
+        List<SearchCriteria> params = new ArrayList<SearchCriteria>();
+        if (search != null) {
+            Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+            Matcher matcher = pattern.matcher(search + ",");
+            while (matcher.find()) {
+                params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
+            }
+        }
+        return service.searchUser(params);
 	    }
 /*
 	@GetMapping("/candidates")
