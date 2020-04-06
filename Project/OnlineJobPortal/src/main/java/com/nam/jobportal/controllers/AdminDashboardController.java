@@ -1,24 +1,32 @@
 package com.nam.jobportal.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nam.jobportal.models.Candidate;
 import com.nam.jobportal.repository.CandidateRepository;
 import com.nam.jobportal.repository.EmployerRepository;
 import com.nam.jobportal.services.CandidateService;
+import com.nam.jobportal.specification.CandidateSpecificationsBuilder;
+import com.nam.jobportal.specification.SpecSearchCriteria;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -26,18 +34,23 @@ import com.nam.jobportal.services.CandidateService;
 public class AdminDashboardController {
 	@Autowired
 	CandidateService candidateService;
-
-	@GetMapping("/candidates")
-	public ResponseEntity<List<Candidate>> getAllCandidates(
-			@RequestParam(defaultValue = "0") Integer pageNo, 
-			@RequestParam(defaultValue = "10") Integer pageSize,
-			@RequestParam(defaultValue = "id") String sortBy) 
-	{
-		List<Candidate> list = candidateService.getAllCandidate(pageNo, pageSize, sortBy);
-
-		return new ResponseEntity<List<Candidate>>(list, new HttpHeaders(), HttpStatus.OK); 
-	}
-
+	
+	@Autowired
+	CandidateRepository candidateRepository;
+	@RequestMapping(method = RequestMethod.GET, value = "/users")
+	@ResponseBody
+	public List<Candidate> search(@RequestParam(value = "search", required = false) String search) {
+		 CandidateSpecificationsBuilder builder = new CandidateSpecificationsBuilder();
+	        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+	        Matcher matcher = pattern.matcher(search + ",");
+	        while (matcher.find()) {
+	            builder.with(matcher.group(1), matcher.group(2), matcher.group(3), matcher.group(4), matcher.group(5));
+	        }
+	         
+	        Specification<Candidate> spec = builder.build();
+	        return candidateRepository.findAll(spec);
+	    }
+/*
 	@GetMapping("/candidates")
 	public ResponseEntity<List<Candidate>> getCandidatesByGender(
 			@RequestParam(required = false) String gender,
@@ -49,7 +62,7 @@ public class AdminDashboardController {
 
 		return new ResponseEntity<List<Candidate>>(list, new HttpHeaders(), HttpStatus.OK); 
 	}
-	
+
 	@GetMapping("/candidates")
 	public ResponseEntity<List<Candidate>> getCandidatesByDoBBetween(
 			@RequestParam(required = false) Date startDate,
@@ -62,7 +75,7 @@ public class AdminDashboardController {
 
 		return new ResponseEntity<List<Candidate>>(list, new HttpHeaders(), HttpStatus.OK); 
 	}
-	
+
 	@GetMapping("/candidates")
 	public ResponseEntity<List<Candidate>> getCandidateByPhoneNumber(
 			@RequestParam(required = false) String phonenumber,
@@ -75,6 +88,6 @@ public class AdminDashboardController {
 
 		return new ResponseEntity<List<Candidate>>(list, new HttpHeaders(), HttpStatus.OK); 
 	}
-	
-	
+*/
+
 }
