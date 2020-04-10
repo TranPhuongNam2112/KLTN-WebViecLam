@@ -3,6 +3,7 @@ package com.nam.jobportal.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import com.nam.jobportal.exceptions.ResourceNotFoundException;
 import com.nam.jobportal.models.Candidate;
 import com.nam.jobportal.repository.CandidateRepository;
 
@@ -33,6 +35,16 @@ public class CandidateService {
 			return new ArrayList<Candidate>();
 		}
 	}
+	 public Candidate getCandidateById(Long id) throws ResourceNotFoundException 
+	    {
+	        Optional<Candidate> candidate = candidateRepository.findById(id);
+	         
+	        if(candidate.isPresent()) {
+	            return candidate.get();
+	        } else {
+	            throw new ResourceNotFoundException("Candidate", "id", id);
+	        }
+	    }
 	public List<Candidate> getCandidateByGender(String gender,Integer pageNo, Integer pageSize, String sortBy)
 	{
 		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.nam.jobportal.models.JobPost;
 
 
-public interface JobPostRepository extends JpaRepository<JobPost, Long> {
+public interface JobPostRepository extends JpaRepository<JobPost, Long>  {
 
 	@Query("SELECT jp from JobPost jp INNER JOIN jp.jobtype jt WHERE jt.job_type_name=?1")
 	List<JobPost> findJobPostsByJobType(String job_type_name);

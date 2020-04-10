@@ -49,6 +49,7 @@ public class JobPost {
 
 	@OneToOne
 	@JoinColumn(name="job_location_id")
+	@JsonIgnore
 	private JobLocation joblocation;
 	
 	@OneToMany(mappedBy = "jobpost", cascade = CascadeType.ALL)
@@ -57,15 +58,18 @@ public class JobPost {
 	private Date expired_date;
 
 	private Long salary;
-
+	public JobPost() {
+		
+	}
 	public JobPost(String industry, Date created_date, String job_description, Date expired_date, Long salary) {
+		
 		this.industry = industry;
 		this.created_date = created_date;
 		this.job_description = job_description;
 		this.expired_date = expired_date;
 		this.salary = salary;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -136,9 +140,6 @@ public class JobPost {
 
 	public void setSalary(Long salary) {
 		this.salary = salary;
-	}
-	
-	
-	
+	}	
 
 }

@@ -23,6 +23,7 @@ import javax.persistence.UniqueConstraint;
 uniqueConstraints = { 
 		@UniqueConstraint(columnNames = "phone_number") 
 })
+
 public class Candidate {
 
 	@Id
@@ -50,7 +51,7 @@ public class Candidate {
 	
 	@OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
 	private Set<SavedCandidate> savedCandidates = new HashSet<>();
-
+	public Candidate() {}
 	public Candidate(String phone_number, String homeaddress, String gender, Date doB, String cV, String image, SavedJobPost... savedJobPosts) {
 		this.phone_number = phone_number;
 		this.homeaddress = homeaddress;
