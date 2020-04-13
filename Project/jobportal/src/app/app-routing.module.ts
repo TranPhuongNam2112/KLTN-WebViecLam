@@ -6,7 +6,7 @@ import { CandidateModule} from './components/candidate/candidate.module';
 import {EmployerModule} from './components/employer/employer.module';
 import {AdminModule} from './components/admin/admin.module';
 const routes: Routes = [
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  { path: '', redirectTo: 'guest', pathMatch: 'full' },
   { //lazy loading
     path: 'guest',
     loadChildren: './components/guest/guest.module#GuestModule'
