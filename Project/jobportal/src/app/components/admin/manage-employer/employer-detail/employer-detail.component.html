@@ -1,0 +1,82 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <h5 class="font-weight-bold text-primary">Employer Detail</h5>
+    <hr />
+    <div *ngIf="employer">
+        <div class="row">
+            <div class="col-lg-7 col-sm-12 col-md-12">
+
+                <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
+                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                    <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                        Employer Profile
+                    </p>
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">ID Employer:</label>
+                        <input type="text" class="form-control" readonly value="{{employer.id}}">
+
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Company Name:</label>
+                        <input type="text" class="form-control" readonly value="{{employer.companyname}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Description:</label>
+                        <textarea type="text" class="form-control" id="descriptionCom" readonly>{{employer.description }}</textarea>
+                     
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Established Day:</label>
+                        <input type="text" class="form-control" readonly value="{{employer.establishmentdate |date}} ">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Website:</label>
+                        <input type="text" class="form-control" readonly value="{{employer.websiteurl}}">
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-md-12">
+
+                <form class="border border-grey rounded-lg pt-3 pl-3 pr-3 pb-3"
+                style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                    <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                        Employer Account
+                    </p>
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">ID Account:</label>
+                        <input type="text" class="form-control" readonly value="{{employer.userAccount.id}}">
+
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Email:</label>
+                        <input type="text" class="form-control" readonly value="{{employer.userAccount.email}}">
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Legal Representative:</label>
+                        <input type="text" class="form-control" readonly
+                            value="{{employer.userAccount.firstname}} {{employer.userAccount.lastname}}">
+                    </div>
+                   
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold pr-3">Status: </label>
+                        <b class="text-warning">{{employer.userAccount.enabled ? 'Active' : 'Inactive'}}</b>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+
+        <button (click)="employerList()" class="btn btn-primary">Back</button><br>
+    </div>

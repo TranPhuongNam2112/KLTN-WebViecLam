@@ -1,0 +1,35 @@
+
+  <div class="container mt-5 pt-3 pb-3 mb-5 d-flex justify-content-center">
+    <form class="border border-grey pt-3 pl-3 pr-3 pb-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
+      <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+        Create New Job Type
+      </p>
+      <hr/>
+      <div [hidden]="submitted" style="width: 500px;">
+        <form (ngSubmit)="onSubmit(dangerTpl, successTpl)">
+          <div class="form-group">
+            <label for="jobTypeName">Job Type Name</label>
+            <input type="text" class="form-control" id="jobTypeName" required [(ngModel)]="jobType.job_type_name"
+              name="jobTypeName">
+          </div>
+          <div class="d-flex justify-content-center">
+
+            <button type="submit" class="btn btn-success ">Submit</button>
+          </div>
+          <button (click)="gotoList()" class="btn btn-primary"><i class="fas fa-arrow-left"></i></button><br>
+        </form>
+      </div>
+      <!-- <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+      </div>    -->
+
+    </form>
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ng-template #successTpl>
+      <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+  </ng-template>
+  <ng-template #dangerTpl>
+      <span><i class="fas fa-check mr-5"></i>There got some error</span>
+  </ng-template>
+  </div>
+  

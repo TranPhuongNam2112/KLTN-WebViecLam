@@ -1,4 +1,5 @@
 package com.nam.jobportal.services;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,33 +17,20 @@ import com.nam.jobportal.exceptions.ResourceNotFoundException;
 import com.nam.jobportal.models.UserAccount;
 
 import com.nam.jobportal.repository.UserAccountRepository;
+
 @Service
 public class UserAccountService {
 	@Autowired
 	UserAccountRepository userAccountRepository;
 
-	public List<UserAccount> getAllAccount(Integer pageNo, Integer pageSize, String sortBy)
-	{
-		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+	public UserAccount getAccountById(Long id) throws ResourceNotFoundException {
+		Optional<UserAccount> userAccount = userAccountRepository.findById(id);
 
-		Page<UserAccount> pagedResult = userAccountRepository.findAll(paging);
-
-		if(pagedResult.hasContent()) {
-			return pagedResult.getContent();
+		if (userAccount.isPresent()) {
+			return userAccount.get();
 		} else {
-			return new ArrayList<UserAccount>();
+			throw new ResourceNotFoundException("User account", "id", id);
 		}
 	}
-	  public UserAccount getAccountById(Long id) throws ResourceNotFoundException 
-	    {
-	        Optional<UserAccount> userAccount = userAccountRepository.findById(id);
-	         
-	        if(userAccount.isPresent()) {
-	            return userAccount.get();
-	        } else {
-	            throw new ResourceNotFoundException("User account", "id", id);
-	        }
-	    }
-	
-	
+
 }

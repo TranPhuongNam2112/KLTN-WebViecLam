@@ -1,0 +1,67 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <form>
+        <div class="form-group form-inline d-flex justify-content-start text-primary">
+            <h5 class="font-weight-bold">Manage Candidate</h5>
+        </div>
+        <!-- <div class="form-group form-inline d-flex justify-content-start">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+    </div> -->
+    </form>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Action</th>
+                <!-- <th scope="col">Phone Number</th>
+                <th scope="col">Home Address</th> -->
+                <!-- <th scope="col">CV</th>
+                <th scope="col">Image</th>
+                <th scope="col">Status</th> -->
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let candidate of candidates  ; ">
+                <td>
+                    <ngb-highlight [result]="candidate.id "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="candidate.userAccount.email "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="candidate.userAccount.firstname"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="candidate.userAccount.lastname"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="candidate.gender "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="candidate.doB | date"></ngb-highlight>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="candidateDetails(candidate.id)"> 
+                        <span> <i class="fas fa-search"></i></span>
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <ul class="nav nav-pills d-flex justify-content-center">
+        <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}" >
+              {{i}}
+            </a>
+        </li>
+    </ul>
+</div>

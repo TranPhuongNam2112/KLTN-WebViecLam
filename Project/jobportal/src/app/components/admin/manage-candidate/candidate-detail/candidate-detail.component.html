@@ -1,0 +1,97 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <h5 class="font-weight-bold text-primary">Candidate Detail</h5>
+    <hr />
+    <div *ngIf="candidate" >
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 col-md-12">
+
+                <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
+                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                    <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                        Candidate Profile
+                    </p>
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">ID Candidate:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.id}}">
+
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Gender:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.gender}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Birthday:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.doB |date}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Phone Number:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.phone_number}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Home Address:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.homeaddress}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">CV:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.cV}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Image:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.image}}">
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-sm-12 col-md-12">
+
+                <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
+                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                    <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                        Candidate Account
+                    </p>
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">ID Account:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.userAccount.id}}">
+
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Email:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.userAccount.email}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">First Name:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.userAccount.firstname}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Last Name:</label>
+                        <input type="text" class="form-control" readonly value="{{candidate.userAccount.lastname}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold pr-3">Status: </label>
+                        <b class="text-warning">{{candidate.userAccount.enabled ? 'Active' : 'Inactive'}}</b>
+
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+<br/>
+
+        <button  (click)="candidateList()" class="btn btn-primary">Back</button><br>
+    </div>

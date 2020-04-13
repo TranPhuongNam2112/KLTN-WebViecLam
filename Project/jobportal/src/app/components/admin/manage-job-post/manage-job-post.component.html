@@ -1,0 +1,94 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <form>
+        <div class="form-group form-inline d-flex justify-content-start text-primary">
+            <h5 class="font-weight-bold">Manage JobPost</h5>
+        </div>
+        <!-- <div class="form-group form-inline d-flex justify-content-start">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+    </div> -->
+    </form>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+
+                <th scope="col">ID</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">Industry</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let jobPost of jobPosts ;">
+
+                <td>
+                    <ngb-highlight [result]="jobPost.id "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="jobPost.job_description "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="jobPost.industry"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="jobPost.created_date | date:'medium'  "></ngb-highlight>
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-success mr-3" (click)="jobPostDetail(jobPost.id)">
+                                <span> <i class="fas fa-search"></i></span>
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-danger" (click)="open(content)">
+                                <span> <i class="fas fa-trash"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- <button type="button" class="btn btn-danger"  (click)="deleteJobPost(jobPost.id)" > 
+                        <span> <i class="fas fa-trash"></i></span>
+                    </button> -->
+                   
+                </td>
+                
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title"><i class="fas fa-trash-alt pr-3"></i>Are you sure?</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Do you really want to delete these records? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" aria-label="Close" (click)="d('Cross click')">Cancel</button>
+                      <button type="button" class="btn btn-danger" (click)="c('Save click');deleteJobPost(jobPost.id,dangerTpl,successTpl)">Save</button>
+                    </div>
+                  </ng-template>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ul class="nav nav-pills d-flex justify-content-center">
+        <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                {{i}}
+            </a>
+        </li>
+    </ul>
+   
+     
+</div>
+<ng-template #successTpl>
+   <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span> 
+  </ng-template>
+  <ng-template #dangerTpl>
+    <span><i class="fas fa-check mr-5"></i>There got some error</span> 
+   </ng-template>

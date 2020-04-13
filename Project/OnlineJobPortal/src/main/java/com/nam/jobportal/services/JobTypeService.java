@@ -25,6 +25,15 @@ public class JobTypeService {
 	            return new ArrayList<JobType>();
 	        }
 	    }
+	  public JobType getJobTypeById(Long id) throws ResourceNotFoundException {
+			Optional<JobType> jobType = jobTypeRepository.findById(id);
+
+			if (jobType.isPresent()) {
+				return jobType.get();
+			} else {
+				throw new ResourceNotFoundException("Job Type", "id", id);
+			}
+		}
 	  public void deleteJobTypeById(Long id) throws ResourceNotFoundException 
 	    {
 	        Optional<JobType> jobtype = jobTypeRepository.findById(id);

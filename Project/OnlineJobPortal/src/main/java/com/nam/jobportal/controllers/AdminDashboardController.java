@@ -10,7 +10,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,6 +40,7 @@ import com.nam.jobportal.models.JobType;
 import com.nam.jobportal.models.UserAccount;
 import com.nam.jobportal.repository.CandidateRepository;
 import com.nam.jobportal.repository.EmployerRepository;
+import com.nam.jobportal.repository.JobLocationRepository;
 import com.nam.jobportal.repository.JobPostRepository;
 import com.nam.jobportal.repository.UserAccountRepository;
 import com.nam.jobportal.services.CandidateService;
@@ -82,15 +85,17 @@ public class AdminDashboardController {
 
 	@Autowired
 	JobPostRepository jobPostResponsitory;
+	
+	@Autowired
+	JobLocationRepository jobLocationRepository;
 
 	@GetMapping("/getAllAccounts")
-	public ResponseEntity<List<UserAccount>> getAllAccount(
-
-			@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize,
-			@RequestParam(defaultValue = "id") String sortBy) {
-		List<UserAccount> list = userAccountService.getAllAccount(pageNo, pageSize, sortBy);
-
-		return new ResponseEntity<List<UserAccount>>(list, new HttpHeaders(), HttpStatus.OK);
+	public Page<UserAccount> getAllAccount(@RequestParam(defaultValue = "0") int pageNo,
+			@RequestParam(defaultValue = "5")int pageSize,
+			@RequestParam(defaultValue = "id") String sortBy
+			) {
+		  Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+		return useraccountRepository.findAll(pageable);
 	}
 
 	@GetMapping("/getAccount/{id}")
@@ -99,15 +104,30 @@ public class AdminDashboardController {
 
 		return new ResponseEntity<UserAccount>(userAccount, new HttpHeaders(), HttpStatus.OK);
 	}
+	@GetMapping("/getAllCandidates")
 
+	public Page<Candidate> getAllCandidates(@RequestParam(defaultValue = "0") int pageNo,
+			@RequestParam(defaultValue = "5")int pageSize,
+			@RequestParam(defaultValue = "id") String sortBy
+			) {
+		  Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+		return candidateRepository.findAll(pageable);
+	}
+
+
+	@GetMapping("/getCandidate/{id}")
+	public ResponseEntity<Candidate> getCandidateById(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		Candidate candidate = candidateService.getCandidateById(id);
+
+		return new ResponseEntity<Candidate>(candidate, new HttpHeaders(), HttpStatus.OK);
+	}
 	@GetMapping("/getAllEmployers")
-	public ResponseEntity<List<Employer>> getAllEmployers(
-
-			@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize,
-			@RequestParam(defaultValue = "id") String sortBy) {
-		List<Employer> list = employerService.getAllEmployers(pageNo, pageSize, sortBy);
-
-		return new ResponseEntity<List<Employer>>(list, new HttpHeaders(), HttpStatus.OK);
+	public Page<Employer> getAllEmployers(@RequestParam(defaultValue = "0") int pageNo,
+			@RequestParam(defaultValue = "5")int pageSize,
+			@RequestParam(defaultValue = "id") String sortBy
+			) {
+		  Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+		return employerRepository.findAll(pageable);
 	}
 
 	@GetMapping("/getEmployer/{id}")
@@ -117,12 +137,28 @@ public class AdminDashboardController {
 		return new ResponseEntity<Employer>(employer, new HttpHeaders(), HttpStatus.OK);
 	}
 
-	@GetMapping("/getAllJobPosts")
-	public ResponseEntity<List<JobPost>> getAllJobPosts(@RequestParam(defaultValue = "0") Integer pageNo,
-			@RequestParam(defaultValue = "10") Integer pageSize, @RequestParam(defaultValue = "id") String sortBy) {
-		List<JobPost> jobPostList = jobService.getAllJobPosts(pageNo, pageSize, sortBy);
+	@GetMapping("/getAllLocations")
 
-		return new ResponseEntity<List<JobPost>>(jobPostList, new HttpHeaders(), HttpStatus.OK);
+	public Page<JobLocation> getAllLocations(@RequestParam(defaultValue = "0") int pageNo,
+			@RequestParam(defaultValue = "5")int pageSize,
+			@RequestParam(defaultValue = "id") String sortBy
+			) {
+		  Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+		return jobLocationRepository.findAll(pageable);
+	}
+	@GetMapping("/getJobLocation/{id}")
+	public ResponseEntity<JobLocation> getJobLocation(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		JobLocation jobLocation = jobLocationService.getJobLocationById(id);
+
+		return new ResponseEntity<JobLocation>(jobLocation, new HttpHeaders(), HttpStatus.OK);
+	}
+	@GetMapping("/getAllJobPosts")
+	public Page<JobPost> getAllJobPosts(@RequestParam(defaultValue = "0") int pageNo,
+			@RequestParam(defaultValue = "5")int pageSize,
+			@RequestParam(defaultValue = "id") String sortBy
+			) {
+		  Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+		return jobPostResponsitory.findAll(pageable);
 	}
 
 	@GetMapping("/getJobPost/{id}")
@@ -131,12 +167,12 @@ public class AdminDashboardController {
 
 		return new ResponseEntity<JobPost>(jobPost, new HttpHeaders(), HttpStatus.OK);
 	}
-	@GetMapping("/getAllLocations")
-
-	public ResponseEntity<List<JobLocation>> getAllLocations() {
-		List<JobLocation> jobLocationList = jobLocationService.getAllLocations();
-		return new ResponseEntity<List<JobLocation>>(jobLocationList, new HttpHeaders(), HttpStatus.OK);
+	@DeleteMapping("/deleteJobPost/{id}")
+	public HttpStatus deleteJobPostById(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		jobService.deleteJobPostById(id);
+		return HttpStatus.OK;
 	}
+
 	@GetMapping("/getAllJobTypes")
 
 	public ResponseEntity<List<JobType>> getAllJobTypes() {
@@ -147,6 +183,12 @@ public class AdminDashboardController {
 	    public ResponseEntity < JobType > createJobType(@RequestBody JobType jobType) {
 	        return ResponseEntity.ok().body(this.jobTypeService.createJobType(jobType));
 	    }
+	 @GetMapping("/getJobType/{id}")
+		public ResponseEntity<JobType> getJobTypeById(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		 JobType jobTyoe = jobTypeService.getJobTypeById(id);
+
+			return new ResponseEntity<JobType>(jobTyoe, new HttpHeaders(), HttpStatus.OK);
+		}
 	@PutMapping("/updateJobType/{id}")
 	public ResponseEntity<JobType> updateJobType(@PathVariable long id, @RequestBody JobType jobType) {
 		jobType.setId(id);
@@ -155,31 +197,11 @@ public class AdminDashboardController {
 	@DeleteMapping("/deleteJobType/{id}")
 	public HttpStatus deleteJobTypeById(@PathVariable("id") Long id) throws ResourceNotFoundException {
 		jobTypeService.deleteJobTypeById(id);
-		return HttpStatus.FORBIDDEN;
+		return HttpStatus.OK;
 	}
 
-	@DeleteMapping("/deleteJobPost/{id}")
-	public HttpStatus deleteJobPostById(@PathVariable("id") Long id) throws ResourceNotFoundException {
-		jobService.deleteJobPostById(id);
-		return HttpStatus.FORBIDDEN;
-	}
-
-	@GetMapping("/getAllCandidates")
-	public ResponseEntity<List<Candidate>> getAllCandidate(
-
-			@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize,
-			@RequestParam(defaultValue = "id") String sortBy) {
-		List<Candidate> candidatelist = candidateService.getAllCandidate(pageNo, pageSize, sortBy);
-
-		return new ResponseEntity<List<Candidate>>(candidatelist, new HttpHeaders(), HttpStatus.OK);
-	}
-
-	@GetMapping("/getCandidate/{id}")
-	public ResponseEntity<Candidate> getCandidateById(@PathVariable("id") Long id) throws ResourceNotFoundException {
-		Candidate candidate = candidateService.getCandidateById(id);
-
-		return new ResponseEntity<Candidate>(candidate, new HttpHeaders(), HttpStatus.OK);
-	}
+	
+	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/candidate")
 	@ResponseBody

@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.nam.jobportal.models.JobLocation;
 
-public interface JobLocationResponsity extends JpaRepository<JobLocation,Long> {
+public interface JobLocationRepository extends JpaRepository<JobLocation,Long> {
 
 }

@@ -18,20 +18,6 @@ import com.nam.jobportal.repository.JobPostRepository;
 public class JobService {
 	@Autowired
 	JobPostRepository jobPostRepository;
-
-	public List<JobPost> getAllJobPosts(Integer pageNo, Integer pageSize, String sortBy) {
-		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-
-		Page<JobPost> pagedResult = jobPostRepository.findAll(paging);
-
-		if (pagedResult.hasContent()) {
-			return pagedResult.getContent();
-		} else {
-			return new ArrayList<JobPost>();
-		}
-	}
-	
-	 
 	     
 
 	public JobPost getJobPostById(Long id) throws ResourceNotFoundException {

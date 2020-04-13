@@ -1,0 +1,63 @@
+<header class="mb-5 pt-5">
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color fixed-top" [containerInside]="false">
+        <!-- Navbar brand -->
+        <mdb-navbar-brand>
+            <a class="navbar-brand" [routerLink]="['/employer']">
+                <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
+            </a>
+        </mdb-navbar-brand>
+        <!-- Collapsible content -->
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/account']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>Account</strong><span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/candidate']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>
+                            Candidate</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/employer']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>
+                            Employer</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/jobpost']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>
+                            Job Post</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/joblocation']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>
+                            Job Location</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/jobtype']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>
+                            Job Type</strong></a>
+                </li>
+
+            </ul>
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <!-- <a class="nav-link" (click)="logout()"> -->
+                    <label class="text-white pt-2">
+                        Hello, admin!
+                    </label>
+                </li>
+                <li class="nav-item">
+                    <!-- <a class="nav-link" (click)="logout()"> -->
+                    <a class="nav-link">
+                        <mdb-icon fas icon="sign-out-alt"></mdb-icon>
+                    </a>
+                </li>
+            </ul>
+            <!-- Links -->
+        </links>
+        <!-- Collapsible content -->
+    </mdb-navbar>
+</header>

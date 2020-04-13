@@ -20,17 +20,6 @@ public class EmployerService {
 	@Autowired
 	EmployerRepository employerRepository;
 
-	public List<Employer> getAllEmployers(Integer pageNo, Integer pageSize, String sortBy) {
-		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-
-		Page<Employer> pagedResult = employerRepository.findAll(paging);
-
-		if (pagedResult.hasContent()) {
-			return pagedResult.getContent();
-		} else {
-			return new ArrayList<Employer>();
-		}
-	}
 
 	public Employer getEmployerById(Long id) throws ResourceNotFoundException {
 		Optional<Employer> employer = employerRepository.findById(id);

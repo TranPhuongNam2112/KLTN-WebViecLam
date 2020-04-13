@@ -1,0 +1,78 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <form>
+        <div class="form-group form-inline d-flex justify-content-start text-primary">
+            <h5 class="font-weight-bold">Manage Account</h5>
+        </div>
+        <!-- <div class="form-group form-inline d-flex justify-content-start">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+    </div> -->
+    </form>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr >
+              
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Role</th>
+                <th scope="col">Status</th>
+                <th scope="col ">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accounts ; ">
+              
+                <td>
+                    <ngb-highlight [result]="account.id "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="account.email"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="account.firstname "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="account.lastname "></ngb-highlight>
+                </td>
+
+                <td *ngFor="let role of account.roles">
+                    <ngb-highlight [result]="role.name |lowercase "></ngb-highlight>
+                </td>
+                <td *ngIf="!account.enabled">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" disabled id="customSwitch1">
+                        <label class="custom-control-label" for="customSwitch1"></label>
+                    </div>
+
+                </td>
+                <td *ngIf="account.enabled">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" disabled checked id="customSwitch1">
+                        <label class="custom-control-label" for="customSwitch1"></label>
+                    </div>
+
+                </td>
+                <td *ngIf="!account.enabled">
+                    <button type="button" class="btn btn-outline-primary btn-sm">
+                        <span> <i class="fas fa-lock-open pr-1"></i></span>UnBlock</button>
+                </td>
+                <td *ngIf="account.enabled">
+                    <button type="button" class="btn btn-outline-dandger btn-sm">
+                        <span> <i class="fas fa-lock pr-1"></i>Block</span></button>
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <ul class="nav nav-pills d-flex justify-content-center">
+        <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}" >
+              {{i}}
+            </a>
+        </li>
+    </ul>
+</div>

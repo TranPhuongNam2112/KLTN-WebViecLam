@@ -1,0 +1,56 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <form>
+        <div class="form-group form-inline d-flex justify-content-start text-primary">
+            <h5 class="font-weight-bold">Manage Employer</h5>
+        </div>
+        <!-- <div class="form-group form-inline d-flex justify-content-start">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+    </div> -->
+    </form>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+
+                <th scope="col">ID</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Established Date</th>
+                <th scope="col">Action</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let employer of employers ; ">
+                <td>
+                    <ngb-highlight [result]="employer.id "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="employer.companyname "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="employer.userAccount.email"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="employer.establishmentdate |date"></ngb-highlight>
+                </td>
+              
+                <td>
+                    <button type="button" class="btn btn-success"  (click)="employerDetail(employer.id)" > 
+                        <span> <i class="fas fa-search"></i></span>
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <ul class="nav nav-pills d-flex justify-content-center">
+        <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}" >
+              {{i}}
+            </a>
+        </li>
+    </ul>
+</div>
