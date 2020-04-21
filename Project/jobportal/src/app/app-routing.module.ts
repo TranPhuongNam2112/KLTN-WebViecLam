@@ -5,8 +5,10 @@ import { EguestModule} from './components/eguest/eguest.module';
 import { CandidateModule} from './components/candidate/candidate.module';
 import {EmployerModule} from './components/employer/employer.module';
 import {AdminModule} from './components/admin/admin.module';
+import {NotfoundComponent} from './shared/components/notfound/notfound.component';
 const routes: Routes = [
   { path: '', redirectTo: 'guest', pathMatch: 'full' },
+  { path: 'notfound', component: NotfoundComponent },
   { //lazy loading
     path: 'guest',
     loadChildren: './components/guest/guest.module#GuestModule'
@@ -27,6 +29,7 @@ const routes: Routes = [
   path: 'admin',
   loadChildren: './components/admin/admin.module#AdminModule'
 },
+
 
 ];
 

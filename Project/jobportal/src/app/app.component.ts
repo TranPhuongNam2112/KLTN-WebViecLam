@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   isLoggedIn = false;
   showCandidate = false;
   showEmployer = false;
+  showAdmin= false;
   showEguest = false;
   showGuest = true;
   constructor(
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
       this.roles = user.roles;
       this.showCandidate = this.roles.includes('ROLE_CANDIDATE');
       this.showEmployer = this.roles.includes('ROLE_EMPLOYER');
-
+      this.showAdmin= this.roles.includes ('ROLE_ADMIN');
 
     }
     if (this.showCandidate) {
@@ -34,6 +35,9 @@ export class AppComponent implements OnInit {
     }
     else if (this.showEmployer) {
       this.router.navigate(['/employer']);
+    }
+    else if (this.showAdmin){
+      this.router.navigate(['/admin']);
     }
   }
 

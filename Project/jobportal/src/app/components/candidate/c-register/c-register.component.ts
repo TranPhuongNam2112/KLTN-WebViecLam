@@ -11,14 +11,22 @@ export class CRegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  isShown: boolean = false ;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.registerForm.role="candidate";
+    // this.registerForm.role="candidate";
   }
+  toggleShow() {
+     this.isShown = true;
+    setTimeout(() => {
+      this.isShown = false;
+ }, 3000)
+    }
   onSubmit() {
-    this.authService.register(this.registerForm).subscribe(
+    this.authService.registerCandidate(this.registerForm).subscribe(
       data => {
+    
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;

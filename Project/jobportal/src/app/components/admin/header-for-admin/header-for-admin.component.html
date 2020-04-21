@@ -2,7 +2,7 @@
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color fixed-top" [containerInside]="false">
         <!-- Navbar brand -->
         <mdb-navbar-brand>
-            <a class="navbar-brand" [routerLink]="['/employer']">
+            <a class="navbar-brand" [routerLink]="['/admin']">
                 <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
             </a>
         </mdb-navbar-brand>
@@ -50,8 +50,8 @@
                     </label>
                 </li>
                 <li class="nav-item">
-                    <!-- <a class="nav-link" (click)="logout()"> -->
-                    <a class="nav-link">
+                    <a class="nav-link" (click)="logout()">
+                    <!-- <a class="nav-link"> -->
                         <mdb-icon fas icon="sign-out-alt"></mdb-icon>
                     </a>
                 </li>

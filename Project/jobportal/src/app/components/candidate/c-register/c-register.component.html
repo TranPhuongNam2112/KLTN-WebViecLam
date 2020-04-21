@@ -1,8 +1,7 @@
 <app-header-for-guest></app-header-for-guest>
-<div class="login  mt-5 pb-5">
-    <!-- Mask & flexbox options-->
-    <div class="mask rgba-black-light">
-        <div class="container">
+<div class="login  mt-5 ">
+    <div class="mask rgba-black-light pb-5">
+        <div class="container" >
             <div class="row ">
                 <div class="col-lg-3 col-md-1 col-sm-1">
                 </div>
@@ -10,7 +9,7 @@
                 <div class="col-lg-6 col-md-10 col-sm-10">
                     <!-- Material form login -->
                     <mdb-card>
-                        <mdb-card-header class="primary-color white-text text-center py-4">
+                        <mdb-card-header class=" primary-color white-text text-center py-4">
                             <h4>
                                 Register now!
                             </h4>
@@ -36,44 +35,21 @@
                                     </div>
                                 </div>
                                 <hr />
-                            
-                                <div  class="row">
-                                <!-- Name -->
-                                <div class="col-6">
                                 <div class="form-group">
-                                    <label for="firstname">Firstname</label>
-                                    <input type="text" class="form-control" name="firstname"
-                                        [(ngModel)]="registerForm.firstname" required minlength="3" maxlength="20"
-                                        #firstname="ngModel" />
-                                    <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
-                                        <div *ngIf="firstname.errors.required">Firstname is required</div>
-                                        <div *ngIf="firstname.errors.minlength">
-                                            Firstname must be at least 3 characters
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" name="name"
+                                        [(ngModel)]="registerForm.name" required minlength="3" maxlength="20"
+                                        #name="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+                                        <div *ngIf="name.errors.required">Name is required</div>
+                                        <div *ngIf="name.errors.minlength">
+                                            Name must be at least 3 characters
                                         </div>
-                                        <div *ngIf="firstname.errors.maxlength">
-                                            Firstname must be at most 20 characters
+                                        <div *ngIf="name.errors.maxlength">
+                                            Name must be at most 20 characters
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="lastname">Lastname</label>
-                                    <input type="text" class="form-control" name="lastname"
-                                        [(ngModel)]="registerForm.lastname" required minlength="3" maxlength="20"
-                                        #lastname="ngModel" />
-                                    <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
-                                        <div *ngIf="lastname.errors.required">Lastname is required</div>
-                                        <div *ngIf="lastname.errors.minlength">
-                                            Lastname must be at least 3 characters
-                                        </div>
-                                        <div *ngIf="lastname.errors.maxlength">
-                                            Lastname must be at most 20 characters
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email"
@@ -84,9 +60,12 @@
                                             Email must be a valid email address
                                         </div>
                                     </div>
+                                    <small id="emailHelp2" class="form-text text-muted">We'll never share your email
+                                        with anyone.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
+                                    <small id="optional" class="ml-2  text-success">(at least 6 characters)</small>
                                     <input type="password" class="form-control" name="password"
                                         [(ngModel)]="registerForm.password" required minlength="6"
                                         #password="ngModel" />
@@ -97,34 +76,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- role -->
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="role" [(ngModel)]="registerForm.role"
-                                        required #role="ngModel" disabled style="display: none;" />
-                                </div>
-
                                 <!-- Sign in button -->
-
+                                <div  class="d-flex justify-content-center" *ngIf=" isShown && f.valid " >
+                                            <img class="loader" src="../assets/images/loader2.svg">
+                                        </div>
                                 <div class="form-group">
                                     <button mdbBtn color="primary" outline="true" rounded="true" block="true"
                                         class="my-4 waves-effect z-depth-0"
-                                        mdbWavesEffect><strong>Register</strong></button>
+                                        mdbWavesEffect 
+                                        (click)="toggleShow()"
+                                        ><strong>Register</strong></button>
+                                      
                                 </div>
+                               
                                 <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                                     Signup failed!<br />{{ errorMessage }}
                                 </div>
                             </form>
-                            <div class="alert alert-success" *ngIf="isSuccessful">
-                                Your registration is successful!
-                                <a [routerLink]="['../login']"><strong>Sign in</strong></a>
+                            <div class="alert alert-success mt-3" *ngIf="isSuccessful">
+                                Please check your mail to validate your account.<br/>
+                                <a [href]="'https://mail.google.com/mail/'" target="_blank" ><strong>Go to gmail</strong></a>
                             </div>
                             <!-- Form -->
                         </mdb-card-body>
                     </mdb-card>
-                    <!-- Material form login -->
-                </div>
-                <div class="col-lg-3 col-md-1 col-sm-1">
-
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import { ForgotPassComponent} from './components/forgot-pass/forgot-pass.compone
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { ValidateAccComponent } from './components/validate-acc/validate-acc.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 //import {HeaderForEmployerComponent} from './components/header-for-employer/header-for-employer.component';
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LoginComponent } from './components/login/login.component';
     ValidateAccComponent,
   //  HeaderForEmployerComponent,
     LoginComponent,
+  NotfoundComponent,
   
   ],
   imports: [
@@ -52,7 +54,8 @@ import { LoginComponent } from './components/login/login.component';
     ValidateAccComponent,
     FooterComponent,
     ForgotPassComponent,
-    LoginComponent
+    LoginComponent,
+    NotfoundComponent
   ]
 })
 export class SharedModule {
@@ -66,7 +69,8 @@ export class SharedModule {
         FooterComponent,
         ForgotPassComponent,
         ChangePassComponent,
-        LoginComponent
+        LoginComponent,
+        NotfoundComponent
       ]
     }
   }

@@ -11,14 +11,15 @@ export class ERegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-
+  mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.eregisterForm.role = "employer";
   }
+  
   onSubmit() {
-    this.authService.register(this.eregisterForm).subscribe(
+    this.authService.registerEmployer(this.eregisterForm).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;

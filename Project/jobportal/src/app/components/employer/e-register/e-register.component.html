@@ -3,7 +3,7 @@
 <!-- Full Page Intro -->
 <div class="login">
     <!-- Mask & flexbox options-->
-    <div class="mask rgba-blue-grey-strong d-flex justify-content-center align-items-center" >
+    <div class="mask rgba-blue-grey-strong d-flex justify-content-center align-items-center">
         <!-- Content -->
         <div class="container">
             <!--Grid row-->
@@ -25,7 +25,7 @@
 
                         <mdb-card-body class="z-depth-2 ">
                             <form *ngIf="!isSuccessful" name="eregisterForm" (ngSubmit)="f.form.valid && onSubmit()"
-                                #f="ngForm" novalidate >
+                                #f="ngForm" novalidate>
                                 <!--Header-->
                                 <div class="text-center">
                                     <h3 class="blue-text">
@@ -35,36 +35,21 @@
                                 </div>
                                 <!--Body-->
                                 <div class="form-group">
-                                    <label for="firstname">Firstname</label>
-                                    <input type="text" class="form-control" name="firstname"
-                                        [(ngModel)]="eregisterForm.firstname" required minlength="3" maxlength="20"
-                                        #firstname="ngModel" />
-                                    <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
-                                        <div *ngIf="firstname.errors.required">Firstname is required</div>
-                                        <div *ngIf="firstname.errors.minlength">
-                                            Firstname must be at least 3 characters
+                                    <label for="name">Legal Representative Name</label>
+                                    <input type="text" class="form-control" name="name" [(ngModel)]="eregisterForm.name"
+                                        required minlength="3" maxlength="20" #name="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+                                        <div *ngIf="name.errors.required">Name is required</div>
+                                        <div *ngIf="name.errors.minlength">
+                                            Name must be at least 3 characters
                                         </div>
-                                        <div *ngIf="firstname.errors.maxlength">
-                                            Firstname must be at most 20 characters
+                                        <div *ngIf="name.errors.maxlength">
+                                            Name must be at most 20 characters
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="lastname">Lastname</label>
-                                    <input type="text" class="form-control" name="lastname"
-                                        [(ngModel)]="eregisterForm.lastname" required minlength="3" maxlength="20"
-                                        #lastname="ngModel" />
-                                    <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
-                                        <div *ngIf="lastname.errors.required">Lastname is required</div>
-                                        <div *ngIf="lastname.errors.minlength">
-                                            Lastname must be at least 3 characters
-                                        </div>
-                                        <div *ngIf="lastname.errors.maxlength">
-                                            Lastname must be at most 20 characters
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email"
@@ -76,11 +61,62 @@
                                             Email must be a valid email address
                                         </div>
                                     </div>
-                                    <small id="emailHelp2" class="form-text text-muted">We'll never share your email
+                                    <small id="emailHelp2" class="form-text text-success">We'll never share your email
                                         with anyone.</small>
                                 </div>
                                 <div class="form-group">
+                                    <label for="companyname">Company Name</label>
+                                    <input type="text" class="form-control" name="companyname"
+                                        [(ngModel)]="eregisterForm.companyname" required minlength="3" maxlength="30"
+                                        #companyname="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && companyname.invalid">
+                                        <div *ngIf="companyname.errors.required">Company Name is required</div>
+                                        <div *ngIf="companyname.errors.minlength">
+                                            Company name must be at least 3 characters
+                                        </div>
+                                        <div *ngIf="companyname.errors.maxlength">
+                                            Company name must be at most 30 characters
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="industry">Industry</label>
+                                    <input type="text" class="form-control" name="industry"
+                                        [(ngModel)]="eregisterForm.industry" required minlength="3" maxlength="30"
+                                        #industry="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && industry.invalid">
+                                        <div *ngIf="industry.errors.required">Industry is required</div>
+                                        <div *ngIf="industry.errors.minlength">
+                                            Industry must be at least 3 characters
+                                        </div>
+                                        <div *ngIf="industry.errors.maxlength">
+                                            Industry must be at most 30 characters
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phonenumber">Phone</label>
+                                    <input type="tel" class="form-control" name="phonenumber"
+                                        [(ngModel)]="eregisterForm.phonenumber" 
+                                        [pattern]="mobNumberPattern"
+                                        required maxlength="10"
+                                        #phonenumber="ngModel" />
+                                    <div class="alert-danger" *ngIf="f.submitted && phonenumber.invalid">
+                                        <div *ngIf="phonenumber.errors.required">Phone is required</div>
+                                        <div *ngIf="phonenumber.errors.pattern">  
+                                            Invalid phone number  
+                                          </div>
+                                      
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
                                     <label for="password">Password</label>
+                                    <small id="optional" class="ml-2  text-success">(at least 6 characters)</small>
                                     <input type="password" class="form-control" name="password"
                                         [(ngModel)]="eregisterForm.password" required minlength="6"
                                         #password="ngModel" />
@@ -98,9 +134,11 @@
 
 
                                 <div class="text-center mt-3">
+                                   
                                     <div class="form-group">
                                         <button mdbBtn color="primary" outline="true" rounded="true" block="true"
                                             class="my-4 waves-effect z-depth-0"
+                                          
                                             mdbWavesEffect><strong>Register</strong></button>
                                     </div>
 
@@ -113,10 +151,11 @@
                                     Signup failed!<br />{{ errorMessage }}
                                 </div>
                             </form>
-                            <div class="alert alert-success" *ngIf="isSuccessful">
-                                Your registration is successful!
-                                <a [routerLink]="['../login']"><strong>Sign in</strong></a>
+                            <div class="alert alert-success mt-3" *ngIf="isSuccessful">
+                                Please check your mail to validate your account.<br/>
+                                <a [href]="'https://mail.google.com/mail/'" target="_blank" ><strong>Go to gmail</strong></a>
                             </div>
+                           
                         </mdb-card-body>
 
                     </mdb-card>

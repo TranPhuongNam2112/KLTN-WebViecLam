@@ -1,13 +1,23 @@
+
+
 .login{
     background: url("../../../../assets/images/candidate/login2.jpg")no-repeat center center;
     background-size: cover;
    
  }
+.loader{
+  width: 50px;
+  height: 50px;
+
+  
+}
  p{
     color: #e3f2fd;
  }
  .container{
   padding-top: 70px;
+  min-height:100vh;
+  
  }
  .intro-header {
      height: unset !important;

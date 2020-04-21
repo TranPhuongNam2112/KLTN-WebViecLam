@@ -11,12 +11,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+
 //import {HeaderForEmployerComponent} from './shared/components/header-for-employer/header-for-employer.component';
 // import {HeaderForCandidateComponent} from './shared/components/header-for-candidate/header-for-candidate.component';
 @NgModule({
   declarations: [
     AppComponent,
-   
+  
     //HeaderForEmployerComponent,
     // HeaderForCandidateComponent
   ],
@@ -26,7 +27,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BrowserAnimationsModule,
     // GuestModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+  
 
    
   ],

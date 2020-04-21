@@ -1,3 +1,6 @@
-<header><app-header-for-admin></app-header-for-admin></header>
+<!-- <header><app-header-for-admin></app-header-for-admin></header> -->
+<header *ngIf="isLoggedIn && showAdmin">
+    <app-header-for-admin></app-header-for-admin>
+</header>
 <body><router-outlet></router-outlet></body>
 
