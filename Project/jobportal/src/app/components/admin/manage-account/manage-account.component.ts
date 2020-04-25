@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { AccountService } from './service/account.service';
-import {User_Account} from '../../../_models/user-account';
+import {User_Account} from '../../../_models/user_account';
 
 @Component({
   selector: 'app-manage-account',

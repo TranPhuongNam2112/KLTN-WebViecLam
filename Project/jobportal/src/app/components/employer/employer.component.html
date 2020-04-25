@@ -1,4 +1,7 @@
-<header *ngIf="isLoggedIn && showEmployer">
+<!-- <header *ngIf="isLoggedIn && showEmployer">
+    <app-header-for-employer></app-header-for-employer>
+</header> -->
+<header *ngIf="isLoggedIn">
     <app-header-for-employer></app-header-for-employer>
 </header>
 <router-outlet></router-outlet>

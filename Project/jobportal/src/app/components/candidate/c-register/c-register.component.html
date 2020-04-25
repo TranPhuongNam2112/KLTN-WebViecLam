@@ -25,16 +25,27 @@
                                     <div class="col-md-6 col-xs-6 d-flex justify-content-center">
                                         <!--Facebook-->
                                         <button type="button" mdbBtn size="lg" color="fb" class="btn btn-indigo"
-                                            mdbWavesEffect> <span>Facebook</span></button>
+                                            mdbWavesEffect
+                                            (click)="socialSignIn('facebook',dangerTpl,successTpl)"
+                                            > <span>Facebook</span></button>
                                     </div>
 
                                     <div class="col-md-6 col-xs-6 d-flex justify-content-center">
                                         <button type="button" mdbBtn size="lg" mdbBtn color="gplus"
-                                            class="btn btn-danger" mdbWavesEffect> Google
+                                            class="btn btn-danger" mdbWavesEffect  
+                                              (click)="socialSignIn('google',dangerTpl,successTpl)"> Google
                                         </button>
                                     </div>
                                 </div>
-                                <hr />
+                                <div
+                                style="width: 100%; height: 20px; border-bottom: 1px ridge ; text-align: center; margin-bottom: 20px;">
+                                <span style="font-size: 14px; background-color: #ffffff; padding: 0 10px;">
+                                    or 
+                                </span>
+                            </div>
+                            <!-- <div class="form-group">
+                                Signup failed!<br />{{ errorMessage }}
+                            </div> -->
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" name="name"
@@ -101,7 +112,15 @@
                         </mdb-card-body>
                     </mdb-card>
                 </div>
+                <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
             </div>
+           
         </div>
     </div>
 </div>
+<ng-template #successTpl>
+    <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+</ng-template>
+<ng-template #dangerTpl >
+    <span><i class="fa fa-exclamation-triangle fa-lg mr-3" aria-hidden="true"></i>{{ errorMessage }}<i class="fas fa-arrow-up"></i></span>
+</ng-template>

@@ -1,60 +1,64 @@
 /* Required for full background image */
-.login{
-  background: url("../../../../assets/images/candidate/login2.jpg")no-repeat center center;
+.view{
+   
+  background: url("../../../../assets/images/candidate/login2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
- 
 }
-.container{
-  margin-bottom: 10px;
-  min-height: 100vh;
+.login{
+  background: url("../../../../assets/images/candidate/login2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .form-text{
-  margin-top: 12px;
+margin-top: 12px;
 }
 .mb-3{
-  letter-spacing: 2px;
-  
+letter-spacing: 2px;
+
 }
 html,
 body,
 header,
 .view {
-  min-height: 100vh;
+min-height: 100vh;
 }
 .container{
-    padding-top: 60px;
+padding-top: 60px;
 }
 @media (max-width: 740px) {
-  html,
-  body,
-  header,
-  .view {
-    height: 1500px;
-  }
+html,
+body,
+header,
+.view {
+height: 1100px;
+}
 }
 @media (min-width: 800px) and (max-width: 850px) {
-  html,
-  body,
-  header,
-  .view {
-    height: 1000px;
-  }
+html,
+body,
+header,
+.view {
+height: 700px;
+}
 }
 
 .top-nav-collapse {
-  background-color: #39448c !important;
+background-color: #39448c !important;
 }
 
 .navbar:not(.top-nav-collapse) {
-  background: transparent !important;
+background: transparent !important;
 }
 
 @media (max-width: 991px) {
-  .navbar:not(.top-nav-collapse) {
-    background: #39448c !important;
-  }
+.navbar:not(.top-nav-collapse) {
+background: #39448c !important;
+}
 }
 
 h6 {
-  line-height: 1.7;
+line-height: 1.7;
 }

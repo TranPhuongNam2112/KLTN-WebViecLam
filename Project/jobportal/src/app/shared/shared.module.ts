@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputsModule,InputUtilitiesModule, WavesModule, ButtonsModule, CollapseModule } from 'angular-bootstrap-md';
-
-
+import { ToastComponent } from '../components/toast/toast.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { SearchJobComponent } from './components/search-job/search-job.component';
@@ -25,6 +25,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
   //  HeaderForEmployerComponent,
     LoginComponent,
   NotfoundComponent,
+   ToastComponent
   
   ],
   imports: [
@@ -37,7 +38,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     WavesModule,
     ButtonsModule,
     CollapseModule,
-   
+    NgbModule
   ],
   exports: [
     SearchJobComponent,
@@ -49,13 +50,15 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     WavesModule,
     ButtonsModule,
     CollapseModule,
+    NgbModule,
     ChangePassComponent,
    // HeaderForEmployerComponent,
     ValidateAccComponent,
     FooterComponent,
     ForgotPassComponent,
     LoginComponent,
-    NotfoundComponent
+    NotfoundComponent,
+     ToastComponent
   ]
 })
 export class SharedModule {
@@ -70,7 +73,8 @@ export class SharedModule {
         ForgotPassComponent,
         ChangePassComponent,
         LoginComponent,
-        NotfoundComponent
+        NotfoundComponent,
+         ToastComponent
       ]
     }
   }

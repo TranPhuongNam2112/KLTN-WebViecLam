@@ -9,7 +9,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class _AuthService {
 
   constructor(private http: HttpClient) { }
   login(credentials): Observable<any> {

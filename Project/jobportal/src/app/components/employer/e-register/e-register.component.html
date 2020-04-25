@@ -5,23 +5,17 @@
     <!-- Mask & flexbox options-->
     <div class="mask rgba-blue-grey-strong d-flex justify-content-center align-items-center">
         <!-- Content -->
-        <div class="container">
+        <div class="container mb-5">
             <!--Grid row-->
             <div class="row pt-3">
                 <!--Grid column-->
-                <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft pt-5"
-                    data-wow-delay="0.3s">
-                    <h1 class="display-4 font-weight-bold">Helping Your Business Move Up</h1>
-                    <hr class="hr-light">
-                    <h6 class="mb-3">get your job matched with the right candidate .</h6>
-                    <!-- <a mdbBtn color="white" outline="true" mdbWavesEffect [routerLink]="['../']">Learn more</a> -->
-                    <a mdbBtn color="white" outline="true" mdbWavesEffect>Learn more</a>
+                <div class="col-lg-3 col-md-1 col-sm-1">
                 </div>
                 <!--Grid column-->
                 <!--Grid column-->
-                <div class="col-md-6 col-xl-5 ">
+                <div class="col-lg-6 col-md-10 col-sm-10 ">
                     <!--Form-->
-                    <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
+                    <mdb-card class="wow fadeInRight " data-wow-delay="0.3s">
 
                         <mdb-card-body class="z-depth-2 ">
                             <form *ngIf="!isSuccessful" name="eregisterForm" (ngSubmit)="f.form.valid && onSubmit()"
@@ -32,6 +26,31 @@
                                         <strong>Register</strong>
                                     </h3>
                                     <hr>
+                                </div>
+
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-6 col-xs-6 d-flex justify-content-center">
+                                        <!--Facebook-->
+                                        <button type="button" mdbBtn size="lg" color="fb" class="btn btn-indigo"
+                                            mdbWavesEffect
+                                            (click)="socialSignIn('facebook',dangerTpl,successTpl)"
+                                            > <span>Facebook</span></button>
+                                    </div>
+
+                                    <div class="col-md-6 col-xs-6 d-flex justify-content-center">
+                                        <button type="button" mdbBtn size="lg" mdbBtn color="gplus"
+                                            class="btn btn-danger" mdbWavesEffect 
+                                            (click)="socialSignIn('google',dangerTpl,successTpl)"
+                                            >
+                                            Google
+                                        </button>
+                                    </div>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 20px; border-bottom: 1px ridge ; text-align: center; margin-bottom: 20px;">
+                                    <span style="font-size: 14px; background-color: #ffffff; padding: 0 10px;">
+                                        or
+                                    </span>
                                 </div>
                                 <!--Body-->
                                 <div class="form-group">
@@ -100,16 +119,14 @@
                                 <div class="form-group">
                                     <label for="phonenumber">Phone</label>
                                     <input type="tel" class="form-control" name="phonenumber"
-                                        [(ngModel)]="eregisterForm.phonenumber" 
-                                        [pattern]="mobNumberPattern"
-                                        required maxlength="10"
-                                        #phonenumber="ngModel" />
+                                        [(ngModel)]="eregisterForm.phonenumber" [pattern]="mobNumberPattern" required
+                                        maxlength="10" #phonenumber="ngModel" />
                                     <div class="alert-danger" *ngIf="f.submitted && phonenumber.invalid">
                                         <div *ngIf="phonenumber.errors.required">Phone is required</div>
-                                        <div *ngIf="phonenumber.errors.pattern">  
-                                            Invalid phone number  
-                                          </div>
-                                      
+                                        <div *ngIf="phonenumber.errors.pattern">
+                                            Invalid phone number
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -134,11 +151,10 @@
 
 
                                 <div class="text-center mt-3">
-                                   
+
                                     <div class="form-group">
                                         <button mdbBtn color="primary" outline="true" rounded="true" block="true"
                                             class="my-4 waves-effect z-depth-0"
-                                          
                                             mdbWavesEffect><strong>Register</strong></button>
                                     </div>
 
@@ -152,10 +168,11 @@
                                 </div>
                             </form>
                             <div class="alert alert-success mt-3" *ngIf="isSuccessful">
-                                Please check your mail to validate your account.<br/>
-                                <a [href]="'https://mail.google.com/mail/'" target="_blank" ><strong>Go to gmail</strong></a>
+                                Please check your mail to validate your account.<br />
+                                <a [href]="'https://mail.google.com/mail/'" target="_blank"><strong>Go to
+                                        gmail</strong></a>
                             </div>
-                           
+
                         </mdb-card-body>
 
                     </mdb-card>
@@ -164,8 +181,15 @@
                 <!--Grid column-->
             </div>
             <!--Grid row-->
+            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
         </div>
         <!-- Content -->
     </div>
     <!-- Mask & flexbox options-->
 </div>
+<ng-template #successTpl>
+    <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+</ng-template>
+<ng-template #dangerTpl >
+    <span><i class="fa fa-exclamation-triangle fa-lg mr-3" aria-hidden="true"></i>{{ errorMessage }}<i class="fas fa-arrow-up"></i></span>
+</ng-template>

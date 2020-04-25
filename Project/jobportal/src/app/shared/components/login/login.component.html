@@ -27,7 +27,29 @@
                                     <h3 class="blue-text">
                                         <strong>Sign in</strong>
                                     </h3>
-                                    <hr>
+                                    <hr />
+                                </div>
+
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-6 col-xs-6 d-flex justify-content-center">
+                                        <!--Facebook-->
+                                        <button type="button" mdbBtn size="lg" color="fb" class="btn btn-indigo"
+                                            mdbWavesEffect> <span>Facebook</span></button>
+                                    </div>
+
+                                    <div class="col-md-6 col-xs-6 d-flex justify-content-center">
+                                        <button type="button" mdbBtn size="lg" mdbBtn color="gplus"
+                                            class="btn btn-danger" mdbWavesEffect 
+                                            (click)="socialSignIn('google')"
+                                            > Google
+                                        </button>
+                                    </div>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 20px; border-bottom: 1px ridge ; text-align: center; margin-bottom: 20px;">
+                                    <span style="font-size: 14px; background-color: #ffffff; padding: 0 10px;">
+                                        or
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
@@ -51,30 +73,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-end">
+                                    <a class="text-primary">Forgot password?</a>
+                                </div>
                                 <div class="text-center mt-3">
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-block"  >
+                                        <button class="btn btn-primary btn-block">
                                             Sign in
                                         </button>
                                     </div>
                                     <!-- Register -->
                                     <!-- <p>Don't have an accout yet? -->
-                                        <!-- <a [routerLink]="['../register']"><strong>Register now!</strong></a> -->
-                                        <!-- <a><strong>Register now!</strong></a>
+                                    <!-- <a [routerLink]="['../register']"><strong>Register now!</strong></a> -->
+                                    <!-- <a><strong>Register now!</strong></a>
                                     </p> -->
                                 </div>
                                 <div class="form-group">
                                     <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                                        <!-- Login failed: {{ errorMessage }} -->
-                                        Login failed! Error email or password
+                                        Login failed: {{ errorMessage }}
+                                       
                                     </div>
                                 </div>
-                                
+
                             </form>
                             <div class="alert alert-success" *ngIf="isLoggedIn">
                                 <!-- Logged in as {{ roles }}. -->
                                 Login successful!
-                              </div>
+                            </div>
                         </mdb-card-body>
                     </mdb-card>
                     <!--/.Form-->

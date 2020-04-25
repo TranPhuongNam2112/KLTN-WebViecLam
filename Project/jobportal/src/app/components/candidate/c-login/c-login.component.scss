@@ -1,69 +1,58 @@
-.login{
-   background: url("../../../../assets/images/candidate/login2.jpg")no-repeat center center;
-   background-size: cover;
-  
+/* Required for full background image */
+.view{
+   
+  background: url("../../../../assets/images/candidate/login2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+.form-text{
+margin-top: 12px;
+}
+.mb-3{
+letter-spacing: 2px;
 
+}
+html,
+body,
+header,
+.view {
+min-height: 100vh;
+}
 .container{
- padding-top: 70px;
+padding-top: 60px;
 }
-.intro-header {
-    height: unset !important;
-  }
-  .top-nav-collapse {
-    background-color: #78909c !important;
-  }
-  .view {
-    height: 100vh !important;
-  }
-  .navbar:not(.top-nav-collapse) {
-    background: transparent !important;
-  }
+@media (max-width: 740px) {
+html,
+body,
+header,
+.view {
+height: 1100px;
+}
+}
+@media (min-width: 800px) and (max-width: 850px) {
+html,
+body,
+header,
+.view {
+height: 700px;
+}
+}
 
-  @media (max-width: 768px) {
-    .navbar:not(.top-nav-collapse) {
-      background: #78909c !important;
-    }
-  }
-  h1 {
-    letter-spacing: 8px;
-  }
-  h5 {
-    letter-spacing: 2px;
-    
-  }
-  .hr-light {
-    border-top: 3px solid #fff;
-    width: 80px;
-  }
-  @media (max-width: 740px) {
-    .full-height,
-    .full-height body,
-    .full-height header,
-    .full-height header .view {
-      height: 700px;
-    }
-  }
-//laptop
-  @media (min-width: 1200px) {
-    
-  }
-  //ipad pro
-  @media (min-width: 992px) {
-   
-  }
-  //ipad
-  @media (min-width: 768px) {
-    
-  }
-  // mobile
-  @media (min-width: 306px) { 
-   
-  }
-  .view{
-   
-    background: url("../../../../assets/images/candidate/login.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.top-nav-collapse {
+background-color: #39448c !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+background: transparent !important;
+}
+
+@media (max-width: 991px) {
+.navbar:not(.top-nav-collapse) {
+background: #39448c !important;
+}
+}
+
+h6 {
+line-height: 1.7;
 }

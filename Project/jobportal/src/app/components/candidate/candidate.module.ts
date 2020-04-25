@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-
+// import { ToastComponent } from '../../components/toast/toast.component';
 import { SavejobComponent } from './manage-job/savejob/savejob.component';
 import { FitjobComponent } from './manage-job/fitjob/fitjob.component';
 import { CandidateRoutingModule } from './candidate-routing.module';
@@ -22,7 +22,8 @@ import { CandidateDashboardComponent } from './candidate-dashboard/candidate-das
     SavejobComponent,
     FitjobComponent,
     HeaderForCandidateComponent,
-    CandidateDashboardComponent
+    CandidateDashboardComponent,
+    // ToastComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { User_Account } from './user-account';
+import { User_Account } from './user_account';
 
 export class Candidate {
     id: number;
