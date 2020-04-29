@@ -21,7 +21,7 @@ export class CRegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   isShown: boolean = false;
-
+  error: Params;
   //social login start
   isLoggedIn = false;
   isLoginFailed = false;
@@ -40,7 +40,13 @@ export class CRegisterComponent implements OnInit {
     //toast 
     config: NgbModalConfig, private modalService: NgbModal,
     public toastService: ToastService,
-  ) { }
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      this.error = params;
+    });
+  }
 
   ngOnInit(): void {
     // this.registerForm.role="candidate";
@@ -75,15 +81,15 @@ export class CRegisterComponent implements OnInit {
     if (socialProvider === 'facebook') {
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     } else if (socialProvider === 'google') {
-        socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-      }
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
     this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
       console.log(socialProvider, socialusers);
       console.log(socialusers);
       if (socialProvider === 'facebook') {
-        this.SavesresponseFB(socialusers,dangerTpl,successTpl);
+        this.SavesresponseFB(socialusers, dangerTpl, successTpl);
       } else if (socialProvider === 'google') {
-        this.SavesresponseGG(socialusers,dangerTpl,successTpl);
+        this.SavesresponseGG(socialusers, dangerTpl, successTpl);
       }
     });
   }

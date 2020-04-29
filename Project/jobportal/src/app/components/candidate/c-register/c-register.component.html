@@ -23,18 +23,26 @@
                                 #f="ngForm" novalidate>
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-md-6 col-xs-6 d-flex justify-content-center">
-                                        <!--Facebook-->
+                                     
                                         <button type="button" mdbBtn size="lg" color="fb" class="btn btn-indigo"
                                             mdbWavesEffect
-                                            (click)="socialSignIn('facebook',dangerTpl,successTpl)"
+                                            onClick="window.open('//localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:4200','_self')"
                                             > <span>Facebook</span></button>
                                     </div>
+                                    
 
                                     <div class="col-md-6 col-xs-6 d-flex justify-content-center">
                                         <button type="button" mdbBtn size="lg" mdbBtn color="gplus"
-                                            class="btn btn-danger" mdbWavesEffect  
-                                              (click)="socialSignIn('google',dangerTpl,successTpl)"> Google
+                                            class="btn btn-danger" mdbWavesEffect 
+                                            onClick="window.open('//localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200','_self')"
+                                            > Google
                                         </button>
+                                    </div>
+                                    <div class="form-group mt-3 ml-3 mr-3">
+                                        <div class="alert alert-danger" role="alert" *ngIf="error.error">
+                                             {{ error.error }}
+                                           
+                                        </div>
                                     </div>
                                 </div>
                                 <div
