@@ -6,6 +6,7 @@ export class User_Account {
     lastname: string;
     email: string;
     password: string;
+    token: string;
     roles: Role;
     enabled: boolean;
 }

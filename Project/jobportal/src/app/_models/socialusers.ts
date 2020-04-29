@@ -4,5 +4,5 @@ export class Socialusers {
     email:string;
     photoUrl: string;
     provider: string;
-    token?: string;  
+    token?: string;
 }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { SocialLoginModule, AuthServiceConfig, AuthService } from 'angularx-social-login';  
 import { Socialusers } from '../../../_models/socialusers'  
 import { SocialloginService } from '../../../_services/sociallogin.service';  
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-header-for-candidate',
   templateUrl: './header-for-candidate.component.html',
@@ -29,4 +29,5 @@ socialusers = new Socialusers();
     });
    
   }
+
 }
