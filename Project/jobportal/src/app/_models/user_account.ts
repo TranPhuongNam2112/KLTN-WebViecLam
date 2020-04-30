@@ -1,12 +1,17 @@
 import { Role } from './role';
+import { Candidate } from './candidate';
 
 export class User_Account {
     id: number;
-    firstname: string;
+    created_At: Date;
+    updatedAt: Date;
+    name: string;
+    firstname:string;
     lastname: string;
     email: string;
-    password: string;
-    token: string;
+    imageUrl: string;
+    candidate: Candidate;
     roles: Role;
     enabled: boolean;
+    emailVerified: boolean;
 }

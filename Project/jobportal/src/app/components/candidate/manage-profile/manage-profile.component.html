@@ -1,8 +1,8 @@
-<div class="view bg-white border rounded border-weight-white" >
+<div class="view bg-white border rounded border-weight-white">
     <p class="pl-3  font-weight-bold text-primary h5">Update your profile</p>
     <nav ngbNav #nav="ngbNav" class="nav-tabs ">
-       
-        <ng-container ngbNavItem >
+
+        <ng-container ngbNavItem>
             <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
                 Personalities</a>
             <ng-template ngbNavContent>
@@ -12,53 +12,72 @@
                         <div class="row ">
                             <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group ">
-                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">First
+                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">Full
                                         Name</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
+                                        aria-describedby="emailHelp" value="{{user_account.name}}">
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-12 col-md-12">
+                            <div class="col-lg-4 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text font-weight-bold"
+                                        for="exampleInputEmail1">Gender</label>
+                                    <select class="custom-select custom-select mb-3" *ngIf="user_account.candidate">
+                                        <option selected *ngIf="!user_account.candidate.gender">Gender</option>
+                                        <option value="1" *ngIf="!user_account.candidate.gender">Male</option>
+                                        <option value="2" *ngIf="!user_account.candidate.gender">Female</option>
+                                        <option selected *ngIf="user_account.candidate.gender">
+                                            {{user_account.candidate.gender}}</option>
+                                        <option value="1" *ngIf="user_account.candidate.gender==='Female'">Male</option>
+                                        <option value="2" *ngIf="user_account.candidate.gender==='Male'">Female</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="dark-grey-text font-weight-bold " for="exampleInputPassword1">Last
                                         Name</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="row mt-3">
-                            <div class="col-lg-2 col-sm-12 col-md-12">
-                                <div class="form-group ">
+
+
+                            <div class="col-lg-6 col-sm-12 col-md-12" *ngIf="user_account.candidate">
+                                <div class="form-group">
                                     <label class="dark-grey-text font-weight-bold"
-                                        for="exampleInputEmail1">Gender</label>
-                                    <select class="custom-select custom-select mb-3">
-                                        <option selected>Gender</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-
-                                    </select>
-
+                                        for="exampleInputPassword1">Phone</label>
+                                    <input type="tel" class="form-control" id="exampleInputPassword1"
+                                        value="{{user_account.candidate.phone_number}}">
                                 </div>
                             </div>
+
                             <!-- date picker birthday -->
-                            <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="dark-grey-text font-weight-bold"
                                         for="exampleInputPassword1">Birthday</label>
                                     <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
                                     <form class="form-inline">
                                         <div class="form-group">
-                                            <div class="input-group mb-3">
-                                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                                [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
-                                                [maxDate]="{year: 2001, month: 12, day: 31}">
+                                            <div class="input-group mb-3" *ngIf="user_account.candidate">
+                                                <input class="form-control"
+                                                    placeholder="{{user_account.candidate.doB | date}}" name="dp"
+                                                    [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                                                    [maxDate]="{year: 2001, month: 12, day: 31}">
+
+
                                                 <div class="input-group-append">
-                                                  <button mdbBtn color="primary" outline="true" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
-                                                    mdbWavesEffect (click)="d.toggle()"><i class="fas fa-calendar-plus"></i></button>
+                                                    <button mdbBtn color="primary" outline="true" size="md"
+                                                        class="m-0 px-3 py-2" type="button" id="button-addon2"
+                                                        mdbWavesEffect (click)="d.toggle()"><i
+                                                            class="fas fa-calendar-plus"></i></button>
                                                 </div>
-                                              </div>
+                                            </div>
                                             <!-- <div class="input-group mb-3">
                                                 <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
                                                     [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
@@ -72,28 +91,25 @@
                                         </div>
                                     </form>
 
-                                   
+
 
                                 </div>
                             </div>
                             <!-- date picker birthday -->
-                            <div class="col-lg-6 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="dark-grey-text font-weight-bold"
-                                        for="exampleInputPassword1">Phone</label>
-                                    <input type="tel" class="form-control" id="exampleInputPassword1">
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-12 col-md-12">
+                                <div class="form-group mt-3" *ngIf="user_account.candidate">
+
+                                    <label class="dark-grey-text font-weight-bold" for="exampleInputEmail1">Home
+                                        Address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" value="{{user_account.candidate.homeaddress}}">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group mt-3">
-                            <label class="dark-grey-text font-weight-bold" for="exampleInputEmail1">Home
-                                Address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-
-                        </div>
-
                         <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
                     </form>
                 </div>
@@ -109,7 +125,8 @@
 
                 <div class="custom pr-5">
                     <!-- alert -->
-                    <ngb-alert class="ml-3" *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}
+                    <ngb-alert class="ml-3" *ngIf="successMessage" type="success" (close)="successMessage = ''">
+                        {{ successMessage }}
                     </ngb-alert>
                     <div class="row mt-5 justify-content-start">
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3 ml-3">
@@ -125,7 +142,7 @@
                                 experiments</button>
                         </div>
                     </div>
-                    <div class="ml-3 mt-3 mb-5">
+                    <div class="ml-3 mt-3 mb-5" *ngIf="isExperiencesEmpty()">
                         <ngb-toast class="bg-warning white-text" style="min-width: 100% ;" *ngIf="show"
                             header="Get started" [autohide]="false" (hide)="close()">
                             Press Add to fill your profile
@@ -135,6 +152,63 @@
                                     class="fa fa-plus mr-2"></i>Add
                                 experiments</button></p>
                     </div>
+                    <!-- tab thong tin kinh nghiem -->
+                    <div class="ml-3 mt-3 mb-5" *ngIf="user_account.candidate.experiences">
+                        <div class="edu-info col-lg-12 col-md-12 col-sm-12  border mb-3 pt-3 ml-3 "
+                            *ngFor="let experience of user_account.candidate.experiences">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fas fa-clipboard-check fa-2x"></i>
+                                </div>
+                                <div class="col-9  font-weight-normal school">
+                                    {{experience.company_name}}
+                                </div>
+                                <div class="col-2">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <a> <i class="fas fa-edit show-me  " style="color:rgb(106, 190, 49);
+                                                   
+                                                    "></i></a>
+                                        </div>
+                                        <div class=" col-1">
+                                            <a><i class="fas fa-trash-alt show-me" style="color:rgb(250, 133, 0);
+                                                  "></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="school">Job Title:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{experience.job_title}}</div>
+                            </div>
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="school">Start date:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{experience.start_date |date}}</div>
+                            </div>
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="school">End date:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{experience.end_date | date}}</div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <!-- tab thong tin kinh nhgiem -->
+
+
                 </div>
                 <!-- màn hình kinh nghiệm làm việc -->
             </ng-template>
@@ -145,8 +219,7 @@
                 Educations</a>
             <ng-template ngbNavContent>
                 <!-- màn kình học vấn -->
-                 <!-- màn hình kinh nghiệm làm việc -->
-                 <div class="custom pr-5" >
+                <div class="custom pr-5">
                     <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}
                     </ngb-alert>
                     <div class="row mt-5 justify-content-start">
@@ -154,17 +227,81 @@
                             <button type="button" class="btn btn-primary" (click)="openLg(education)"><i
                                     class="fa fa-plus mr-2"></i>Add
                                 educations</button>
-                       </div>
+                        </div>
                     </div>
-                    <div class="ml-3 mt-3 mb-5">
+                    <div class="ml-3 mt-3 mb-5" *ngIf="isEducationsEmpty()">
                         <ngb-toast class="bg-warning white-text" style="min-width: 100% ;" *ngIf="show"
                             header="Get started" [autohide]="false" (hide)="close()">
                             Press Add to fill your profile
+
                         </ngb-toast>
-                       
+
                     </div>
+                    <!-- tab thong tin hoc van -->
+                    <div class="ml-3 mt-3 mb-5" *ngIf="user_account.candidate.educations">
+                        <div class="edu-info col-lg-12 col-md-12 col-sm-12  border mb-3 pt-3 ml-3 "
+                            *ngFor="let education of user_account.candidate.educations">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fas fa-graduation-cap fa-2x"></i>
+                                </div>
+                                <div class="col-9  font-weight-normal school">
+                                    {{education.university_college}}
+                                </div>
+                                <div class="col-2">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <a>
+                                                <i class="fas fa-edit show-me" style="color:rgb(106, 190, 49);
+                                                   
+                                                    "></i></a>
+                                        </div>
+                                        <div class=" col-1">
+                                            <a>
+                                                <i class="fas fa-trash-alt show-me " style="color:rgb(250, 133, 0);
+                                                  "></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="major">Major:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{education.major}}</div>
+                            </div>
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="startdate">Start date:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{education.start_date |date}}</div>
+                            </div>
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="completiondate">Completion date:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{education.completion_date | date}}</div>
+                            </div>
+                            <div class="row ml-5">
+                                <div class="col-3">
+                                    <label class="text-muted font-weight-normal" for="gpa">GPA:</label>
+                                </div>
+                                <div class=" text-body font-weight-normal ">
+                                    {{education.gpa}}</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- tab thong tin hoc van -->
+
                 </div>
-                <!-- màn hình kinh nghiệm làm việc -->
                 <!-- màn hình học vấn -->
             </ng-template>
         </ng-container>
@@ -199,8 +336,7 @@
                     <!-- date picker birthday -->
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label class="dark-grey-text font-weight-bold"
-                                for="jobStartDay">Start Day</label>
+                            <label class="dark-grey-text font-weight-bold" for="jobStartDay">Start Day</label>
                             <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
                             <form class="form-inline">
                                 <div class="form-group">
@@ -209,8 +345,9 @@
                                             [(ngModel)]="model" ngbDatepicker #ds="ngbDatepicker"
                                             [maxDate]="{year: 2001, month: 12, day: 31}">
                                         <div class="input-group-append">
-                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2" size="md"  mdbWavesEffect  (click)="ds.toggle()"
-                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                size="md" mdbWavesEffect (click)="ds.toggle()" type="button"> <i
+                                                    class="fas fa-calendar-plus"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -226,8 +363,7 @@
                     <!-- date picker birthday -->
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label class="dark-grey-text font-weight-bold"
-                                for="jobEndDay">End Day</label>
+                            <label class="dark-grey-text font-weight-bold" for="jobEndDay">End Day</label>
                             <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
                             <form class="form-inline">
                                 <div class="form-group">
@@ -236,9 +372,9 @@
                                             [(ngModel)]="model" ngbDatepicker #de="ngbDatepicker"
                                             [maxDate]="{year: 2001, month: 12, day: 31}">
                                         <div class="input-group-append">
-                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2" size="md" 
-                                             mdbWavesEffect  (click)="de.toggle()"
-                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                size="md" mdbWavesEffect (click)="de.toggle()" type="button"> <i
+                                                    class="fas fa-calendar-plus"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -259,7 +395,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            
+
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
         </div>
     </ng-template>
@@ -267,7 +403,7 @@
 
     <!-- modal add education -->
     <ng-template #education let-modal>
-        <div class="modal-header" >
+        <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Add educations</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
@@ -282,7 +418,7 @@
                             <input type="text" class="form-control" id="univerisy">
                         </div>
                     </div>
-                  
+
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 col-sm-12 col-md-12">
@@ -303,8 +439,7 @@
                     <!-- date picker birthday -->
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label class="dark-grey-text font-weight-bold"
-                                for="eduStartDay">Start Day</label>
+                            <label class="dark-grey-text font-weight-bold" for="eduStartDay">Start Day</label>
                             <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
                             <form class="form-inline">
                                 <div class="form-group">
@@ -313,9 +448,9 @@
                                             [(ngModel)]="model" ngbDatepicker #eds="ngbDatepicker"
                                             [maxDate]="{year: 2001, month: 12, day: 31}">
                                         <div class="input-group-append">
-                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2" 
-                                            size="md"  mdbWavesEffect  (click)="eds.toggle()"
-                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                size="md" mdbWavesEffect (click)="eds.toggle()" type="button"> <i
+                                                    class="fas fa-calendar-plus"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -328,8 +463,7 @@
                     <!-- date picker birthday -->
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label class="dark-grey-text font-weight-bold"
-                                for="eduEndDay">End Day</label>
+                            <label class="dark-grey-text font-weight-bold" for="eduEndDay">End Day</label>
                             <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
                             <form class="form-inline">
                                 <div class="form-group">
@@ -338,14 +472,14 @@
                                             [(ngModel)]="model" ngbDatepicker #ede="ngbDatepicker"
                                             [maxDate]="{year: 2001, month: 12, day: 31}">
                                         <div class="input-group-append">
-                                            <button  mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
-                                             size="md"  mdbWavesEffect  (click)="ede.toggle()"
-                                                type="button"> <i class="fas fa-calendar-plus"></i>
+                                            <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                size="md" mdbWavesEffect (click)="ede.toggle()" type="button"> <i
+                                                    class="fas fa-calendar-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>                   
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { _AuthService } from '../../../shared/services/auth.service';
 import { TokenStorageService } from '../../../shared/services/token-storage.service';
-import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angularx-social-login';
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+// import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angularx-social-login';
+// import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { Socialusers } from '../../../_models/socialusers';
 import { User_Account } from '../../../_models/user_account';
 import { SocialloginService } from '../../../_services/sociallogin.service';
@@ -48,8 +48,8 @@ export class CLoginComponent implements OnInit {
     private authService: _AuthService,
     private tokenStorage: TokenStorageService,
     //  social login start
-    public OAuth: AuthService,
-    private SocialloginService: SocialloginService,
+    // public OAuth: AuthService,
+    // private SocialloginService: SocialloginService,
     private router: Router,
     //  social login end
     //toast
@@ -179,77 +179,77 @@ export class CLoginComponent implements OnInit {
   }
   s
   //social login start
-  public socialSignIn(socialProvider: string, dangerTpl, successTpl) {
-    let socialPlatformProvider;
-    if (socialProvider === 'facebook') {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (socialProvider === 'google') {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-    this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
-      console.log(socialProvider, socialusers);
-      console.log(socialusers);
-      if (socialProvider === 'facebook') {
-        this.SavesresponseFB(socialusers, dangerTpl, successTpl);
-      } else if (socialProvider === 'google') {
-        this.SavesresponseGG(socialusers, dangerTpl, successTpl);
-      }
-    });
-  }
+  // public socialSignIn(socialProvider: string, dangerTpl, successTpl) {
+  //   let socialPlatformProvider;
+  //   if (socialProvider === 'facebook') {
+  //     socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+  //   } else if (socialProvider === 'google') {
+  //     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+  //   }
+  //   this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
+  //     console.log(socialProvider, socialusers);
+  //     console.log(socialusers);
+  //     if (socialProvider === 'facebook') {
+  //       this.SavesresponseFB(socialusers, dangerTpl, successTpl);
+  //     } else if (socialProvider === 'google') {
+  //       this.SavesresponseGG(socialusers, dangerTpl, successTpl);
+  //     }
+  //   });
+  // }
 
-  SavesresponseGG(socialusers: Socialusers, dangerTpl, successTpl) {
-    this.SocialloginService.loginGoogleCandidate(socialusers).subscribe((res: any) => {
-      debugger;
-      console.log(res);
-      this.socialusers = res;
+  // SavesresponseGG(socialusers: Socialusers, dangerTpl, successTpl) {
+  //   this.SocialloginService.loginGoogleCandidate(socialusers).subscribe((res: any) => {
+  //     debugger;
+  //     console.log(res);
+  //     this.socialusers = res;
 
-      this.response = res.userDetail;
-      localStorage.setItem('socialusers', JSON.stringify(this.socialusers));
-      // console.log(localStorage.setItem('socialusers', JSON.stringify(this.socialusers)));
-      console.log(localStorage.getItem('socialusers'));
+  //     this.response = res.userDetail;
+  //     localStorage.setItem('socialusers', JSON.stringify(this.socialusers));
+  //     // console.log(localStorage.setItem('socialusers', JSON.stringify(this.socialusers)));
+  //     console.log(localStorage.getItem('socialusers'));
 
-      //theem
+  //     //theem
 
-      //theem
-      this.tokenStorage.saveToken(res.accessToken);
-      this.tokenStorage.saveUser(res);
-      this.isLoginFailed = false;
-      this.isLoggedIn = true;
-      console.log(this.roles);
-      this.toastService.show(successTpl, { classname: 'bg-success text-light ', delay: 6000 });
-      this.router.navigate(['/candidate']);
+  //     //theem
+  //     this.tokenStorage.saveToken(res.accessToken);
+  //     this.tokenStorage.saveUser(res);
+  //     this.isLoginFailed = false;
+  //     this.isLoggedIn = true;
+  //     console.log(this.roles);
+  //     this.toastService.show(successTpl, { classname: 'bg-success text-light ', delay: 6000 });
+  //     this.router.navigate(['/candidate']);
 
-    }, err => {
-      //this.errorMessage = err.message;
-      this.errorMessage = "Are you employer? Look like you are loging in as employer user. Click here ";
-      this.toastService.show(dangerTpl, { classname: 'bg-warning text-light font-weight-bolder text-monospace mt-5', delay: 6000 });
-    }
-    )
-  }
-  SavesresponseFB(socialusers: Socialusers, dangerTpl, successTpl) {
-    this.SocialloginService.loginFacebookCandidate(socialusers).subscribe((res: any) => {
-      debugger;
-      console.log(res);
-      this.socialusers = res;
-      this.response = res.userDetail;
-      localStorage.setItem('socialusers', JSON.stringify(this.socialusers));
-      console.log(localStorage.setItem('socialusers', JSON.stringify(this.socialusers)));
+  //   }, err => {
+  //     //this.errorMessage = err.message;
+  //     this.errorMessage = "Are you employer? Look like you are loging in as employer user. Click here ";
+  //     this.toastService.show(dangerTpl, { classname: 'bg-warning text-light font-weight-bolder text-monospace mt-5', delay: 6000 });
+  //   }
+  //   )
+  // }
+  // SavesresponseFB(socialusers: Socialusers, dangerTpl, successTpl) {
+  //   this.SocialloginService.loginFacebookCandidate(socialusers).subscribe((res: any) => {
+  //     debugger;
+  //     console.log(res);
+  //     this.socialusers = res;
+  //     this.response = res.userDetail;
+  //     localStorage.setItem('socialusers', JSON.stringify(this.socialusers));
+  //     console.log(localStorage.setItem('socialusers', JSON.stringify(this.socialusers)));
 
-      this.tokenStorage.saveToken(res.accessToken);
-      this.tokenStorage.saveUser(res);
-      this.isLoginFailed = false;
-      this.isLoggedIn = true;
-      console.log(this.roles);
-      this.toastService.show(successTpl, { classname: 'bg-success text-light ', delay: 6000 });
-      this.router.navigate(['/candidate']);
+  //     this.tokenStorage.saveToken(res.accessToken);
+  //     this.tokenStorage.saveUser(res);
+  //     this.isLoginFailed = false;
+  //     this.isLoggedIn = true;
+  //     console.log(this.roles);
+  //     this.toastService.show(successTpl, { classname: 'bg-success text-light ', delay: 6000 });
+  //     this.router.navigate(['/candidate']);
 
-    }, err => {
-      //this.errorMessage = err.message;
-      this.errorMessage = "Are you employer? Look like you are loging in as employer user. Click here ";
-      this.toastService.show(dangerTpl, { classname: 'bg-warning text-light font-weight-bolder text-monospace mt-5', delay: 6000 });
-    }
-    )
-  }
+  //   }, err => {
+  //     //this.errorMessage = err.message;
+  //     this.errorMessage = "Are you employer? Look like you are loging in as employer user. Click here ";
+  //     this.toastService.show(dangerTpl, { classname: 'bg-warning text-light font-weight-bolder text-monospace mt-5', delay: 6000 });
+  //   }
+  //   )
+  // }
 
   //social login end
 

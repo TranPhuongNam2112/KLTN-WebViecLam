@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {Subject} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { User_Account } from 'src/app/_models/user_account';
+import { Observable } from "rxjs";
+import { UserAccountService } from '../../../_services/candidate/user-account.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',
@@ -16,20 +20,43 @@ export class ManageProfileComponent implements OnInit {
   staticAlertClosed = false;
   successMessage = '';
   //ngToast
-  show = true; 
+  show = true;
+
   //modal close
   closeResult = '';
-
-  constructor(private modalService: NgbModal) { }
+  //get info candidate
+  user_account: User_Account;
+  constructor(
+    private modalService: NgbModal,
+    private userAccountService: UserAccountService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     this._success.subscribe(message => this.successMessage = message);
     this._success.pipe(
       debounceTime(5000)
     ).subscribe(() => this.successMessage = '');
+    this.user_account = new User_Account();
+    this.userAccountService.getAccounts()
+      .subscribe(data => {
+        console.log(data)
+        this.user_account = data;
+      }, error => console.log(error));
   }
   public changeSuccessMessage() {
     this._success.next(`Update profile successfully.`);
+  }
+  isExperiencesEmpty(): boolean {
+    let keys = Object.keys(this.user_account.candidate.experiences);
+    if (keys.length) { return false; }
+    else return true;
+  }
+  isEducationsEmpty(): boolean {
+    let keys = Object.keys(this.user_account.candidate.educations);
+    if (keys.length) { return false; }
+    else return true;
   }
   //ngToast
   close() {
@@ -38,7 +65,7 @@ export class ManageProfileComponent implements OnInit {
   }
   //open modal
   openLg(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg' }).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

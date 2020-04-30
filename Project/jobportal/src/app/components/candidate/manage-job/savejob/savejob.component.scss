@@ -1,5 +1,11 @@
 
+.savejob-info { 
+    transition: all .2s ease-in-out;
+}
+.savejob-info:hover  { 
+    transform: scale(1.01);
 
+}
 .view{
     background-color: white;
 }
