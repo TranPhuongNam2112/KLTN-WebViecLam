@@ -6,7 +6,7 @@
       </p>
       <hr/>
       <div [hidden]="submitted" style="width: 500px;">
-        <form (ngSubmit)="onSubmit(dangerTpl, successTpl)">
+        <form (ngSubmit)="onSubmit(dangerTpl, successTpl)" >
           <div class="form-group">
             <label for="jobTypeName">Job Type Name</label>
             <input type="text" class="form-control" id="jobTypeName" required [(ngModel)]="jobType.job_type_name"

@@ -184,7 +184,7 @@
                                 experiments</button>
                         </div>
                     </div>
-                    <div class="ml-3 mt-3 mb-5" *ngIf="isExperiencesEmpty()">
+                    <!-- <div class="ml-3 mt-3 mb-5" *ngIf="isExperiencesEmpty()">
                         <ngb-toast class="bg-warning white-text" style="min-width: 100% ;" *ngIf="show"
                             header="Get started" [autohide]="false" (hide)="close()">
                             Press Add to fill your profile
@@ -193,48 +193,57 @@
                             <button type="button" class="btn btn-warning white-text" (click)="openLg(experiment)"><i
                                     class="fa fa-plus mr-2"></i>Add
                                 experiments</button></p>
-                    </div>
+                    </div> -->
                     <div>
                         <div  class="modal-body mr-3">
-                            <form (ngSubmit)="onSubmit(dangerTpl, successTpl)">
+                            <form >
                                 <div class="row ">
-                                    <div class="col-lg-6 col-sm-12 col-md-12">
+                                    <!-- <div class="col-lg-6 col-sm-12 col-md-12">
                                         <div class="form-group ">
                                             <label class="dark-grey-text  font-weight-bold " for="companyName">Company Name</label>
-                                            <input type="text" class="form-control" id="companyName" required
-                                                [(ngModel)]="experien.experiences.companyname" name="companyname">
+                                            <input   type="text" class="form-control" id="companyName" required
+                                                [(ngModel)]="requestObject.experiences.companyname" name="companyname">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label class="dark-grey-text font-weight-bold " for="jobTitle">Job Title</label>
-                                            <input type="text" class="form-control" id="jobTitle"
-                                                [(ngModel)]="experien.experiences.jobtitle" name="jobtitle">
+                                            <input  type="text" class="form-control" id="jobTitle"
+                                                [(ngModel)]="requestObject.experiences.jobtitle" name="jobtitle">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label class="dark-grey-text font-weight-bold " for="startdate">startdate</label>
-                                            <input type="text" class="form-control" id="startdate"
-                                                [(ngModel)]="experien.experiences.startdate" name="startdate">
+                                            <input  type="text" class="form-control" id="startdate"
+                                                [(ngModel)]="requestObject.experiences.startdate" name="startdate">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-6 col-sm-12 col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group" *ngFor= "let rule of experienceArray; let i = index">
                                             <label class="dark-grey-text font-weight-bold " for="enddate">enddate</label>
-                                            <input type="text" class="form-control" id="enddate"
-                                                [(ngModel)]="experien.experiences.enddate" name="enddate">
+                                            <input   type="text" class="form-control" id="enddate"
+                                                [(ngModel)]="rule['companyname']" name="rule">
+                                                <label class="dark-grey-text font-weight-bold " for="enddate">job til</label>
+                                                <input   type="text" class="form-control" id="enddate"
+                                                [(ngModel)]="rule['jobtitle']" name="rule">
+                                                <label class="dark-grey-text font-weight-bold " for="enddate">startdate til</label>
+                                                <input   type="text" class="form-control" id="startdate"
+                                                [(ngModel)]="experience['startdate']" name="experience">
+                                                <label class="dark-grey-text font-weight-bold " for="enddate">enddate til</label>
+                                                <input   type="text" class="form-control" id="enddate"
+                                                [(ngModel)]="rule['enddate']" name="rule">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-sm-12 col-md-12">
+                                    <!-- <div class="col-lg-6 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label class="dark-grey-text font-weight-bold " for="description">description</label>
-                                            <input type="text" class="form-control" id="description"
-                                                [(ngModel)]="experien.experiences.description" name="description">
+                                            <input   type="text" class="form-control" id="description"
+                                                [(ngModel)]="requestObject.experiences[].description" name="description">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <button type="submit" class="btn btn-outline-dark" >Save</button>
+                                <button type="submit" (click)="saved()"class="btn btn-outline-dark" >Save</button>
                                 <!-- xoa -->
                                
                 
@@ -437,35 +446,35 @@
                         <div class="form-group ">
                             <label class="dark-grey-text  font-weight-bold " for="companyName">Company Name</label>
                             <input type="text" class="form-control" id="companyName" required
-                                [(ngModel)]="experien.experiences.companyname" name="companyname">
+                              >
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="jobTitle">Job Title</label>
                             <input type="text" class="form-control" id="jobTitle"
-                                [(ngModel)]="experien.experiences.jobtitle" name="jobtitle">
+                               >
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="startdate">startdate</label>
                             <input type="text" class="form-control" id="startdate"
-                                [(ngModel)]="experien.experiences.startdate" name="startdate">
+                             >
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="enddate">enddate</label>
                             <input type="text" class="form-control" id="enddate"
-                                [(ngModel)]="experien.experiences.enddate" name="enddate">
+                               >
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="description">description</label>
                             <input type="text" class="form-control" id="description"
-                                [(ngModel)]="experien.experiences.description" name="description">
+                           >
                         </div>
                     </div>
                 </div>

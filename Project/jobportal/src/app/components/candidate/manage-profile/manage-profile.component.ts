@@ -30,13 +30,25 @@ export class ManageProfileComponent implements OnInit {
   candidateProfile: CandidateProfile;
   //add exxperiecne
   responseMessage='';
-  experien: ExperiencesRequest = new ExperiencesRequest();
+   experien: ExperiencesRequest = new ExperiencesRequest();
   
   submitted = false;
   isSuccessful: boolean;
   //add experienece
   //test
   ex= false;
+   experienceArray=[
+    {
+      companyname:''	,
+      jobtitle: '',
+      startdate:'',
+      enddate:'',
+      description:''
+    }
+  ] ;
+   requestObject ={
+    experiences: this.experienceArray
+  };
   //test
   constructor(
     private modalService: NgbModal,
@@ -57,11 +69,37 @@ export class ManageProfileComponent implements OnInit {
         console.log(data)
         this.candidateProfile = data;
       }, error => console.log(error));
+      
   }
   //add exxperienece
   newExperience(): void {
     this.submitted = false;
     this.experien = new ExperiencesRequest();
+  }
+  saved(){
+    
+    
+    this.userAccountService.createExperience(this.requestObject)
+    .subscribe(data => {
+      console.log(data);
+  
+    this.responseMessage=data.toString();
+    if(data==="Thêm thành công"){
+      this.submitted = true;
+      console.log(data);
+      this.isSuccessful=true;
+    
+      console.log(this.isSuccessful);
+    } 
+    else {
+      console.log("hihi"+data);
+      this.isSuccessful=false;
+    
+    }
+    });
+  this.experien = new ExperiencesRequest();
+//  this.gotoList();
+  this.close();
   }
   save(dangerTpl, successTpl) {
     this.userAccountService.createExperience(this.experien)
@@ -73,11 +111,15 @@ export class ManageProfileComponent implements OnInit {
       //   this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 6000 });
       this.responseMessage=data.toString();
       if(data==="Thêm thành công"){
+        this.submitted = true;
+        console.log(data);
         this.isSuccessful=true;
         this.toastService.show(successTpl, { classname: 'bg-success text-light mt-5 ', delay: 6000 });
         console.log(this.isSuccessful);
       } 
       else {
+        console.log("hihi"+data);
+        console.log("hihi"+this.experien);
         this.isSuccessful=false;
         this.toastService.show(dangerTpl, { classname: 'bg-danger text-light mt-5', delay: 6000 });
       }
