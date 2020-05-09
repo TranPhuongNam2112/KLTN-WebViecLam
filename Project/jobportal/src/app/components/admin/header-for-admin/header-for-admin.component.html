@@ -3,15 +3,19 @@
         <!-- Navbar brand -->
         <mdb-navbar-brand>
             <a class="navbar-brand" [routerLink]="['/admin']">
-                <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
+                <img src="../assets/images/logo.png" height="30" alt="">
             </a>
         </mdb-navbar-brand>
         <!-- Collapsible content -->
         <links>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a [routerLink]="['/admin/account']" class="nav-link waves-light text-light"
-                        mdbWavesEffect><strong>Account</strong><span class="sr-only">(current)</span></a>
+                        mdbWavesEffect><strong>Account</strong><span class="sr-only"></span></a>
+                </li> -->
+                <li class="nav-item">
+                    <a [routerLink]="['/admin/user']" class="nav-link waves-light text-light"
+                        mdbWavesEffect><strong>User</strong><span class="sr-only"></span></a>
                 </li>
 
                 <li class="nav-item">
@@ -24,7 +28,7 @@
                         mdbWavesEffect><strong>
                             Employer</strong></a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a [routerLink]="['/admin/jobpost']" class="nav-link waves-light text-light"
                         mdbWavesEffect><strong>
                             Job Post</strong></a>
@@ -38,7 +42,7 @@
                     <a [routerLink]="['/admin/jobtype']" class="nav-link waves-light text-light"
                         mdbWavesEffect><strong>
                             Job Type</strong></a>
-                </li>
+                </li> -->
 
             </ul>
             <!-- Links -->

@@ -6,11 +6,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .login{
   background: url("../../../../assets/images/candidate/login2.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
 .form-text{
 margin-top: 12px;
@@ -27,6 +29,7 @@ min-height: 100vh;
 }
 .container{
 padding-top: 60px;
+min-height:100vh;
 }
 @media (max-width: 740px) {
 html,

@@ -1,0 +1,65 @@
+<div class="view border rounded border-weight-white">
+    <div class="custom pl-5 pr-5 mb-3 ">
+        <div class=" font-weight-bold text-primary" style="font-size: 16px; ">
+            <i class="fas fa-paste fa-2x"></i> CERTIFICATE DOCUMENTS
+        </div>
+        <div class="mt-5 mb-5 ">
+            <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">
+                {{ successMessage }}</ngb-alert>
+            <div class="row">
+                <div class="col-5 d-flex justify-content-end">
+                    <label class="text-muted font-weight-bold" style="font-size: 14px;">Upload documents</label>
+                </div>
+                <div class="col-7 d-flex justify-content-start">
+                    <input type="file" #fileUploader (change)="onFileChanged($event)">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-5">
+                </div>
+                <div class="col-7 mt-3 d-flex justify-content-start">
+                    <button type="button" class="btn btn-indigo btn-sm " (click)="onUpload()">
+                        <i class="fas fa-file-upload fa-2x mr-3"></i> Upload File</button>
+                </div>
+            </div>
+
+
+        </div>
+        <hr />
+    </div>
+    <div class="custom pl-5 pr-5 ">
+        <div class=" font-weight-bold text-muted" style="font-size: 16px; ">
+            <i class="fas fa-folder-open fa-lg mr-1"></i> UPLOADED FILES
+        </div>
+        
+        <div class="col-12 pb-3 border rounded border-weight-light mt-3 ">
+            <div class="row pl-3 pr-3 ml-5 ">
+               
+            <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5 ">
+                <img src="data:image/png;base64,{{candidateProfile.image}}" class="card-img-top" alt="...">
+                <div class="row d-flex justify-content-between mt-3 mb-3">                   
+                    <button type="button" class="btn btn-yellow btn-sm"><i class="fas fa-trash-alt fa-lg"></i></button>                
+                    <button type="button" class="btn btn-light-blue btn-sm"><i class="fas fa-search fa-lg"></i></button>         
+                </div>
+            </div>
+            <!-- <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5">
+                <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
+                <div class="row d-flex justify-content-between mt-3 mb-3">                   
+                    <button type="button" class="btn btn-light btn-sm"><i class="fas fa-trash-alt fa-lg"></i></button>                
+                    <button type="button" class="btn btn-light btn-sm"><i class="fas fa-search fa-lg"></i></button>              
+                </div>
+            </div>
+            <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5">
+                <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
+                <div class="row d-flex justify-content-between mt-3 mb-3">                   
+                    <button type="button" class="btn btn-light btn-sm"><i class="fas fa-trash-alt fa-lg"></i></button>                
+                    <button type="button" class="btn btn-light btn-sm"><i class="fas fa-search fa-lg"></i></button>               
+                </div>
+            </div> -->
+        </div>
+        </div>
+    </div>
+
+
+</div>

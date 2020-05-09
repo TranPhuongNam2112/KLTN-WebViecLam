@@ -14,10 +14,10 @@
 
                 <th scope="col">ID</th>
                 <th scope="col">Email</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
+                <th scope="col">Name</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Birthday</th>
+                <th scope="col">Lasted Login</th>
                 <th scope="col">Action</th>
                 <!-- <th scope="col">Phone Number</th>
                 <th scope="col">Home Address</th> -->
@@ -28,27 +28,27 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let candidate of candidates  ; ">
+            <tr *ngFor="let cand of candidates  ; ">
                 <td>
-                    <ngb-highlight [result]="candidate.id "></ngb-highlight>
+                    <ngb-highlight [result]="cand.id "></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="candidate.userAccount.email "></ngb-highlight>
+                    <ngb-highlight [result]="cand.email "></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="candidate.userAccount.firstname"></ngb-highlight>
+                    <ngb-highlight [result]="cand.name"></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="candidate.userAccount.lastname"></ngb-highlight>
+                    <ngb-highlight [result]="cand.candidate.gender"></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="candidate.gender "></ngb-highlight>
+                    <ngb-highlight [result]="cand.candidate.doB |date "></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="candidate.doB | date"></ngb-highlight>
+                    <ngb-highlight [result]="cand.updatedAt"></ngb-highlight>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success" (click)="candidateDetails(candidate.id)"> 
+                    <button type="button" class="btn btn-success" (click)="candidateDetails(cand.candidate.id)"> 
                         <span> <i class="fas fa-search"></i></span>
                     </button>
                 </td>

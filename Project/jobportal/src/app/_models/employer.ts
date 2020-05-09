@@ -7,5 +7,8 @@ export class Employer {
     establishmentdate: Date;
     websiteurl: string;
     userAccount: User_Account;
-  
+    user: User_Account;
+    main_address: string;
+    phone_number: string;  
+    industry: string;
 }

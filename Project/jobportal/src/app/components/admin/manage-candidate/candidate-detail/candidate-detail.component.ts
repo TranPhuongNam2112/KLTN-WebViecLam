@@ -9,6 +9,7 @@ import {Candidate} from '../../../../_models/candidate';
   styleUrls: ['./candidate-detail.component.scss']
 })
 export class CandidateDetailComponent implements OnInit {
+  active = 1;
   id: number;
   candidate: Candidate;
   constructor(private route: ActivatedRoute,private router: Router,

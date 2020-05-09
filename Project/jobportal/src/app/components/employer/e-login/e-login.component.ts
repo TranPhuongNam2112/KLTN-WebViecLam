@@ -61,8 +61,8 @@ export class ELoginComponent implements OnInit {
         console.warn("Bearer" + this.loginForm.value);
       },
       err => {
-        // this.errorMessage = err.error.message;
-        this.errorMessage = "Error email or password";
+         this.errorMessage = err.error.message;
+       // this.errorMessage = "Error email or password";
         this.isLoginFailed = true;
 
       }

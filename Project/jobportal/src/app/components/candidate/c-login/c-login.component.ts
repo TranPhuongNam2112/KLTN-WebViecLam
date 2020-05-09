@@ -18,7 +18,8 @@ import { ToastService } from '../../../_services/toast-service.service';
   selector: 'app-c-login',
   templateUrl: './c-login.component.html',
   styleUrls: ['./c-login.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  providers: [NgbModalConfig, NgbModal],
+  
 })
 export class CLoginComponent implements OnInit {
 
@@ -159,15 +160,17 @@ export class CLoginComponent implements OnInit {
           this.router.navigate(['/candidate']);
         }
         else if (this.showEmployer) {
-          this.router.navigate(['/employer']);
+          this.router.navigate(['/employer']).then(() => {
+            window.location.reload();
+          });;
         }
         else if (this.showAdmin) {
           this.router.navigate(['/admin']);
         }
       },
       err => {
-        // this.errorMessage = err.error.message;
-        this.errorMessage = "Error email or password";
+         this.errorMessage = err.error.message;
+        // this.errorMessage = "Error email or password";
         this.isLoginFailed = true;
 
       }
@@ -177,8 +180,7 @@ export class CLoginComponent implements OnInit {
   reloadPage() {
     window.location.reload();
   }
-  s
-  //social login start
+    //social login start
   // public socialSignIn(socialProvider: string, dangerTpl, successTpl) {
   //   let socialPlatformProvider;
   //   if (socialProvider === 'facebook') {

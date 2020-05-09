@@ -18,6 +18,7 @@ import { ManageJoblocationComponent } from './manage-joblocation/manage-joblocat
 import { ManageJobtypeComponent } from './manage-jobtype/manage-jobtype.component';
 import { CreateJobtypeComponent } from './create-jobtype/create-jobtype.component';
 import { UpdateJobtypeComponent } from './update-jobtype/update-jobtype.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -33,7 +34,8 @@ import { UpdateJobtypeComponent } from './update-jobtype/update-jobtype.componen
     ManageJoblocationComponent,
     ManageJobtypeComponent,
     CreateJobtypeComponent,
-    UpdateJobtypeComponent
+    UpdateJobtypeComponent,
+    ManageUserComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,6 @@
 <div class="view border rounded border-weight-white">
     <div class="custom pl-5 pr-5 ">
-        <div *ngIf="user_account.candidate">
+        <div *ngIf="saveJobPost">
             <div class="row bg-light pb-3 border rounded border-weight-light" *ngIf="isSavedJobPostEmpty()">
                 <div class=" col-lg-10 col-md-12 col-sm-12 ml-5 text-center ">
 
@@ -20,17 +20,21 @@
 
                 </div>
             </div>
-            <div *ngIf="user_account.candidate">
-                <div class="savejob-info row bg-light pb-3 border rounded border-weight-light"
-                    *ngFor="let savedjob of user_account.candidate.savedJobPosts">
+            <div *ngIf="saveJobPost">
+                <div class="savejob-info row bg-light pb-3 border rounded border-weight-light mb-3"
+                    *ngFor="let savedjob of saveJobPost">
 
                     <!-- save job post start -->
 
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
                         <div class="row">
                             <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
-                                <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                                <a class="d-flex justify-content-center" mdbTooltip="delete saved job" placement="top">
+                                <!-- <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="..."> -->
+                                <img class="card-img-top " src="data:image/png;base64,{{savedjob.image}}"
+                                    alt="Card image cap">
+                                <a class="d-flex justify-content-center" mdbTooltip="delete saved job" placement="top"
+                                (click)="deleteSaveJobPost(savedjob.id,dangerTpl,successTpl)"
+                                >
                                     <i class="fas fa-heart fa-2x mt-3" style="color: crimson;"></i>
 
                                 </a>
@@ -38,41 +42,50 @@
                             <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
                                 <div class="row">
 
-                                    <div class="col-9">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <a href="https://www.w3schools.com" class="font-weight-bold"
+                                                style="font-size:20px;"> {{savedjob.jobtitle}}</a>
+                                        </div>
+                                        <div class="row">
+                                            <label class="text-secondary" style="font-size: 14px ; ">
+                                                <i class="fas fa-map-marker-alt mr-1">
+                                                </i> {{savedjob.city}}
+                                            </label>
+                                            <label class="ml-3 text-secondary" style="font-size: 14px;">
+                                                <i class="fas fa-money-bill-wave"></i>
+                                                {{savedjob.minSalary | currency}} -
+                                                {{savedjob.maxSalary | currency}}
 
-                                        <a href="https://www.w3schools.com" class="font-weight-bold"
-                                            style="font-size:20px;"> {{savedjob.jobpost.job_title}}</a>
-                                        <label class="text-secondary" style="font-size: 14px ; ">
-                                            <i class="fas fa-map-marker-alt mr-1">
-                                            </i> {{savedjob.jobpost.joblocation.city_province}}
-                                        </label>
-                                        <label class="ml-3 text-secondary" style="font-size: 14px;">
-                                            <i class="fas fa-money-bill-wave"></i>
-                                            {{savedjob.jobpost.min_salary | currency}} -
-                                            {{savedjob.jobpost.max_salary | currency}}
+                                            </label>
+                                        </div>
+                                        <div class="row ">
 
-                                        </label>
-                                        <div class="row ml-1">
-
-                                            <label class="text-muted font-weight-bold mr-3" for="expireddate">Expired
-                                                Date:</label>
+                                            <label class="text-muted font-weight-bold mr-3" for="expireddate">Company
+                                                Name:</label>
 
                                             <div class=" text-body font-weight-normal ">
-                                                {{savedjob.jobpost.expirationDateTime |date:'medium'}}</div>
+                                                {{savedjob.companyname }}</div>
                                         </div>
-                                        <div class="row ml-1">
-                                            <label class="text-muted font-weight-bold mr-3"
-                                                for="industry">Industry:</label>
+                                        <div class="row">
+                                            <label class="text-muted font-weight-bold mr-3" for="industry">Job
+                                                Type:</label>
                                             <div class=" text-body font-weight-normal ">
-                                                {{savedjob.jobpost.industry}}</div>
+                                                {{savedjob.jobtype}}</div>
                                         </div>
-                                        <p class="card-text text-muted" style="font-size: 13px;">
-                                            {{savedjob.jobpost.job_description}}</p>
+                                        <div class="row">
+                                            <label class="text-muted font-weight-bold mr-3" for="industry">Experience
+                                                Years:</label>
+                                            <div class=" text-body font-weight-normal ">
+                                                {{savedjob.experienceyears}}</div>
+                                        </div>
+                                        <!-- <p class="card-text text-muted" style="font-size: 13px;">
+                                            {{savedjob.experienceyears}}</p> -->
                                     </div>
-                                    <div class="col-3">
-                                        <label class="bg-secondary text-light pl-1 pr-1 " mdbTooltip="date saved"
+                                    <div class="col-4">
+                                        <label class="bg-secondary text-light pl-1 pr-1 " mdbTooltip="Expiration Date"
                                             placement="bottom"
-                                            style="font-size: 12px;">{{savedjob.createdAt |date:'longDate'}}</label>
+                                            style="font-size: 12px;">{{savedjob.expirationDate |date:'medium'}}</label>
                                     </div>
                                 </div>
                                 <!-- <div class="row">
@@ -89,7 +102,21 @@
 
                     <!-- save job post end -->
                 </div>
+                <ul class="nav nav-pills d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}" >
+                          {{i}}
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+        <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+        <ng-template #successTpl>
+            <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+        </ng-template>
+        <ng-template #dangerTpl>
+            <span><i class="fas fa-check mr-5"></i>There got some error</span>
+        </ng-template>
     </div>
 </div>

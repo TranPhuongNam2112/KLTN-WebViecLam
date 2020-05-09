@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras  } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { TokenStorageService } from './shared/services/token-storage.service';
 import { Role } from './_models/role';
 @Component({
@@ -17,15 +17,16 @@ export class AppComponent implements OnInit {
   showEguest = false;
   showGuest = true;
   errorMessage = '';
-error='';
+  error = '';
 
   constructor(
     private router: Router, private tokenStorageService: TokenStorageService
   ) { }
 
   ngOnInit() {
-   
+
     let token = this.getParameterByName("token");
+    // let resetPasstoken = this.getParameterByName("reset_token");
     this.error = this.getParameterByName("error");
     if (token) {
       this.isLoggedIn = true;
@@ -33,13 +34,19 @@ error='';
       console.log("access_token" + token);
       this.router.navigate(['/candidate']);
     }
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
-         error: this.getParameterByName("error")
+        error: this.getParameterByName("error")
       }
-  }
-    if (this.error) { this.router.navigate(['/guest/login'],navigationExtras); }
-
+    }
+    if (this.error) { this.router.navigate(['/guest/login'], navigationExtras); }
+    // if (resetPasstoken) {
+    //   // this.isLoggedIn = true;
+    //   localStorage.setItem('resetPass_token',resetPasstoken);
+    //   console.log("resetPass_token" + localStorage.getItem('resetPass_token'));
+    //   this.router.navigate(['/resetpassword']);
+    // }
 
 
 

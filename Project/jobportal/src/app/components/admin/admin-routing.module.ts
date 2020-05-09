@@ -12,15 +12,19 @@ import {ManageJoblocationComponent} from './manage-joblocation/manage-joblocatio
 import {ManageJobtypeComponent} from './manage-jobtype/manage-jobtype.component';
 import {CreateJobtypeComponent} from './create-jobtype/create-jobtype.component';
 import {UpdateJobtypeComponent} from './update-jobtype/update-jobtype.component';
+import {ManageUserComponent} from './manage-user/manage-user.component';
 const routes: Routes = [
   {path: '',
   component: AdminComponent,
   children: [
     {
       path: '',
-      redirectTo: 'employer', pathMatch: 'full' 
+      redirectTo: 'user', pathMatch: 'full' 
     },
-   
+    {
+      path: 'user',
+      component: ManageUserComponent
+    },
     {
       path: 'account',
       component: ManageAccountComponent

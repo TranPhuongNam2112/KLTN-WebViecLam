@@ -7,6 +7,6 @@ export class Experience {
     start_date: Date;
     end_date: Date;
     candidate: Candidate;
-    
+    description: string;
 
 }

@@ -6,9 +6,13 @@ import { CandidateModule} from './components/candidate/candidate.module';
 import {EmployerModule} from './components/employer/employer.module';
 import {AdminModule} from './components/admin/admin.module';
 import {NotfoundComponent} from './shared/components/notfound/notfound.component';
+import {ResetPasswordComponent} from './shared/components/reset-password/reset-password.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'guest', pathMatch: 'full' },
   { path: 'notfound', component: NotfoundComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent },
+
   { //lazy loading
     path: 'guest',
     loadChildren: './components/guest/guest.module#GuestModule'
@@ -29,6 +33,8 @@ const routes: Routes = [
   path: 'admin',
   loadChildren: './components/admin/admin.module#AdminModule'
 },
+
+
 
 
 ];

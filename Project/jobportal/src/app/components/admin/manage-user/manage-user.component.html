@@ -1,0 +1,47 @@
+<div class="container bg-light mt-5 pt-3 pb-3 mb-5">
+    <form>
+        <div class="form-group form-inline d-flex justify-content-start text-primary">
+            <h5 class="font-weight-bold">Manage User</h5>
+        </div>
+        <!-- <div class="form-group form-inline d-flex justify-content-start">
+        Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+    </div> -->
+    </form>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">Joined At</th>
+                <!-- <th scope="col">Action</th> -->
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let user of users  ; ">
+                <td>
+                    <ngb-highlight [result]="user.name "></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="user.joinedAt "></ngb-highlight>
+                </td>
+               
+                <!-- <td>
+                    <button type="button" class="btn btn-success" (click)="candidateDetails(candidate.id)"> 
+                        <span> <i class="fas fa-search"></i></span>
+                    </button>
+                </td> -->
+
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <ul class="nav nav-pills d-flex justify-content-center">
+        <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}" >
+              {{i}}
+            </a>
+        </li>
+    </ul>
+</div>

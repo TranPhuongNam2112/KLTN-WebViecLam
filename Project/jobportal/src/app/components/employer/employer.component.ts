@@ -12,11 +12,15 @@ export class EmployerComponent implements OnInit {
   private roles: String[];
   isLoggedIn = false;
   // showEmployer = false;
-  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
+  constructor(private router: Router, private tokenStorageService: TokenStorageService) {
+   
+   }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
+   
+   
+    
     // if (this.isLoggedIn) {
     //   // const user = this.tokenStorageService.getUser();
     //   // this.roles = user.roles;

@@ -167,11 +167,15 @@
                                     Signup failed!<br />{{ errorMessage }}
                                 </div>
                             </form>
-                            <div class="alert alert-success mt-3" *ngIf="isSuccessful">
-                                Please check your mail to validate your account.<br />
+                          
+                            <div class="alert alert-success mt-3 text-center" *ngIf="isSuccessful">
+                                Signup successfully.
+                                <a [routerLink]="['../login']" target="_blank"><strong>Sign In</strong></a>
+                                <!-- Please check your mail to validate your account.<br />
                                 <a [href]="'https://mail.google.com/mail/'" target="_blank"><strong>Go to
-                                        gmail</strong></a>
+                                        gmail</strong></a> -->
                             </div>
+                       
 
                         </mdb-card-body>
 

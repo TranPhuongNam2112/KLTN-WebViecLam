@@ -1,0 +1,104 @@
+<!-- <div class="container mt-5 pt-5 mb-5">
+    <h5 class="font-weight-bold text-primary">Job Post Detail</h5>
+    <hr />
+    <div *ngIf="jobPost">
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-lg-7 col-sm-12 col-md-12">
+
+                <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
+                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                    <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                        Job Post Information
+                    </p>
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Job Title:</label>
+                        <input type="text" class="form-control" value="{{jobPost.job_title}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Created date:</label>
+                        <input type="text" class="form-control" value="{{jobPost.createdAt}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Lastest Modify:</label>
+                        <input type="text" class="form-control" value="{{jobPost.updatedAt}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Industry:</label>
+                        <input type="text" class="form-control" value="{{jobPost.industry}}">
+
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">City:</label>
+                        <input type="text" class="form-control"  value="{{jobPost.city}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Job Type:</label>
+                        <input type="text" class="form-control" 
+                            value="{{jobPost.jobtype }}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Experience Years:</label>
+                        <input type="text" class="form-control" 
+                            value="{{jobPost.experienceyears }}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Expiration Date:</label>
+                        <input type="text" class="form-control" 
+                            value="{{jobPost.expirationDate | date:'medium'}} ">
+
+                    </div>
+                    
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Min Salary:</label>
+                        <input type="text" class="form-control" 
+                        value="{{jobPost.minSalary | currency}} ">
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Max Salary:</label>
+                        <input type="text" class="form-control" 
+                            value="{{jobPost.maxSalary | currency}} ">
+                    </div>
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Description:</label>
+                        <textarea type="text" class="form-control" id="descriptionCom"
+                            readonly>{{jobPost.job_description }}</textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-md-12">
+
+                <form class="border border-grey rounded-lg pt-3 pl-3 pr-3 pb-3"
+                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                    <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                        Job Location
+                    </p>
+                    <hr />
+                   
+                    <div class="form-group ">
+                        <label class="dark-grey-text  ">Street Address:</label>
+                        <input type="text" class="form-control" readonly value="{{jobPost.street_address}}">
+                    </div>
+                    <hr />
+                    <div class="form-group ">
+                        <label class="dark-grey-text ">City Province:</label>
+                        <input type="text" class="form-control" readonly value="{{jobPost.city_province}}">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+
+        <button (click)="jobpostList()" class="btn btn-primary">Back</button><br>
+    </div> -->

@@ -12,16 +12,18 @@ import { EAccountComponent } from './e-account/e-account.component';
 import { PostjobComponent } from './postjob/postjob.component';
 import { SaveprofileComponent } from './saveprofile/saveprofile.component';
 import { ManagejobComponent } from './managejob/managejob.component';
+import { JobpostDetailComponent } from './jobpost-detail/jobpost-detail.component';
 
 @NgModule({
   declarations: [
     EmployerComponent,
     EmployerDashboardComponent,
-     HeaderForEmployerComponent,
+    HeaderForEmployerComponent,
     EAccountComponent,
     PostjobComponent,
     SaveprofileComponent,
     ManagejobComponent,
+    JobpostDetailComponent,
   
   ],
   imports: [

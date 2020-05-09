@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployerService {
+  // private url = 'http://localhost:8080/api/admin/getAllEmployers';
   private url = 'http://localhost:8080/api/admin/getAllEmployers';
-  private detailurl='http://localhost:8080/api/admin/getEmployer';
+  private detailurl='http://localhost:8080/api/users/employers';
   constructor(private http: HttpClient) { }
   getEmployers (pageNo: number)
   {

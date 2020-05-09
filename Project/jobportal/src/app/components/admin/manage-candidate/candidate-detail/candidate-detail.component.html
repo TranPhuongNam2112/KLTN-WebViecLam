@@ -95,3 +95,173 @@
 
         <button  (click)="candidateList()" class="btn btn-primary">Back</button><br>
     </div>
+<!-- <div class="container bg-light mt-5 pt-3 pb-3 mb-5" *ngIf="candidate">
+   
+
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+        <li [ngbNavItem]="1">
+            <a ngbNavLink>Candidate Account</a>
+            <ng-template ngbNavContent>
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-8 col-sm-12 col-md-12 mt-3">
+
+                        <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
+                            style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                            <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                                Candidate Account
+                            </p>
+                            <div class="col-lg-4">
+                              
+                                <img *ngIf="!user_account.imageUrl" class="test card-img-top border rounded-circle border-white" src="./assets/images/candidate/ava.jpg"
+                                  alt="Card image cap">
+                                  <img *ngIf="user_account.imageUrl" class="test card-img-top border rounded-circle border-white" src="{{user_account.imageUrl}}"
+                                  alt="Card image cap">
+                                
+                              </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">ID Account:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.userAccount.id}}">
+
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Email:</label>
+                                <input type="text" class="form-control" readonly
+                                    value="{{candidate.userAccount.email}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Created Day:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.userAccount.id}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Lasted Login:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.userAccount.id}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Name:</label>
+                                <input type="text" class="form-control" readonly
+                                    value="{{candidate.userAccount.firstname}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Provider:</label>
+                                <input type="text" class="form-control" readonly
+                                    value="{{candidate.userAccount.lastname}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold pr-3">Verified: </label>
+                                <b class="text-warning">{{candidate.userAccount.enabled ? 'Active' : 'Inactive'}}</b>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </ng-template>
+
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>Candidate Profile</a>
+            <ng-template ngbNavContent>
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-8 col-sm-12 col-md-12 mt-3">
+
+                        <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
+                            style="background-color:rgba(158, 158, 158, 0.1) ;">
+
+                            <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
+                                Candidate Profile
+                            </p>
+
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">ID Candidate:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.id}}">
+
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Gender:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.gender}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Birthday:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.doB |date}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Phone Number:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.phone_number}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Home Address:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.homeaddress}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">CV:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.cV}}">
+
+                            </div>
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold ">Image:</label>
+                                <input type="text" class="form-control" readonly value="{{candidate.image}}">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </ng-template>
+
+        </li>
+        <li [ngbNavItem]="3">
+            <a ngbNavLink>Education</a>
+            <ng-template ngbNavContent>
+                <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
+                    facilisi.
+                    Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+                    congue et odio.
+                    Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed
+                    diam urna,
+                    egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl
+                    enim, nec
+                    tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                    penatibus et
+                    magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies
+                    in eget
+                    neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="4">
+            <a ngbNavLink>Experiences</a>
+            <ng-template ngbNavContent>
+                <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
+                    facilisi.
+                    Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+                    congue et odio.
+                    Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed
+                    diam urna,
+                    egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl
+                    enim, nec
+                    tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                    penatibus et
+                    magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies
+                    in eget
+                    neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+            </ng-template>
+        </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</div> -->

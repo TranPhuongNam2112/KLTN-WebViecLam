@@ -14,6 +14,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 import { ValidateAccComponent } from './components/validate-acc/validate-acc.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 //import {HeaderForEmployerComponent} from './components/header-for-employer/header-for-employer.component';
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
   //  HeaderForEmployerComponent,
     LoginComponent,
   NotfoundComponent,
-   ToastComponent
+   ToastComponent,
+   ResetPasswordComponent
   
   ],
   imports: [

@@ -4,8 +4,8 @@
     <div class="d-flex ">
       <!-- Card -->
       <div class="row">
-        <div class="col-lg-12">
-          <!-- Card image -->
+        <!-- <div class="col-12 ">
+        
           <img *ngIf="!user_account.imageUrl" class="test card-img-top border rounded-circle border-white" src="./assets/images/candidate/ava.jpg"
             alt="Card image cap">
             <img *ngIf="user_account.imageUrl" class="test card-img-top border rounded-circle border-white" src="{{user_account.imageUrl}}"
@@ -15,23 +15,97 @@
               <i class="fa fa-plus" aria-hidden="true"></i>
               <input type="file" />
             </label></div>
-        </div>
-     
+        </div> -->
+
+
         <!-- Card -->
         <div class="col-lg-12">
-          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills hidden-xs hidden-sm" orientation="vertical" >
-            <li ngbNavItem="top" class="sidebav">
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills hidden-xs hidden-sm" orientation="vertical">
+            <!-- <li ngbNavItem="top" class="sidebav">
+                <img *ngIf="!user_account.imageUrl" class="test card-img-top border rounded-circle border-white" src="./assets/images/candidate/ava.jpg"
+                  alt="Card image cap">
+                  <img *ngIf="user_account.imageUrl" class="test card-img-top border rounded-circle border-white" src="{{user_account.imageUrl}}"
+                  alt="Card image cap">
+                <div class="d-flex justify-content-end">
+                  <label class=" btn-bs-file btn btn-md btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <input type="file" />
+                  </label></div>
+            
+              <hr />
+            </li> -->
+            <li ngbNavItem="top" class="sidebav mb-3">
+              <!-- tam thoi -->
+              <div class="product d-flex justify-content-center  pb-3 ">
+                <div *ngIf="user_account.imageUrl">
+                  <img *ngIf="user_account.imageUrl" class="test card-img-top border rounded-circle border-white"
+                    src="{{user_account.imageUrl}}" alt="Card image cap">
+                </div>
+                <div *ngIf="!user_account.imageUrl" class="ml-1" >
+                  
+                  <img *ngIf="!candidateProfile.image && !imgURL "
+                    class="test card-img-top border rounded-circle border-white" src="./assets/images/candidate/ava.jpg"
+                    alt="Card image cap">
+
+                  <img *ngIf="candidateProfile.image && !imgURL" class="test card-img-top border rounded-circle border-white"
+                  src="data:image/png;base64,{{candidateProfile.image}}"  alt="Card image cap">
+
+                  <img [src]="imgURL" class=" test card-img-top border rounded-circle border-white " *ngIf="imgURL">
+                </div>
+                <div class="add-to-cart">
+                  <div class="view">
+                    <label class=" btn-bs-file btn btn-md btn-success mb-1 ">
+                      <!-- <input type="file" (change)="onFileChanged($event)">
+                      <i class="fa fa-plus" aria-hidden="true"></i> -->
+                      <input #file type="file" accept='image/*' (change)="preview(file.files);onFileChanged($event)" />
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+
+                    </label>
+                    <button *ngIf="selectedFile && !isSuccessful" type="file" class="add-to-cart-btn mt-1 mb-3"
+                      (click)="onUpload(dangerTpl, successTpl)" value="upload"><i class="fa fa-plus"></i>
+                      Upload</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- <ng-template ngbNavContent>
+                 
+                
+                <div class="container row">
+                    <div class="col-md-6">
+                        <input type="file" (change)="onFileChanged($event)">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" (click)="onUpload()" value="upload">
+                    </div>
+                </div>
+                <hr />           
+                </ng-template> -->
+
+              <hr />
+            </li>
+            <li ngbNavItem="middle" class="sidebav">
+
               <a ngbNavLink class="white-text"><strong>Manage Profile</strong></a>
-             
               <ng-template ngbNavContent>
                 <app-manage-profile></app-manage-profile>
               </ng-template>
-           
               <hr />
             </li>
+            <!-- file strart -->
+            <li ngbNavItem="middle-1" class="sidebav">
 
+              <a ngbNavLink class="white-text"><strong>Files</strong></a>
+             
+              <ng-template ngbNavContent>
+              
+               <app-candidate-file></app-candidate-file>
+              </ng-template>
+              <hr />
+            </li>
+            <!-- files end -->
             <!-- save job start -->
-            <li ngbNavItem="middle" ngbDropdown class="sidebav">
+            <li ngbNavItem="middle-2" ngbDropdown class="sidebav">
               <a ngbNavLink class="white-text"><strong>Save Jobs</strong></a>
 
               <ng-template ngbNavContent>
@@ -42,22 +116,22 @@
             <!-- save job end -->
 
             <!-- fit job start -->
-            <li ngbNavItem="middle-2" ngbDropdown class="sidebav">
+            <!-- <li ngbNavItem="middle-3" ngbDropdown class="sidebav">
               <a ngbNavLink class="white-text"><strong>Fit Jobs</strong></a>
 
               <ng-template ngbNavContent>
                 <app-fitjob></app-fitjob>
               </ng-template>
               <hr />
-            </li>
+            </li> -->
             <!-- fit job end -->
 
             <!-- change pass satrt -->
             <li ngbNavItem="bottom" class="sidebav">
               <a ngbNavLink class="white-text"><strong>Change pass</strong></a>
               <ng-template ngbNavContent>
-               <app-change-pass></app-change-pass> 
-             
+                <app-change-pass></app-change-pass>
+
               </ng-template>
               <hr />
             </li>
@@ -67,6 +141,13 @@
       </div>
       <div [ngbNavOutlet]="nav" class="ml-4"></div>
     </div>
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ng-template #successTpl>
+      <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>{{responseMessage}}</span>
+    </ng-template>
+    <ng-template #dangerTpl>
+      <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>{{responseMessage}}</span>
+    </ng-template>
   </div>
 </div>
 <app-footer></app-footer>
