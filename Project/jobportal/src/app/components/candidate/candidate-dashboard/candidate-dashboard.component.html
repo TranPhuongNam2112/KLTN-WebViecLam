@@ -112,89 +112,116 @@
     </div>
     <!-- List jobs -->
     <div class="card ">
-        <div class="card-body">
+        <div class="card-body container">
             <h5 class="card-title text-center">Featured Jobs</h5>
             <hr class="hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
             <!-- list job -->
 
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-12 ">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+            <div *ngIf="allJobPost">
 
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 ">
-
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-12">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-12 ">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 ">
-
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-12">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- list job -->
-            <!-- button show more -->
-            <div class="text-center">
-                <a href="#" class="btn btn-primary mr-auto"><strong>Show more</strong></a>
-            </div>
-            <!-- button show more -->
+                <!-- <div class="row">
+        <div *ngFor="let jobpost of allJobPost;" style="border: 1px solid black" class="col-lg-6 col-md-12">
+            {{jobpost.jobtitle}}
         </div>
+    </div> -->
+                <div class="row">
+                    <div *ngFor="let jobpost of allJobPost;"
+                        class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center">
+                        <div class=" pt-3 mb-3 pr-3  border rounded border-weight-light bg-light">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                                    <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
+                                        alt="Company image cap">
+                                    <button type="button" class="btn btn-yellow btn-sm" mdbTooltip="Save this job"
+                                        placement="top"
+                                        (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">Save</button>
+                                </div>
+                                <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="row">
+                                                <a href="https://www.w3schools.com" class="font-weight-bold"
+                                                    style="font-size:18px;">
+                                                    {{jobpost.jobtitle}}</a>
+                                            </div>
+                                            <div class="row">
+                                                <label class="text-secondary" style="font-size: 14px ; ">
+                                                    <i class="fas fa-map-marker-alt mr-1">
+                                                    </i> {{jobpost.city}}
+                                                </label>
+                                                <label class="ml-3 text-secondary" style="font-size: 14px;">
+                                                    <i class="fas fa-money-bill-wave"></i>
+                                                    {{jobpost.minSalary | currency}} -
+                                                    {{jobpost.maxSalary | currency}}
+
+                                                </label>
+                                            </div>
+                                            <div class="row ">
+
+                                                <label class="text-muted font-weight-bold mr-3"
+                                                    for="expireddate">Company
+                                                    Name:</label>
+
+                                                <div class=" text-body font-weight-normal ">
+                                                    {{jobpost.companyname }}</div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="text-muted font-weight-bold mr-3" for="industry">Job
+                                                    Type:</label>
+                                                <div class=" text-body font-weight-normal ">
+                                                    {{jobpost.jobtype}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="text-muted font-weight-bold mr-3"
+                                                    for="industry">Experience
+                                                    Years:</label>
+                                                <div class=" text-body font-weight-normal ">
+                                                    {{jobpost.experienceyears}}</div>
+                                            </div>
+                                            <!-- <p class="card-text text-muted" style="font-size: 13px;">
+                                    {{savedjob.experienceyears}}</p> -->
+                                        </div>
+
+                                        <div class="col-4">
+                                            <label class="bg-secondary text-light pl-1 pr-1 "
+                                                mdbTooltip="Expiration Date"
+                                                style="font-size: 12px;">{{jobpost.expirationDate |date:'medium'}}</label>
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                            {{i}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- xoa -->
+        </div>
+        <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+        <ng-template #successTpl>
+            <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
+        </ng-template>
+        <ng-template #dangerTpl>
+            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                some error</span>
+        </ng-template>
+        <!-- list job -->
+        <!-- button show more -->
+
+        <!-- button show more -->
     </div>
+
 
     <!-- List Jobs -->
 </section>

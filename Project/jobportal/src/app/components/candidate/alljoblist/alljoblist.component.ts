@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/_services/toast-service.service';
 export class AlljoblistComponent implements OnInit {
   allJobPost: Observable<JobPostSummary[]>;
   savedJobPost: JobPostSummary;
-  //  isSave= false; 
+    isSave= false; 
   public pageNo: number = 0;
   public pages: Array<number>;
   constructor(
@@ -20,6 +20,10 @@ export class AlljoblistComponent implements OnInit {
     private router: Router,
     public toastService: ToastService
   ) { }
+  toggle(){
+   this.isSave=true;
+
+  }
   setPage(i, event: any) {
     event.preventDefault();
     this.pageNo = i;

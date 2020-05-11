@@ -1,25 +1,26 @@
 <div class="view border rounded border-weight-white">
     <div class="custom pl-5 pr-5 ">
-        <div *ngIf="saveJobPost">
-            <div class="row bg-light pb-3 border rounded border-weight-light" *ngIf="isSavedJobPostEmpty()">
-                <div class=" col-lg-10 col-md-12 col-sm-12 ml-5 text-center ">
+        <div class="row bg-light pb-3 border rounded border-weight-light" *ngIf="isSavedJobPostEmpty()">
+            <div class=" col-lg-10 col-md-12 col-sm-12 ml-5 text-center ">
 
-                    <h1 class="mt-5 text-muted">
-                        You have 0 Saved Jobs
-                    </h1>
-                    <h3 class="text-center text-dark no-jobs-caption">
-                        Trời ơi! You haven't saved any jobs yet.
-                    </h3>
-                    <div class="mt-3 mb-3 d-flex justify-content-center">
-                        <img
-                            src="https://itviec.com/assets/robby_with_heart-bbe0d2f209a7f333704b7787b90e84a31b55643a8cecbab715656d886cee4c32.png">
-                    </div>
-                    <h3 class="font-weight-normal text-muted">
-                        Click the heart to save jobs.
-                    </h3>
-
+                <h1 class="mt-5 text-muted">
+                    You have 0 Saved Jobs
+                </h1>
+                <h3 class="text-center text-dark no-jobs-caption">
+                    Trời ơi! You haven't saved any jobs yet.
+                </h3>
+                <div class="mt-3 mb-3 d-flex justify-content-center">
+                    <img
+                        src="https://itviec.com/assets/robby_with_heart-bbe0d2f209a7f333704b7787b90e84a31b55643a8cecbab715656d886cee4c32.png">
                 </div>
+                <h3 class="font-weight-normal text-muted">
+                    Click the heart to save jobs.
+                </h3>
+
             </div>
+        </div>
+        <div *ngIf="saveJobPost">
+           
             <!-- if savejob exist start -->
             <div *ngIf="saveJobPost">
                 <div class="savejob-info row bg-light pb-3 border rounded border-weight-light mb-3"
@@ -103,7 +104,7 @@
 
                     <!-- save job post end -->
                 </div>
-                <ul class="nav nav-pills d-flex justify-content-center">
+                <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
                     <li class="nav-item" *ngFor="let p of pages; let i=index">
                         <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}" >
                           {{i}}

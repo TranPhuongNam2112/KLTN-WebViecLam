@@ -201,6 +201,7 @@ export class ManageProfileComponent implements OnInit  {
   //   this.submitted = false;
   //   this.experien = new ExperiencesRequest();
   // }
+
   updateProfile(dangerTpl, successTpl) {
     this.userAccountService.updateProfile(this.candidateProfileRequest)
       .subscribe(data => {

@@ -1,8 +1,8 @@
 <!-- List jobs -->
 <div class="card ">
-    <div class="card-body">
+    <div class="card-body container">
         <h5 class="card-title ml-5 ">Lasted Jobs</h5>
-        <hr class="hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+        <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
         <!-- list job -->
         <div *ngIf="allJobPost">
             <div class="pt-3 mb-3 ml-5 mr-5 border rounded border-weight-light bg-light"
@@ -10,8 +10,10 @@
 
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                        
                         <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
                             alt="Company image cap">
+                       
                         <!-- <a class="d-flex justify-content-center" mdbTooltip="delete saved job" placement="top"
                             (click)="deleteSaveJobPost(savedjob.id,dangerTpl,successTpl)">
                             <i class="fas fa-heart fa-2x mt-3" style="color: crimson;"></i>
@@ -63,18 +65,23 @@
                             </div>
 
                             <div class="col-4">
+                                <div class="row">
                                 <label class="bg-secondary text-light pl-1 pr-1 " mdbTooltip="Expiration Date"
                                     style="font-size: 12px;">{{jobpost.expirationDate |date:'medium'}}</label>
-                                <a   class="mt-5 d-flex justify-content-center" mdbTooltip="Save this job"
+                                </div>
+                                <!-- <a   class="mt-5 d-flex justify-content-center" mdbTooltip="Save this job"
                                     placement="top" (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">
                                     <i class="far fa-heart fa-2x mt-3" style="color: crimson;"></i>
-                                </a>
-                             
+                                </a> -->
+                                <div class="row">
+                                <button type="button" class="btn btn-blue-grey btn-sm" mdbTooltip="Save this job"
+                                placement="top" (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">Save</button>
                                     <!-- <a *ngIf="jobpost.isSave" class="mt-5 d-flex justify-content-center"
                                         mdbTooltip="Delete this job" placement="top"
                                         (click)="deleteSaveJobPost(jobpost.id,dangerTpl,successTpl)">
                                         <i class="fas fa-heart fa-lg mt-3" style="color: crimson;"></i>
                                     </a> -->
+                                </div>
                             </div>
 
                         </div>
