@@ -60,11 +60,11 @@ export class SavejobComponent implements OnInit {
         data => {
           console.log(data);
           this.getSaveJobPost();
-          this.toastService.show(successTpl, { classname: 'bg-success text-light ', delay: 6000 });
+          this.toastService.show(successTpl, { classname: 'bg-success text-light mt-5', delay: 6000 });
         },
         error => {
           console.log(error);
-          this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 6000 });
+          this.toastService.show(dangerTpl, { classname: 'bg-danger text-light mt-5', delay: 6000 });
         }
       );
 

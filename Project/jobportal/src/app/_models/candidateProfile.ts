@@ -3,7 +3,7 @@ import { Education } from './education';
 import { JobType } from './jobType';
 
 export class CandidateProfile {
-     image: string;
+    image: string;
     name: string;
     gender: string;
     doB: Date;
@@ -14,4 +14,6 @@ export class CandidateProfile {
     experiences: Experience;
     educations: Education;
     CV_Uri: string;
+    city_province: string;
+    
 }

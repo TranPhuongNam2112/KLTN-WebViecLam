@@ -1,13 +1,14 @@
 <div class="view bg-white border rounded border-weight-white">
     <p class="pl-3  font-weight-bold text-primary h5">Update your profile</p>
     <nav ngbNav #nav="ngbNav" class="nav-tabs ">
-
+        <!-- PERSIONALITY INFORMATION start -->
+        <!-- Personalities view start-->
         <ng-container ngbNavItem>
             <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
                 Personalities</a>
             <ng-template ngbNavContent>
                 <!-- màn hình thông tin cá nhân -->
-                <div class="custom pr-5">
+                <div class="custom pr-5" *ngIf="!isEditProfileShown">
                     <div class=" mt-5 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
                         <i class="fas fa-user-tie"></i> PERSIONALITY INFORMATION
                     </div>
@@ -15,49 +16,148 @@
                         <div class="row ">
                             <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group ">
-                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">Full
+                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">
                                         Name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                    <input readonly type="text" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" value="{{candidateProfile.name}}">
-
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-12 col-md-12">
                                 <div class="form-group ">
                                     <label class="dark-grey-text font-weight-bold"
                                         for="exampleInputEmail1">Gender</label>
-                                    <!-- <select class="custom-select custom-select mb-3" *ngIf="user_account.candidate"> -->
-                                    <select class="custom-select custom-select mb-3">
-                                        <option selected *ngIf="!candidateProfile.gender">Gender</option>
-                                        <option value="1" *ngIf="!candidateProfile.gender">Male</option>
-                                        <option value="2" *ngIf="!candidateProfile.gender">Female</option>
-                                        <option selected *ngIf="candidateProfile.gender">
-                                            {{candidateProfile.gender}}</option>
-                                        <option value="1" *ngIf="candidateProfile.gender==='Female'">Male</option>
-                                        <option value="2" *ngIf="candidateProfile.gender==='Male'">Female</option>
-                                    </select>
-
+                                    <input readonly type="text" class="form-control" id="gender"
+                                        value="{{candidateProfile.gender}}">
                                 </div>
                             </div>
-                            <!-- <div class="col-lg-6 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="dark-grey-text font-weight-bold " for="exampleInputPassword1">Last
-                                        Name</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                            </div> -->
                         </div>
 
                         <div class="row mt-3">
-
-
-                            <!-- <div class="col-lg-6 col-sm-12 col-md-12" *ngIf="user_account.candidate"> -->
                             <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="dark-grey-text font-weight-bold"
                                         for="exampleInputPassword1">Phone</label>
-                                    <input type="tel" class="form-control" id="exampleInputPassword1"
+                                    <input readonly type="tel" class="form-control" id="phonenumber"
                                         value="{{candidateProfile.phonenumber}}">
+                                </div>
+                            </div>
+                            <!-- date picker birthday -->
+                            <div class="col-lg-4 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="dark-grey-text font-weight-bold"
+                                        for="exampleInputPassword1">Birthday</label>
+                                    <input readonly type="text" class="form-control" id="doB"
+                                        value="{{candidateProfile.doB | date}}">
+                                </div>
+                            </div>
+                            <!-- date picker birthday -->
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-12 col-md-12">
+                                <div class="form-group mt-3">
+                                    <label class="dark-grey-text font-weight-bold" for="address">
+                                        Address</label>
+                                    <input readonly type="text" class="form-control" id="address"
+                                        value="{{candidateProfile.address}}">
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </form>
+                    <div class=" mt-3 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
+                        <i class="fas fa-briefcase"></i> WORK EXPECTATION
+                    </div>
+                    <form class="mt-3 ml-5  mr-5 ">
+                        <div class="row">
+                            <div class="col-lg-5 col-sm-12 col-md-12">
+                                <div class="form-group mt-3">
+                                    <label class="dark-grey-text font-weight-bold" for="work_title">
+                                        Work Title</label>
+                                    <input readonly type="text" class="form-control" id="work_title"
+                                        aria-describedby="work_title" value="{{candidateProfile.work_title}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 col-sm-12 col-md-12">
+                                <div class="form-group mt-3">
+                                    <label class="dark-grey-text font-weight-bold" for="jobtype">
+                                        Job types</label>
+                                    <input type="text" readonly class="form-control" id="jobtype"
+                                        value="{{candidateProfile.jobtypes}}">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" (click)="editProfileShow();"
+                            class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Edit</button>
+                    </form>
+                </div>
+
+                <!-- Personalities view end -->
+                <!-- Personalities edit start -->
+                <div class="custom pr-5" *ngIf="isEditProfileShown">
+                    <div class=" mt-5 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
+                        <i class="fas fa-user-edit mr-3 fa-2x"></i> EDIT PERSIONALITY INFORMATION
+                    </div>
+                    <form class="mt-3 ml-5  mr-5 ">
+
+                        <!-- profile visible -->
+                        <div class="row mt-1">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <!-- Default checked -->
+                                    <label class="text-muted font-weight-bold mr-3" for="profile_visible">
+                                        Share your profile</label>
+
+                                    <!-- <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitches"
+                                    [(ngModel)]="candidateProfileRequest.profile_visible" 
+                                    checked  >
+                                                                     
+                                    <label class="custom-control-label" for="customSwitches" >{{candidateProfileRequest.profile_visible}}</label>
+                                  </div> -->
+                                    <ui-switch [(ngModel)]="candidateProfileRequest.profile_visible"
+                                        name="profile_visible" size="small"></ui-switch>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- prfile visible -->
+
+                        <div class="row mt-3 ">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">Full
+                                        Name</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" required
+                                        [(ngModel)]="candidateProfileRequest.fullname" name="fullname">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text font-weight-bold"
+                                        for="exampleInputEmail1">Gender</label>
+                                    <select class="custom-select custom-select mb-3" name="gender"
+                                        [(ngModel)]="candidateProfileRequest.gender">
+                                        <!-- <option selected *ngIf="!candidateProfileRequest.gender">Gender</option> -->
+                                        <option value="Male" *ngIf="!candidateProfileRequest.gender">Male</option>
+                                        <option value="Female" *ngIf="!candidateProfileRequest.gender">Female</option>
+                                        <option selected *ngIf="candidateProfileRequest.gender">
+                                            {{candidateProfileRequest.gender}}</option>
+                                        <option value="Male" *ngIf="candidateProfileRequest.gender==='Female'">Male
+                                        </option>
+                                        <option value="Female" *ngIf="candidateProfileRequest.gender==='Male'">Female
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="dark-grey-text font-weight-bold" for="phone_number">Phone</label>
+                                    <input type="tel" class="form-control" id="phone_number"
+                                        [(ngModel)]="candidateProfileRequest.phone_number" name="phone_number">
                                 </div>
                             </div>
 
@@ -66,95 +166,119 @@
                                 <div class="form-group">
                                     <label class="dark-grey-text font-weight-bold"
                                         for="exampleInputPassword1">Birthday</label>
-                                    <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
                                     <form class="form-inline">
                                         <div class="form-group">
-                                            <!-- <div class="input-group mb-3" *ngIf="user_account.candidate"> -->
                                             <div class="input-group mb-3">
-                                                <input class="form-control"
-                                                    placeholder="{{candidateProfile.doB | date}}" name="dp"
-                                                    [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
-                                                    [maxDate]="{year: 2001, month: 12, day: 31}">
-
+                                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                                    [(ngModel)]="candidateProfileRequest.doB" name="doB" ngbDatepicker
+                                                    #de="ngbDatepicker" [maxDate]="{year: 2001, month: 12, day: 31}">
 
                                                 <div class="input-group-append">
-                                                    <button mdbBtn color="primary" outline="true" size="md"
-                                                        class="m-0 px-3 py-2" type="button" id="button-addon2"
-                                                        mdbWavesEffect (click)="d.toggle()"><i
-                                                            class="fas fa-calendar-plus"></i></button>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="input-group mb-3">
-                                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                                    [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
-                                                    [maxDate]="{year: 2001, month: 12, day: 31}">
-                                                <div class="input-group-prepend">
-                                                    <button  mdbBtn color="primary" mdbWavesEffect (click)="d.toggle()"
-                                                        type="button"> <i class="fas fa-calendar-plus"></i>
+                                                    <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                        size="md" mdbWavesEffect (click)="de.toggle()" type="button"> <i
+                                                            class="fas fa-calendar-plus"></i>
                                                     </button>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </form>
-
-
-
                                 </div>
                             </div>
                             <!-- date picker birthday -->
-
-
                         </div>
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-12 col-md-12">
-                                <!-- <div class="form-group mt-3" *ngIf="user_account.candidate"> -->
-                                <div class="form-group mt-3">
-
-                                    <label class="dark-grey-text font-weight-bold" for="exampleInputEmail1">
-                                        Address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" value="{{candidateProfile.address}}">
+                        <div class="row mt-3">
+                            <!-- <div class="col-lg-6 col-sm-12 col-md-12" *ngIf="user_account.candidate"> -->
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text font-weight-bold" for="homeaddress">
+                                        Home Address</label>
+                                    <input type="email" class="form-control" id="homeaddress"
+                                        [(ngModel)]="candidateProfileRequest.homeaddress" name="homeaddress">
                                 </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
-                    </form>
 
+
+                            <div class="col-lg-4 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="dark-grey-text font-weight-bold" for="city_province">
+                                        City Province</label>
+                                    <input type="email" class="form-control" id="city_province"
+                                        [(ngModel)]="candidateProfileRequest.city_province" name="city_province">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
                     <div class=" mt-3 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
-                        <i class="fas fa-briefcase"></i> WORK EXPECTATION
+                        <i class="fas fa-edit mr-3 fa-2x"></i> EDIT WORK EXPECTATION
                     </div>
                     <form class="mt-3 ml-5  mr-5 ">
-
-
                         <div class="row">
-                            <div class="col-lg-5 col-sm-12 col-md-12">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group mt-3">
                                     <label class="dark-grey-text font-weight-bold" for="work_title">
                                         Work Title</label>
                                     <input type="text" class="form-control" id="work_title"
-                                        aria-describedby="work_title" value="{{candidateProfile.work_title}}">
+                                        [(ngModel)]="candidateProfileRequest.work_title" name="work_title">
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-sm-12 col-md-12">
 
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <div class="form-group mt-3">
+                                    <label class="dark-grey-text font-weight-bold" for="experiencedyears">
+                                        Experienced Years </label>
+                                    <input type="number" min="0" class="form-control" id="experiencedyears"
+                                        [(ngModel)]="candidateProfileRequest.experiencedyears" name="experiencedyears">
+                                </div>
+                            </div>
 
-                                    <label class="dark-grey-text font-weight-bold" for="jobtype">
-                                        Job types</label>
-                                    <input type="text" class="form-control" id="jobtype" aria-describedby="jobtype"
-                                        value="{{candidateProfile.jobtypes}}">
+
+                        </div>
+                        <div class="row mt-1 mb-3">
+                            <div class="col-lg-10 col-sm-12 col-md-12">
+                                <!-- <div class="form-group" *ngFor="let item of candidateProfileRequest.jobtypes;
+                                let index = index "> -->
+
+                                <label class="dark-grey-text font-weight-bold" for="jobtype">
+                                    Job types</label>
+                                <!-- <input type="text" class="form-control" id="jobtype"
+                                        [(ngModel)]="candidateProfileRequest['jobtypes']"
+                                        name="candidateProfileRequest"> -->
+                                <!-- true -->
+                                <!-- <input type="text" class="form-control" id="jobtype"
+                                        [(ngModel)]="candidateProfileRequest.jobtypes[index]" name="word{{index}}"> -->
+
+
+
+                                <div>
+                                    <ng-select2 [data]="jobTypes" [options]="options"
+                                        [(ngModel)]="candidateProfileRequest.jobtypes" name="jobtypes"></ng-select2>
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
+                        <button type="button" (click)="backAccountList();"
+                            class="btn btn-outline-primary pl-5 pr-5 mb-5 mt-3">Back</button>
+                        <button type="submit" (click)="updateProfile(dangerTpl, successTpl);"
+                            class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
                     </form>
                 </div>
-                <!-- màn hình thông tin cá nhân -->
+                <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+                <ng-template #successTpl>
+                    <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+                </ng-template>
+                <ng-template #dangerTpl>
+                    <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                        some error</span>
+                </ng-template>
             </ng-template>
+            <!-- Personalities edit start -->
+
+            <!-- Personalities edit end -->
+            <!-- màn hình thông tin cá nhân -->
+
         </ng-container>
+        <!-- PERSIONALITY INFORMATION end -->
 
         <ng-container ngbNavItem>
             <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
@@ -179,12 +303,12 @@
                             <!-- <button type="button" class="btn btn-primary" (click)="openLg(experiment)"><i
                                     class="fa fa-plus mr-2"></i>Add
                                 experiments</button> -->
-                            <button type="button" class="btn btn-primary" (click)="addExperience()"><i
+                            <button type="button" class="btn btn-primary" (click)="openLg(experiment)"><i
                                     class="fa fa-plus mr-2"></i>Add
                                 experiments</button>
                         </div>
                     </div>
-                    <!-- <div class="ml-3 mt-3 mb-5" *ngIf="isExperiencesEmpty()">
+                    <div class="ml-3 mt-3 mb-5" *ngIf="isExperiencesEmpty()">
                         <ngb-toast class="bg-warning white-text" style="min-width: 100% ;" *ngIf="show"
                             header="Get started" [autohide]="false" (hide)="close()">
                             Press Add to fill your profile
@@ -193,72 +317,7 @@
                             <button type="button" class="btn btn-warning white-text" (click)="openLg(experiment)"><i
                                     class="fa fa-plus mr-2"></i>Add
                                 experiments</button></p>
-                    </div> -->
-                    <div>
-                        <div  class="modal-body mr-3">
-                            <form >
-                                <div class="row ">
-                                    <!-- <div class="col-lg-6 col-sm-12 col-md-12">
-                                        <div class="form-group ">
-                                            <label class="dark-grey-text  font-weight-bold " for="companyName">Company Name</label>
-                                            <input   type="text" class="form-control" id="companyName" required
-                                                [(ngModel)]="requestObject.experiences.companyname" name="companyname">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="dark-grey-text font-weight-bold " for="jobTitle">Job Title</label>
-                                            <input  type="text" class="form-control" id="jobTitle"
-                                                [(ngModel)]="requestObject.experiences.jobtitle" name="jobtitle">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="dark-grey-text font-weight-bold " for="startdate">startdate</label>
-                                            <input  type="text" class="form-control" id="startdate"
-                                                [(ngModel)]="requestObject.experiences.startdate" name="startdate">
-                                        </div>
-                                    </div> -->
-                                    <div class="col-lg-6 col-sm-12 col-md-12">
-                                        <div class="form-group" *ngFor= "let rule of experienceArray; let i = index">
-                                            <label class="dark-grey-text font-weight-bold " for="enddate">enddate</label>
-                                            <input   type="text" class="form-control" id="enddate"
-                                                [(ngModel)]="rule['companyname']" name="rule">
-                                                <label class="dark-grey-text font-weight-bold " for="enddate">job til</label>
-                                                <input   type="text" class="form-control" id="enddate"
-                                                [(ngModel)]="rule['jobtitle']" name="rule">
-                                                <label class="dark-grey-text font-weight-bold " for="enddate">startdate til</label>
-                                                <input   type="text" class="form-control" id="startdate"
-                                                [(ngModel)]="experience['startdate']" name="experience">
-                                                <label class="dark-grey-text font-weight-bold " for="enddate">enddate til</label>
-                                                <input   type="text" class="form-control" id="enddate"
-                                                [(ngModel)]="rule['enddate']" name="rule">
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-lg-6 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="dark-grey-text font-weight-bold " for="description">description</label>
-                                            <input   type="text" class="form-control" id="description"
-                                                [(ngModel)]="requestObject.experiences[].description" name="description">
-                                        </div>
-                                    </div> -->
-                                </div>
-                                <button type="submit" (click)="saved()"class="btn btn-outline-dark" >Save</button>
-                                <!-- xoa -->
-                               
-                
-                            </form>
-                            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-                            <ng-template #successTpl>
-                                <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
-                            </ng-template>
-                            <ng-template #dangerTpl>
-                                <span><i class="fas fa-check mr-5"></i>There got some error</span>
-                            </ng-template>
-                        </div>
                     </div>
-
-
                     <!-- tab thong tin kinh nghiem -->
                     <div class="ml-3 mt-3 mb-5" *ngIf="candidateProfile.experiences">
                         <div class="edu-info col-lg-12 bg-light col-md-12 col-sm-12  border rounded border-primary mb-3 pt-3 ml-3 "
@@ -268,15 +327,15 @@
                                     <i class="fas fa-clipboard-check fa-2x"></i>
                                 </div>
                                 <div class="col-9  font-weight-normal school">
-                                    {{experience.company_name}}
+                                    {{experience.companyname}}
                                 </div>
                                 <div class="col-2">
                                     <div class="row">
-                                        <div class="col-1">
+                                        <!-- <div class="col-1">
                                             <a> <i class="fas fa-edit show-me  " style="color:rgb(106, 190, 49);
                                                    
                                                     "></i></a>
-                                        </div>
+                                        </div> -->
                                         <div class=" col-1">
                                             <a (click)="deleteExperience(experience.id,dangerTpl,successTpl)"><i
                                                     class="fas fa-trash-alt show-me" style="color:rgb(250, 133, 0);
@@ -365,12 +424,12 @@
                                 </div>
                                 <div class="col-2">
                                     <div class="row">
-                                        <div class="col-1">
+                                        <!-- <div class="col-1">
                                             <a>
                                                 <i class="fas fa-edit show-me" style="color:rgb(106, 190, 49);
                                                    
                                                     "></i></a>
-                                        </div>
+                                        </div> -->
                                         <div class=" col-1">
                                             <a (click)="deleteEducation(education.id,dangerTpl,successTpl)">
                                                 <i class="fas fa-trash-alt show-me " style="color:rgb(250, 133, 0);
@@ -439,61 +498,115 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div [hidden]="submitted" class="modal-body mr-3">
-            <form (ngSubmit)="onSubmit(dangerTpl, successTpl)">
+        <!-- test go tolist -->
+        <!-- <div [hidden]="submitted" class="modal-body mr-3"> -->
+        <div class="modal-body mr-3">
+            <form *ngFor="let rule of experienceArray; let i = index">
                 <div class="row ">
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group ">
                             <label class="dark-grey-text  font-weight-bold " for="companyName">Company Name</label>
                             <input type="text" class="form-control" id="companyName" required
-                              >
+                                [(ngModel)]="rule['companyname']" name="rule">
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="jobTitle">Job Title</label>
-                            <input type="text" class="form-control" id="jobTitle"
-                               >
+                            <input type="text" class="form-control" id="jobTitle" [(ngModel)]="rule['jobtitle']"
+                                name="rule">
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <label class="dark-grey-text font-weight-bold " for="startdate">startdate</label>
-                            <input type="text" class="form-control" id="startdate"
-                             >
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <label class="dark-grey-text font-weight-bold " for="enddate">enddate</label>
-                            <input type="text" class="form-control" id="enddate"
-                               >
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12 col-md-12">
+
+                    <!-- <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="description">description</label>
-                            <input type="text" class="form-control" id="description"
-                           >
+                            <input type="text" class="form-control" id="description"  [(ngModel)]="requestObject.experiences[].description" name="description">
+                        </div>
+                    </div> -->
+                </div>
+
+
+                <div class="row mt-3">
+                    <!-- date picker birthday -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold" for="jobStartDay">Start Day</label>
+                            <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="rule"
+                                            [(ngModel)]="rule['startdate']" ngbDatepicker #ds="ngbDatepicker"
+                                            [maxDate]="{year: 2020, month: 12, day: 31}">
+                                        <div class="input-group-append">
+                                            <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                size="md" mdbWavesEffect (click)="ds.toggle()" type="button"> <i
+                                                    class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- <pre>Model: {{ rule['startdate'] | json }}</pre> -->
+                                </div>
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+
+
+                    <!-- date picker birthday -->
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="dark-grey-text font-weight-bold" for="jobEndDay">End Day</label>
+                            <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                            [(ngModel)]="rule['enddate']" name="rule" ngbDatepicker #de="ngbDatepicker"
+                                            [maxDate]="{year: 2020, month: 12, day: 31 }">
+
+                                        <div class="input-group-append">
+                                            <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
+                                                size="md" mdbWavesEffect (click)="de.toggle()" type="button"> <i
+                                                    class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+
+
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-dark" >Save</button>
-                <!-- xoa -->
-               
+                <div class="form-group mt-3">
+                    <label class="dark-grey-text font-weight-bold" for="jobDescription">Description</label>
+                    <textarea type="text" class="form-control" id="jobDescription" [(ngModel)]="rule['description']"
+                        name="rule"></textarea>
+                </div>
 
             </form>
             <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
             <ng-template #successTpl>
-                <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+                <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
             </ng-template>
             <ng-template #dangerTpl>
-                <span><i class="fas fa-check mr-5"></i>There got some error</span>
+                <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                    some error</span>
             </ng-template>
         </div>
         <div class="modal-footer">
 
-            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            <button type="submit" class="btn btn-outline-dark"
+                (click)="saved(dangerTpl, successTpl);modal.close('Save click');">Save</button>
         </div>
     </ng-template>
     <!-- modal add kinh nghiem -->
@@ -507,12 +620,13 @@
             </button>
         </div>
         <div class="modal-body mr-3">
-            <form>
+            <form *ngFor="let edu of educationArray; let i = index">
                 <div class="row ">
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="form-group ">
                             <label class="dark-grey-text  font-weight-bold " for="univerisy">University/College</label>
-                            <input type="text" class="form-control" id="univerisy">
+                            <input type="text" class="form-control" id="univerisy"
+                                [(ngModel)]="edu['university_college']" name="edu">
                         </div>
                     </div>
 
@@ -521,13 +635,13 @@
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group ">
                             <label class="dark-grey-text  font-weight-bold " for="major">Major</label>
-                            <input type="text" class="form-control" id="major">
+                            <input type="text" class="form-control" id="major" [(ngModel)]="edu['major']" name="edu">
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="dark-grey-text font-weight-bold " for="gpa">GPA</label>
-                            <input type="number" class="form-control" id="gpa">
+                            <input type="number" class="form-control" id="gpa" [(ngModel)]="edu['gpa']" name="edu">
                         </div>
                     </div>
                 </div>
@@ -541,9 +655,9 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                            [(ngModel)]="model" ngbDatepicker #eds="ngbDatepicker"
-                                            [maxDate]="{year: 2001, month: 12, day: 31}">
+                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                            [(ngModel)]="edu['startdate']" name="edu" ngbDatepicker #eds="ngbDatepicker"
+                                            [maxDate]="{year: 2004, month: 12, day: 31}">
                                         <div class="input-group-append">
                                             <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
                                                 size="md" mdbWavesEffect (click)="eds.toggle()" type="button"> <i
@@ -565,9 +679,9 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                            [(ngModel)]="model" ngbDatepicker #ede="ngbDatepicker"
-                                            [maxDate]="{year: 2001, month: 12, day: 31}">
+                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                            [(ngModel)]="edu['completiondate']" name="edu" ngbDatepicker
+                                            #ede="ngbDatepicker" [maxDate]="{year: 2020, month: 5, day: 13}">
                                         <div class="input-group-append">
                                             <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
                                                 size="md" mdbWavesEffect (click)="ede.toggle()" type="button"> <i
@@ -581,9 +695,18 @@
                     </div>
                 </div>
             </form>
+            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+                <ng-template #successTpl>
+                    <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+                </ng-template>
+                <ng-template #dangerTpl>
+                    <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                        some error</span>
+                </ng-template>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            <button type="button" class="btn btn-outline-dark"
+                (click)="addEducation(dangerTpl, successTpl);modal.close('Save click')">Save</button>
         </div>
     </ng-template>
     <!-- modal add education -->

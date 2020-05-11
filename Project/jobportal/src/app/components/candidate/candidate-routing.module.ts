@@ -6,7 +6,7 @@ import { CandidateComponent} from './candidate.component';
 // import {FitjobComponent } from './manage-job/fitjob/fitjob.component';
 import { CandidateDashboardComponent } from './candidate-dashboard/candidate-dashboard.component';
 import {CSidebarComponent} from './c-sidebar/c-sidebar.component';
-
+import {AlljoblistComponent} from './alljoblist/alljoblist.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +22,10 @@ const routes: Routes = [
         path: 'manage',
         component: CSidebarComponent
       },
+      {
+        path: 'alljoblists',
+        component: AlljoblistComponent
+      },
        // {
       //   path: 'manageprofile',
       //   component: ManageProfileComponent
@@ -32,18 +36,7 @@ const routes: Routes = [
       //     loadChildren: './manage-job/manage-job.module#ManageJobModule'
         
       // },
-      // {
-      //   path: '',
-      //   component: CSidebarComponent
-      // },
-      // {
-      //   path: 'savejob',
-      //   component: SavejobComponent
-      // },
-      // {
-      //   path: 'fitjob',
-      //   component: FitjobComponent
-      // },
+   
     ]
   }
 ];

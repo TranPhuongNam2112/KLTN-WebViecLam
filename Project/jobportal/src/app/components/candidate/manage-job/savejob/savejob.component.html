@@ -20,6 +20,7 @@
 
                 </div>
             </div>
+            <!-- if savejob exist start -->
             <div *ngIf="saveJobPost">
                 <div class="savejob-info row bg-light pb-3 border rounded border-weight-light mb-3"
                     *ngFor="let savedjob of saveJobPost">
@@ -96,7 +97,7 @@
                             </div>
 
                         </div>
-
+<!-- end save job row -->
                     </div>
                     <hr />
 
@@ -110,13 +111,16 @@
                     </li>
                 </ul>
             </div>
+             <!-- if savejob exist start -->
+
         </div>
         <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
         <ng-template #successTpl>
-            <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+            <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
         </ng-template>
         <ng-template #dangerTpl>
-            <span><i class="fas fa-check mr-5"></i>There got some error</span>
+            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                some error</span>
         </ng-template>
     </div>
 </div>

@@ -32,6 +32,7 @@ export class CLoginComponent implements OnInit {
   showAdmin = false;
   //theem
   isLoginFailed = false;
+  isShown: boolean = false;
   errorMessage = '';
   error: Params;
   roles: string[] = [];
@@ -117,7 +118,12 @@ export class CLoginComponent implements OnInit {
     //   }
 
   }
-  
+  toggleShow() {
+    this.isShown = true;
+    setTimeout(() => {
+      this.isShown = false;
+    }, 3000)
+  }
   onSubmit() {
 
     this.authService.login(this.loginForm).subscribe(
@@ -160,9 +166,10 @@ export class CLoginComponent implements OnInit {
           this.router.navigate(['/candidate']);
         }
         else if (this.showEmployer) {
-          this.router.navigate(['/employer']).then(() => {
-            window.location.reload();
-          });;
+          // this.router.navigate(['/employer']).then(() => {
+          //   window.location.reload();
+          // });;
+          this.router.navigate(['/employer']);
         }
         else if (this.showAdmin) {
           this.router.navigate(['/admin']);

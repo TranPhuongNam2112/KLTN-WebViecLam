@@ -78,18 +78,27 @@ export class CSidebarComponent implements OnInit {
     this.uploadFileService.postFile(this.selectedFile)
     .subscribe(data => {
       console.log(data);
+      this.isSuccessful=true;
+      console.log(this.isSuccessful);
       this.responseMessage=data.toString();
-      if(data==="Uploaded successfully"){
-        this.isSuccessful=true;
-        this.toastService.show(successTpl, { classname: 'bg-success text-light mt-5 ', delay: 3000 });
-        console.log(this.isSuccessful);
-      } 
-      else {
-        this.isSuccessful=false;
-        this.toastService.show(dangerTpl, { classname: 'bg-danger text-light mt-5', delay: 3000 });
-      }
-    
+      this.toastService.show(successTpl, { classname: 'bg-success text-light ', delay: 6000 });
+    }, error => { 
+      console.log(error) ;
+      this.isSuccessful=false;
+      this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 6000 });
     });
+
+    //   if(data==="Uploaded successfully"){
+    //     this.isSuccessful=true;
+    //     this.toastService.show(successTpl, { classname: 'bg-success text-light mt-5 ', delay: 3000 });
+    //     console.log(this.isSuccessful);
+    //   } 
+    //   else {
+    //     this.isSuccessful=false;
+    //     this.toastService.show(dangerTpl, { classname: 'bg-danger text-light mt-5', delay: 3000 });
+    //   }
+    
+    // });
   }
   
 

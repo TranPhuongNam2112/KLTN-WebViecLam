@@ -35,12 +35,15 @@
               "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "./node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
               "./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              "./node_modules/select2/dist/css/select2.min.css",
               "src/styles.scss"
               
             ],
             "scripts": [
               "./node_modules/chart.js/dist/Chart.js",
-              "./node_modules/hammerjs/hammer.min.js"
+              "./node_modules/hammerjs/hammer.min.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/select2/dist/js/select2.min.js"
             ]
           },
           "configurations": {

@@ -1,0 +1,107 @@
+<!-- List jobs -->
+<div class="card ">
+    <div class="card-body">
+        <h5 class="card-title ml-5 ">Lasted Jobs</h5>
+        <hr class="hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+        <!-- list job -->
+        <div *ngIf="allJobPost">
+            <div class="pt-3 mb-3 ml-5 mr-5 border rounded border-weight-light bg-light"
+                *ngFor="let jobpost of allJobPost; ">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                        <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
+                            alt="Company image cap">
+                        <!-- <a class="d-flex justify-content-center" mdbTooltip="delete saved job" placement="top"
+                            (click)="deleteSaveJobPost(savedjob.id,dangerTpl,successTpl)">
+                            <i class="fas fa-heart fa-2x mt-3" style="color: crimson;"></i>
+                        </a> -->
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                        <div class="row">
+
+                            <div class="col-8">
+                                <div class="row">
+                                    <a href="https://www.w3schools.com" class="font-weight-bold"
+                                        style="font-size:20px;">
+                                        {{jobpost.jobtitle}}</a>
+                                </div>
+                                <div class="row">
+                                    <label class="text-secondary" style="font-size: 14px ; ">
+                                        <i class="fas fa-map-marker-alt mr-1">
+                                        </i> {{jobpost.city}}
+                                    </label>
+                                    <label class="ml-3 text-secondary" style="font-size: 14px;">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        {{jobpost.minSalary | currency}} -
+                                        {{jobpost.maxSalary | currency}}
+
+                                    </label>
+                                </div>
+                                <div class="row ">
+
+                                    <label class="text-muted font-weight-bold mr-3" for="expireddate">Company
+                                        Name:</label>
+
+                                    <div class=" text-body font-weight-normal ">
+                                        {{jobpost.companyname }}</div>
+                                </div>
+                                <div class="row">
+                                    <label class="text-muted font-weight-bold mr-3" for="industry">Job
+                                        Type:</label>
+                                    <div class=" text-body font-weight-normal ">
+                                        {{jobpost.jobtype}}</div>
+                                </div>
+                                <div class="row">
+                                    <label class="text-muted font-weight-bold mr-3" for="industry">Experience
+                                        Years:</label>
+                                    <div class=" text-body font-weight-normal ">
+                                        {{jobpost.experienceyears}}</div>
+                                </div>
+                                <!-- <p class="card-text text-muted" style="font-size: 13px;">
+                                {{savedjob.experienceyears}}</p> -->
+                            </div>
+
+                            <div class="col-4">
+                                <label class="bg-secondary text-light pl-1 pr-1 " mdbTooltip="Expiration Date"
+                                    style="font-size: 12px;">{{jobpost.expirationDate |date:'medium'}}</label>
+                                <a   class="mt-5 d-flex justify-content-center" mdbTooltip="Save this job"
+                                    placement="top" (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">
+                                    <i class="far fa-heart fa-2x mt-3" style="color: crimson;"></i>
+                                </a>
+                             
+                                    <!-- <a *ngIf="jobpost.isSave" class="mt-5 d-flex justify-content-center"
+                                        mdbTooltip="Delete this job" placement="top"
+                                        (click)="deleteSaveJobPost(jobpost.id,dangerTpl,successTpl)">
+                                        <i class="fas fa-heart fa-lg mt-3" style="color: crimson;"></i>
+                                    </a> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
+                <li class="nav-item" *ngFor="let p of pages; let i=index">
+                    <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                        {{i}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ng-template #successTpl>
+        <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
+    </ng-template>
+    <ng-template #dangerTpl>
+        <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+            some error</span>
+    </ng-template>
+
+    <!-- list job -->
+</div>
+
+
+
+<!-- List Jobs -->

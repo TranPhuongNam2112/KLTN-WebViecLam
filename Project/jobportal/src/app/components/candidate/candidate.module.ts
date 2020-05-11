@@ -14,8 +14,9 @@ import { CSidebarComponent } from './c-sidebar/c-sidebar.component';
 import { HeaderForCandidateComponent } from '../../shared/components/header-for-candidate/header-for-candidate.component';
 import { CandidateDashboardComponent } from './candidate-dashboard/candidate-dashboard.component';
 import { CandidateFileComponent } from './candidate-file/candidate-file.component';
-
-
+import { UiSwitchModule } from 'ngx-toggle-switch';
+import { NgSelect2Module } from 'ng-select2';
+import { AlljoblistComponent } from './alljoblist/alljoblist.component';
 @NgModule({
   declarations: [
     ManageProfileComponent,
@@ -26,6 +27,7 @@ import { CandidateFileComponent } from './candidate-file/candidate-file.componen
     HeaderForCandidateComponent,
     CandidateDashboardComponent,
     CandidateFileComponent,
+    AlljoblistComponent,
     // ToastComponent
   ],
   imports: [
@@ -34,7 +36,9 @@ import { CandidateFileComponent } from './candidate-file/candidate-file.componen
     CandidateRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    UiSwitchModule,
+    NgSelect2Module
   ]
 })
 export class CandidateModule { }

@@ -61,18 +61,28 @@ export class CandidateFileComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
       this.responseMessage=data.toString();
-      if(data==="Uploaded successfully"){
-        this.isSuccessful=true;
+      this.isSuccessful=true;
         console.log(this.isSuccessful);
         this.resetFileUploader();
         this._success.next(`Upload documents successfully.`);
-      } 
-      else {
-        this.isSuccessful=false;
-     
-      }
+    }, error => { 
+      console.log(error) ;
+      this.isSuccessful=false;
     
     });
+
+    //   if(data==="Uploaded successfully"){
+    //     this.isSuccessful=true;
+    //     console.log(this.isSuccessful);
+    //     this.resetFileUploader();
+    //     this._success.next(`Upload documents successfully.`);
+    //   } 
+    //   else {
+    //     this.isSuccessful=false;
+     
+    //   }
+    
+    // });
   }
 
 }

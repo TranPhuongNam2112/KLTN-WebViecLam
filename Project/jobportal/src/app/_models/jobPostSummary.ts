@@ -1,4 +1,5 @@
 export class JobPostSummary {
+	id: number;
     companyname; string;
 	jobtitle: string;
 	experienceyears: number;
@@ -7,4 +8,5 @@ export class JobPostSummary {
 	expirationDate: Date;
 	minSalary: number;
 	maxSalary: number;
+
 }
