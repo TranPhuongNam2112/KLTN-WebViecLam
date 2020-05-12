@@ -7,6 +7,7 @@ import {PostjobComponent} from './postjob/postjob.component';
 import {SaveprofileComponent} from './saveprofile/saveprofile.component';
 import { ManagejobComponent} from './managejob/managejob.component';
 import {JobpostDetailComponent} from './jobpost-detail/jobpost-detail.component';
+import {SearchCandidateComponent} from './search-candidate/search-candidate.component';
 const routes: Routes = [
   {
   path: '',
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'savedprofile',
         component: SaveprofileComponent
+      },
+      {
+        path: 'searchcandidate',
+        component: SearchCandidateComponent
       },
      
       

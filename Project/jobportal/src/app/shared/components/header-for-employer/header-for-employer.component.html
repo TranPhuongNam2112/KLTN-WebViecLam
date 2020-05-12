@@ -11,17 +11,20 @@
     <links>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a  [routerLink]="['/employer/account']" class="nav-link waves-light text-light" mdbWavesEffect><strong>My Account</strong><span
-                        class="sr-only">(current)</span></a>
+                <a [routerLink]="['/employer/account']" class="nav-link waves-light text-light"
+                    mdbWavesEffect><strong>My Account</strong><span class="sr-only">(current)</span></a>
             </li>
-
-            <li class="nav-item">
-                <a [routerLink]="['/employer/managejob']" class="nav-link waves-light text-light" mdbWavesEffect><strong>
+            <!-- job start -->
+            <!-- <li class="nav-item">
+                <a [routerLink]="['/employer/managejob']" class="nav-link waves-light text-light"
+                    mdbWavesEffect><strong>
                         Jobs</strong></a>
-            </li>
+            </li> -->
+            <!-- job end -->
             <li class="nav-item">
-                <a [routerLink]="['/employer/savedprofile']" class="nav-link waves-light text-light" mdbWavesEffect><strong>
-                        Profiles</strong></a>
+                <a [routerLink]="['/employer/savedprofile']" class="nav-link waves-light text-light"
+                    mdbWavesEffect><strong>
+                        Saved Profiles</strong></a>
 
         </ul>
         <!-- Links -->
@@ -29,21 +32,24 @@
             <li class="nav-item mr-3 mb-2">
                 <a [routerLink]="['/employer/searchcandidate']"
                     class="nav-link waves-light border rounded border-weight-dark bg-warning " mdbWavesEffect>
-                    <mdb-icon fas icon="search" ></mdb-icon><strong>Search Candidate</strong>
+                    <mdb-icon fas icon="search"></mdb-icon><strong>Search Candidate</strong>
                 </a>
             </li>
-            <li class="nav-item ">
+            <!-- post job start -->
+            <!-- <li class="nav-item ">
                 <a [routerLink]="['/employer/postjob']"
                     class="nav-link waves-light border rounded border-weight-dark bg-warning " mdbWavesEffect>
                     <mdb-icon fas icon="plus"></mdb-icon><strong>Post Job</strong>
                 </a>
-            </li>
-           <!-- bell -->
+            </li> -->
+            <!-- post job end -->
+            <!-- bell  start-->
             <!-- <li class="nav-item">
                 <a class="nav-link">
                     <mdb-icon fas icon="bell"></mdb-icon>
                 </a>
             </li> -->
+            <!-- bell end -->
             <li class="nav-item">
                 <a class="nav-link" (click)="logout()">
                     <mdb-icon fas icon="sign-out-alt"></mdb-icon>

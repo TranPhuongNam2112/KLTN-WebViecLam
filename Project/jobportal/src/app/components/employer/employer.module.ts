@@ -13,6 +13,7 @@ import { PostjobComponent } from './postjob/postjob.component';
 import { SaveprofileComponent } from './saveprofile/saveprofile.component';
 import { ManagejobComponent } from './managejob/managejob.component';
 import { JobpostDetailComponent } from './jobpost-detail/jobpost-detail.component';
+import { SearchCandidateComponent } from './search-candidate/search-candidate.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { JobpostDetailComponent } from './jobpost-detail/jobpost-detail.componen
     SaveprofileComponent,
     ManagejobComponent,
     JobpostDetailComponent,
+    SearchCandidateComponent,
   
   ],
   imports: [

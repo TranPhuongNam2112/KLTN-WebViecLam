@@ -19,7 +19,7 @@ export class CandidateComponent implements OnInit {
    
     // if (this.isLoggedIn) {
       
-    //   // const user = this.tokenStorageService.getUser();
+      // const user = this.tokenStorageService.getUser();
     //   // this.roles = user.roles;
     //   // this.showCandidate = this.roles.includes('ROLE_CANDIDATE');
     //   //role type Role[]

@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" name="name"
-                                        [(ngModel)]="registerForm.name" required minlength="3" maxlength="20"
+                                        [(ngModel)]="registerForm.name" required minlength="3" maxlength="30"
                                         #name="ngModel" />
                                     <div class="alert-danger" *ngIf="f.submitted && name.invalid">
                                         <div *ngIf="name.errors.required">Name is required</div>

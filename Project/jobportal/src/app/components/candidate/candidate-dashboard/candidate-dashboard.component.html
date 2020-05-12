@@ -6,7 +6,7 @@
         <!-- Section: Testimonials v.1 -->
         <div class="text-center my-5">
             <!-- Section heading -->
-            <h5 class="display-5  dark-grey-text mt-5 pt-4  mb-5"><strong>Featured Companies</strong></h5>
+            <h5 class="display-5  dark-grey-text  pt-4  mb-5"><strong>Featured Companies</strong></h5>
             <!-- Section description -->
             <!-- Grid row -->
             <div class="row">
@@ -128,7 +128,7 @@
                     <div *ngFor="let jobpost of allJobPost;"
                         class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center">
                         <div class=" pt-3 mb-3 pr-3  border rounded border-weight-light bg-light">
-                            <div class="row">
+                            <div class="row pl-1">
                                 <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
                                     <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
                                         alt="Company image cap">
@@ -206,7 +206,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- xoa -->
+            <!-- list job -->
         </div>
         <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
         <ng-template #successTpl>
