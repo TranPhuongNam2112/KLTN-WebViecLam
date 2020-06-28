@@ -24,7 +24,57 @@
                     </div>
                     <!--Grid column-->
                 </div>
-                <app-search-job></app-search-job>
+                <!-- <app-search-job></app-search-job> -->
+                <div class="heavy-rain-gradient
+                rounded-lg pl-3 pr-3 rounded-lg">
+
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="input-group mt-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <mdb-icon fas icon="search"></mdb-icon>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Find your job type expectation"
+                                    aria-label="expectation" aria-describedby="basic-addon1" [(ngModel)]="jobtype"
+                                    name="jobtype">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
+                            <div class="dropdown" mdbDropdown>
+                                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light"
+                                    type="button" mdbWavesEffect block="true">
+                                    <span class="text-button">All Jobs</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <!-- job -->
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <!-- job    -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
+                            <div class="dropdown" mdbDropdown>
+                                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light"
+                                    type="button" mdbWavesEffect block="true">
+                                    <span class="text-button">All Locations</span>
+
+                                </button>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <!-- location -->
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <!-- location    -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-12 col-md-12">
+                            <button (click)="searchJobType()" mdbBtn color="success" block="true" class="my-4"
+                                type="submit"> <strong><span class="text-button">Search</span></strong> </button>
+                        </div>
+                    </div>
+                </div>
                 <!--Grid row-->
             </div>
             <!-- Content -->
@@ -35,56 +85,105 @@
 
     <!-- List jobs -->
     <div class="card ">
-        <div class="card-body">
+        <div class="card-body container">
             <h5 class="card-title text-center">Lasted Jobs</h5>
             <hr class="hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
             <!-- list job -->
+            <div *ngIf="isAllJobPostEmpty()" class="text-center">
 
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-12 ">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                             
-                            </div>
-                        </div>
-                   
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 ">
+                <img src="./assets/images/rsz_nocontent.png">
+            </div>
+            <div *ngIf="allJobPost">
+                <!-- <div class="row">
+        <div *ngFor="let jobpost of allJobPost;" style="border: 1px solid black" class="col-lg-6 col-md-12">
+            {{jobpost.jobtitle}}
+        </div>
+    </div> -->
+                <div class="row">
+                    <div *ngFor="let jobpost of allJobPost;"
+                        class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center">
+                        <div class=" pt-3 mb-3 pr-3  border rounded border-weight-light bg-light">
+                            <div class="row pl-1">
+                                <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                                    <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
+                                        alt="Company image cap">
 
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-12">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                                <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="row">
+                                                <a href="https://www.w3schools.com" class="font-weight-bold"
+                                                    style="font-size:16px;">
+                                                    {{jobpost.jobtitle}}</a>
+                                            </div>
+                                            <div class="row">
+                                                <label class="text-secondary" style="font-size: 14px ; ">
+                                                    <i class="fas fa-map-marker-alt mr-1">
+                                                    </i> {{jobpost.city}}
+                                                </label>
+                                                <label class="ml-3 text-secondary" style="font-size: 14px;">
+                                                    <i class="fas fa-money-bill-wave"></i>
+                                                    {{jobpost.minSalary | currency}} -
+                                                    {{jobpost.maxSalary | currency}}
+
+                                                </label>
+                                            </div>
+                                            <div class="row ">
+
+                                                <label class="text-muted font-weight-bold mr-3"
+                                                    for="expireddate">Company
+                                                    Name:</label>
+
+                                                <div class=" text-body font-weight-normal ">
+                                                    {{jobpost.companyname }}</div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="text-muted font-weight-bold mr-3" for="industry">Job
+                                                    Type:</label>
+                                                <div class=" text-body font-weight-normal ">
+                                                    {{jobpost.jobtype}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="text-muted font-weight-bold mr-3"
+                                                    for="industry">Experience
+                                                    Years:</label>
+                                                <div class=" text-body font-weight-normal ">
+                                                    {{jobpost.experienceyears}}</div>
+                                            </div>
+                                            <!-- <p class="card-text text-muted" style="font-size: 13px;">
+                                    {{savedjob.experienceyears}}</p> -->
+                                        </div>
+
+                                        <div class="col-4">
+                                            <label class="bg-secondary text-light pl-1 pr-1 "
+                                                mdbTooltip="Expiration Date"
+                                                style="font-size: 12px;">{{jobpost.expirationDate |date:'medium'}}</label>
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- list job -->
-            <!-- button show more -->
-            <div class="text-center">
-                <a href="#" class="btn btn-primary mr-auto"><strong>Show more</strong></a>
-            </div>
-            <!-- button show more -->
         </div>
+
+        <!-- list job -->
+        <!-- button show more -->
+        <div *ngIf="!isAllJobPostEmpty()" class="text-center mb-3">
+            <a [routerLink]="['/guest/alljoblists']" class="btn btn-primary mr-auto"><strong>Show more</strong></a>
+        </div>
+        <!-- button show more -->
     </div>
+
 
     <!-- List Jobs -->
 </section>
 <!-- Main navigation -->
-<app-footer></app-footer>

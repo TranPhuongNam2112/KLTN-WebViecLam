@@ -26,209 +26,287 @@
     </div> -->
 <!-- account information start end -->
 <!-- company profile start -->
-<div *ngIf="!isEditProfileShown" class="container mt-5 pt-5 ">
-    <form class="border border-grey pt-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
-        <p class="dark-grey-text mb-2 h4 font-weight-light">
-            <i class="far fa-building ml-3 mr-1"></i>
-            My Company profile
-        </p>
-        <div class="row ml-3 mt-3 ">
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="form-group ">
-                    <label class="dark-grey-text  font-weight-bold " for="companyName">Company
-                        Name</label>
-                    <input type="text" readonly class="form-control" id="companyName"
-                        value="{{employerProfile.companyname}}">
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <!-- company logo start -->
+            <div class="container mt-3 mb-5 ">
+                <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">
+                    {{ successMessage }}</ngb-alert>
+                <form class="border border-grey pt-3 pb-3">
+                    <p class="dark-grey-text mb-2 h4 font-weight-light">
+                        <mdb-icon far icon="building" class="ml-3 mr-1"></mdb-icon>Company Logo
+                    </p>
+                    <div *ngIf="!isUpload">
+                        <div class="d-flex justify-content-center mt-5 mr-5 ml-5">
+                            <img src="data:image/png;base64,{{employerProfile.image}}" class="card-img-top"></div>
+                        <br />
+                        <div class="d-flex justify-content-center">
+                            <!-- <button type="submit" (click)="onUpload()" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button> -->
+                            <!-- <button mdbBtn type="button" class="" (click)="uploadrequest()" color="primary"
+                                mdbWavesEffect> </button>-->
+                            <button type="button" (click)="uploadrequest()" class="btn btn-primary">
+                                <mdb-icon fas icon="upload mr-1"></mdb-icon>Upload
+                            </button>
 
-                </div>
-            </div>      
-        </div>
-        <div class="row ml-3 ">
-
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold " for="webURL">Web URL</label>
-                    <small id="optional" class="ml-2 text-muted">(Optional)</small>
-                    <input readonly type="text" class="form-control" id="webURL" value="{{employerProfile.websiteUrl}}">
-                </div>
-            </div>
-        </div>
-
-        <div class="row ml-3">
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="establishmentdate">Established Date</label>
-                    <input readonly type="text" class="form-control" id="establishmentdate"
-                        value="{{employerProfile.establishmentdate | date:'longDate'}}">
-                </div>
-            </div>
-            <!-- company size start -->
-            <!-- <div class="col-lg-4 col-sm-12 col-md-12 l-3">
-                    <div class="form-group ">
-                        <label class="dark-grey-text font-weight-bold" for="numEmp">Company Size</label>
-                        <small id="optional" class="ml-2 text-muted">(Optional)</small>
-                        <select class="custom-select custom-select mb-3">
-                            <option selected>Less than 100</option>
-                            <option value="1">100-500</option>
-                            <option value="2">500-1000</option>
-                            <option value="3">More than 1000</option>
-                        </select>
-
+                        </div>
                     </div>
-                </div> -->
+                    <div *ngIf="isUpload">
+                        <div class="ml-3 mr-3">
 
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="phoneCompany">Phone</label>
-                    <input readonly type="tel" class="form-control" id="phoneCompany"
-                        value="{{employerProfile.phone_number}}">
-                </div>
-            </div>
+                            <img [src]="url" height="200" class="card-img-top mt-3 mb-3">
+                            <br />
+                            <input type='file' #fileUploader (change)="onSelectFile($event);onFileChanged($event)">
+                            <div class="col-8  d-flex justify-content-end ">
+                                <!-- <button type="submit" (click)="onUpload()" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button> -->
+                                <!-- <button *ngIf="isUpload" mdbBtn type="button" (click)="onUpload()" color="indigo"
+                                    size="sm" mdbWavesEffect>
+                                    <mdb-icon fas icon="save"></mdb-icon>
+                                </button> -->
 
-        </div>
-        <div class="row ml-3 ">
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="industry">Industry</label>
-                    <input readonly type="tel" class="form-control" id="industry" value="{{employerProfile.industry}}">
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="main_address">Main Address</label>
-                    <input readonly type="tel" class="form-control" id="main_address"
-                        value="{{employerProfile.main_address}}">
-                </div>
-            </div>
-        </div>
-        <div class="row ml-3 ">
-
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="form-group">
-
-                    <label class="dark-grey-text font-weight-bold" for="descriptionCom">Company Description</label>
-                    <small id="optional" class="ml-2 text-muted">(Optional)</small>
-                    <textarea readonly type="text" class="form-control"
-                        id="descriptionCom">{{employerProfile.description}}</textarea>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-8  d-flex justify-content-end">
-            <!-- <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 "
-                (click)="editProfileShow();">Edit</button> -->
-            <button mdbBtn class=" pl-5 pr-5 mb-5 mt-3" type="button" color="primary" (click)="editProfileShow();"
-                mdbWavesEffect>Edit</button>
-        </div>
-
-
-    </form>
-</div>
-<!-- employer profile edit start -->
-
-<!-- company profile start -->
-<div *ngIf="isEditProfileShown" class="container mt-5 pt-5 ">
-    <form class="border border-grey pt-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
-        <p class="dark-grey-text mb-2 h4 font-weight-light">
-            <i class="far fa-building ml-3 mr-1"></i>
-            Edit My Company profile
-        </p>
-        <div class="row ml-3 mt-3 ">
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="form-group ">
-                    <label class="dark-grey-text  font-weight-bold " for="companyName">Company
-                        Name</label>
-                    <input type="text" class="form-control" id="companyName"
-                        [(ngModel)]="employerProfileRequest.companyname" name="companyname">
-
-                </div>
-            </div>
-
-        </div>
-        <div class="row ml-3 ">
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold " for="webURL">Web URL</label>
-                    <small id="optional" class="ml-2 text-muted">(Optional)</small>
-                    <input type="text" class="form-control" id="webURL" [(ngModel)]="employerProfileRequest.website_url"
-                        name="website_url">
-                </div>
-            </div>
-        </div>
-
-        <div class="row ml-3">
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="phoneCompany">Phone</label>
-                    <input type="tel" class="form-control" id="phoneCompany"
-                        [(ngModel)]="employerProfileRequest.phone_number" name="phone_number">
-                </div>
-            </div>
-            <!-- date picker establishmentdate start  -->
-            <div class="col-lg-5 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="exampleInputPassword1">Established Day</label>
-                    <small id="optional" class="ml-2 text-muted">(Optional)</small>
-
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <input class="form-control" placeholder="yyyy-mm-dd"
-                                    [(ngModel)]="employerProfileRequest['establishmentdate']"
-                                    name="employerProfileRequest" ngbDatepicker #d="ngbDatepicker"
-                                    [maxDate]="{year: 2020, month: 4, day: 31}">
-                                <div class="input-group-append">
-                                    <button mdbBtn color="primary" outline="true" size="md" class="m-0 px-3 py-2"
-                                        type="button" id="button-addon2" mdbWavesEffect (click)="d.toggle()"><i
-                                            class="fas fa-calendar-plus"></i></button>
-                                </div>
+                                <button *ngIf="isUpload" type="button" (click)="onUpload()"
+                                    class=" mb-5 mt-3 btn btn-primary btn-sm">
+                                    <mdb-icon fas icon="save"></mdb-icon>
+                                </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <!-- date picker establishmentdate end  -->
+                    </div>
 
+                </form>
+            </div>
+            <!-- company logo end -->
         </div>
-        <div class="row ml-3 ">
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="industry">Industry</label>
-                    <input type="tel" class="form-control" id="industry" [(ngModel)]="employerProfileRequest.industry"
-                        name="industry">
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <label class="dark-grey-text font-weight-bold" for="main_address">Main Address</label>
-                    <input type="tel" class="form-control" id="main_address"
-                        [(ngModel)]="employerProfileRequest.mainaddress" name="mainaddress">
-                </div>
-            </div>
-        </div>
-        <div class="row ml-3 ">
+        <div class="col-8">
+            <div *ngIf="!isEditProfileShown" class="container mt-3 mb-5">
+                <form class="border border-grey pt-3">
+                    <p class="dark-grey-text mb-2 h4 font-weight-light">
+                        <i class="far fa-building ml-3 mr-1"></i>
+                        My Company profile
+                    </p>
+                    <div class="row ml-3 mt-3 ">
+                        <div class="col-lg-8 col-sm-12 col-md-12">
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold " for="companyName">Company
+                                    Name</label>
+                                <input type="text" readonly class="form-control" id="companyName"
+                                    value="{{employerProfile.companyname}}">
 
-            <div class="col-lg-8 col-sm-12 col-md-12">
-                <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ml-3 ">
 
-                    <label class="dark-grey-text font-weight-bold" for="descriptionCom">Company Description</label>
-                    <small id="optional" class="ml-2 text-muted">(Optional)</small>
-                    <textarea type="text" class="form-control" [(ngModel)]="employerProfileRequest.description"
-                        name="description" id="descriptionCom">
+                        <div class="col-lg-8 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold " for="webURL">Web URL</label>
+                                <small id="optional" class="ml-2 text-muted">(Optional)</small>
+                                <input readonly type="text" class="form-control" id="webURL"
+                                    value="{{employerProfile.websiteUrl}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3">
+                        <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="establishmentdate">Established
+                                    Date</label>
+                                <input readonly type="text" class="form-control" id="establishmentdate"
+                                    value="{{employerProfile.establishmentdate | date:'longDate'}}">
+                            </div>
+                        </div>
+                        <!-- company size start -->
+                        <!-- <div class="col-lg-4 col-sm-12 col-md-12 l-3">
+                                <div class="form-group ">
+                                    <label class="dark-grey-text font-weight-bold" for="numEmp">Company Size</label>
+                                    <small id="optional" class="ml-2 text-muted">(Optional)</small>
+                                    <select class="custom-select custom-select mb-3">
+                                        <option selected>Less than 100</option>
+                                        <option value="1">100-500</option>
+                                        <option value="2">500-1000</option>
+                                        <option value="3">More than 1000</option>
+                                    </select>
+            
+                                </div>
+                            </div> -->
+
+                        <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="phoneCompany">Phone</label>
+                                <input readonly type="tel" class="form-control" id="phoneCompany"
+                                    value="{{employerProfile.phone_number}}">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row ml-3 ">
+                        <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="industry">Industry</label>
+                                <input readonly type="tel" class="form-control" id="industry"
+                                    value="{{employerProfile.industry}}">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="main_address">Main Address</label>
+                                <input readonly type="tel" class="form-control" id="main_address"
+                                    value="{{employerProfile.main_address}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ml-3 ">
+
+                        <div class="col-lg-8 col-sm-12 col-md-12">
+                            <div class="form-group">
+
+                                <label class="dark-grey-text font-weight-bold" for="descriptionCom">Company
+                                    Description</label>
+                                <small id="optional" class="ml-2 text-muted">(Optional)</small>
+                                <textarea readonly type="text" class="form-control"
+                                    id="descriptionCom">{{employerProfile.description}}</textarea>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8  d-flex justify-content-end">
+                        <!-- <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 "
+                            (click)="editProfileShow();">Edit</button> -->
+                        <!-- <button mdbBtn class=" pl-5 pr-5 mb-5 mt-3" type="button" color="primary"
+                            (click)="editProfileShow();" mdbWavesEffect>Edit</button> -->
+                        <button type="button" (click)="editProfileShow();" class=" pl-5 pr-5 mb-5 mt-3 btn btn-primary">
+                            Edit
+                        </button>
+                    </div>
+
+
+                </form>
+            </div>
+            <!-- //end -->
+
+            <!-- employer profile edit start -->
+
+            <!-- company profile start -->
+            <div *ngIf="isEditProfileShown" class="container mt-3 mb-5 ">
+                <form class="border border-grey pt-3">
+                    <p class="dark-grey-text mb-2 h4 font-weight-light">
+                        <i class="far fa-building ml-3 mr-1"></i>
+                        Edit My Company profile
+                    </p>
+                    <div class="row ml-3 mt-3 ">
+                        <div class="col-lg-9 col-sm-12 col-md-12">
+                            <div class="form-group ">
+                                <label class="dark-grey-text  font-weight-bold " for="companyName">Company
+                                    Name</label>
+                                <input type="text" class="form-control" id="companyName"
+                                    [(ngModel)]="employerProfileRequest.companyname" name="companyname">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row ml-3 ">
+                        <div class="col-lg-9 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold " for="webURL">Web URL</label>
+                                <!-- <small id="optional" class="ml-2 text-muted">(Optional)</small> -->
+                                <input type="text" class="form-control" id="webURL"
+                                    [(ngModel)]="employerProfileRequest.website_url" name="website_url">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3">
+                        <div class="col-lg-4 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="phoneCompany">Phone</label>
+                                <input type="tel" class="form-control" id="phoneCompany"
+                                    [(ngModel)]="employerProfileRequest.phone_number" name="phone_number">
+                            </div>
+                        </div>
+                        <!-- date picker establishmentdate start  -->
+                        <div class="col-lg-5 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="exampleInputPassword1">Established
+                                    Day</label>
+                                <!-- <small id="optional" class="ml-2 text-muted">(Compulsory)</small> -->
+
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                                [(ngModel)]="employerProfileRequest['establishmentdate']"
+                                                name="employerProfileRequest" ngbDatepicker #d="ngbDatepicker"
+                                                [maxDate]="toDate">
+                                            <div class="input-group-append">
+                                                <!-- <button mdbBtn color="primary" outline="true" size="md"
+                                                    class="m-0 px-3 py-2" type="button" id="button-addon2"
+                                                    mdbWavesEffect (click)="d.toggle()"><i
+                                                        class="fas fa-calendar-plus"></i></button> -->
+
+                                                <button id="button-addon2" type="button" (click)="d.toggle()"
+                                                    class="btn btn-outline-primary"><i
+                                                        class="fas fa-calendar-plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- date picker establishmentdate end  -->
+
+                    </div>
+                    <div class="row ml-3 ">
+                        <div class="col-lg-9 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="industry">Industry</label>
+                                <input type="tel" class="form-control" id="industry"
+                                    [(ngModel)]="employerProfileRequest.industry" name="industry">
+                                <!-- <ng-select2 [data]="industries" [options]="options"
+                                [(ngModel)]="employerProfileRequest.industry" name="industry"></ng-select2> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row ml-3 ">
+                        <div class="col-lg-9 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="dark-grey-text font-weight-bold" for="main_address">Main Address</label>
+                                <input type="tel" class="form-control" id="main_address"
+                                    [(ngModel)]="employerProfileRequest.mainaddress" name="mainaddress">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ml-3 ">
+
+                        <div class="col-lg-9 col-sm-12 col-md-12">
+                            <div class="form-group">
+
+                                <label class="dark-grey-text font-weight-bold" for="descriptionCom">Company
+                                    Description</label>
+                                <small id="optional" class="ml-2 text-muted">(Compulsory)</small>
+                                <textarea type="text" class="form-control"
+                                    [(ngModel)]="employerProfileRequest.description" name="description"
+                                    id="descriptionCom">
                 </textarea>
 
-                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9 d-flex justify-content-end " >
+                        <button type="button" (click)="backProfileView();"
+                            class="btn btn-outline-primary  mb-5 mt-3 mr-3">Cancel</button>
+
+                        <button type="submit" (click)="updateProfile(dangerTpl, successTpl);"
+                            class="btn btn-primary  mb-5 mt-3 ">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="col-8  d-flex justify-content-end">
-            <button type="button" (click)="backProfileView();"
-                class="btn btn-outline-primary pl-5 pr-5 mb-5 mt-3">Cancel</button>
-
-            <button type="submit" (click)="updateProfile(dangerTpl, successTpl);"
-                class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
-        </div>
-    </form>
+    </div>
 </div>
+
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 <ng-template #successTpl>
     <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
@@ -239,27 +317,3 @@
 </ng-template>
 <!-- employer profile edit end -->
 <!-- company profile end -->
-<!-- company logo start -->
-<div class="container mt-3 mb-5 ">
-    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">
-        {{ successMessage }}</ngb-alert>
-    <form class="border border-grey pt-3 pb-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
-        <p class="dark-grey-text mb-2 h4 font-weight-light">
-            <mdb-icon far icon="building" class="ml-3 mr-1"></mdb-icon>Company Logo
-
-        </p>
-        <div class="ml-5">
-            <img *ngIf="!url" src="data:image/png;base64,{{employerProfile.image}}"  height="200"
-            class="border rounded border-weight-light mb-3 mt-3" >
-            <img [src]="url" height="200" class="border rounded border-weight-light mt-3 mb-3"> <br />
-            <input type='file' #fileUploader (change)="onSelectFile($event);onFileChanged($event)">
-        </div>
-
-        <div *ngIf="url" class="col-8  d-flex justify-content-end">
-            <!-- <button type="submit" (click)="onUpload()" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button> -->
-            <button mdbBtn type="button" class="pl-5 pr-5 mb-5 mt-3" (click)="onUpload()" color="primary"
-                mdbWavesEffect>Save</button>
-        </div>
-    </form>
-</div>
-<!-- company logo end -->

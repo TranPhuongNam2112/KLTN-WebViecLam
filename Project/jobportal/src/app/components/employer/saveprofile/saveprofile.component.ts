@@ -66,5 +66,8 @@ export class SaveprofileComponent implements OnInit {
       );
 
   }
+  candidateDetail(id: number) {
+    this.router.navigate(['employer/candidate-detail', id]);
+  }
 
 }

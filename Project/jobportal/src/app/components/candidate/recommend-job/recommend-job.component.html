@@ -1,0 +1,179 @@
+<!-- Search jobtype start -->
+<div class="container-fluid">
+    <div class="heavy-rain-gradient
+    rounded-lg pl-3 pr-3 rounded-lg">
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="input-group mt-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <mdb-icon fas icon="search"></mdb-icon>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Find your job type expectation"
+                        aria-label="expectation" aria-describedby="basic-addon1" [(ngModel)]="jobtype" name="jobtype">
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
+                <div class="dropdown" mdbDropdown>
+                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                        mdbWavesEffect block="true">
+                        <span class="text-button">All Jobs</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-primary">
+                        <!-- job -->
+                        <a class="dropdown-item" href="#">Action</a>
+                        <!-- job    -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
+                <div class="dropdown" mdbDropdown>
+                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                        mdbWavesEffect block="true">
+                        <span class="text-button">All Locations</span>
+
+                    </button>
+                    <div class="dropdown-menu dropdown-primary">
+                        <!-- location -->
+                        <a class="dropdown-item" href="#">Action</a>
+                        <!-- location    -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-12 col-md-12">
+                <button (click)="searchJobType()" mdbBtn color="success" block="true" class="my-4" type="submit">
+                    <strong><span class="text-button">Search</span></strong> </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- search job end -->
+<!-- List jobs -->
+
+<div class="card ">
+    <div class="card-body container">
+        <h5 class="card-title ml-5 ">Recommendation Jobs</h5>
+        <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+        <!-- list job -->
+        <div *ngIf="recommendJobPost" class="row">
+            <div *ngFor="let jobpost of recommendJobPost;" class="col-lg-6 col-md-12 col-sm-12">
+                <div class=" pt-3 mb-3 pr-3  border rounded border-weight-light bg-white">
+                    <div class="row pl-1">
+                        <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                            <!-- <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
+                                alt="Company image cap"> -->
+
+                            <img *ngIf="jobpost.imageUrl" src={{jobpost.imageUrl}} alt="Company image cap"
+                                class="card-img-top" data-toogle="tooltip" title={{jobpost.companyname}}>
+                            <img *ngIf="jobpost.image" src="data:image/png;base64,{{jobpost.image}}"
+                                alt="Company image cap" class="card-img-top" data-toogle="tooltip"
+                                title={{jobpost.companyname}}>
+                            <img *ngIf="!jobpost.imageUrl && !jobpost.image" class="card-img-top"
+                                src="./assets/images/employer/no-image.png" alt="Company image cap">
+                        </div>
+                        <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                            <div class="row pr-3">
+                                <div class="col-lg-12 ">
+                                    <div class="row ">
+                                        <a *ngIf="!jobpost.sourceUrl" (click)="jobPostDetail(jobpost.id)"
+                                            class="hovera font-weight-bold company-name " style="font-size:17px;"
+                                            data-toogle="tooltip" title={{jobpost.jobtitle}}>
+                                            {{jobpost.jobtitle}}</a>
+                                        <a *ngIf="jobpost.sourceUrl" (click)="jobPostDetailURL(jobpost.id)" href={{jobpost.sourceUrl}} target="_blank"
+                                            class="mr-1 hovera company-name font-weight-bold" data-toogle="tooltip"
+                                            title={{jobpost.jobtitle}}>
+                                            {{jobpost.jobtitle}}</a>
+
+
+                                    </div>
+
+                                    <div class="row mb-1">
+                                        <div class=" company-name text-muted font-weight-normal " data-toogle="tooltip"
+                                            title={{jobpost.companyname}}>
+                                            {{jobpost.companyname }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="text-secondary mr-3" style="font-size: 12px ; ">
+                                            <i class="fas fa-map-marker-alt mr-1">
+                                            </i> {{jobpost.city}}
+                                        </label>
+                                        <label class=" text-muted pl-1 pr-1 " mdbTooltip="Expiration Date"
+                                            style="font-size: 12px;">
+                                            <i class="far fa-clock"></i>
+                                            {{jobpost.expirationDate |date :'dd-MM-yyyy '}}</label>
+                                        <label *ngIf="jobpost.minSalary && jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            {{jobpost.minSalary| currency:"VND"}} -
+                                            {{jobpost.maxSalary | currency:"VND"}}
+
+                                        </label>
+                                        <label *ngIf="!jobpost.minSalary && !jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            Thỏa thuận
+
+                                        </label>
+                                        <label *ngIf="jobpost.minSalary && !jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            Từ {{jobpost.minSalary| currency:"VND"}}
+                                        </label>
+                                        <label *ngIf="!jobpost.minSalary && jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            Đến {{jobpost.minSalary| currency:"VND"}}
+                                        </label>
+                                    </div>
+                                    <div class="row text-span mb-3">
+                                        <span class="text-success font-weight-medium mr-3">{{jobpost.jobtype}}</span>
+                                        <span *ngIf="jobpost.experienceyears"
+                                            class="text-danger font-weight-medium">{{jobpost.experienceyears}}
+                                            -year-experience</span>
+                                        <span *ngIf="!jobpost.experienceyears"
+                                            class="text-danger font-weight-medium">Không
+                                            yêu cầu kinh nghiệm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ngFor -->
+            <div class="col-lg-12 d-flex justify-content-center">
+                <!-- <ul class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pagesArray();let i=index">
+                        <a class="nav-link mr-2" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==currentpage}">
+                            {{i+1}}
+                        </a>
+                    </li>
+                </ul> -->
+                <!-- <ul  class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pagesArray; let i=index">
+                        <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                            {{i+1}}
+                        </a>
+                    </li>
+                </ul> -->
+                <ul class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pagesArray();">
+                        <a class="nav-link mr-2" href="" (click)="setPage(p,$event)" [ngClass]="{'active':p==pageNo}">
+                            {{p}}
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <!-- list job -->
+</div>
+
+
+
+<!-- List Jobs -->

@@ -9,7 +9,11 @@ import { ToastService } from '../../../_services/toast-service.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { NgbDateStruct, NgbCalendar, NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbCalendar, NgbDateAdapter, NgbDateParserFormatter, NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {AllIndustries} from 'src/app/_models/candidate/allIndustries';
+import { CrawledJoblistService} from 'src/app/_services/candidate/crawled-joblist.service';
+import { Options } from 'select2';
+import { Select2OptionData } from 'select2';
 //upllad date
 @Injectable()
 export class CustomAdapter extends NgbDateAdapter<string> {
@@ -75,6 +79,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   ]
 })
 export class EAccountComponent implements OnInit {
+  toDate: NgbDate | null;
   model: NgbDateStruct;
   url = '';
   //theem
@@ -85,6 +90,7 @@ export class EAccountComponent implements OnInit {
   imageName: any;
   responseMessage = '';
   isSuccessful: boolean;
+  isUpload = false;
   //thee,
   //get prfile+ update
   isEditProfileShown: boolean = false;
@@ -93,9 +99,19 @@ export class EAccountComponent implements OnInit {
   //update
   submitted = false;
   establishmentdate: NgbDateStruct;
+  //industry
+  industries: AllIndustries;
+   //ng select
+  
+   public options: Options;
+   public exampleData: Array<Select2OptionData>;
+   //ng select
   @ViewChild('fileUploader') fileUploader:ElementRef;
   resetFileUploader() { 
     this.fileUploader.nativeElement.value = null;
+  }
+  uploadrequest(){
+    this.isUpload=true;
   }
   //update
   constructor(
@@ -110,9 +126,15 @@ export class EAccountComponent implements OnInit {
     private router: Router,
     //upload
     private ngbCalendar: NgbCalendar, 
-    private dateAdapter: NgbDateAdapter<string>
+    private calendar: NgbCalendar,
+    private dateAdapter: NgbDateAdapter<string>,
     //upload
-  ) { }
+    //industry
+    private crawledJoblistService:CrawledJoblistService,
+    //industry
+  ) { 
+    this.toDate = calendar.getToday();
+  }
 
   ngOnInit(): void {
     //upload
@@ -131,7 +153,26 @@ export class EAccountComponent implements OnInit {
     this.employerProfileRequest= new EmployerProfileRequest();
     
     //upLoad profile
+    //industry
+    this.industries = new AllIndustries();
+   
+    this.options = {
+      multiple: true,
+      theme: 'classic',
+      closeOnSelect: false,
+      width: '500'
+    };
+    this.getAllIndustries();
+    //industry
 
+  }
+  getAllIndustries(){
+    this.crawledJoblistService.getAllIndustries()
+    .subscribe(data => {
+      console.log("industries");
+      console.log(data);
+      this.industries = data;
+    }, error => console.log(error));
   }
   //get profile
   getProfile(){
@@ -140,6 +181,8 @@ export class EAccountComponent implements OnInit {
       console.log(data)
       this.employerProfile = data;
       this.employerProfileRequest=data;
+      this.employerProfileRequest.website_url = this.employerProfile.websiteUrl;
+      this.employerProfileRequest.mainaddress = this.employerProfile.main_address;
     }, error => console.log(error));
   }
   //get profile
@@ -181,11 +224,13 @@ export class EAccountComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.responseMessage = data.toString();
+        this.getProfile();
         if (data === "Uploaded successfully") {
           this.isSuccessful = true;
+          this.isUpload = false;
           this.resetFileUploader();
           console.log(this.isSuccessful);
-          this._success.next(`Upload documents successfully.`);
+          this._success.next(`Upload logo successfully.`);
         }
         else {
           this.isSuccessful = false;

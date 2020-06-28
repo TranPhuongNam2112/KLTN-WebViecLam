@@ -6,10 +6,13 @@ import { Observable } from 'rxjs'
 })
 export class ManagejobService {
   private getJobPostURL = 'http://localhost:8080/employer/myjobposts';
-  private detailJobPosturl='http://localhost:8080/employer/detailJobPost';
+  private detailJobPosturl='http://localhost:8080/employer/getJobPostbyId';
   private deleteJobPosturl='http://localhost:8080/employer/deleteJobPost';
+
+
   private createJobPostURL='http://localhost:8080/employer/createpost';
-  private updateJobPostURL='http://localhost:8080/employer/updateJobPost';
+
+  private updateJobPostURL='http://localhost:8080/employer/myjobposts';
   constructor(private http: HttpClient) { }
   getJobPosts (pageNo: number)
   {
@@ -21,10 +24,16 @@ export class ManagejobService {
   deleteJobPost(id: number): Observable<any> {
     return this.http.delete(`${this.deleteJobPosturl}/${id}`, { responseType: 'text' });
   }
+  // createJobPost(jobPost: Object): Observable<Object> {
+  //   return this.http.post(`${this.createJobPostURL}`, jobPost);
+  // }
   createJobPost(jobPost: Object): Observable<Object> {
-    return this.http.post(`${this.createJobPostURL}`, jobPost);
+    return this.http.post(`${this.createJobPostURL}`, jobPost,{ responseType: 'text' });
   }
-  updateJobPost(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.updateJobPostURL}/${id}`, value);
+  updateJobPost( id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.updateJobPostURL}/${id}`,value, { responseType: 'text' });
   }
+  // updateJobPost(value: any): Observable<Object> {
+  //   return this.http.put(`${this.updateJobPostURL}`, value, { responseType: 'text' });
+  // }
 }

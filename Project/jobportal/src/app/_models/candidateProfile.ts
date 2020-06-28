@@ -4,6 +4,7 @@ import { JobType } from './jobType';
 
 export class CandidateProfile {
     image: string;
+    imageUrl: string;
     name: string;
     gender: string;
     doB: Date;
@@ -13,7 +14,9 @@ export class CandidateProfile {
     address: string;
     experiences: Experience;
     educations: Education;
-    CV_Uri: string;
+    cv_Uri: string;
     city_province: string;
-    
+    expectedsalary: number;
+    cv_name:string;
+    industries: string[];
 }

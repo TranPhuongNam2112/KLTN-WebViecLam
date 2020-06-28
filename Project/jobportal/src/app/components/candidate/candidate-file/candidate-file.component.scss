@@ -1,7 +1,17 @@
+.vnjobs-title{
+    background-color: #f1f6fb;
+    font-size: 20px;
+    font-family: sans-serif;
 
-
+}
+.uploaded-title{
+background-color: #D8E1F0;
+color: #737680;
+font-family: sans-serif;
+}
 .view{
     background-color: white;
+    
 }
 // mobile
 @media (min-width: 306px) { 
@@ -58,6 +68,7 @@
         margin-top: -50px;
         padding-top: 20px;
         min-height:100vh;
+      
     }
 }
 

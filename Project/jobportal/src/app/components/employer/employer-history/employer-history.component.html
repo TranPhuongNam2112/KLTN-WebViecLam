@@ -1,0 +1,132 @@
+<!-- Search jobtype start -->
+<div class="container-fluid">
+    <div class="card ml-3 mr-3">
+        <div class="card-body container">
+            <div class="row ">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <h5 class=" vnjobs-title pt-3 pb-3 pl-5 mr-5 card-title text-primary  font-weight-bold ">History
+                        Viewed Candidate</h5>
+                </div>
+                <div *ngIf="!isRecommendCandidateEmpty()" class="col-lg-4 col-md-6 col-sm-12">
+                    <h5 class=" hotjobs-title pt-3 pb-3 pl-5  font-weight-bold card-title  ">
+                        Resume you will love</h5>
+                </div>
+            </div>
+            <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+            <!-- list job -->
+            <div *ngIf="histories" class="row ">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+
+                    <div class="pt-3 pl-3 pb-3 mb-3 mr-5 border rounded border-weight-light bg-white"
+                        *ngFor="let candidate of histories; ">
+
+                        <div class="row pl-1">
+                            <div class="col-lg-3 col-md-12 col-sm-12 mt-3 ">
+                                <img *ngIf="candidate.image" class="card-img-top border rounded-circle border-white"
+                                    src="data:image/png;base64,{{candidate.image}}" alt="Candidate image cap">
+                                <img *ngIf="candidate.image_url" class="card-img-top border rounded-circle border-white"
+                                    src={{candidate.image_url}} alt="Candidate image cap">
+                                <img *ngIf="!candidate.image_url && !candidate.image"
+                                    class="card-img-top border rounded-circle border-white"
+                                    src="./assets/images/employer/avatar.jpg" alt="Candidate image cap">
+                            </div>
+                            <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                                <div class="row pr-3">
+                                    <div class="col-lg-12 ">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="row">
+                                                    <a (click)="candidateDetail(candidate.id)"
+                                                        class="hovera font-weight-bold" style="font-size:20px;">
+                                                        {{candidate.name}}</a>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="job-title"> <span *ngIf="candidate.work_title"
+                                                            class="job-title_inner" data-toogle="tooltip"
+                                                            title={{candidate.work_title}}>
+                                                            {{candidate.work_title}}</span>
+                                                        <span *ngIf="!candidate.work_title"
+                                                            style="color: #7B7A87; font-style: italic;">
+                                                            Updating ...</span>
+                                                    </p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="title-field mr-2">Locations: </p>
+                                                    <span *ngIf="candidate.city" class="location-value-text"
+                                                        data-toogle="tooltip" title={{candidate.city}}>
+                                                        {{candidate.city}}</span>
+                                                    <span *ngIf="!candidate.city"
+                                                        style="color: #7B7A87; font-style: italic;">
+                                                        Updating ...</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <label *ngIf="candidate.last_updated" class="text-muted"
+                                                    style="font-size: 12px;" data-toogle="tooltip"
+                                                    title="Lasted update"> <i class="far fa-clock mr-1"></i>
+                                                    {{candidate.last_updated |date :'dd-MM-yyyy '}}</label>
+                                                <label *ngIf="!candidate.last_updated" class="text-muted"
+                                                    style="font-size: 12px;" data-toogle="tooltip"
+                                                    title="Lasted update"> <i class="far fa-clock mr-1"></i>
+                                                    Just updated</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- hot job start -->
+                <!-- recommendCandidate start -->
+                <div class=" col-lg-4 col-md-6 col-sm-12">
+                    <div *ngIf="!isRecommendCandidateEmpty()">
+                        <mdb-card>
+                            <mdb-card-body>
+                                <div class=" recommened mb-3 ml-3 " *ngFor="let recandidate of recommendCandidate; ">
+                                    <div class="row d-flex justify-content-end">
+
+                                        <img src="http://my.teamobi.com/images/hot.gif">
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        <img class="card-img-top mb-3 border rounded-circle border-white"
+                                            src="data:image/png;base64,{{recandidate.image}}" alt="Candidate image cap">
+                                    </div>
+                                    <div class="row d-flex justify-content-start ml-5">
+                                        <a (click)="candidateDetail(recandidate.id)" class=" mb-1 hovera font-weight-bold"
+                                            style="font-size:16px;">
+                                            {{recandidate.name}}</a>
+                                    </div>
+                                    <div class="row d-flex justify-content-start ml-5">
+                                        <label class="text-muted mr-3" for="work_title" style="font-size:16px;">Work
+                                            Title:
+                                        </label>
+                                        <span class=" text-muted font-weight-bold ">
+                                            {{recandidate.work_title}}</span>
+                                    </div>
+                                    <div class="row  d-flex justify-content-start ml-5 mt-0 pt-0">
+                                        <label class="text-muted  mr-3" for="city" style="font-size:16px;">City:</label>
+                                        <span class=" text-muted font-weight-bold ">
+                                            {{recandidate.city }}</span>
+                                    </div>
+    
+                                    <hr />
+
+                                </div>
+                                <div  *ngIf="!isRecommendCandidateEmpty()" class="text-center">
+                                    <a [routerLink]="['/employer/recommendcandidate']"
+                                        class="btn btn-primary mr-auto btn-sm"><strong>Show more</strong></a>
+                                </div>
+                            </mdb-card-body>
+                        </mdb-card>
+
+                    </div>
+
+                </div>
+                <!-- recommend jobpost end -->
+            </div>
+        </div>
+        <!-- list job -->
+    </div>

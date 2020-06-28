@@ -7,6 +7,7 @@ import {CRegisterComponent} from '../candidate/c-register/c-register.component';
 import {GuestComponent } from './guest.component';
 import { ForgotPassComponent} from './forgot-pass/forgot-pass.component';
 import {ValidateAccComponent } from './validate-acc/validate-acc.component';
+import {AllJoblistComponent} from './all-joblist/all-joblist.component';
  const routes: Routes = [ 
    {
     path: '',
@@ -31,6 +32,10 @@ import {ValidateAccComponent } from './validate-acc/validate-acc.component';
       {
         path: 'validate',
         component: ValidateAccComponent
+      },
+      {
+        path: 'alljoblists',
+        component: AllJoblistComponent
       },
     ]
   }

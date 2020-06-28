@@ -1,0 +1,207 @@
+<!-- <div class="container-fluid">
+    <div class="card container">
+        <div class="card-body ">
+            
+        </div>
+    </div>
+</div> -->
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover"
+                    style="background-image: url(./assets/images/candidate/profile-cover.jpg);"></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar">
+                        <img *ngIf="companyDetails.image_url" src={{companyDetails.image_url}} alt="Company Image"
+                            class="rounded img-fluid" data-toogle="tooltip" title={{companyDetails.companyname}}>
+                        <img *ngIf="companyDetails.image" src="data:image/png;base64,{{companyDetails.image}}"
+                            alt="Company image" class="rounded img-fluid" data-toogle="tooltip"
+                            title={{companyDetails.companyname}}>
+
+                        <img *ngIf="!companyDetails.image_url && !companyDetails.image" class="img-fluid"
+                            src="./assets/images/employer/no-image.png" alt="Company image cap">
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="mt-2 author-card-name text-lg text-primary">{{companyDetails.companyname}}</h5>
+                        <span *ngIf="companyDetails.industry"
+                            class="author-card-position">{{companyDetails.industry}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- test -->
+            <div class="author-card pb-3 mt-3">
+                <div class="author-card-cover">
+                    <p class="title_list_cpn">Doanh nghiệp<br>hàng đầu tuyển dụng</p>
+                </div>
+                <div class="wizard">
+                    <nav *ngFor="let empl of allEmployers;" class="list-group list-group-flush">
+                        <a class="list-group-item" (click)="showlistemployer(empl.id)" 
+                        data-toogle="tooltip" title={{empl.companyname}}
+                        >{{empl.companyname}}</a>
+
+                    </nav>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <a [routerLink]="['/candidate/all-employers']" class="show-more mr-3 text-primary"><strong>Show
+                            more</strong>
+                        <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- Wishlist-->
+        <div class="col-lg-8 pb-5">
+            <!-- Item-->
+            <div *ngFor="let jobpost of companyJobPost;">
+                <div class="cart-item d-md-flex justify-content-between">
+                    <!-- <span class="remove-item"><i
+                            class="fa fa-times"></i></span> -->
+                    <div class="px-3 my-3">
+                        <!-- jobpost local start -->
+                        <a *ngIf="!jobpost.sourceUrl" class="cart-item-product" (click)="jobPostDetail(jobpost.id)">
+                            <div class="cart-item-product-thumb">
+                                <img *ngIf="jobpost.imageUrl" src={{jobpost.imageUrl}} alt="fjsjk"
+                                    class="rounded img-fluid" data-toogle="tooltip" title={{jobpost.companyname}}>
+                                <img *ngIf="jobpost.image" src="data:image/png;base64,{{jobpost.image}}"
+                                    alt="Company image" class="rounded img-fluid" data-toogle="tooltip"
+                                    title={{jobpost.companyname}}>
+                                <img *ngIf="!jobpost.imageUrl && !jobpost.image" class="img-fluid"
+                                    src="./assets/images/employer/no-image.png" alt="Company image cap">
+                            </div>
+
+                            <div class="cart-item-product-info">
+                               
+                                    <p class="cart-item-product-title" 
+                                    data-toogle="tooltip" title={{jobpost.jobtitle}}
+                                    >{{jobpost.jobtitle}}</p>
+                              
+                                <div class="row">
+                                   
+                                        <div class="text-hihi text-muted font-weight-medium pb-1 mr-3 ml-3">
+                                            <i class="fas fa-map-marker-alt mr-1 ">
+                                            </i> City: {{jobpost.city}}</div>
+                                    
+                                        <div *ngIf="jobpost.expirationDate"
+                                            class="text-hihi text-muted font-weight-medium pb-1">
+                                            <i class="far fa-clock mr-1"></i>
+                                            {{jobpost.expirationDate |date :'dd-MM-yyyy '}}</div>
+
+                                  
+                                </div>
+                                <div class="text-hihi text-muted font-weight-medium pb-1">
+
+                                    <label *ngIf="jobpost.minSalary && jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class="mr-1"></mdb-icon>
+                                        {{jobpost.minSalary| currency:"VND"}} -
+                                        {{jobpost.maxSalary | currency:"VND"}}
+
+                                    </label>
+                                    <label *ngIf="!jobpost.minSalary && !jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class="mr-1"></mdb-icon>
+                                        Thỏa thuận
+
+                                    </label>
+                                    <label *ngIf="jobpost.minSalary && !jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class=" mr-1"></mdb-icon>
+                                        Từ {{jobpost.minSalary| currency:"VND"}}
+                                    </label>
+                                    <label *ngIf="!jobpost.minSalary && jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class=" mr-1"></mdb-icon>
+                                        Đến {{jobpost.minSalary| currency:"VND"}}
+                                    </label>
+                                </div>
+
+                                <span>
+                                    <span class="text-success font-weight-medium mr-3">{{jobpost.jobtype}}</span>
+                                    <span *ngIf="jobpost.experienceyears"
+                                        class="text-danger font-weight-medium">{{jobpost.experienceyears}}
+                                        -year-experience</span>
+                                    <span *ngIf="!jobpost.experienceyears" class="text-danger font-weight-medium">Không
+                                        yêu cầu kinh nghiệm</span>
+                                </span>
+                            </div>
+                        </a>
+                        <!-- jobpost local end -->
+                        <a *ngIf="jobpost.sourceUrl" class="cart-item-product" (click)="jobPostDetailURL(jobpost.id)" href={{jobpost.sourceUrl}} target="_blank">
+                            <div class="cart-item-product-thumb">
+                                <img *ngIf="jobpost.imageUrl" src={{jobpost.imageUrl}} alt="fjsjk"
+                                    class="rounded img-fluid" data-toogle="tooltip" title={{jobpost.companyname}}>
+                                <img *ngIf="jobpost.image" src="data:image/png;base64,{{jobpost.image}}"
+                                    alt="Company image" class="rounded img-fluid" data-toogle="tooltip"
+                                    title={{jobpost.companyname}}>
+                                <img *ngIf="!jobpost.imageUrl && !jobpost.image" class="img-fluid"
+                                    src="./assets/images/employer/no-image.png" alt="Company image cap">
+                            </div>
+
+                            <div class="cart-item-product-info">
+                               
+                                    <p class="cart-item-product-title" 
+                                    data-toogle="tooltip" title={{jobpost.jobtitle}}
+                                    >{{jobpost.jobtitle}}</p>
+                              
+                                <div class="row">
+                                   
+                                        <div class="text-hihi text-muted font-weight-medium pb-1 mr-3 ml-3">
+                                            <i class="fas fa-map-marker-alt mr-1 ">
+                                            </i> City: {{jobpost.city}}</div>
+                                    
+                                        <div *ngIf="jobpost.expirationDate"
+                                            class="text-hihi text-muted font-weight-medium pb-1">
+                                            <i class="far fa-clock mr-1"></i>
+                                            {{jobpost.expirationDate |date :'dd-MM-yyyy '}}</div>
+
+                                  
+                                </div>
+                                <div class="text-hihi text-muted font-weight-medium pb-1">
+
+                                    <label *ngIf="jobpost.minSalary && jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class="mr-1"></mdb-icon>
+                                        {{jobpost.minSalary| currency:"VND"}} -
+                                        {{jobpost.maxSalary | currency:"VND"}}
+
+                                    </label>
+                                    <label *ngIf="!jobpost.minSalary && !jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class="mr-1"></mdb-icon>
+                                        Thỏa thuận
+
+                                    </label>
+                                    <label *ngIf="jobpost.minSalary && !jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class=" mr-1"></mdb-icon>
+                                        Từ {{jobpost.minSalary| currency:"VND"}}
+                                    </label>
+                                    <label *ngIf="!jobpost.minSalary && jobpost.maxSalary">
+                                        <mdb-icon fas icon="dollar-sign" class=" mr-1"></mdb-icon>
+                                        Đến {{jobpost.minSalary| currency:"VND"}}
+                                    </label>
+                                </div>
+
+                                <span>
+                                    <span class="text-success font-weight-medium mr-3">{{jobpost.jobtype}}</span>
+                                    <span *ngIf="jobpost.experienceyears"
+                                        class="text-danger font-weight-medium">{{jobpost.experienceyears}}
+                                         năm kinh nghiệm</span>
+                                    <span *ngIf="!jobpost.experienceyears" class="text-danger font-weight-medium">Không
+                                        yêu cầu kinh nghiệm</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                            {{i+1}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

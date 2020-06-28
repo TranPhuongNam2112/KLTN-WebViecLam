@@ -1,0 +1,90 @@
+<!-- List jobs -->
+<div class="container-fluid" style=" padding-top: 100px;">
+    <!-- <app-search-job></app-search-job>
+</div> -->
+    <div class="view">
+        <div class="container mb-5 pb-5 pt-3">
+            <!-- <div class="card "> -->
+            <div class="card-body container ">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title ml-5 ">Recommend Candidate</h5>
+                </div>
+                <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+                <!-- list job -->
+                <div *ngIf="recommendCandidate">
+                    <div class="row">
+                        <div *ngFor="let candidate of recommendCandidate;" class="col-lg-6 col-md-12 col-sm-12  ">
+
+                            <div class=" pt-3 pb-3 mb-2 pr-3  border rounded border-weight-light picture">
+                                <div class="row  pl-1">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 ">
+                                        <img *ngIf="candidate.image"
+                                            class="card-img-top border rounded-circle border-white"
+                                            src="data:image/png;base64,{{candidate.image}}" alt="Candidate image cap">
+                                        <img *ngIf="candidate.image_url"
+                                            class="card-img-top border rounded-circle border-white"
+                                            src={{candidate.image_url}} alt="Candidate image cap">
+                                        <img *ngIf="!candidate.image_url && !candidate.image"
+                                            class="card-img-top border rounded-circle border-white"
+                                            src="./assets/images/employer/avatar.jpg" alt="Candidate image cap">
+
+                                    </div>
+                                    <div class="col-lg-9 col-md-6 col-sm-6 mt-3 ">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="row">
+                                                    <a (click)="candidateDetail(candidate.id)"
+                                                        class="hovera font-weight-bold" style="font-size:20px;">
+                                                        {{candidate.name}}</a>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="job-title"> <span *ngIf="candidate.work_title"
+                                                            class="job-title_inner" data-toogle="tooltip"
+                                                            title={{candidate.work_title}}>
+                                                            {{candidate.work_title}}</span>
+                                                        <span *ngIf="!candidate.work_title"
+                                                            style="color: #7B7A87; font-style: italic;">
+                                                            Updating ...</span>
+                                                    </p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="title-field mr-2">Locations: </p>
+                                                    <span *ngIf="candidate.city" class="location-value-text"
+                                                        data-toogle="tooltip" title={{candidate.city}}>
+                                                        {{candidate.city}}</span>
+                                                    <span *ngIf="!candidate.city"
+                                                        style="color: #7B7A87; font-style: italic;">
+                                                        Updating ...</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <label *ngIf="candidate.last_updated" class="text-muted"
+                                                    style="font-size: 12px;" data-toogle="tooltip"
+                                                    title="Lasted update"> <i class="far fa-clock mr-1"></i>
+                                                    {{candidate.last_updated |date :'dd-MM-yyyy '}}</label>
+                                                <label *ngIf="!candidate.last_updated" class="text-muted"
+                                                    style="font-size: 12px;" data-toogle="tooltip"
+                                                    title="Lasted update"> <i class="far fa-clock mr-1"></i>
+                                                    Just updated</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
+                        <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                                {{i}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- list job -->
+    </div>
+</div>

@@ -16,31 +16,31 @@
                 <th scope="col">Company Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Established Date</th>
-                <th scope="col">Action</th>
+                <th scope="col">Website URL</th>
               
             </tr>
         </thead>
         <tbody>
 
-            <tr *ngFor="let employer of employers ; ">
+            <tr *ngFor="let emplo of employers ; ">
                 <td>
-                    <ngb-highlight [result]="employer.id "></ngb-highlight>
+                 <ngb-highlight [result]="emplo.email "></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="employer.companyname "></ngb-highlight>
+                    <ngb-highlight [result]="emplo.name "></ngb-highlight>
                 </td>
-                <td>
+                <!-- <td>
                     <ngb-highlight [result]="employer.userAccount.email"></ngb-highlight>
                 </td>
                 <td>
                     <ngb-highlight [result]="employer.establishmentdate |date"></ngb-highlight>
-                </td>
+                </td> -->
               
-                <td>
+                <!-- <td>
                     <button type="button" class="btn btn-success"  (click)="employerDetail(employer.id)" > 
                         <span> <i class="fas fa-search"></i></span>
                     </button>
-                </td>
+                </td> -->
 
             </tr>
         </tbody>

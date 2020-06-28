@@ -7,6 +7,13 @@ import { CandidateComponent} from './candidate.component';
 import { CandidateDashboardComponent } from './candidate-dashboard/candidate-dashboard.component';
 import {CSidebarComponent} from './c-sidebar/c-sidebar.component';
 import {AlljoblistComponent} from './alljoblist/alljoblist.component';
+import {AllEmployersComponent} from './all-employers/all-employers.component';
+import {OtherswebJoblistComponent} from './othersweb-joblist/othersweb-joblist.component';
+import {JobDetailComponent } from './job-detail/job-detail.component';
+import {RecommendJobComponent} from './recommend-job/recommend-job.component';
+import {CompanyJobpostComponent} from 'src/app/components/candidate/company-jobpost/company-jobpost.component';
+import {CandidateHistoryComponent} from 'src/app/components/candidate/candidate-history/candidate-history.component';
+import {IndustryJoblistComponent} from 'src/app/components/candidate/industry-joblist/industry-joblist.component';
 const routes: Routes = [
   {
     path: '',
@@ -26,16 +33,34 @@ const routes: Routes = [
         path: 'alljoblists',
         component: AlljoblistComponent
       },
-       // {
-      //   path: 'manageprofile',
-      //   component: ManageProfileComponent
-      // },
-      // {
-      //    //lazy loading
-      //     path: 'managejob',
-      //     loadChildren: './manage-job/manage-job.module#ManageJobModule'
-        
-      // },
+      {
+        path: 'all-employers',
+        component: AllEmployersComponent
+      },
+      {
+        path: 'other-websites-job-lists',
+        component: OtherswebJoblistComponent
+      },
+      {
+        path: 'jobpost-detail/:id',
+        component: JobDetailComponent
+      },
+      {
+        path: 'companies/:id',
+        component: CompanyJobpostComponent
+      },
+      {
+        path: 'recommendjob',
+        component: RecommendJobComponent
+      },
+      {
+        path: 'history',
+        component: CandidateHistoryComponent
+      },
+      {
+        path: 'industry-jobpost/:industry',
+        component: IndustryJoblistComponent
+      },
    
     ]
   }

@@ -10,6 +10,7 @@ export class User_Account {
     lastname: string;
     email: string;
     imageUrl: string;
+    image: string;
     candidate: Candidate;
     roles: Role;
     enabled: boolean;

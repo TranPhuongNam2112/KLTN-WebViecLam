@@ -1,6 +1,6 @@
 <div class="view border rounded border-weight-white">
     <div class="custom pl-5 pr-5 mb-3 ">
-        <div class=" font-weight-bold text-primary" style="font-size: 16px; ">
+        <div class=" font-weight-bold text-primary  pt-2  pb-2 pl-3 vnjobs-title" style="font-size: 16px; ">
             <i class="fas fa-paste fa-2x"></i> CERTIFICATE DOCUMENTS
         </div>
         <div class="mt-5 mb-5 ">
@@ -19,8 +19,10 @@
                 <div class="col-5">
                 </div>
                 <div class="col-7 mt-3 d-flex justify-content-start">
-                    <button type="button" class="btn btn-indigo btn-sm " (click)="onUpload()">
-                        <i class="fas fa-file-upload fa-2x mr-3"></i> Upload File</button>
+                    <!-- <button type="button" class="btn btn-indigo btn-sm " (click)="onUpload()">
+                       </button> -->
+                    <button mdbBtn type="button" class="btn-sm" color="indigo" mdbWavesEffect (click)="onUpload()"> <i
+                            class="fas fa-file-upload fa-2x mr-3"></i> Upload File</button>
                 </div>
             </div>
 
@@ -29,21 +31,30 @@
         <hr />
     </div>
     <div class="custom pl-5 pr-5 ">
-        <div class=" font-weight-bold text-muted" style="font-size: 16px; ">
+        <!-- <div class=" font-weight-bold text-muted" style="font-size: 16px; ">
             <i class="fas fa-folder-open fa-lg mr-1"></i> UPLOADED FILES
+        </div> -->
+        <div class=" font-weight-bold   pt-2  pb-2 pl-3 uploaded-title" style="font-size: 16px; ">
+            <i class="fas fa-paste fa-2x"></i> UPLOADED FILES
         </div>
-        
-        <div class="col-12 pb-3 border rounded border-weight-light mt-3 ">
-            <div class="row pl-3 pr-3 ml-5 ">
-               
-            <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5 ">
+        <div *ngIf="!candidateProfile.cv_name">
+            <h5 class="mt-3 text-primary" style="font-style: italic;">No file here.Please upload something...</h5>
+        </div>
+        <div *ngIf=" candidateProfile.cv_name" class="col-12  border rounded border-weight-light mt-3 ">
+            <ul class="row pl-3 pr-3 ml-5 mt-3">
+                <li>
+                    <a href="{{ candidateProfile.cv_Uri }}">{{candidateProfile.cv_name}}</a>
+                    <!-- <label>{{candidateProfile.cv_name}}</label> -->
+                    <!-- lấy -->
+                    <!-- <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5 ">
                 <img src="data:image/png;base64,{{candidateProfile.image}}" class="card-img-top" alt="...">
                 <div class="row d-flex justify-content-between mt-3 mb-3">                   
                     <button type="button" class="btn btn-yellow btn-sm"><i class="fas fa-trash-alt fa-lg"></i></button>                
                     <button type="button" class="btn btn-light-blue btn-sm"><i class="fas fa-search fa-lg"></i></button>         
                 </div>
-            </div>
-            <!-- <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5">
+            </div> -->
+                    <!-- lấy -->
+                    <!-- <div class="border rounded border-weight-light   col-lg-3 col-md-6 col-sm-12 mt-3 pt-3 mr-5">
                 <img src="./assets/images/candidate/login.jpg" class="card-img-top" alt="...">
                 <div class="row d-flex justify-content-between mt-3 mb-3">                   
                     <button type="button" class="btn btn-light btn-sm"><i class="fas fa-trash-alt fa-lg"></i></button>                
@@ -57,9 +68,14 @@
                     <button type="button" class="btn btn-light btn-sm"><i class="fas fa-search fa-lg"></i></button>               
                 </div>
             </div> -->
+
+                </li>
+            </ul>
+            <!-- test -->
+            <pdf-viewer [src]="candidateProfile.cv_Uri" [render-text]="true" style="display: block;">
+            </pdf-viewer>
+
         </div>
-        </div>
+
+
     </div>
-
-
-</div>

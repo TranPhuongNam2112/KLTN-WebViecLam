@@ -1,97 +1,166 @@
 <!-- List jobs -->
 
 
-    <div class="container-fluid">
-        <app-search-job></app-search-job>
-    </div>
+<div class="container-fluid">
+    <!-- <app-search-job></app-search-job>
+</div> -->
+
     <!-- <div class="card "> -->
-        <div>
-        <div class="card-body container  ">
+    <!-- <div class="card-body  container">
+        <div class="d-flex justify-content-between">
             <h5 class="card-title ml-5 ">Featured Candidate</h5>
-            <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
-            <!-- list job -->
-            <div *ngIf="allCandidates">
-                <div class="pt-3 mb-3 ml-5 mr-5 border rounded border-weight-light picture"
-                    *ngFor="let candidate of allCandidates; ">
 
-                    <div class="row mb-3 ml-3">
-                        <div class="col-lg-3 col-md-12 col-sm-12">
+            <h5 *ngIf="recommendCandidate" class=" text-muted card-title mr-5 ">Resume you will love</h5>
+        </div>
+        <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
+    <!-- list job -->
 
-                            <img class="card-img-top border rounded-circle border-white"
+
+
+    <div *ngIf="allCandidates && isRecommendCandidateEmpty()" class="card-body  container">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title ml-5 ">Featured Candidate</h5>
+
+            <!-- //<h5 *ngIf="recommendCandidate" class=" text-muted card-title mr-5 ">Resume you will love</h5> -->
+        </div>
+        <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+        <div class="row">
+            <div *ngFor="let candidate of allCandidates;" class="col-lg-6 col-md-12 col-sm-12  ">
+
+                <div class=" pt-3 pb-3 mb-2 pr-3  border rounded border-weight-light picture">
+                    <div class="row  pl-1">
+                        <div class="col-lg-3 col-md-6 col-sm-6 ">
+                            <img *ngIf="candidate.image" class="card-img-top border rounded-circle border-white"
                                 src="data:image/png;base64,{{candidate.image}}" alt="Candidate image cap">
+                            <img *ngIf="candidate.image_url" class="card-img-top border rounded-circle border-white"
+                                src={{candidate.image_url}} alt="Candidate image cap">
+                            <img *ngIf="!candidate.image_url && !candidate.image"
+                                class="card-img-top border rounded-circle border-white"
+                                src="./assets/images/employer/avatar.jpg" alt="Candidate image cap">
 
-                            <!-- <a class="d-flex justify-content-center" mdbTooltip="delete saved job" placement="top"
-                            (click)="deleteSaveJobPost(savedjob.id,dangerTpl,successTpl)">
-                            <i class="fas fa-heart fa-2x mt-3" style="color: crimson;"></i>
-                        </a> -->
                         </div>
-                        <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                        <div class="col-lg-9 col-md-6 col-sm-6 mt-3 ">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-7">
                                     <div class="row">
-                                        <a href="https://www.w3schools.com" class="font-weight-bold"
+                                        <a (click)="candidateDetail(candidate.id)" class="hovera font-weight-bold"
                                             style="font-size:20px;">
                                             {{candidate.name}}</a>
                                     </div>
-                                    <!-- <div class="row">
-                                    <label class="text-secondary" style="font-size: 14px ; ">
-                                        <i class="fas fa-map-marker-alt mr-1">
-                                        </i> {{jobpost.city}}
-                                    </label>
-                                    <label class="ml-3 text-secondary" style="font-size: 14px;">
-                                        <i class="fas fa-money-bill-wave"></i>
-                                        {{jobpost.minSalary | currency}} -
-                                        {{jobpost.maxSalary | currency}}
-
-                                    </label>
-                                </div> -->
-                                    <div class="row ">
-
-                                        <label class="text-muted font-weight-bold mr-3" for="city">City:</label>
-
-                                        <div class=" text-body font-weight-normal ">
-                                            {{candidate.city }}</div>
+                                    <div class="row">
+                                        <p class="job-title"> <span *ngIf="candidate.work_title" class="job-title_inner"
+                                                data-toogle="tooltip" title={{candidate.work_title}}>
+                                                {{candidate.work_title}}</span>
+                                            <span *ngIf="!candidate.work_title"
+                                                style="color: #7B7A87; font-style: italic;">
+                                                Updating ...</span>
+                                        </p>
                                     </div>
                                     <div class="row">
-                                        <label class="text-muted font-weight-bold mr-3" for="work_title">Work Title:
-                                        </label>
-                                        <div class=" text-body font-weight-normal ">
-                                            {{candidate.work_title}}</div>
-                                    </div>
-                                    <!-- <div class="row">
-                                    <label class="text-muted font-weight-bold mr-3" for="industry">Experience
-                                        Years:</label>
-                                    <div class=" text-body font-weight-normal ">
-                                        {{jobpost.experienceyears}}</div>
-                                </div> -->
-                                    <!-- <p class="card-text text-muted" style="font-size: 13px;">
-                                {{savedjob.experienceyears}}</p> -->
-                                </div>
-
-                                <div class="col-4">
-                                    <div class="row">
-                                        <label class="bg-secondary text-light pl-1 pr-1 "
-                                            mdbTooltip="Lastest update date"
-                                            style="font-size: 12px;">{{candidate.last_updated |date:'medium'}}</label>
-                                    </div>
-                                    <!-- <a   class="mt-5 d-flex justify-content-center" mdbTooltip="Save this job"
-                                    placement="top" (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">
-                                    <i class="far fa-heart fa-2x mt-3" style="color: crimson;"></i>
-                                </a> -->
-                                    <div class="row">
-                                        <button type="button" class="btn btn-blue-grey btn-sm"
-                                            mdbTooltip="Save this candidate" placement="top"
-                                            (click)="saveCandidate(candidate.id,dangerTpl,successTpl)">Save</button>
-                                        <!-- <a *ngIf="jobpost.isSave" class="mt-5 d-flex justify-content-center"
-                                        mdbTooltip="Delete this job" placement="top"
-                                        (click)="deleteSaveJobPost(jobpost.id,dangerTpl,successTpl)">
-                                        <i class="fas fa-heart fa-lg mt-3" style="color: crimson;"></i>
-                                    </a> -->
+                                        <p class="title-field mr-2">Locations: </p>
+                                        <span *ngIf="candidate.city" class="location-value-text" data-toogle="tooltip"
+                                            title={{candidate.city}}>
+                                            {{candidate.city}}</span>
+                                        <span *ngIf="!candidate.city" style="color: #7B7A87; font-style: italic;">
+                                            Updating ...</span>
                                     </div>
                                 </div>
-
+                                <div class="col-5">
+                                    <label *ngIf="candidate.last_updated" class="text-muted" style="font-size: 12px;"
+                                        data-toogle="tooltip" title="Lasted update"> <i class="far fa-clock mr-1"></i>
+                                        {{candidate.last_updated |date :'dd-MM-yyyy '}}</label>
+                                    <label *ngIf="!candidate.last_updated" class="text-muted" style="font-size: 12px;"
+                                        data-toogle="tooltip" title="Lasted update"> <i class="far fa-clock mr-1"></i>
+                                        Just updated</label>
+                                </div>
                             </div>
                         </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- ngFor -->
+        <div class="col-lg-12 d-flex justify-content-center">
+            <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
+                <li class="nav-item" *ngFor="let p of pages; let i=index">
+                    <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                        {{i}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div *ngIf="allCandidates && !isRecommendCandidateEmpty()" class="container ">
+
+        <div class="row ">
+            <div class="col-lg-8 col-md-6 col-sm-12 card-body ">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title ml-5 ">Featured Candidate</h5>
+
+                    <!-- //<h5 *ngIf="recommendCandidate" class=" text-muted card-title mr-5 ">Resume you will love</h5> -->
+                </div>
+                <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s"> 
+                <div *ngIf="allCandidates">
+                    <div class="pt-3 mt-3 pl-3 pb-3 mb-3  border rounded border-weight-light picture"
+                        *ngFor="let candidate of allCandidates; ">
+                        <div class="row  pl-1">
+                            <div class="col-lg-3 col-md-6 col-sm-6 pb-3">
+                                <img *ngIf="candidate.image" class="card-img-top border rounded-circle border-white"
+                                    src="data:image/png;base64,{{candidate.image}}" alt="Candidate image cap">
+                                <img *ngIf="candidate.image_url" class="card-img-top border rounded-circle border-white"
+                                    src={{candidate.image_url}} alt="Candidate image cap">
+                                <img *ngIf="!candidate.image_url && !candidate.image"
+                                    class="card-img-top border rounded-circle border-white"
+                                    src="./assets/images/employer/avatar.jpg" alt="Candidate image cap">
+
+                            </div>
+                            <div class="col-lg-9 col-md-6 col-sm-6 mt-3 ">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <a (click)="candidateDetail(candidate.id)" class="hovera font-weight-bold"
+                                                style="font-size:20px;">
+                                                {{candidate.name}}</a>
+                                        </div>
+                                        <div class="row">
+                                            <p class="job-title"> <span *ngIf="candidate.work_title"
+                                                    class="job-title_inner" data-toogle="tooltip"
+                                                    title={{candidate.work_title}}>
+                                                    {{candidate.work_title}}</span>
+                                                <span *ngIf="!candidate.work_title"
+                                                    style="color: #7B7A87; font-style: italic;">
+                                                    Updating ...</span>
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="title-field mr-2">Locations: </p>
+                                            <span *ngIf="candidate.city" class="location-value-text"
+                                                data-toogle="tooltip" title={{candidate.city}}>
+                                                {{candidate.city}}</span>
+                                            <span *ngIf="!candidate.city" style="color: #7B7A87; font-style: italic;">
+                                                Updating ...</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <label *ngIf="candidate.last_updated" class="text-muted"
+                                            style="font-size: 12px;" data-toogle="tooltip" title="Lasted update"> <i
+                                                class="far fa-clock mr-1"></i>
+                                            {{candidate.last_updated |date :'dd-MM-yyyy '}}</label>
+                                        <label *ngIf="!candidate.last_updated" class="text-muted"
+                                            style="font-size: 12px;" data-toogle="tooltip" title="Lasted update"> <i
+                                                class="far fa-clock mr-1"></i>
+                                            Just updated</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
                 <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
@@ -102,18 +171,70 @@
                     </li>
                 </ul>
             </div>
+            <!-- recommendCandidate start -->
+            <div class=" col-lg-4 col-md-6 col-sm-12">
+                <div *ngIf="recommendCandidate">
+
+                    <mdb-card>
+                        <mdb-card-body>
+                            <div class="d-flex justify-content-between">
+                                <h5 *ngIf="recommendCandidate" class=" text-muted card-title mr-5 ">Resume you will love
+                                </h5>
+                                <hr />
+                            </div>
+                            <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+                            <div class=" recommened mb-3 " *ngFor="let recandidate of recommendCandidate; ">
+
+                                <div class="row d-flex justify-content-end">
+
+                                    <img src="http://my.teamobi.com/images/hot.gif">
+                                </div>
+                                <div class="row d-flex justify-content-center">
+                                    <img class="card-img-top mb-3 border rounded-circle border-white"
+                                        src="data:image/png;base64,{{recandidate.image}}" alt="Candidate image cap">
+                                </div>
+                                <div class="row d-flex justify-content-start ml-5">
+                                    <a (click)="candidateDetail(recandidate.id)" class=" mb-1 hovera font-weight-bold"
+                                        style="font-size:16px;">
+                                        {{recandidate.name}}</a>
+                                </div>
+                                <div class="row d-flex justify-content-start ml-5">
+                                    <label class="text-muted mr-3" for="work_title" style="font-size:16px;">Work
+                                        Title:
+                                    </label>
+                                    <span class=" text-muted font-weight-bold ">
+                                        {{recandidate.work_title}}</span>
+                                </div>
+                                <div class="row  d-flex justify-content-start ml-5 mt-0 pt-0">
+                                    <label class="text-muted  mr-3" for="city" style="font-size:16px;">City:</label>
+                                    <span class=" text-muted font-weight-bold ">
+                                        {{recandidate.city }}</span>
+                                </div>
+
+                                <hr />
+
+                            </div>
+                            <div class="text-center">
+                                <a [routerLink]="['/employer/recommendcandidate']"
+                                    class="btn btn-primary mr-auto btn-sm"><strong>Show more</strong></a>
+                            </div>
+                        </mdb-card-body>
+                    </mdb-card>
+                </div>
+            </div>
         </div>
-        <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-        <ng-template #successTpl>
-            <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
-        </ng-template>
-        <ng-template #dangerTpl>
-            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
-                some error</span>
-        </ng-template>
-
-        <!-- list job -->
     </div>
-
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ng-template #successTpl>
+        <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
+    </ng-template>
+    <ng-template #dangerTpl>
+        <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+            some error</span>
+    </ng-template>
+    <!-- list job -->
+    <!-- hiihihihih -->
+    <!-- </div> -->
+</div>
 
 <!-- List Jobs -->

@@ -16,19 +16,19 @@ export class ManageEmployerComponent implements OnInit {
   setPage(i, event:any){
     event.preventDefault();
     this.pageNo = i;
-    this.getEmployers();
+    this.getAllEmployers();
   }
   ngOnInit(): void {
-    this.getEmployers();
+    this.getAllEmployers();
   }
-  getEmployers(){
-    this.employerService.getEmployers(this.pageNo).subscribe(
-      data=> {
+  getAllEmployers() {
+    this.employerService.gettAllEmployer(this.pageNo).subscribe(
+      data => {
         console.log(data);
-        this.employers=data['content'];
-        this.pages= new Array(data['totalPages'])
+        this.employers = data['content'];
+        this.pages = new Array(data['totalPages'])
       },
-      (error)=> {
+      (error) => {
         console.log(error.error.message)
       }
     );

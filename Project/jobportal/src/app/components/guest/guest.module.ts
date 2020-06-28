@@ -10,6 +10,7 @@ import { CRegisterComponent } from '../candidate/c-register/c-register.component
 import {HeaderForGuestComponent } from '../../shared/components/header-for-guest/header-for-guest.component';
 import {ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { ValidateAccComponent} from './validate-acc/validate-acc.component';
+import { AllJoblistComponent } from './all-joblist/all-joblist.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ValidateAccComponent} from './validate-acc/validate-acc.component';
     HeaderForGuestComponent,
     ForgotPassComponent,
     ValidateAccComponent,
+    AllJoblistComponent,
     
   ],
   imports: [

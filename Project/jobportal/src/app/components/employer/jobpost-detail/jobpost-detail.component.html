@@ -1,24 +1,49 @@
-<!-- <div class="container mt-5 pt-5 mb-5">
+<div class="container mt-5 pt-5 mb-5">
     <h5 class="font-weight-bold text-primary">Job Post Detail</h5>
     <hr />
-    <div *ngIf="jobPost">
+    <div>
         <div class="row d-flex justify-content-center">
 
             <div class="col-lg-7 col-sm-12 col-md-12">
 
-                <form class="border border-grey pt-3 pl-3 pr-3 pb-3"
-                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+                <form class="border border-grey pt-3 pl-3 pr-3 pb-3">
 
                     <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
                         Job Post Information
                     </p>
-
+                    <!-- suwra -->
+                 
+                            <div class="form-group mt-3">
+                                <label class="dark-grey-text font-weight-bold" for="createdDay">Expired Day:</label>
+                                <span> <small id="optional"
+                                    class="ml-2 text-muted">(at least 1 week from today) </small></span>
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                                [(ngModel)]="jobPostRequest.expiredDate" name="expiredDate" ngbDatepicker
+                                                #de="ngbDatepicker"
+                                                [minDate]="toDate"
+                                                [displayMonths]="2"
+                                                [maxDate]="{year: 2020, month: 12, day: 12 }">
+        
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" (click)="de.toggle()" type="button"> <i
+                                                        class="fas fa-calendar-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+        
+                                </form>
+                            </div>
+                       
                     <div class="form-group ">
                         <label class="dark-grey-text  font-weight-bold ">Job Title:</label>
-                        <input type="text" class="form-control" value="{{jobPost.job_title}}">
-
+                        <input type="text" class="form-control" [(ngModel)]="jobPostRequest.jobtitle" name="jobtitle">
                     </div>
-                    <div class="form-group ">
+                    <!-- <div class="form-group ">
                         <label class="dark-grey-text  font-weight-bold ">Created date:</label>
                         <input type="text" class="form-control" value="{{jobPost.createdAt}}">
 
@@ -27,59 +52,54 @@
                         <label class="dark-grey-text  font-weight-bold ">Lastest Modify:</label>
                         <input type="text" class="form-control" value="{{jobPost.updatedAt}}">
 
+                    </div> -->
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Job Type:</label>
+                        <!-- <input type="text" class="form-control" [(ngModel)]="jobPostRequest.jobType" name="jobType"
+                          > -->
+                        <ng-select [items]="jobTypes" bindValue="jobPost.jobType" [(ngModel)]="jobPostRequest.jobType"
+                            name="jobType"></ng-select>
+
                     </div>
                     <div class="form-group ">
                         <label class="dark-grey-text  font-weight-bold ">Industry:</label>
-                        <input type="text" class="form-control" value="{{jobPost.industry}}">
-
-                    </div>
-
-
-                    <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold ">City:</label>
-                        <input type="text" class="form-control"  value="{{jobPost.city}}">
-
-                    </div>
-                    <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold ">Job Type:</label>
-                        <input type="text" class="form-control" 
-                            value="{{jobPost.jobtype }}">
-
+                        <br />
+                        <ng-select2 [data]="industries" [options]="options" [(ngModel)]="jobPostRequest.industry"
+                            name="industry"></ng-select2>
                     </div>
                     <div class="form-group ">
                         <label class="dark-grey-text  font-weight-bold ">Experience Years:</label>
-                        <input type="text" class="form-control" 
-                            value="{{jobPost.experienceyears }}">
+                        <input type="number" class="form-control" [(ngModel)]="jobPostRequest.requiredexperience"
+                            name="requiredexperience" >
 
                     </div>
-                    <div class="form-group ">
+                    <!-- <div class="form-group ">
                         <label class="dark-grey-text  font-weight-bold ">Expiration Date:</label>
                         <input type="text" class="form-control" 
                             value="{{jobPost.expirationDate | date:'medium'}} ">
 
-                    </div>
-                    
+                    </div> -->
+
                     <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold ">Min Salary:</label>
-                        <input type="text" class="form-control" 
-                        value="{{jobPost.minSalary | currency}} ">
+                        <label class="dark-grey-text  font-weight-bold ">Min Salary:</label> <span> <small id="optional"
+                                class="ml-2 text-muted">(VND) </small></span>
+                        <input type="text" class="form-control" [(ngModel)]="jobPostRequest.minSalary" name="minSalary">
                     </div>
                     <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold ">Max Salary:</label>
-                        <input type="text" class="form-control" 
-                            value="{{jobPost.maxSalary | currency}} ">
+                        <label class="dark-grey-text  font-weight-bold ">Max Salary:</label><span> <small id="optional"
+                                class="ml-2 text-muted">(VND) </small></span>
+                        <input type="text" class="form-control" [(ngModel)]="jobPostRequest.maxSalary" name="maxSalary">
                     </div>
                     <div class="form-group ">
                         <label class="dark-grey-text  font-weight-bold ">Description:</label>
                         <textarea type="text" class="form-control" id="descriptionCom"
-                            readonly>{{jobPost.job_description }}</textarea>
+                            [(ngModel)]="jobPostRequest.jobdescription" name="jobdescription"></textarea>
                     </div>
                 </form>
             </div>
             <div class="col-lg-5 col-sm-12 col-md-12">
 
-                <form class="border border-grey rounded-lg pt-3 pl-3 pr-3 pb-3"
-                    style="background-color:rgba(158, 158, 158, 0.1) ;">
+                <form class="border border-grey rounded-lg pt-3 pl-3 pr-3 pb-3">
 
                     <p class="dark-grey-text mb-2 h4 font-weight-light d-flex justify-content-center">
                         Job Location
@@ -88,17 +108,32 @@
                    
                     <div class="form-group ">
                         <label class="dark-grey-text  ">Street Address:</label>
-                        <input type="text" class="form-control" readonly value="{{jobPost.street_address}}">
+                        <input type="text" class="form-control" [(ngModel)]="jobPostRequest.street_address"
+                            name="jobPostRequest.street_address">
+                        <!-- <input type="text" class="form-control" readonly value="{{jobPost.street_address}}"> -->
                     </div>
                     <hr />
                     <div class="form-group ">
                         <label class="dark-grey-text ">City Province:</label>
-                        <input type="text" class="form-control" readonly value="{{jobPost.city_province}}">
+
+                        <input type="text" class="form-control" [(ngModel)]="jobPostRequest.city_province"
+                            name="jobPostRequest.city_province">
+
                     </div>
                 </form>
+                <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+                <ng-template #successTpl>
+                    <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+                </ng-template>
+                <ng-template #dangerTpl>
+                    <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                        some error</span>
+                </ng-template>
             </div>
         </div>
         <br />
 
-        <button (click)="jobpostList()" class="btn btn-primary">Back</button><br>
-    </div> -->
+        <button (click)="jobpostList()" class="btn btn-outline-primary mr-3">Back</button>
+        <button (click)="updateJobPost(dangerTpl, successTpl)" class="btn btn-primary">Save</button><br>
+        <br>
+    </div>

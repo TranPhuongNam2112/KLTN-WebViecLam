@@ -70,5 +70,7 @@ export class SavejobComponent implements OnInit {
 
   }
 
-
+  jobPostDetail(id: number) {
+    this.router.navigate(['candidate/jobpost-detail', id]);
+  }
 }

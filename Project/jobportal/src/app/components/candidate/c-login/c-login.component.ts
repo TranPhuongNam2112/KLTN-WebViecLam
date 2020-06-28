@@ -166,9 +166,10 @@ export class CLoginComponent implements OnInit {
           this.router.navigate(['/candidate']);
         }
         else if (this.showEmployer) {
-          // this.router.navigate(['/employer']).then(() => {
-          //   window.location.reload();
-          // });;
+          // // sua style o ddaay
+          this.router.navigate(['/employer']).then(() => {
+            window.location.reload();
+          });
           this.router.navigate(['/employer']);
         }
         else if (this.showAdmin) {

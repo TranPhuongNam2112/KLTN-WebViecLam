@@ -17,6 +17,16 @@ import { CandidateFileComponent } from './candidate-file/candidate-file.componen
 import { UiSwitchModule } from 'ngx-toggle-switch';
 import { NgSelect2Module } from 'ng-select2';
 import { AlljoblistComponent } from './alljoblist/alljoblist.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
+import { RecommendJobComponent } from './recommend-job/recommend-job.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { OtherswebJoblistComponent } from './othersweb-joblist/othersweb-joblist.component';
+import { AllEmployersComponent } from './all-employers/all-employers.component';
+import { CompanyJobpostComponent } from './company-jobpost/company-jobpost.component';
+import { CandidateHistoryComponent } from './candidate-history/candidate-history.component';
+import { IndustryJoblistComponent } from './industry-joblist/industry-joblist.component';
+
+
 @NgModule({
   declarations: [
     ManageProfileComponent,
@@ -28,6 +38,13 @@ import { AlljoblistComponent } from './alljoblist/alljoblist.component';
     CandidateDashboardComponent,
     CandidateFileComponent,
     AlljoblistComponent,
+    JobDetailComponent,
+    RecommendJobComponent,
+    OtherswebJoblistComponent,
+    AllEmployersComponent,
+    CompanyJobpostComponent,
+    CandidateHistoryComponent,
+    IndustryJoblistComponent,
     // ToastComponent
   ],
   imports: [
@@ -38,7 +55,9 @@ import { AlljoblistComponent } from './alljoblist/alljoblist.component';
     FormsModule,
     HttpClientModule,
     UiSwitchModule,
-    NgSelect2Module
+    NgSelect2Module,
+    PdfViewerModule,
+
   ]
 })
 export class CandidateModule { }

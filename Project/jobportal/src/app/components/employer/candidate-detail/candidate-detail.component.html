@@ -1,0 +1,264 @@
+<div class="view">
+    <div class="container mb-5 pb-5 pt-5 " style="margin-top: 100px;">
+        <div *ngIf="candidateDetail">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mdb-card>
+                        <div class="row d-flex justify-content-center">
+                            <img *ngIf="candidateDetail.image"
+                                class=" mt-3 card-img-top border rounded-circle border-white"
+                                src="data:image/png;base64,{{candidateDetail.image}}" alt="Candidate image cap">
+                            <img *ngIf="candidateDetail.imageUrl"
+                                class="mt-3 card-img-top border rounded-circle border-white"
+                                src={{candidateDetail.imageUrl}} alt="Candidate image cap">
+                            <img *ngIf="!candidateDetail.imageUrl && !candidateDetail.image"
+                                class="mt-3 card-img-top border rounded-circle border-white"
+                                src="./assets/images/employer/avatar.jpg" alt="Candidate image cap">
+                        </div>
+                        <mdb-card-body>
+                            <div class="ml-3 pl-3">
+                                <div class="row">
+                                    <mdb-card-text *ngIf="candidateDetail.doB">
+
+
+                                        <label>Birthday:</label>
+                                        {{candidateDetail.doB | date:'longDate'}}
+
+                                    </mdb-card-text>
+                                    <mdb-card-text *ngIf="!candidateDetail.doB">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>Birthday:</label>
+                                            </div>
+                                            <div class=" font-weight-bold ml-3" style="color: #7B7A87;">
+                                                Updating ...</div>
+                                        </div>
+
+
+                                    </mdb-card-text>
+                                </div>
+                                <div class="row">
+                                    <mdb-card-text *ngIf="candidateDetail.gender">
+                                        <label>Gender:</label>
+                                        {{candidateDetail.gender}}
+                                    </mdb-card-text>
+                                    <mdb-card-text *ngIf="!candidateDetail.gender">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>Gender:</label>
+                                            </div>
+                                            <div class=" font-weight-bold ml-3" style="color: #7B7A87;">
+                                                Updating ...</div>
+                                        </div>
+                                    </mdb-card-text>
+                                </div>
+                                <div class="row">
+                                    <mdb-card-text *ngIf="candidateDetail.phonenumber">
+                                        <label>Phone:</label>
+                                        {{candidateDetail.phonenumber}}
+                                    </mdb-card-text>
+                                    <mdb-card-text *ngIf="!candidateDetail.phonenumber">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>Phone:</label>
+                                            </div>
+                                            <div class=" font-weight-bold ml-3" style="color: #7B7A87;">
+                                                Updating ...</div>
+                                        </div>
+                                    </mdb-card-text>
+                                </div>
+                                <div class="row">
+                                    <mdb-card-text *ngIf="candidateDetail.address">
+                                        <label>Address:</label>
+                                        {{candidateDetail.address}}
+                                    </mdb-card-text>
+                                    <mdb-card-text *ngIf="!candidateDetail.address">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>Address:</label>
+                                            </div>
+                                            <div class="font-weight-bold ml-3" style="color: #7B7A87;">
+                                                Updating ...</div>
+                                        </div>
+                                    </mdb-card-text>
+                                </div>
+                            </div>
+                            <!-- if not save -->
+                            <div *ngIf="!isSave()" class="row d-flex justify-content-center">
+                                <a (click)="saveCandidate(dangerTpl,successTpl)">
+                                    <i class="far fa-heart fa-2x mr-3" style="color: #c9c9c9;"></i></a>
+                                <label class="unsaved">
+                                    Saved Candidate</label>
+                            </div>
+                            <!-- if not save -->
+                            <!-- if save job -->
+                            <div *ngIf="isSave()" class="row d-flex justify-content-center">
+                                <a (click)="deleteSavedCandidate(dangerTpl,successTpl)" class="mr-3"><i
+                                        class="fas fa-heart fa-2x" style="color: crimson;"></i></a>
+                                <label style="color: #569B00;font-size: 14px;">
+                                    <i class="fas fa-check fa-lg" style="color: #569B00;"></i>
+                                    Save Candidate</label>
+                            </div>
+                            <!-- if save job -->
+                        </mdb-card-body>
+
+                    </mdb-card>
+                </div>
+                <div class="col-lg-7 col-md-6 col-sm-12 ml-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <label class=" candidate-name ">
+                                    {{candidateDetail.name}}</label>
+                            </div>
+                            <div class="row">
+                                <label *ngIf="candidateDetail.work_title" class=" text-primary item mt-2">
+                                    {{candidateDetail.work_title}}</label>
+                                    <label *ngIf="!candidateDetail.work_title" class=" text-primary item mt-2"  >
+                                       Updating ...</label>
+                            </div>
+                            <div class="row">
+                                <label class="right-item">
+                                    Expected Jobtype: </label>
+                                <label *ngIf="!isJobTypes()" class="right-item ml-1">{{candidateDetail.jobtypes}}</label>
+                                <label *ngIf="isJobTypes()" class="right-item ml-1" style="color: #7B7A87; " >Updating ...</label>
+                            </div>
+                            <div class="row">
+                                <label class="right-item">
+                                    Expected Salary: </label>
+                                <label *ngIf="candidateDetail.expectedsalary"
+                                    class="right-item ml-1 ">{{candidateDetail.expectedsalary | currency:"VND"}}</label>
+                                    <label *ngIf="!candidateDetail.expectedsalary"
+                                    class="right-item ml-1 " style="color: #7B7A87;" >Updating ...</label>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <div *ngIf="candidateDetail.cv_Uri">
+                                    <!-- <button (click)="openCV(candidateDetail.cv_Uri)" mdbBtn type="button" color="amber"
+                                        size="lg" mdbWavesEffect>View CV</button> -->
+                                        <button  (click)="openCV(candidateDetail.cv_Uri)" type="button" class="btn btn-outline-warning btn-lg mr-3">View CV</button>
+                                </div>
+                                <div *ngIf="!isSave()">
+                                    <!-- <button (click)="saveCandidate(dangerTpl,successTpl)" type="button" mdbBtn
+                                        color="primary" mdbWavesEffect><i
+                                            class="fas fa-bookmark fa-2x mr-2"></i>Bookmark</button> -->
+                                            <button (click)="saveCandidate(dangerTpl,successTpl)" type="button" class="btn btn-outline-primary btn-lg"><i
+                                                class="fas fa-bookmark fa-lg mr-2"></i>Bookmark</button>
+                                </div>
+
+                            </div>
+
+                            <hr />
+                            <div *ngIf="!isExperiencesEmpty()">
+                                <div class="row">
+                                    <label class="right-item-title">
+                                        <i class="fas fa-briefcase fa-2x mr-1" style="color: dimgrey;"></i>
+                                        Experiences:</label>
+
+                                </div>
+                                <div class="row">
+                                    <ul class="ul-item mt-3 mb-3" *ngFor="let ex of candidateDetail.experiences ">
+                                        <div class="row company-name ">
+                                            {{ex.companyname}}
+                                        </div>
+                                        <div class="row jobtitle">
+
+                                            {{ex.job_title}}
+                                        </div>
+                                        <li>
+                                            <label class="font-weight-light">Start Date:</label>
+                                            {{ex.start_date |date:'longDate'}}
+                                        </li>
+                                        <li>
+                                            <label class="font-weight-light">End Date:</label>
+                                            {{ex.end_date |date:'longDate'}}
+                                        </li>
+                                        <li>
+                                            <label class="font-weight-light">Short Description:</label>
+                                            <div class="text-muted">{{ex.description}}</div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <hr />
+                            </div>
+                            <div *ngIf="isExperiencesEmpty()">
+                                <div class="row">
+                                    <label class="right-item-title ">
+                                        <i class="fas fa-briefcase fa-2x mr-1" style="color: dimgrey;"></i>
+                                        No experience</label>
+
+                                </div>
+                             
+                            </div>
+                            <div *ngIf="!isEducationsEmpty()">
+                                <div class="row">
+                                    <label class="right-item-title">
+                                        <i class="fas fa-book fa-2x mr-1" style="color: dimgrey;"></i>
+                                        Educations:</label>
+
+                                </div>
+                                <div class="row">
+                                    <ul class="ul-item mt-3 mb-3" *ngFor="let edu of candidateDetail.educations ">
+                                        <div class="row company-name ">
+                                            {{edu.university_college}}
+                                        </div>
+                                        <div class="row jobtitle">
+
+                                            {{edu.major}}
+                                        </div>
+                                        <li>
+                                            <label class="font-weight-light">Start Date:</label>
+                                            {{edu.start_date |date:'longDate'}}
+                                        </li>
+                                        <li>
+                                            <label class="font-weight-light">End Date:</label>
+                                            {{edu.completion_date |date:'longDate'}}
+                                        </li>
+                                        <li>
+                                            <label class="font-weight-light">GPA:</label>
+                                            {{edu.gpa}}
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div *ngIf="isEducationsEmpty()">
+                                <div class="row">
+                                    <label class="right-item-title ">
+                                        <i class="fas fa-book fa-2x mr-1" style="color: dimgrey;"></i> Education:
+                                     <span style="color: #7B7A87; " >Updating...</span>   </label>
+
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- cv -->
+                    <!-- <div *ngIf="!isCVEmpty()"> -->
+
+                    <!-- <a href="{{ candidateDetail.cv_Uri }}">{{candidateDetail.cv_name}}</a> -->
+                    <!-- <pdf-viewer [src]="candidateDetail.cv_Uri" [fit-to-page]="true" [render-text]="true"
+                                style="display: block;">
+                            </pdf-viewer>
+                            <a href="{{ candidateDetail.cv_Uri }}">download</a> 
+                            <hr />
+                        </div> -->
+                    <!-- cv -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ng-template #successTpl>
+        <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
+    </ng-template>
+    <ng-template #dangerTpl>
+        <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+            some error</span>
+    </ng-template>
+</div>

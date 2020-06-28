@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { JobPostService } from '../../../_services/admin/job-post.service';
-import { JobPost } from '../../../_models/jobPost';
+import { JobPost } from 'src/app/_models/jobPost';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../../../_services/toast-service.service';
 @Component({

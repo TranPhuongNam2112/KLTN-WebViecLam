@@ -5,5 +5,6 @@ export class CandidateSummary {
     city: string;
     work_title: string;
     last_updated: Date;
+    image_url: string;
 
 }

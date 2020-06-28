@@ -1,95 +1,245 @@
-<div class="view bg-white border rounded border-weight-white">
+<div class="view bg-white border rounded border-weight-white" style="padding-top: 70px;">
     <p class="pl-3  font-weight-bold text-primary h5">Update your profile</p>
     <nav ngbNav #nav="ngbNav" class="nav-tabs ">
         <!-- PERSIONALITY INFORMATION start -->
         <!-- Personalities view start-->
         <ng-container ngbNavItem>
             <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
-                Personalities</a>
+                Profile</a>
             <ng-template ngbNavContent>
                 <!-- màn hình thông tin cá nhân -->
                 <div class="custom pr-5" *ngIf="!isEditProfileShown">
-                    <div class=" mt-5 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
+                    <!-- <div class=" mt-5 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
                         <i class="fas fa-user-tie"></i> PERSIONALITY INFORMATION
-                    </div>
-                    <form class="mt-3 ml-5  mr-5 ">
-                        <div class="row ">
-                            <div class="col-lg-6 col-sm-12 col-md-12">
-                                <div class="form-group ">
-                                    <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">
-                                        Name</label>
-                                    <input readonly type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" value="{{candidateProfile.name}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-12 col-md-12">
-                                <div class="form-group ">
-                                    <label class="dark-grey-text font-weight-bold"
-                                        for="exampleInputEmail1">Gender</label>
-                                    <input readonly type="text" class="form-control" id="gender"
-                                        value="{{candidateProfile.gender}}">
-                                </div>
-                            </div>
-                        </div>
+                    
+                    </div> -->
+                    <div class="mt-3  pt-3  ml-5  mr-5  vnjobs-title  pb-2 pl-3 mb-3 text-primary font-weight-bold">
 
-                        <div class="row mt-3">
-                            <div class="col-lg-6 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="dark-grey-text font-weight-bold"
-                                        for="exampleInputPassword1">Phone</label>
-                                    <input readonly type="tel" class="form-control" id="phonenumber"
-                                        value="{{candidateProfile.phonenumber}}">
-                                </div>
-                            </div>
-                            <!-- date picker birthday -->
-                            <div class="col-lg-4 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="dark-grey-text font-weight-bold"
-                                        for="exampleInputPassword1">Birthday</label>
-                                    <input readonly type="text" class="form-control" id="doB"
-                                        value="{{candidateProfile.doB | date}}">
-                                </div>
-                            </div>
-                            <!-- date picker birthday -->
+                        <h5 class="font-weight-bold"> <i class="fas fa-user-tie mr-3"></i>PERSIONALITY INFORMATION
+                        </h5>
+                        <div class="d-flex justify-content-end">
+                            <span data-toogle="tooltip" title="Employer viewed your profile" class="mr-5 text-muted"
+                                style="font-size: 12px;"><i class="fa fa-eye mr-1" aria-hidden="true"></i>Viewed:
+                                <span class="ml-1  text-success">{{myStats.viewedEmployersCount}}
+                                </span></span>
+                            <span data-toogle="tooltip" title="Employer saved your profile" class=" mr-5 text-muted"
+                                style="font-size: 12px;"><i class="fa fa-save mr-1"></i>Saved:
+                                <span class="ml-1  text-danger">{{myStats.savedEmployersCount}}
+                                </span></span>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-12 col-md-12">
-                                <div class="form-group mt-3">
-                                    <label class="dark-grey-text font-weight-bold" for="address">
-                                        Address</label>
-                                    <input readonly type="text" class="form-control" id="address"
-                                        value="{{candidateProfile.address}}">
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                    </form>
-                    <div class=" mt-3 ml-5  mr-5 font-weight-bold" style="font-size: 15px; color: #F57C00;">
-                        <i class="fas fa-briefcase"></i> WORK EXPECTATION
+                        <!-- <span class=" mr-5 text-muted" style="font-size: 12px;">employer
+                            view your profile</span> -->
+
                     </div>
-                    <form class="mt-3 ml-5  mr-5 ">
-                        <div class="row">
-                            <div class="col-lg-5 col-sm-12 col-md-12">
-                                <div class="form-group mt-3">
-                                    <label class="dark-grey-text font-weight-bold" for="work_title">
-                                        Work Title</label>
-                                    <input readonly type="text" class="form-control" id="work_title"
-                                        aria-describedby="work_title" value="{{candidateProfile.work_title}}">
+
+                    <mdb-card class="  mt-3 ml-5  mr-5 mb-5 bg-white ">
+                        <!-- <form class="mt-3 ml-5  mr-5 "> -->
+                        <div class="mt-3 ml-5  mr-5 profile-card-font   ">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold" for="address">
+                                                    Work Title:</label></div>
+                                            <!-- <input readonly type="text" class="form-control" id="address"
+                                        value="{{candidateProfile.address}}"> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.work_title}}</span>
+
+                                        </div>
+                                        <!-- <hr /> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-lg-12 col-sm-12 col-md-12 profile-text-content">
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class=" text-muted font-weight-bold  " for="exampleInputEmail1">
+                                                    Name: </label>
+                                            </div>
+                                            <!-- <span><p class="text-primary">{{candidateProfile.name}}</p></span> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text  font-weight-medium mr-3">{{candidateProfile.name}}</span>
+                                            <!-- <input readonly type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" value="{{candidateProfile.name}}"> -->
+                                        </div>
+                                        <!-- <hr /> -->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold"
+                                                    for="exampleInputEmail1">Gender:</label>
+                                            </div>
+                                            <!-- <input readonly type="text" class="form-control" id="gender"
+                                        value="{{candidateProfile.gender}}"> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.gender}}</span>
+                                        </div>
+                                        <!-- <hr /> -->
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-5 col-sm-12 col-md-12">
-                                <div class="form-group mt-3">
-                                    <label class="dark-grey-text font-weight-bold" for="jobtype">
-                                        Job types</label>
-                                    <input type="text" readonly class="form-control" id="jobtype"
-                                        value="{{candidateProfile.jobtypes}}">
+                            <div class="row ">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold"
+                                                    for="exampleInputPassword1">Phone:</label>
+                                            </div>
+                                            <!-- <input readonly type="tel" class="form-control" id="phonenumber"
+                                        value="{{candidateProfile.phonenumber}}"> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.phonenumber}}</span>
+                                        </div>
+                                        <!-- <hr /> -->
+                                    </div>
+                                </div>
+                                <!-- date picker birthday -->
+
+                                <!-- date picker birthday -->
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold"
+                                                    for="exampleInputPassword1">Birthday:</label>
+                                            </div>
+                                            <!-- <input readonly type="text" class="form-control" id="doB"
+                                    value="{{candidateProfile.doB | date}}"> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.doB | date}}</span>
+                                        </div>
+                                        <!-- <hr /> -->
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold" for="address">
+                                                    Address:</label>
+                                            </div>
+                                            <!-- <input readonly type="text" class="form-control" id="address"
+                                        value="{{candidateProfile.address}}"> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.address}}</span>
+                                        </div>
+                                        <!-- <hr /> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold" for="address">
+                                                    City Province:</label></div>
+                                            <!-- <input readonly type="text" class="form-control" id="address"
+                                        value="{{candidateProfile.address}}"> -->
+                                            <span
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.city_province}}</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- </form> -->
                         </div>
-                        <button type="submit" (click)="editProfileShow();"
-                            class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Edit</button>
-                    </form>
+                    </mdb-card>
+
+
+                    <div class="mt-3  pt-3  ml-5  mr-5  hotjobs-title  pb-2 pl-3 mb-3 font-weight-bold">
+
+                        <h5 class="font-weight-bold"> <i class="fas fa-briefcase mr-3"></i>WORK EXPECTATION</h5>
+
+                    </div>
+
+                    <mdb-card class="  mt-3 ml-5 pl-5  mr-5 mb-5 bg-white ">
+                        <div class="mt-3   mr-5 profile-card-font   ">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold" for="address">
+                                                    Job types:</label></div>
+                                            <!-- <input readonly type="text" class="form-control" id="address"
+                                    value="{{candidateProfile.address}}"> -->
+                                            <span *ngIf="candidateProfile.jobtypes"
+                                                class="ml-3 span-text dark-grey-text work-expect-text font-weight-medium mr-3">{{candidateProfile.jobtypes}}</span>
+                                            <span *ngIf="!candidateProfile.jobtypes"
+                                                class="ml-3 span-text dark-grey-text work-expect-text font-weight-medium mr-3">No
+                                                requirements</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold" for="address">
+                                                    Industries:</label></div>
+                                            <!-- <input readonly type="text" class="form-control" id="address"
+                                    value="{{candidateProfile.address}}"> -->
+                                            <span *ngIf="candidateProfile.industries"
+                                                class="ml-3 span-text dark-grey-text work-expect-text font-weight-medium mr-3">{{candidateProfile.industries}}</span>
+                                            <span *ngIf="!candidateProfile.industries"
+                                                class="ml-3 span-text dark-grey-text work-expect-text font-weight-medium mr-3">No
+                                                requirements</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-md-12  profile-text-content">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="text-muted font-weight-bold" for="address">
+                                                    Expected Salary:</label> <span> <small id="optional"
+                                                        class=" text-muted">(VND) </small></span></div>
+                                            <!-- <input readonly type="text" class="form-control" id="address"
+                                    value="{{candidateProfile.address}}"> -->
+                                            <span *ngIf="candidateProfile.expectedsalary"
+                                                class="ml-3 span-text dark-grey-text font-weight-medium mr-3">{{candidateProfile.expectedsalary | currency:"VND"}}</span>
+                                            <span *ngIf="!candidateProfile.expectedsalary"
+                                                class="ml-3 span-text dark-grey-text work-expect-text font-weight-medium mr-3">No
+                                                requirements</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- <button type="submit" (click)="editProfileShow();"
+                            class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Edit</button> -->
+                        </div>
+                    </mdb-card>
+                    <button type="button" (click)="editProfileShow();" class=" mr-5 pl-5 pr-5 mb-5 mt-3"
+                        style="float:right" mdbBtn color="primary" mdbWavesEffect>Edit</button>
                 </div>
 
                 <!-- Personalities view end -->
@@ -128,8 +278,9 @@
                                     <label class="dark-grey-text  font-weight-bold " for="exampleInputEmail1">Full
                                         Name</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" required
-                                        [(ngModel)]="candidateProfileRequest.fullname" name="fullname">
+                                        aria-describedby="emailHelp" required [(ngModel)]="candidateProfileRequest.name"
+                                        name="name" value={{candidateProfileRequest.name}}>
+
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-12 col-md-12">
@@ -155,9 +306,9 @@
                         <div class="row mt-3">
                             <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="dark-grey-text font-weight-bold" for="phone_number">Phone</label>
-                                    <input type="tel" class="form-control" id="phone_number"
-                                        [(ngModel)]="candidateProfileRequest.phone_number" name="phone_number">
+                                    <label class="dark-grey-text font-weight-bold" for="phonenumber">Phone</label>
+                                    <input type="tel" class="form-control" id="phonenumber"
+                                        [(ngModel)]="candidateProfileRequest.phonenumber" name="phonenumber">
                                 </div>
                             </div>
 
@@ -190,10 +341,10 @@
                             <!-- <div class="col-lg-6 col-sm-12 col-md-12" *ngIf="user_account.candidate"> -->
                             <div class="col-lg-6 col-sm-12 col-md-12">
                                 <div class="form-group ">
-                                    <label class="dark-grey-text font-weight-bold" for="homeaddress">
+                                    <label class="dark-grey-text font-weight-bold" for="address">
                                         Home Address</label>
-                                    <input type="email" class="form-control" id="homeaddress"
-                                        [(ngModel)]="candidateProfileRequest.homeaddress" name="homeaddress">
+                                    <input type="email" class="form-control" id="address"
+                                        [(ngModel)]="candidateProfileRequest.address" name="address">
                                 </div>
                             </div>
 
@@ -235,8 +386,8 @@
 
 
                         </div>
-                        <div class="row mt-1 mb-3">
-                            <div class="col-lg-10 col-sm-12 col-md-12">
+                        <div class="row mt-1">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
                                 <!-- <div class="form-group" *ngFor="let item of candidateProfileRequest.jobtypes;
                                 let index = index "> -->
 
@@ -248,12 +399,48 @@
                                 <!-- true -->
                                 <!-- <input type="text" class="form-control" id="jobtype"
                                         [(ngModel)]="candidateProfileRequest.jobtypes[index]" name="word{{index}}"> -->
-
-
-
                                 <div>
                                     <ng-select2 [data]="jobTypes" [options]="options"
                                         [(ngModel)]="candidateProfileRequest.jobtypes" name="jobtypes"></ng-select2>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <!-- <div class="form-group" *ngFor="let item of candidateProfileRequest.jobtypes;
+                                let index = index "> -->
+
+                                <label class="dark-grey-text font-weight-bold" for="jobtype">
+                                    Industries</label>
+
+                                <div>
+                                    <ng-select2 [data]="industries" [options]="options"
+                                        [(ngModel)]="candidateProfileRequest.industries" name="industries"></ng-select2>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="form-group mt-3">
+                                    <label class="dark-grey-text font-weight-bold" for="expectedsalary">
+                                        Expected Salary</label>
+                                    <!-- <input type="text" class="form-control" id="expectedsalary"
+                                        aria-describedby="expectedsalary"
+                                        [(ngModel)]="candidateProfileRequest.expectedsalary" name="expectedsalary"> -->
+                                    <select class="custom-select custom-select mb-3" name="expectedsalary"
+                                        [(ngModel)]="candidateProfileRequest.expectedsalary">
+                                        <option value="0">0</option>
+                                        <option value="8000000">8000000</option>
+                                        <option value="10000000">10000000</option>
+                                        <option value="15000000">15000000
+                                        </option>
+                                        <option value="20000000">20000000
+                                        </option>
+                                        <option value="30000000">30000000
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +469,7 @@
 
         <ng-container ngbNavItem>
             <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
-                Experiments</a>
+                Experience</a>
             <ng-template ngbNavContent>
                 <!-- màn hình kinh nghiệm làm việc -->
 
@@ -293,10 +480,10 @@
                     </ngb-alert>
                     <div class="row mt-5 justify-content-start">
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3 ml-3">
-                            <div class="bg-primary  mt-2 pt-1 pb-1  pl-1  border rounded border-primary">
+                            <div class="bg-primary  ml-3 mt-2 pt-1 pb-1  pl-1  border rounded border-primary">
                                 <input type="checkbox" class="mr-2 mt-1" aria-label="Checkbox for following text input"
                                     (click)="changeSuccessMessage()">
-                                <label class="text-light"> I have no experiment</label>
+                                <label class="text-light "> I have no experience</label>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 ml-3">
@@ -305,7 +492,7 @@
                                 experiments</button> -->
                             <button type="button" class="btn btn-primary" (click)="openLg(experiment)"><i
                                     class="fa fa-plus mr-2"></i>Add
-                                experiments</button>
+                                experience</button>
                         </div>
                     </div>
                     <div class="ml-3 mt-3 mb-5" *ngIf="isExperiencesEmpty()">
@@ -316,33 +503,26 @@
                         <p *ngIf="!show">
                             <button type="button" class="btn btn-warning white-text" (click)="openLg(experiment)"><i
                                     class="fa fa-plus mr-2"></i>Add
-                                experiments</button></p>
+                                experience</button></p>
                     </div>
                     <!-- tab thong tin kinh nghiem -->
                     <div class="ml-3 mt-3 mb-5" *ngIf="candidateProfile.experiences">
-                        <div class="edu-info col-lg-12 bg-light col-md-12 col-sm-12  border rounded border-primary mb-3 pt-3 ml-3 "
+                        <mdb-card
+                            class="expericene-card  bg-white col-lg-12  col-md-12 col-sm-12 pb-3    mb-3 pt-3 ml-3 "
                             *ngFor="let experience of candidateProfile.experiences">
-                            <div class="row">
-                                <div class="col-1">
-                                    <i class="fas fa-clipboard-check fa-2x"></i>
-                                </div>
-                                <div class="col-9  font-weight-normal school">
+                            <div class="row mb-1 ">
+
+                                <div class="col-9 ml-3  pt-2 pb-2   vnjobs-title  font-weight-normal school">
                                     {{experience.companyname}}
+
                                 </div>
                                 <div class="col-2">
-                                    <div class="row">
-                                        <!-- <div class="col-1">
-                                            <a> <i class="fas fa-edit show-me  " style="color:rgb(106, 190, 49);
-                                                   
-                                                    "></i></a>
-                                        </div> -->
-                                        <div class=" col-1">
-                                            <a (click)="deleteExperience(experience.id,dangerTpl,successTpl)"><i
-                                                    class="fas fa-trash-alt show-me" style="color:rgb(250, 133, 0);
+
+                                    <a (click)="deleteExperience(experience.id,dangerTpl,successTpl)"><i
+                                            class="fas fa-trash-alt show-me mt-3" style="color:rgb(250, 133, 0);
                                                   "></i></a>
 
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
 
@@ -370,7 +550,8 @@
                             </div>
 
 
-                        </div>
+
+                        </mdb-card>
                         <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
                         <ng-template #successTpl>
                             <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
@@ -390,7 +571,7 @@
 
         <ng-container ngbNavItem>
             <a class="text-uppercase text-monospace font-weight-bold pl-5 pr-5 h5 " ngbNavLink>
-                Educations</a>
+                Education</a>
             <ng-template ngbNavContent>
                 <!-- màn kình học vấn -->
                 <div class="custom pr-5">
@@ -413,31 +594,24 @@
                     </div>
                     <!-- tab thong tin hoc van -->
                     <div class="ml-3 mt-3 mb-5" *ngIf="candidateProfile.educations">
-                        <div class="edu-info col-lg-12 col-md-12 col-sm-12  border mb-3 pt-3 ml-3 "
+                        <mdb-card
+                            class="expericene-card  bg-white col-lg-12  col-md-12 col-sm-12 pb-3    mb-3 pt-3 ml-3 "
                             *ngFor="let education of candidateProfile.educations">
-                            <div class="row">
-                                <div class="col-1">
-                                    <i class="fas fa-graduation-cap fa-2x"></i>
-                                </div>
-                                <div class="col-9  font-weight-normal school">
-                                    {{education.university_college}}
+                            <div class="row mb-1">
+
+                                <div class="col-9  ml-3 pt-2 pb-2   vnjobs-title font-weight-normal school">
+                                    <i class="fas fa-graduation-cap fa-2x mr-2"></i> {{education.university_college}}
                                 </div>
                                 <div class="col-2">
-                                    <div class="row">
-                                        <!-- <div class="col-1">
-                                            <a>
-                                                <i class="fas fa-edit show-me" style="color:rgb(106, 190, 49);
-                                                   
-                                                    "></i></a>
-                                        </div> -->
-                                        <div class=" col-1">
-                                            <a (click)="deleteEducation(education.id,dangerTpl,successTpl)">
-                                                <i class="fas fa-trash-alt show-me " style="color:rgb(250, 133, 0);
-                                                  "></i></a>
-                                                    
 
-                                        </div>
-                                    </div>
+
+                                    <a (click)="deleteEducation(education.id,dangerTpl,successTpl)">
+                                        <i class="fas fa-trash-alt show-me mt-3" style="color:rgb(250, 133, 0);
+                                                  "></i></a>
+
+
+
+
                                 </div>
                             </div>
 
@@ -472,7 +646,7 @@
                                     {{education.gpa}}</div>
                             </div>
 
-                        </div>
+                        </mdb-card>
                         <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
                         <ng-template #successTpl>
                             <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
@@ -494,7 +668,7 @@
     <!-- modal add kinh nghiem -->
     <ng-template #experiment let-modal>
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Add experiments</h4>
+            <h4 class="modal-title text-primary" id="modal-basic-title">Add experience</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -615,7 +789,7 @@
     <!-- modal add education -->
     <ng-template #education let-modal>
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Add educations</h4>
+            <h4 class="modal-title text-primary" id="modal-basic-title">Add educations</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -658,7 +832,7 @@
                                     <div class="input-group mb-3">
                                         <input class="form-control" placeholder="yyyy-mm-dd"
                                             [(ngModel)]="edu['startdate']" name="edu" ngbDatepicker #eds="ngbDatepicker"
-                                            [maxDate]="{year: 2004, month: 12, day: 31}">
+                                            [minDate]="{year: 2004, month: 12, day: 31}">
                                         <div class="input-group-append">
                                             <button mdbBtn color="primary" outline="true" class="m-0 px-3 py-2"
                                                 size="md" mdbWavesEffect (click)="eds.toggle()" type="button"> <i
@@ -697,13 +871,13 @@
                 </div>
             </form>
             <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-                <ng-template #successTpl>
-                    <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
-                </ng-template>
-                <ng-template #dangerTpl>
-                    <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
-                        some error</span>
-                </ng-template>
+            <ng-template #successTpl>
+                <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+            </ng-template>
+            <ng-template #dangerTpl>
+                <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                    some error</span>
+            </ng-template>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark"

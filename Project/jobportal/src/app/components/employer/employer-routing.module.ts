@@ -8,6 +8,9 @@ import {SaveprofileComponent} from './saveprofile/saveprofile.component';
 import { ManagejobComponent} from './managejob/managejob.component';
 import {JobpostDetailComponent} from './jobpost-detail/jobpost-detail.component';
 import {SearchCandidateComponent} from './search-candidate/search-candidate.component';
+import {RecommendCandidateComponent} from './recommend-candidate/recommend-candidate.component';
+import {CandidateDetailComponent} from './candidate-detail/candidate-detail.component';
+import {EmployerHistoryComponent} from 'src/app/components/employer/employer-history/employer-history.component';
 const routes: Routes = [
   {
   path: '',
@@ -30,8 +33,12 @@ const routes: Routes = [
         component: ManagejobComponent
       },
       {
-        path: 'jobpost-detail',
+        path: 'jobpost-detail/:id',
         component: JobpostDetailComponent
+      },
+      {
+        path: 'history',
+        component: EmployerHistoryComponent
       },
 
       {
@@ -42,7 +49,14 @@ const routes: Routes = [
         path: 'searchcandidate',
         component: SearchCandidateComponent
       },
-     
+      {
+        path: 'recommendcandidate',
+        component: RecommendCandidateComponent
+      },
+      {
+        path: 'candidate-detail/:id',
+        component: CandidateDetailComponent
+      },
       
     
     ]

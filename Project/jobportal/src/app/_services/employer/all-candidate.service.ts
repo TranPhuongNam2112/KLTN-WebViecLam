@@ -9,12 +9,16 @@ export class AllCandidateService {
   private saveCandidateURL='http://localhost:8080/employer/save';
   private deleteSavedCandidateURL='http://localhost:8080/employer/savedcandidates';
   private getSavedCandidateuURL = 'http://localhost:8080/employer/savedcandidates';
- 
+  private getRecommendCandidateuURL = 'http://localhost:8080/employer/recommendedcandidates';
   constructor(private http: HttpClient) { }
  
   gettAllCandidate (pageNo: number)
   {
    return this.http.get(`${this.gettAllCandidateURL}`+'?pageNo='+pageNo);  
+  }
+  getRecommendCandidate (pageNo: number)
+  {
+   return this.http.get(`${this.getRecommendCandidateuURL}`+'?pageNo='+pageNo);  
   }
   saveCandidate(id: number): Observable<any> {
     return this.http.post(`${this.saveCandidateURL}/${id}`,id, { responseType: 'text' });
@@ -22,6 +26,10 @@ export class AllCandidateService {
   getSavedCandidate (pageNo: number)
   {
    return this.http.get(`${this.deleteSavedCandidateURL}`+'?pageNo='+pageNo);  
+  }
+  getSavedCandidatehihi ()
+  {
+   return this.http.get(`${this.deleteSavedCandidateURL}`);  
   }
   deleteSavedCandidate(id: number): Observable<any> {
     return this.http.delete(`${this.getSavedCandidateuURL}/${id}`, { responseType: 'text' });

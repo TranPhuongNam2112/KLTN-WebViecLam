@@ -1,0 +1,64 @@
+<!-- Search jobtype start -->
+<div class="container-fluid">
+
+    <!-- search job end -->
+    <!-- List jobs -->
+
+    <div class="card ml-3 mr-3 ">
+        <div class="card-body container">
+            <div class="d-flex justify-content-between ">
+                <div class="col-12 title ">Top Employers
+                    <!-- <span class=" d-flex justify-content-end text-muted ml-1" style="font-size: 14px;">Viewed
+                        <span class="text-danger mr-1 ml-1"> {{myStats.viewedEmployersCount}} </span> employers</span> -->
+                </div>
+
+
+            </div>
+            <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
+            <!-- list job -->
+            <div class="row ">
+                <div *ngFor="let employer of allEmployers;" class="col-lg-3 col-md-6 col-sm-6 mb-lg-0 mb-4 pb-3 ">
+                    <!--Card-->
+                    <mdb-card class="testimonial-card bg-white">
+                        <!--Background color-->
+
+                        <!--Avatar-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mx-auto white mt-5 text-center mb-3">
+                            <img *ngIf="employer.imageUrl" src={{employer.imageUrl}} alt="Company image"
+                                class=" img-fluid">
+                            <img *ngIf="employer.image" class="img-fluid" src="data:image/png;base64,{{employer.image}}"
+                                alt="Company image">
+                            <img *ngIf="!employer.imageUrl && !employer.image" class="img-fluid"
+                                src="./assets/images/employer/no-image.png" alt="Company image cap">
+                            <p class="mt-3 pl-3 pr-3 top-companyname " data-toogle="tooltip"
+                                title={{employer.companyname}}>
+                                {{employer.companyname}}</p>
+
+                        </div>
+                        <div class="text-center mb-3">
+                            <a (click)="jobPostByCompany(employer.id)" class="hovera"><strong>View Jobs</strong>
+                                <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
+                            </a>
+                        </div>
+
+                    </mdb-card>
+                    <!--Card-->
+                </div>
+
+                <!-- list job -->
+            </div>
+
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pagesArray();">
+                        <a class="nav-link mr-2" href="" (click)="setPage(p,$event)" [ngClass]="{'active':p==pageNo}">
+                            {{p}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- List Jobs -->
+</div>

@@ -1,17 +1,50 @@
-<!-- <app-header-for-employer></app-header-for-employer> -->
-<main>
-    <div class="container mt-5 pt-5 mb-5">
+<div class="container-fluid">
+    <div class="container bg-white mt-5 pt-5 mb-5  border rounded border-muted">
 
-        <form class="border border-grey pt-3" style="background-color:rgba(158, 158, 158, 0.1) ;">
+        <form class="pt-3">
             <p class="dark-grey-text mb-2 h4 font-weight-light">
                 <mdb-icon fas icon="briefcase" class="ml-3 mr-1"></mdb-icon>The Job
             </p>
             <!-- job tiltle -->
+            <div class="row ml-3 mt-5">
+                <div class="col-lg-4 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="dark-grey-text font-weight-bold" for="createdDay">Expired Day:</label>
+                        <span> <small id="optional"
+                            class="ml-2 text-muted">(at least 1 week from today) </small></span>
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <input class="form-control" placeholder="yyyy-mm-dd"
+                                        [(ngModel)]="jobPost.expiredDate" name="expiredDate" ngbDatepicker
+                                        #de="ngbDatepicker" [minDate]="toDate"
+                                        [maxDate]="{year: 2020, month: 12, day: 12 }">
+
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" (click)="de.toggle()" type="button"> <i
+                                                class="fas fa-calendar-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Experience Years:</label>
+                        <input type="number" class="form-control" [(ngModel)]="jobPost.requiredexperience"
+                            name="requiredexperience">
+                    </div>
+                </div>
+            </div>
             <div class="row ml-3 ">
                 <div class="col-lg-8 col-sm-12 col-md-12">
                     <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold " for="jobTitle">Job Title</label>
-                        <input type="text" class="form-control" id="jobTitle">
+                        <label class="dark-grey-text  font-weight-bold ">Job Title:</label>
+                        <input type="text" class="form-control" [(ngModel)]="jobPost.jobtitle" name="jobtitle">
                     </div>
                 </div>
             </div>
@@ -19,149 +52,184 @@
             <!-- job level -->
             <!-- job industry -->
             <div class="row ml-3 ">
-                <div class="col-lg-4 col-sm-12 col-md-12">
-                    <div class="form-group ">
-                        <label class="dark-grey-text font-weight-bold" for="jobIndustry">Industry</label>
-                        <select class="custom-select custom-select mb-3">
-                            <option selected>Please select</option>
-                            <option value="1">IT</option>
-                            <option value="2">Economic</option>
-                            <option value="3">etc</option>
-                        </select>
 
+                <div class="col-lg-8 col-sm-12 col-md-12">
+                    <!-- <div class="form-group ">
+                    <label class="dark-grey-text font-weight-bold" for="jobLevel">Job Level</label>
+                    <select class="custom-select custom-select mb-3">
+                        <option selected>Please select</option>
+                        <option value="1">Expert</option>
+                        <option value="2">Fresher</option>
+                        <option value="3">Intern</option>
+                    </select>
+                </div> -->
+                    <div class="form-group ">
+                        <label class="dark-grey-text  font-weight-bold ">Job Type:</label>
+                        <!-- <input type="text" class="form-control" [(ngModel)]="jobPost.jobType" name="jobType"> -->
+                        <ng-select [items]="jobTypes" bindValue="jobPost.jobType" [(ngModel)]="jobPost.jobType"
+                            name="jobType"></ng-select>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-12 col-md-12">
+
+            </div>
+            <div class="row ml-3">
+                <div class="col-lg-8 col-sm-12 col-md-12">
                     <div class="form-group ">
-                        <label class="dark-grey-text font-weight-bold" for="jobLevel">Job Level</label>
-                        <select class="custom-select custom-select mb-3">
-                            <option selected>Please select</option>
-                            <option value="1">Expert</option>
-                            <option value="2">Fresher</option>
-                            <option value="3">Intern</option>
-                        </select>
+                        <label class="dark-grey-text  font-weight-bold ">Industry:</label>
+                        <br />
+                        <ng-select2 [data]="industries" [options]="options" [(ngModel)]="jobPost.industry"
+                            name="industry">
+                        </ng-select2>
                     </div>
                 </div>
             </div>
             <!-- job industry -->
             <!-- job location  -->
+            <div class="col-8">
+                <label class="dark-grey-text  font-weight-bold ml-3"> Salary Range:</label>
+                <span> <small id="optional" class="ml-2 text-muted">(VND) </small></span>
+            </div>
             <div class="row ml-3 ">
-                <div class="col-lg-8 col-sm-12 col-md-12">
+
+                <div class="col-lg-4 col-sm-12 col-md-12">
                     <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold " for="stressAddress">Stress Address</label>
-                        <input type="text" class="form-control" id="jobTitle">
+                        <!-- <label class="dark-grey-text  font-weight-bold "> Salary Range:</label> -->
+                        <small id="optional" class="ml-2 text-muted">From: </small>
+                        <!-- <input type="text" class="form-control" [(ngModel)]="jobPost.minSalary" name="minSalary"> -->
+
+                        <select class="custom-select custom-select mb-3" name="minSalary"
+                            [(ngModel)]="jobPost.minSalary">
+                            <option value="0">0</option>
+                            <option value="8000000">8000000</option>
+                            <option value="10000000">10000000</option>
+                            <option value="15000000">15000000
+                            </option>
+                            <option value="20000000">20000000
+                            </option>
+                            <option value="30000000">30000000
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <small id="optional" class="ml-2 text-muted">To: </small>
+                        <!-- <input type="text" class="form-control " [(ngModel)]="jobPost.maxSalary" name="maxSalary"> -->
+                        <select class="custom-select custom-select mb-3" name="maxSalary"
+                            [(ngModel)]="jobPost.maxSalary">
+                            <option value="8000000">8000000</option>
+                            <option value="1000000">1000000</option>
+                            <option value="1500000">1500000</option>
+                            <option value="2000000">2000000
+                            </option>
+                            <option value="30000000">30000000
+                            </option>
+                            <option value="50000000">50000000
+                            </option>
+
+                        </select>
                     </div>
                 </div>
 
-            </div>
-            <div class="row ml-3 ">
-                <div class="col-lg-4 col-sm-12 col-md-12">
-                    <div class="form-group ">
-                        <label class="dark-grey-text  font-weight-bold " for="city">City Province</label>
-                        <input type="text" class="form-control" id="jobTitle">
-                    </div>
-                </div>
             </div>
             <!-- job location -->
             <!-- salary -->
             <div class="row ml-3 ">
-                <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="col-lg-8 col-sm-12 col-md-12">
                     <div class="form-group ">
-                        <label class="dark-grey-text font-weight-bold" for="jobSalary">Salary</label>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" id="jobSalary">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">USD</span>
-                            </div>
-                        </div>
+                        <label class="dark-grey-text  font-weight-bold ">Description:</label>
+                        <textarea type="text" class="form-control" id="descriptionCom"
+                            [(ngModel)]="jobPost.jobdescription" name="jobdescription"></textarea>
                     </div>
                 </div>
                 <!-- salary -->
             </div>
-            <div class="row ml-3">
-                <div class="col-lg-8 col-sm-12 col-md-12">
-                    <label class="dark-grey-text font-weight-bold" for="createdDay">Expired Day</label>
-                    <form class="form-inline">
-                        <div class="form-group hidden">
-                            <div class="input-group">
-                                <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
-                                    [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                                    [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!">
-                                <ng-template #t let-date let-focused="focused">
-                                    <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                                        [class.faded]="isHovered(date) || isInside(date)"
-                                        (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
-                                        {{ date.day }}
-                                    </span>
-                                </ng-template>
+            <!-- expired day -->
+            <!-- <div class="row ml-3">
+            <div class="col-lg-8 col-sm-12 col-md-12">
+                <label class="dark-grey-text font-weight-bold" for="createdDay">Expired Day</label>
+                <form class="form-inline">
+                    <div class="form-group hidden">
+                        <div class="input-group">
+                            <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
+                                [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                                [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!">
+                            <ng-template #t let-date let-focused="focused">
+                                <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                                    (mouseleave)="hoveredDate = null">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                                [value]="formatter.format(fromDate)"
+                                (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                            <div class="input-group-append">
+                               
+                                <button id="button-addon1" type="button" (click)="datepicker.toggle()"
+                                    class="btn btn-outline-primary"><i class="fas fa-calendar-plus"></i></button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                                    [value]="formatter.format(fromDate)"
-                                    (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
-                                <div class="input-group-append">
-                                    <button mdbBtn color="primary" outline="true" size="md"
-                                        (click)="datepicker.toggle()" class="m-0 px-3 py-2" type="button"
-                                        id="button-addon2" mdbWavesEffect><i class="fas fa-calendar-plus"></i></button>
-                                </div>
+                    </div>
+                    <div class="form-group ml-2">
+
+                        <div class="input-group">
+                            <input #dpToDate ngbDatepicker class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                                [value]="formatter.format(toDate)"
+                                (input)="toDate = validateInput(toDate, dpToDate.value)">
+                            <div class="input-group-append">
+                               
+                                <button id="button-addon2" type="button" (click)="datepicker.toggle()"
+                                    class="btn btn-outline-primary"><i class="fas fa-calendar-plus"></i></button>
                             </div>
                         </div>
-                        <div class="form-group ml-2">
+                    </div>
+                </form>
+            </div>
+        </div> -->
 
-                            <div class="input-group">
-                                <input #dpToDate ngbDatepicker class="form-control" placeholder="yyyy-mm-dd"
-                                    name="dpToDate" [value]="formatter.format(toDate)"
-                                    (input)="toDate = validateInput(toDate, dpToDate.value)">
-                                <div class="input-group-append">
-                                    <button mdbBtn color="primary" outline="true" size="md"
-                                        (click)="datepicker.toggle()" class="m-0 px-3 py-2" type="button"
-                                        id="button-addon2" mdbWavesEffect><i class="fas fa-calendar-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+            <hr class="hihi " />
+            <p class="dark-grey-text mb-2 h4 font-weight-light">
+                <mdb-icon fas icon="map-marker-alt" class="ml-3 mr-1"></mdb-icon>The Location
+            </p>
 
-
-                    <!-- <div class="form-group">
-                        <label class="dark-grey-text font-weight-bold" for="createdDay">Created Day</label>
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
-                                        ngbDatepicker #createdDay="ngbDatepicker"
-                                        [maxDate]="{year: 2020, month: 1, day: 31}">
-                                    <div class="input-group-append">
-                                        <button mdbBtn color="primary" outline="true" size="md" class="m-0 px-3 py-2"
-                                            type="button" id="button-addon2" mdbWavesEffect
-                                            (click)="createdDay.toggle()"><i class="fas fa-calendar-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
+            <div class="row ml-3 mt-5">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label class="dark-grey-text  ">Street Address:</label>
+                        <input type="text" class="form-control" [(ngModel)]="jobPost.street_address"
+                            name="street_address">
+                        <!-- <input type="text" class="form-control" readonly value="{{jobPost.street_address}}"> -->
+                    </div>
                 </div>
             </div>
-
-            <div class="row ml-3 mt-3">
-
-                <div class="col-lg-8 col-sm-12 col-md-12">
-                    <div class="form-group">
-
-                        <label class="dark-grey-text font-weight-bold" for="jobDescription">Description</label>
-                        <small id="optional" class="ml-2 text-muted">(Optional)</small>
-                        <textarea type="text" class="form-control" id="jobDescription"></textarea>
-
+            <div class="row ml-3">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label class="dark-grey-text ">City Province:</label>
+                        <input type="text" class="form-control" [(ngModel)]="jobPost.city_province"
+                            name="city_province">
                     </div>
                 </div>
             </div>
             <div class="col-8  d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
+                <button type="submit" (click)="createJobPost(dangerTpl, successTpl);"
+                    class="btn btn-primary pl-5 pr-5 mb-5 mt-3 ">Save</button>
 
             </div>
         </form>
+
+        <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+        <ng-template #successTpl>
+            <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successfully!</span>
+        </ng-template>
+        <ng-template #dangerTpl>
+            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
+                some error</span>
+        </ng-template>
     </div>
-    <!-- company profile end -->
-</main>
-<app-footer></app-footer>
+</div>

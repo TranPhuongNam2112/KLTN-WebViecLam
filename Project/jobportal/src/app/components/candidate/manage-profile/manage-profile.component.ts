@@ -13,6 +13,13 @@ import { Router } from '@angular/router';
 import { ToastService } from '../../../_services/toast-service.service';
 import { Options } from 'select2';
 import { Select2OptionData } from 'select2';
+//count stat
+import {CandidateStats} from 'src/app/_models/candidate/candidateStats';
+import {CandidateStatService} from 'src/app/_services/candidate/candidate-stat.service';
+//industry
+import { AllIndustries } from 'src/app/_models/candidate/allIndustries';
+import { CrawledJoblistService } from 'src/app/_services/candidate/crawled-joblist.service';
+//count stat
 //test
 /**
  * This Service handles how the date is represented in scripts i.e. ngModel.
@@ -84,6 +91,8 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 })
 
 export class ManageProfileComponent implements OnInit  {
+   //industry
+   industries: AllIndustries;
   //get profile
   user_account: User_Account;
   doB: NgbDateStruct;
@@ -92,6 +101,9 @@ export class ManageProfileComponent implements OnInit  {
   enddate: NgbDateStruct;
   completiondate: NgbDateStruct;
   active = 1;
+  //my stat
+  myStats: CandidateStats;
+  //mystat
   //ng
   private _success = new Subject<string>();
   staticAlertClosed = false;
@@ -147,7 +159,11 @@ export class ManageProfileComponent implements OnInit  {
     private router: Router,
     public toastService: ToastService,
     private ngbCalendar: NgbCalendar, 
-    private dateAdapter: NgbDateAdapter<string>
+    private dateAdapter: NgbDateAdapter<string>,
+    private candidateStatService: CandidateStatService,
+      //industry
+      private crawledJoblistService: CrawledJoblistService,
+      //industry
   ) {
   }
   trackByIndex(index: number, obj: any): any {
@@ -157,6 +173,7 @@ export class ManageProfileComponent implements OnInit  {
     return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
   }
   ngOnInit(): void {
+    this.getCandidateStats();
     //ng select
     // this.exampleData = [
     //  'Intern','Fresher','Junior','Sernior'
@@ -175,7 +192,10 @@ export class ManageProfileComponent implements OnInit  {
     this.candidateProfile = new CandidateProfile();
     this.candidateProfileRequest = new CandidateProfileRequest();
     this.jobTypes= new AllJobTypes();
-
+     //industry
+     this.industries = new AllIndustries();
+     this.getAllIndustries();
+    this.myStats = new CandidateStats();
     this.userAccountService.getAccounts()
     .subscribe(data => {
       console.log(data)
@@ -201,7 +221,26 @@ export class ManageProfileComponent implements OnInit  {
   //   this.submitted = false;
   //   this.experien = new ExperiencesRequest();
   // }
-
+  //industry
+  getAllIndustries() {
+    this.crawledJoblistService.getAllIndustries()
+      .subscribe(data => {
+        console.log("industries");
+        console.log(data);
+        this.industries = data;
+      }, error => console.log(error));
+  }
+//my stat
+getCandidateStats(){
+  this.candidateStatService.getCandidateStats()
+  .subscribe(data => {
+    console.log("my stats");
+    console.log("my stats"+data);
+    this.myStats = data;
+  }, error => console.log(error));
+   
+}
+//my stat
   updateProfile(dangerTpl, successTpl) {
     this.userAccountService.updateProfile(this.candidateProfileRequest)
       .subscribe(data => {
@@ -315,6 +354,7 @@ export class ManageProfileComponent implements OnInit  {
       console.log(data)
       this.user_account = data;
       this.candidateProfile = data;
+     
     }, error => console.log(error));
   }
   // getJobTypes(){
@@ -381,6 +421,7 @@ export class ManageProfileComponent implements OnInit  {
     if (keys.length) { return false; }
     else return true;
   }
+  
   isEducationsEmpty(): boolean {
     let keys = Object.keys(this.candidateProfile.educations);
     if (keys.length) { return false; }

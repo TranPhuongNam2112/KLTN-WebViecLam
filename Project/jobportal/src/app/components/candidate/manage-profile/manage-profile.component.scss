@@ -1,3 +1,16 @@
+.vnjobs-title{
+    background-color: #f1f6fb;
+    font-size: 20px;
+    font-family: sans-serif;
+
+}
+.hotjobs-title{
+    background-color: #FAFFB4;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #FA830B;
+
+}
 .classic{
     background-color: yellowgreen;
     color: #3F729B;
@@ -6,7 +19,29 @@
     font-size: 20px;
     color: #3F729B;
 }
-
+// .span-text{
+//     color: #385898;
+// }
+.work-expect-text{
+font-size: 14px;
+color: #f57c00;
+}
+.profile-text-content:hover{
+    background-color: #F2F3F5;
+}
+.expericene-card:hover .show-me  { 
+    display: block;   
+}
+.expericene-card{
+    font-family: sans-serif;
+}
+.profile-card-font{
+    font-family: sans-serif;
+}
+.expericene-card:hover{
+    box-shadow: 0 0 10px rgba(2, 2, 2, 0.2); 
+    transform: scale(1);
+}
 .show-me{
     display: none;
 }

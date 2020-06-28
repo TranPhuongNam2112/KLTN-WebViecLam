@@ -1,0 +1,57 @@
+//theem xam start
+.box_mota, .box_quyenloi, .box_yeucau {
+    float: left;
+    width: 100%;
+    padding: 15px 19px 0;
+    color: #555;
+    font-size: 14.19px;
+    line-height: 24px;
+    font-family: sans-serif;
+    h3 {
+        float: left;
+        width: 100%;
+        font-weight: 600;
+        font-size: 19px;
+        font-family: Roboto-Medium,sans-serif;
+        color: #307df1;
+        padding-bottom: 8px;
+    }
+}
+//them xàm end
+
+
+.summary-item{
+    font-size: 13px;
+    line-height: 1;
+}
+.border-summary-item{
+    background-color: #F7FDFF;
+    border-style: solid;
+         border-color: #80deea  ;
+         border-width: 1px;
+         border-radius: 5px;
+
+}
+.view{
+    background-color: #eaeaea;
+    min-height: 100vh;
+}
+.container{
+    background-color: #ffffff;
+    
+}
+.item{
+    font-size: 26px;
+    letter-spacing: 1px;
+
+}
+.see-map{
+    font-size: 12px;
+}
+.unsaved{
+    color: #c9c9c9;
+    font-size: 14px;
+}
+.unsaved:hover{
+    color: #e53935 ;
+}

@@ -1,0 +1,89 @@
+.summary-item{
+    font-size: 13px;
+    line-height: 1;
+}
+.border-summary-item{
+    background-color: #F7FDFF;
+    border-style: solid;
+         border-color: #80deea  ;
+         border-width: 1px;
+         border-radius: 5px;
+
+}
+.view{
+    background-color: #eaeaea;
+    min-height: 100vh;
+}
+.container{
+    background-color: #ffffff;
+}
+.item{
+    font-size: 26px;
+    letter-spacing: 1px;
+
+}
+.see-map{
+    font-size: 12px;
+}
+.unsaved{
+    color: #c9c9c9;
+    font-size: 14px;
+}
+.unsaved:hover{
+    color: #e53935 ;
+}
+//image
+.card-img-top {  
+    width:150px; 
+    height:150px; 
+    object-fit: cover; 
+  } 
+  //background
+  .view{
+    background-color: #eaeaea;
+    min-height: 100vh;
+}
+.container{
+    background-color: #ffffff;
+    
+}
+//text
+.item{
+    font-size: 22px;
+    letter-spacing: 0.8px;
+
+}
+.candidate-name{
+  font-size: 28px;
+  text-transform: uppercase;
+  color: #10316B;
+}
+.right-item-title{
+    font-size: 18px;
+    font-family: 'Roboto';
+}
+.right-item{
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+.ul-item{
+    color: #212529;
+    font-size: 16px;
+    font-family: 'Roboto';
+   
+}
+.short-desrciption{
+    font-size: 14px;
+}
+.company-name{
+    font-size: 18px;
+    font-family: 'Roboto';
+    text-transform: uppercase;
+    color: #212529;;
+}
+.jobtitle{
+    font-size: 20px;
+    font-family: 'Roboto';
+    text-transform: uppercase;
+    color: #F7941D;;
+}

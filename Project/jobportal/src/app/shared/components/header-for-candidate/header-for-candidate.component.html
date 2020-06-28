@@ -10,14 +10,64 @@
     <links>
         <!-- Links -->
         <ul class="navbar-nav ml-auto">
-           
             <li class="nav-item ">
-                <a  [routerLink]="['/candidate/alljoblists']" class="nav-link waves-light" mdbWavesEffect><strong>All Jobs</strong></a>
+                <a [routerLink]="['/candidate/all-employers']" class="nav-link waves-light" mdbWavesEffect><strong>All
+                        Companies</strong></a>
             </li>
-            
-            <li class="nav-item" >
+            <li class="nav-item ">
+                <!-- <a [routerLink]="['/candidate/alljoblists']" class="nav-link waves-light" mdbWavesEffect><strong>All
+                        Jobs</strong></a> -->
+                <div class="btn-group" mdbDropdown>
+                    <span class=" nav-link waves-light"><strong>Jobs</strong></span>
+
+                    <a mdbDropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light mt-2"
+                        mdbWavesEffect style="height: auto; width: 30px">
+
+                    </a>
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item " [routerLink]="['/candidate/alljoblists']">
+                          
+                            vnJobs</a>
+
+
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['/candidate/other-websites-job-lists']">
+                          
+                            Popular Websites</a>
+                            <div class="divider dropdown-divider"></div>
+                            <a class="dropdown-item" [routerLink]="['/candidate/recommendjob']">
+                              
+                                Recommended Jobs</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="nav-item ">
                 <!-- <a [routerLink]="['/candidate/manage']" class="nav-link waves-light" mdbWavesEffect><strong>{{this.socialusers.name}}<i class="fas fa-sort-down"></i></strong></a> -->
-                <a [routerLink]="['/candidate/manage']" class="nav-link waves-light" mdbWavesEffect><strong>{{user_account.name}}<i class="fas fa-sort-down"></i></strong></a>
+                <!-- <a [routerLink]="['/candidate/manage']" class="nav-link waves-light" mdbWavesEffect><strong>{{user_account.name}}<i class="fas fa-sort-down"></i></strong></a>
+            </li> -->
+                <div class="btn-group" mdbDropdown>
+                    <span *ngIf="user_account.name"
+                        class=" nav-link waves-light"><strong>{{user_account.name}}</strong></span>
+                    <span *ngIf="socialusers.name"
+                        class=" nav-link waves-light"><strong>{{socialusers.name}}</strong></span>
+                    <a mdbDropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light mt-2"
+                        mdbWavesEffect style="height: auto; width: 30px">
+
+                    </a>
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" [routerLink]="['/candidate/manage']">
+                            <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                            My Account</a>
+
+
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['/candidate/history']">
+                            <i class="fa fa-history mr-2" aria-hidden="true"></i>
+                            View History</a>
+                    </div>
+                </div>
             </li>
             <!-- bell -->
             <!-- <li class="nav-item">
@@ -26,11 +76,11 @@
                 </a>
             </li> -->
             <li class="nav-item">
-                <a  class="nav-link" (click)="logout()">
+                <a class="nav-link" (click)="logout()">
                     <mdb-icon fas icon="sign-out-alt"></mdb-icon>
                 </a>
             </li>
-            
+
         </ul>
         <!-- Links -->
     </links>
@@ -38,8 +88,11 @@
 </mdb-navbar>
 <!--Navbar-->
 <!--/.Navbar-->
-<main>
+
+
+<!-- app search job tạm thời xóa vì search jobtype -->
+<!-- <main>
     <div class="container-fluid">
      <app-search-job></app-search-job>
     </div>
-</main>
+</main> -->

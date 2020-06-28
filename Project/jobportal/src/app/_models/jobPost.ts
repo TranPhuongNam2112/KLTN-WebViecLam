@@ -4,18 +4,26 @@ import { JobLocation } from './jobLocation';
 import { SaveJobPost } from './saveJobPost';
 
 export class JobPost {
-    id: number;
     job_title: string;
-    employer: Employer;
     jobtype: JobType;
-    industry: string;
-    created_date: Date;
+    industries: string;
     job_description: string;
-    joblocation: JobLocation;
-    savedjobpost: SaveJobPost;
-    expired_date: Date;
+    requiredexperienceyears: number;
+    expirationDate: Date;
     min_salary: number;
     max_salary: number;
-    expirationDateTime: Date;
+    sourceUrl: string;
+    sourceWebsite: string;
+    requiredexperience: number;
+    jobdescription: string;
+    industry: string[];
+    minSalary: number;
+    maxSalary: number;
+    expiredDate: Date;
+    street_address: string;
+    city_province: string;
     salary: number;
+    expired_date: Date;
+    created_date: Date;
+    id: number;
 }

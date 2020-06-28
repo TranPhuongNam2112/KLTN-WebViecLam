@@ -1,0 +1,122 @@
+//page a
+.nav-link{
+    font-size: 14px;
+    color: #4d4d4d;
+    border: 1px solid #e1e1e1;
+  }
+//page a
+.top-companyname{
+   
+    font-size: 18px;
+    color: #1c2331;
+    font-family: sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+}
+.testimonial-card{
+    transition: box-shadow .3s;
+ // border-radius:10px;
+  border: 3x solid #ccc;
+}
+
+.testimonial-card:hover{
+    box-shadow: 0 0 20px rgba(2, 2, 2, 0.2); 
+    transform: scale(1.01);
+}
+.img-fluid{
+    width: 100px; 
+    height: 100px; 
+   object-fit: cover; 
+  }
+// .show-more{
+   
+//     line-height: 27px;
+//     font-size: 14px;
+
+// }
+
+.title{
+    color: #1c2331;
+    line-height: 35px;
+    font-size: 32px;
+    margin-top: 20px;
+    letter-spacing: -1px;
+}
+.card{
+    background-color: white;
+}
+//search job start
+.container-fluid{
+  background-color: #e9e9e9;
+    padding-top: 100px;
+    padding-bottom: 40px;
+   
+}
+
+  //text
+  .recommened{
+    font-size: 14px;
+  }
+  .minimum-text{
+    font-size: 12px;
+  }
+// sercech job
+a.hovera:hover {
+    color: #ef5350 ;
+    line-height: 27px;
+    font-size: 14px;
+   }
+a.hovera{
+       color: #6491FA;
+       line-height: 27px;
+    font-size: 14px;
+   }
+//responsive
+// mobile
+@media (min-width: 306px) { 
+    .text-button{
+        font-size: 20px;
+    }
+    .form-control{
+        height: 60px;
+        font-size: 20px;
+     }
+  }
+  //ipad
+  @media (min-width: 768px) {
+    .text-button{
+        font-size: 22px;
+    }
+    .form-control{
+        height: 60px;
+        font-size: 22px;
+     }
+  }
+  //ipad pro
+  @media (min-width: 992px) {
+    .text-button{
+        font-size: 16px;
+    }
+    .form-control{
+        height: 50px;
+     }
+  }
+  //laptop
+  @media (min-width: 1200px) {
+    .text-button{
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .form-control{
+       height: 50px;
+       font-size: 16px;
+    }
+    h5{
+        letter-spacing: 0.5 px;
+    }
+  }
+  
+  
+  // search job end

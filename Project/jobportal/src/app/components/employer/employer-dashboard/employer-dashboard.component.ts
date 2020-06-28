@@ -5,6 +5,8 @@ import { AllCandidateService } from 'src/app/_services/employer/all-candidate.se
 import { CandidateSummary } from 'src/app/_models/employer/candidateSummary';
 import { SavedCandidate } from 'src/app/_models/employer/savedCandidate';;
 import { ToastService } from 'src/app/_services/toast-service.service';
+import { map } from 'rxjs/operators';
+import * as _ from 'lodash';    
 @Component({
   selector: 'app-employer-dashboard',
   templateUrl: './employer-dashboard.component.html',
@@ -14,6 +16,11 @@ export class EmployerDashboardComponent implements OnInit {
   allCandidates: Observable<CandidateSummary[]>;
   savedCandidate: SavedCandidate;
   public pageNo: number = 0;
+  isPresent: boolean;
+  isSaved: boolean;
+  result='';
+  save: SavedCandidate;
+  all: Observable<CandidateSummary[]>;
   public pages: Array<number>;
   // a = [
   //   { id: 1, name: 'foo' },
@@ -41,24 +48,43 @@ export class EmployerDashboardComponent implements OnInit {
 
     this.getSavedCandidate();
     this.gettAllCandidate();
-   //theem
    
   }
-  
-
 
   gettAllCandidate() {
-    this.allCandidateService.gettAllCandidate(this.pageNo).subscribe(
+    this.allCandidateService.gettAllCandidate(this.pageNo).subscribe
+    (
       data => {
-        console.log(data);
         this.allCandidates = data['content'];
-        this.pages = new Array(data['totalPages'])
+        this.pages = new Array(data['totalPages']);
+        this.all = this.allCandidates;
+        this.save = this.savedCandidate;
+        console.log("all");
+        console.log(this.all);
+        console.log("save");
+        console.log(this.save);
+      
+      
+        this.result = _.intersectionBy(this.all, this.save, 'id');
+         console.log("result");
+        console.log(this.result);
+        let check = Object.keys(this.result).length;
+        if(check){
+          this.isSaved= true;
+        } else this.isSaved= false;
+        console.log("isSaved");
+        console.log(this.isSaved);
       },
       (error) => {
         console.log(error.error.message)
       }
     );
   }
+  // isSaved(): boolean {
+  //   let keys = Object.keys(this.result);
+  //   if (keys.length) { return true; }
+  //   else return false;
+  // }
   saveCandidate(id: number, dangerTpl, successTpl) {
     this.allCandidateService.saveCandidate(id)
       .subscribe(
@@ -80,13 +106,23 @@ export class EmployerDashboardComponent implements OnInit {
     this.allCandidateService.getSavedCandidate(this.pageNo).subscribe(
       data => {
         console.log(data);
-        this.savedCandidate.id = data['content'];
-        this.pages = new Array(data['totalPages'])
+        this.savedCandidate = data['content'];
+        console.log(this.savedCandidate);
+        this.pages = new Array(data['totalPages']);
+        // this.isPresent = this.savedCandidate.some(function (el) { return el.name === 'Nguyễn Thị Ngọc Trân' });
+        // console.log("pesent");
+        // console.log(this.isPresent);
+        //ok
+        // this.keys = this.savedCandidate;
+        // console.log("pesent");
+        // console.log(this.keys);
+
       },
       (error) => {
         console.log(error.error.message)
       }
     );
+
   }
 
 
@@ -104,8 +140,12 @@ export class EmployerDashboardComponent implements OnInit {
           // this.isSave=true;
           this.toastService.show(dangerTpl, { classname: 'bg-danger text-light mt-5', delay: 6000 });
         }
-      );
-
+      );      
+  }
+  candidateDetail(id: number) {
+    //this.router.navigate(['employer/candidate-detail', id]);
+    let url = this.router.createUrlTree(['employer/candidate-detail', id]);
+    window.open(url.toString(), '_blank');
   }
 
 }

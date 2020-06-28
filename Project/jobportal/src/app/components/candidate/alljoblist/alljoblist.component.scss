@@ -1,0 +1,95 @@
+
+.img-fluid{
+  width: 50px; 
+  height: 50px; 
+ object-fit: cover; 
+}
+.span-text{
+  font-size: 12px;
+}
+.company-name{
+  display:inline-block;
+ //width:180px;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+
+}
+//search job start
+.container-fluid{
+    background-color: #6491FA     ;
+    padding-top: 100px;
+    padding-bottom: 40px;
+   
+}
+//image recommjobpost company avatar
+.card-img-hihi{
+    width:50px; 
+    height:50px; 
+    object-fit: cover; 
+  }
+  //text
+  .recommened{
+    font-size: 14px;
+   
+  }
+  
+  .minimum-text{
+    font-size: 14px;
+  }
+// sercech job
+a.hovera:hover {
+    color: #ef5350 ;
+   
+   }
+a.hovera{
+       color: #6491FA;
+       font-size: 16px;
+   }
+//responsive
+// mobile
+@media (min-width: 306px) { 
+    .text-button{
+        font-size: 20px;
+    }
+    .form-control{
+        height: 60px;
+        font-size: 20px;
+     }
+  }
+  //ipad
+  @media (min-width: 768px) {
+    .text-button{
+        font-size: 22px;
+    }
+    .form-control{
+        height: 60px;
+        font-size: 22px;
+     }
+  }
+  //ipad pro
+  @media (min-width: 992px) {
+    .text-button{
+        font-size: 16px;
+    }
+    .form-control{
+        height: 50px;
+     }
+  }
+  //laptop
+  @media (min-width: 1200px) {
+    .text-button{
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .form-control{
+       height: 50px;
+       font-size: 16px;
+    }
+    h5{
+        letter-spacing: 0.5 px;
+    }
+  }
+  
+  
+  // search job end

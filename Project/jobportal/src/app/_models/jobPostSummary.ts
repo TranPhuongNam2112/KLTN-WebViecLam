@@ -8,5 +8,7 @@ export class JobPostSummary {
 	expirationDate: Date;
 	minSalary: number;
 	maxSalary: number;
+	imageUrl: string;
+	image: string;
 
 }

@@ -1,117 +1,143 @@
 <!-- <app-header-for-employer></app-header-for-employer> -->
 
-    <div class="container mt-5 pt-5 mb-5">
-            <form>
-                <div class="form-group form-inline d-flex justify-content-start text-primary">
-                    <h5 class="font-weight-bold">Manage JobPost</h5>
-                </div>
-                <!-- <div class="form-group form-inline d-flex justify-content-start">
+<div class="container mt-5 pt-5 mb-5">
+    <form>
+        <div class="form-group form-inline d-flex justify-content-start text-primary">
+            <h5 class="font-weight-bold">Manage JobPost</h5>
+        </div>
+        <!-- <div class="form-group form-inline d-flex justify-content-start">
                 Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
             </div> -->
-            </form>
-            <table class="table table-striped ">
-                <thead>
-                    <tr>
-                        <th scope="col">Job Title</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Job Type</th>
-                        <th scope="col" class="text-center ">Experience Years</th>
-                        <th scope="col">Expiration Date</th>
-                        <!-- <th scope="col">Min Salary</th>
-                        <th scope="col">Max Salary</th> -->
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-        
-                    <tr *ngFor="let jobPost of myJobPosts ;">
-        
-                        <td>
-                            <ngb-highlight [result]="jobPost.jobtitle "></ngb-highlight>
-                        </td>
-                        <td>
-                            <ngb-highlight [result]="jobPost.city "></ngb-highlight>
-                        </td>
-                        <td>
-                            <ngb-highlight [result]="jobPost.jobtype"></ngb-highlight>
-                        </td>
-                        <td class="text-center">
-                            <ngb-highlight [result]="jobPost.experienceyears"></ngb-highlight>
-                        </td>
-                        <td>
-                            <ngb-highlight [result]="jobPost.expirationDate | date:'longDate'  "></ngb-highlight>
-                        </td>
-                        <!-- <td>
-                            <ngb-highlight [result]="jobPost.minSalary | currency"></ngb-highlight>
-                        </td>
-                        <td>
-                            <ngb-highlight [result]="jobPost.maxSalary | currency"></ngb-highlight>
+    </form>
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th scope="col">Job Title - ID</th>
+                <!-- <th scope="col">Job Type</th>
+                <th scope="col" class="text-center ">Required Years</th> -->
+                <th scope="col">Salary</th>
+                <th scope="col">City</th>
+                <th scope="col">Expires in</th>
+                <!-- <th scope="col">Max Salary</th> -->
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let jobPost of myJobPosts ;">
+
+                <td>
+                    <ngb-highlight class="jobtitle-text-table mr-1" [result]="jobPost.jobtitle "></ngb-highlight>
+                    <span class="job-id"> - {{jobPost.id}}</span>
+                    <br />
+                    <ngb-highlight class="text-success font-weight-medium" style="font-size: 12px;"
+                        [result]="jobPost.jobtype"></ngb-highlight>
+                    <br />
+                    <!-- <ngb-highlight class="text-muted font-weight-medium" style="font-size: 12px;"
+                        [result]="jobPost.experienceyears"> </ngb-highlight> -->
+                    <label *ngIf="jobPost.experienceyears" style="font-size: 12px;"
+                        class="text-muted font-weight-medium">{{jobPost.experienceyears}}</label>
+
+                    <span *ngIf="jobPost.experienceyears" class="text-muted font-weight-medium"
+                        style="font-size: 12px;"> năm kinh nghiệm</span>
+                    <span *ngIf="!jobPost.experienceyears" class="text-danger font-weight-medium"
+                        style="font-size: 12px;">Không
+                        yêu cầu kinh nghiệm</span>
+                </td>
+                <!-- <td class="text-success font-weight-medium" style="font-size: 12px;">
+                            <ngb-highlight  [result]="jobPost.jobtype"></ngb-highlight>
                         </td> -->
-                        
-                        <td>
-                            <div class="row">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-success mr-3" (click)="getJobPostDetail(jobPost.id)">
-                                        <span> <i class="fas fa-search"></i></span>
-                                    </button>
-                                </div>
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-danger" (click)="open(content)">
-                                        <span> <i class="fas fa-trash"></i></span>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- <button type="button" class="btn btn-danger"  (click)="deleteJobPost(jobPost.id)" > 
+                <!-- <td class="text-center">
+                    <ngb-highlight [result]="jobPost.experienceyears"></ngb-highlight>
+                </td> -->
+                <td>
+                    <!-- <ngb-highlight [result]="jobPost.minSalary | currency    "></ngb-highlight>
+                    <ngb-highlight [result]="jobPost.maxSalary | currency"></ngb-highlight> -->
+                    {{jobPost.minSalary| currency:"VND"}} -
+                    {{jobPost.maxSalary | currency:"VND"}}
+                </td>
+                <td>
+                    <ngb-highlight [result]="jobPost.city "></ngb-highlight>
+                </td>
+                <td class="text-muted">
+                    <i class="far fa-clock mr-1"></i>
+                    <ngb-highlight [result]="jobPost.expirationDate |date :'dd-MM-yyyy '  "></ngb-highlight>
+                </td>
+                <!-- <td>
+                            <ngb-highlight [result]="jobPost.minSalary | currency"></ngb-highlight>
+                        </td> -->
+                <td>
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-warning mr-3" (click)="getJobPostDetail(jobPost.id)">
+                                <mdb-icon fas icon="edit" style="color: white;"></mdb-icon>
+                            </button>
+
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-danger" (click)="open(content)">
+                                <span> <i class="fas fa-trash"></i></span>
+                            </button>
+
+
+                        </div>
+                    </div>
+
+                    <!-- <button type="button" class="btn btn-danger"  (click)="deleteJobPost(jobPost.id)" > 
                                 <span> <i class="fas fa-trash"></i></span>
                             </button> -->
-                           
-                        </td>
-                        
-                        <ng-template #content let-c="close" let-d="dismiss">
-                            <div class="modal-header">
-                              <h4 class="modal-title" id="modal-basic-title"><i class="fas fa-trash-alt pr-3"></i>Are you sure?</h4>
-                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <p>Do you really want to delete these records? This process cannot be undone.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" aria-label="Close" (click)="d('Cross click')">Cancel</button>
-                              <button type="button" class="btn btn-danger" (click)="c('Save click');deleteJobPost(jobPost.id,dangerTpl,successTpl)">Save</button>
-                            </div>
-                          </ng-template>
-                    </tr>
-                </tbody>
-            </table>
-            <hr>
-            
-            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-            <ul class="nav nav-pills d-flex justify-content-center">
-                <li class="nav-item" *ngFor="let p of pages; let i=index">
-                    <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
-                        {{i}}
-                    </a>
-                </li>
-            </ul>
-           
-             
-      
-        <!-- <ng-template #successTpl>
+
+                </td>
+
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header text-muted">
+                        <h4 class="modal-title" id="modal-basic-title">
+                            <mdb-icon fas icon="exclamation-circle mr-1"></mdb-icon>Are you
+                            sure?
+                        </h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete these records? This process cannot be recovered.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn  btn-outline-secondary" aria-label="Close"
+                            (click)="d('Cross click')">Cancel</button>
+                        <button type="button" class="btn btn-primary"
+                            (click)="c('Save click');deleteJobPost(jobPost.id,dangerTpl,successTpl)">Save</button>
+                    </div>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    <ul class="nav nav-pills d-flex justify-content-center">
+        <li class="nav-item" *ngFor="let p of pages; let i=index">
+            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                {{i}}
+            </a>
+        </li>
+    </ul>
+
+
+
+    <!-- <ng-template #successTpl>
            <span style="font-size: 21px;"><i class="fas fa-check mr-3 "></i>Successfully!</span> 
           </ng-template>
           <ng-template #dangerTpl>
             <span><i class="fas fa-check mr-5"></i>There got some error</span> 
            </ng-template>
            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts> -->
-           <ng-template #successTpl>
-               <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Delete successful!</span>
-           </ng-template>
-           <ng-template #dangerTpl>
-               <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got some error</span>
-           </ng-template>
-      
-    </div>
+    <ng-template #successTpl>
+        <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Delete successful!</span>
+    </ng-template>
+    <ng-template #dangerTpl>
+        <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got some error</span>
+    </ng-template>
 
+</div>

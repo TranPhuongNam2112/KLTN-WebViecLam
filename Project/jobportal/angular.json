@@ -25,7 +25,18 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ng2-pdfjs-viewer/pdfjs",
+                "output": "/assets/pdfjs"
+              },
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "./node_modules/animate.css/animate.css",
@@ -37,7 +48,6 @@
               "./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
               "./node_modules/select2/dist/css/select2.min.css",
               "src/styles.scss"
-              
             ],
             "scripts": [
               "./node_modules/chart.js/dist/Chart.js",

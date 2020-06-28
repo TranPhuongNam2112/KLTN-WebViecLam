@@ -1,112 +1,338 @@
+<!-- Search jobtype start -->
+<div class="container-fluid">
+    <div class="heavy-rain-gradient
+    rounded-lg pl-3 pr-3 rounded-lg">
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="input-group mt-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <mdb-icon fas icon="search"></mdb-icon>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Find your job type expectation"
+                        aria-label="expectation" aria-describedby="basic-addon1" [(ngModel)]="jobtype" name="jobtype">
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
+                <div class="dropdown" mdbDropdown>
+                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                        mdbWavesEffect block="true">
+                        <span class="text-button">All Jobs</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-primary">
+                        <!-- job -->
+                        <a class="dropdown-item" href="#">Action</a>
+                        <!-- job    -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
+                <div class="dropdown" mdbDropdown>
+                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                        mdbWavesEffect block="true">
+                        <span class="text-button">All Locations</span>
+
+                    </button>
+                    <div class="dropdown-menu dropdown-primary">
+                        <!-- location -->
+                        <a class="dropdown-item" href="#">Action</a>
+                        <!-- location    -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-12 col-md-12">
+                <button (click)="searchJobType()" mdbBtn color="success" block="true" class="my-4" type="submit">
+                    <strong><span class="text-button">Search</span></strong> </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- search job end -->
 <!-- List jobs -->
 
 <div class="card ">
     <div class="card-body container">
-        <h5 class="card-title ml-5 ">Lasted Jobs</h5>
+        <div class="d-flex justify-content-between ">
+            <h5 class="card-title ml-5 font-weight-normal ">Lastest Jobs</h5>
+            <h5 *ngIf="!isRecommendJobPostEmpty()" class=" text-muted font-weight-normal card-title mr-5 ">
+                Recommendation Jobs</h5>
+        </div>
         <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
         <!-- list job -->
-        <div *ngIf="allJobPost">
-            <div class="pt-3 mb-3 ml-5 mr-5 border rounded border-weight-light bg-light"
-                *ngFor="let jobpost of allJobPost; ">
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
-                        
-                        <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
-                            alt="Company image cap">
-                       
-                        <!-- <a class="d-flex justify-content-center" mdbTooltip="delete saved job" placement="top"
-                            (click)="deleteSaveJobPost(savedjob.id,dangerTpl,successTpl)">
-                            <i class="fas fa-heart fa-2x mt-3" style="color: crimson;"></i>
-                        </a> -->
-                    </div>
-                    <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
-                        <div class="row">
+        <div *ngIf="allJobPost && isRecommendJobPostEmpty()" class="row">
+            <div *ngFor="let jobpost of allJobPost;" class="col-lg-6 col-md-12 col-sm-12">
+                <div class=" pt-3 mb-3 pr-3  border rounded border-weight-light bg-white">
+                    <div class="row pl-1">
+                        <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                            <!-- <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
+                                alt="Company image cap"> -->
 
-                            <div class="col-8">
-                                <div class="row">
-                                    <a href="https://www.w3schools.com" class="font-weight-bold"
-                                        style="font-size:20px;">
-                                        {{jobpost.jobtitle}}</a>
-                                </div>
-                                <div class="row">
-                                    <label class="text-secondary" style="font-size: 14px ; ">
-                                        <i class="fas fa-map-marker-alt mr-1">
-                                        </i> {{jobpost.city}}
-                                    </label>
-                                    <label class="ml-3 text-secondary" style="font-size: 14px;">
-                                        <i class="fas fa-money-bill-wave"></i>
-                                        {{jobpost.minSalary | currency}} -
-                                        {{jobpost.maxSalary | currency}}
+                            <img *ngIf="jobpost.imageUrl" src={{jobpost.imageUrl}} alt="Company image cap"
+                                class="card-img-top" data-toogle="tooltip" title={{jobpost.companyname}}>
+                            <img *ngIf="jobpost.image" src="data:image/png;base64,{{jobpost.image}}"
+                                alt="Company image cap" class="card-img-top" data-toogle="tooltip"
+                                title={{jobpost.companyname}}>
+                            <img *ngIf="!jobpost.imageUrl && !jobpost.image" class="card-img-top"
+                                src="./assets/images/employer/no-image.png" alt="Company image cap">
+                        </div>
+                        <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                            <div class="row pr-3">
+                                <div class="col-lg-12 ">
+                                    <div class="row ">
+                                        <a (click)="jobPostDetail(jobpost.id)"
+                                            class="hovera font-weight-bold company-name " style="font-size:17px;">
 
-                                    </label>
-                                </div>
-                                <div class="row ">
+                                            {{jobpost.jobtitle}}</a>
+                                    </div>
 
-                                    <label class="text-muted font-weight-bold mr-3" for="expireddate">Company
-                                        Name:</label>
+                                    <div class="row mb-1">
+                                        <div class=" company-name text-muted font-weight-normal ">
+                                            {{jobpost.companyname }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="text-secondary mr-3" style="font-size: 12px ; ">
+                                            <i class="fas fa-map-marker-alt mr-1">
+                                            </i> {{jobpost.city}}
+                                        </label>
+                                        <label class=" text-muted pl-1 pr-1 " mdbTooltip="Expiration Date"
+                                            style="font-size: 12px;">
+                                            <i class="far fa-clock"></i>
+                                            {{jobpost.expirationDate |date :'dd-MM-yyyy '}}</label>
+                                        <label *ngIf="jobpost.minSalary && jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            {{jobpost.minSalary| currency:"VND"}} -
+                                            {{jobpost.maxSalary | currency:"VND"}}
 
-                                    <div class=" text-body font-weight-normal ">
-                                        {{jobpost.companyname }}</div>
-                                </div>
-                                <div class="row">
-                                    <label class="text-muted font-weight-bold mr-3" for="industry">Job
-                                        Type:</label>
-                                    <div class=" text-body font-weight-normal ">
-                                        {{jobpost.jobtype}}</div>
-                                </div>
-                                <div class="row">
-                                    <label class="text-muted font-weight-bold mr-3" for="industry">Experience
-                                        Years:</label>
-                                    <div class=" text-body font-weight-normal ">
-                                        {{jobpost.experienceyears}}</div>
-                                </div>
-                                <!-- <p class="card-text text-muted" style="font-size: 13px;">
-                                {{savedjob.experienceyears}}</p> -->
-                            </div>
+                                        </label>
+                                        <label *ngIf="!jobpost.minSalary && !jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            Thỏa thuận
 
-                            <div class="col-4">
-                                <div class="row">
-                                <label class="bg-secondary text-light pl-1 pr-1 " mdbTooltip="Expiration Date"
-                                    style="font-size: 12px;">{{jobpost.expirationDate |date:'medium'}}</label>
-                                </div>
-                                <!-- <a   class="mt-5 d-flex justify-content-center" mdbTooltip="Save this job"
-                                    placement="top" (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">
-                                    <i class="far fa-heart fa-2x mt-3" style="color: crimson;"></i>
-                                </a> -->
-                                <div class="row">
-                                <button type="button" class="btn btn-blue-grey btn-sm" mdbTooltip="Save this job"
-                                placement="top" (click)="saveJobPost(jobpost.id,dangerTpl,successTpl)">Save</button>
-                                    <!-- <a *ngIf="jobpost.isSave" class="mt-5 d-flex justify-content-center"
-                                        mdbTooltip="Delete this job" placement="top"
-                                        (click)="deleteSaveJobPost(jobpost.id,dangerTpl,successTpl)">
-                                        <i class="fas fa-heart fa-lg mt-3" style="color: crimson;"></i>
-                                    </a> -->
+                                        </label>
+                                        <label *ngIf="jobpost.minSalary && !jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            Từ {{jobpost.minSalary| currency:"VND"}}
+                                        </label>
+                                        <label *ngIf="!jobpost.minSalary && jobpost.maxSalary"
+                                            class="ml-3 text-secondary" style="font-size: 12px;">
+                                            <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                            Đến {{jobpost.minSalary| currency:"VND"}}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+
                 </div>
             </div>
-            <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
-                <li class="nav-item" *ngFor="let p of pages; let i=index">
-                    <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
-                        {{i}}
-                    </a>
-                </li>
-            </ul>
+            <!-- ngFor -->
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                            {{i+1}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- sửa -->
+        <div *ngIf="allJobPost && !isRecommendJobPostEmpty()" class="row ">
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <div *ngIf="allJobPost">
+                    <div class="pt-3 pl-3 pb-3 mb-3 mr-5 border rounded border-weight-light bg-white"
+                        *ngFor="let jobpost of allJobPost; ">
+
+                        <div class="row pl-1">
+                            <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                                <img class="card-img-top  " src="data:image/png;base64,{{jobpost.image}}"
+                                    alt="Company image cap">
+
+                            </div>
+                            <div class="col-lg-9 col-md-12 col-sm-12 mt-3">
+                                <div class="row pr-3">
+                                    <div class="col-lg-12 ">
+                                        <div class="row ">
+                                            <a (click)="jobPostDetail(jobpost.id)"
+                                                class="hovera font-weight-bold company-name " style="font-size:17px;"
+                                                data-toogle="tooltip" title={{jobpost.jobtitle}}>
+
+                                                {{jobpost.jobtitle}}</a>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class=" company-name text-muted font-weight-normal "
+                                                data-toogle="tooltip" title={{jobpost.companyname}}>
+                                                {{jobpost.companyname }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="text-secondary mr-3" style="font-size: 12px ; ">
+                                                <i class="fas fa-map-marker-alt mr-1">
+                                                </i> {{jobpost.city}}
+                                            </label>
+                                            <label class=" text-muted pl-1 pr-1 " mdbTooltip="Expiration Date"
+                                                style="font-size: 12px;">
+                                                <i class="far fa-clock"></i>
+                                                {{jobpost.expirationDate |date :'dd-MM-yyyy '}}</label>
+                                            <label *ngIf="jobpost.minSalary && jobpost.maxSalary"
+                                                class="ml-3 text-secondary" style="font-size: 12px;">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                {{jobpost.minSalary| currency:"VND"}} -
+                                                {{jobpost.maxSalary | currency:"VND"}}
+
+                                            </label>
+                                            <label *ngIf="!jobpost.minSalary && !jobpost.maxSalary"
+                                                class="ml-3 text-secondary" style="font-size: 12px;">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                Thỏa thuận
+
+                                            </label>
+                                            <label *ngIf="jobpost.minSalary && !jobpost.maxSalary"
+                                                class="ml-3 text-secondary" style="font-size: 12px;">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                Từ {{jobpost.minSalary| currency:"VND"}}
+                                            </label>
+                                            <label *ngIf="!jobpost.minSalary && jobpost.maxSalary"
+                                                class="ml-3 text-secondary" style="font-size: 12px;">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                Đến {{jobpost.minSalary| currency:"VND"}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-5">
+                        <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active':i==pageNo}">
+                                {{i+1}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- recommendCandidate start -->
+            <div class=" col-lg-4 col-md-6 col-sm-12">
+                <div *ngIf="!isRecommendJobPostEmpty()">
+                    <mdb-card>
+                        <mdb-card-body>
+                            <div class=" recommened mb-3 ml-3 " *ngFor="let recommend of recommendJobPost; ">
+                                <div class="row d-flex justify-content-end">
+                                    <img src="http://my.teamobi.com/images/hot.gif">
+                                </div>
+                               
+                                <div class="row">
+                                    <!-- <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                                        <div class="row">
+                                           
+                                            <img *ngIf="recommend.imageUrl" src={{recommend.imageUrl}} alt="fjsjk"
+                                                class="rounded img-fluid" data-toogle="tooltip"
+                                                title={{recommend.companyname}}>
+                                            <img *ngIf="recommend.image" src="data:image/png;base64,{{recommend.image}}"
+                                                alt="Company image" class="rounded img-fluid" data-toogle="tooltip"
+                                                title={{recommend.companyname}}>
+                                            <img *ngIf="!recommend.imageUrl && !recommend.image" class="img-fluid"
+                                                src="./assets/images/employer/no-image.png" alt="Company image cap">
+                                        </div>
+                                    </div> -->
+                                    <div class="col-12">
+                                        <div class="row mt-3">
+                                            <a *ngIf="!recommend.sourceUrl" (click)="jobPostDetail(recommend.id)"
+                                                class="mr-1 hovera company-name font-weight-bold" data-toogle="tooltip"
+                                                title={{recommend.jobtitle}}>
+                                                {{recommend.jobtitle}}</a>
+                                            <a *ngIf="recommend.sourceUrl" href={{recommend.sourceUrl}} target="_blank"
+                                                class="mr-1 hovera company-name font-weight-bold" data-toogle="tooltip"
+                                                title={{recommend.jobtitle}}>
+                                                {{recommend.jobtitle}}</a>
+                                        </div>
+                                        <div class="row minimum-text mt-2">
+                                            <label class="text-secondary">
+                                                {{recommend.city}} | {{recommend.expirationDate |date :'dd-MM-yyyy '}}
+                                            </label>
+                                            <!-- <label class=" text-secondary ml-3 " mdbTooltip="Expiration Date"
+                                            style="font-size: 12px;">
+                                            <i class="far fa-clock"></i>
+                                            {{recommend.expirationDate |date :'dd-MM-yyyy '}}</label> -->
+
+
+                                        </div>
+                                        <div class="row minimum-text">
+                                            <label *ngIf="recommend.minSalary && recommend.maxSalary"
+                                                class="text-secondary">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                {{recommend.minSalary| currency:"VND"}} -
+                                                {{recommend.maxSalary | currency:"VND"}}
+
+                                            </label>
+
+                                            <label *ngIf="!recommend.minSalary && !recommend.maxSalary"
+                                                class="ml-3 text-secondary">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                Thỏa thuận
+
+                                            </label>
+                                            <label *ngIf="recommend.minSalary && !recommend.maxSalary"
+                                                class="ml-3 text-secondary">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                Từ {{recommend.minSalary| currency:"VND"}}
+                                            </label>
+                                            <label *ngIf="!recommend.minSalary && recommend.maxSalary"
+                                                class="ml-3 text-secondary">
+                                                <mdb-icon fas icon="dollar-sign"></mdb-icon>
+                                                Đến {{recommend.minSalary| currency:"VND"}}
+                                            </label>
+                                        </div>
+                                        <!-- <div class="row ">
+
+                                            <label class="text-muted font-weight-bold mr-3" for="expireddate">Company
+                                                Name:</label>
+
+                                            <div class=" text-body font-weight-normal ">
+                                                {{recommend.companyname }}</div>
+                                        </div> -->
+                                        <div class="row">
+                                            <!-- <label class="text-muted font-weight-bold mr-3" for="industry">Job
+                                                Type:</label>
+                                            <div class=" text-body font-weight-normal ">
+                                                {{recommend.jobtype}}</div> -->
+                                            <span
+                                                class="span-text text-success font-weight-medium mr-3">{{recommend.jobtype}}</span>
+                                            <span *ngIf="recommend.experienceyears"
+                                                class="span-text text-muted font-weight-medium">{{recommend.experienceyears}}
+                                                -year-experience</span>
+                                            <span *ngIf="!recommend.experienceyears"
+                                                class="span-text text-danger font-weight-medium">Không
+                                                yêu cầu kinh nghiệm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+
+                            </div>
+                            <div class="text-center">
+                                <a [routerLink]="['/candidate/recommendjob']"
+                                    class="btn btn-primary mr-auto btn-sm"><strong>Show more</strong></a>
+                            </div>
+                        </mdb-card-body>
+                    </mdb-card>
+
+                </div>
+
+            </div>
+            <!-- recommend jobpost end -->
         </div>
     </div>
-    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-    <ng-template #successTpl>
-        <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
-    </ng-template>
-    <ng-template #dangerTpl>
-        <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
-            some error</span>
-    </ng-template>
-
     <!-- list job -->
 </div>
 
