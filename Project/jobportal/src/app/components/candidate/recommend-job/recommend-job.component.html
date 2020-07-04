@@ -1,63 +1,21 @@
 <!-- Search jobtype start -->
-<div class="container-fluid">
-    <div class="heavy-rain-gradient
-    rounded-lg pl-3 pr-3 rounded-lg">
-
-        <div class="row">
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="input-group mt-4">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">
-                            <mdb-icon fas icon="search"></mdb-icon>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Find your job type expectation"
-                        aria-label="expectation" aria-describedby="basic-addon1" [(ngModel)]="jobtype" name="jobtype">
-                </div>
-
-            </div>
-            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
-                <div class="dropdown" mdbDropdown>
-                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                        mdbWavesEffect block="true">
-                        <span class="text-button">All Jobs</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-primary">
-                        <!-- job -->
-                        <a class="dropdown-item" href="#">Action</a>
-                        <!-- job    -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
-                <div class="dropdown" mdbDropdown>
-                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                        mdbWavesEffect block="true">
-                        <span class="text-button">All Locations</span>
-
-                    </button>
-                    <div class="dropdown-menu dropdown-primary">
-                        <!-- location -->
-                        <a class="dropdown-item" href="#">Action</a>
-                        <!-- location    -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-sm-12 col-md-12">
-                <button (click)="searchJobType()" mdbBtn color="success" block="true" class="my-4" type="submit">
-                    <strong><span class="text-button">Search</span></strong> </button>
-            </div>
-        </div>
-    </div>
-</div>
+<app-share-search-job></app-share-search-job>
 <!-- search job end -->
 <!-- List jobs -->
 
 <div class="card ">
     <div class="card-body container">
-        <h5 class="card-title ml-5 ">Recommendation Jobs</h5>
+        <!-- <h5 class="card-title ml-5 ">Recommendation Jobs</h5> -->
+        <div class="row ">
+            <div class="col-lg-12 col-md-10 col-sm-10">
+               
+                <h5 class=" vnjobs-title pt-3 pb-3 pl-5 text-primary font-weight-bold card-title  ">
+                    Recommendation Jobs</h5>
+            </div>
+        </div>
         <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
         <!-- list job -->
+     
         <div *ngIf="recommendJobPost" class="row">
             <div *ngFor="let jobpost of recommendJobPost;" class="col-lg-6 col-md-12 col-sm-12">
                 <div class=" pt-3 mb-3 pr-3  border rounded border-weight-light bg-white">

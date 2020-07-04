@@ -1,0 +1,31 @@
+<!-- Search jobtype start -->
+<div class="container-fluid">
+    <div class="heavy-rain-gradient
+    rounded-lg pl-3 pr-3 rounded-lg">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-12 mt-4 pt-2">
+                <ng-select [items]="keywords"
+                [virtualScroll]="true"
+                placeholder="Search Job Title ..." [(ngModel)]="keyword" name="keyword"  [typeToSearchText]="keyword" [addTag]="true">
+                </ng-select>
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4  pt-2">
+                <ng-select [items]="locations" 
+                [virtualScroll]="true"
+                placeholder="All Locations" [(ngModel)]="location" name="location" [typeToSearchText]="location" [addTag]="true">
+                </ng-select>
+            </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4  pt-2">
+                <ng-select [items]="industries" [addTag]="true"   [virtualScroll]="true" [typeToSearchText]="industry" placeholder="All Industries" 
+                [(ngModel)]="industry" name="industry">
+                </ng-select>
+            </div>
+            <div class="col-lg-2 col-sm-12 col-md-12">
+                <button (click)="searchJobPost(keyword,location, industry)" mdbBtn color="success" block="true"
+                    class="my-4" type="submit">
+                    <strong><span class="text-button">Search</span></strong> </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- search job end -->

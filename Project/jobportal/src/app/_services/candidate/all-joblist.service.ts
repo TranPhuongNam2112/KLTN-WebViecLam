@@ -13,7 +13,13 @@ export class AllJoblistService {
   private getRecommendJobPostURL = 'http://localhost:8080/candidate/recommendedjobposts';
   private getRecommendJobPostNoPageURL = 'http://localhost:8080/candidate/recommendedjobposts';
   private getTopViewedJobpostsURL = 'http://localhost:8080/home/topviewedjobposts';
+  private getHotCrawledJobpostURL = 'http://localhost:8080/home/hotjobposts';
+  private applyJobPostURL = 'http://localhost:8080/candidate/jobposts/apply';
   constructor(private http: HttpClient) { }
+ 
+  getHotCrawledJobpost(pageNo: number): Observable<any> {
+    return this.http.get(`${this.getHotCrawledJobpostURL}`+'?pageNo='+pageNo);
+  }
   getTopViewedJobposts ()
   {
    return this.http.get(`${this.getTopViewedJobpostsURL}`);  
@@ -43,6 +49,9 @@ export class AllJoblistService {
   }
   deleteSaveJobPost(id: number): Observable<any> {
     return this.http.delete(`${this.deleteurl}/${id}`, { responseType: 'text' });
+  }
+  applyJobPost(id: number): Observable<any> {
+    return this.http.post(`${this.applyJobPostURL}/${id}`,id, { responseType: 'text' });
   }
    
 }

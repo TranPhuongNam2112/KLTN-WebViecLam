@@ -18,6 +18,7 @@ export class AlljoblistComponent implements OnInit {
   isSave= false; 
   websitename = 'vnJobs';
   recommendJobPost: Observable<JobPostSummary[]>;
+  topviewedjobposts : any;
   public pageNo: number = 0;
   public pages: Array<number>;
     //re
@@ -51,7 +52,21 @@ export class AlljoblistComponent implements OnInit {
     this.getSaveJobPost();
     this.gettAllJobList();
     this.getRecommendJobPost();
+    this.getTopViewedJobposts();
     
+  }
+  getTopViewedJobposts(){
+    this.allJoblistService.getTopViewedJobposts().subscribe(
+      data => {
+        console.log(data);
+        this.topviewedjobposts = data;
+        
+      },
+      (error) => {
+        console.log(error.error.message)
+      }
+    );
+   
   }
   isRecommendJobPostEmpty(): boolean {
     let recommendkeys = Object.keys(this.recommendJobPost);

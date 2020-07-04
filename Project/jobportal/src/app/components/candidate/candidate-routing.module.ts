@@ -14,6 +14,10 @@ import {RecommendJobComponent} from './recommend-job/recommend-job.component';
 import {CompanyJobpostComponent} from 'src/app/components/candidate/company-jobpost/company-jobpost.component';
 import {CandidateHistoryComponent} from 'src/app/components/candidate/candidate-history/candidate-history.component';
 import {IndustryJoblistComponent} from 'src/app/components/candidate/industry-joblist/industry-joblist.component';
+import {HotCrawledJobComponent} from 'src/app/components/candidate/hot-crawled-job/hot-crawled-job.component';
+import {SearchJobpostResultComponent} from 'src/app/components/candidate/search-jobpost-result/search-jobpost-result.component';
+import {TopviewJobpostComponent} from 'src/app/components/candidate/topview-jobpost/topview-jobpost.component';
+import {ManageAppliedJobsComponent} from 'src/app/components/candidate/manage-applied-jobs/manage-applied-jobs.component';
 const routes: Routes = [
   {
     path: '',
@@ -32,6 +36,10 @@ const routes: Routes = [
       {
         path: 'alljoblists',
         component: AlljoblistComponent
+      },
+      {
+        path: 'appliedjobposts',
+        component: ManageAppliedJobsComponent
       },
       {
         path: 'all-employers',
@@ -54,12 +62,24 @@ const routes: Routes = [
         component: RecommendJobComponent
       },
       {
+        path: 'hotcrawledjob',
+        component: HotCrawledJobComponent
+      },
+      {
+        path: 'topviewedjob',
+        component: TopviewJobpostComponent
+      },
+      {
         path: 'history',
         component: CandidateHistoryComponent
       },
       {
-        path: 'industry-jobpost/:industry',
+        path: 'industry-jobpost',
         component: IndustryJoblistComponent
+      },
+      {
+        path: 'search-jobpost-result',
+        component: SearchJobpostResultComponent
       },
    
     ]

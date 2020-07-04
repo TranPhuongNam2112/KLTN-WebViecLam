@@ -10,11 +10,15 @@ export class AllCandidateService {
   private deleteSavedCandidateURL='http://localhost:8080/employer/savedcandidates';
   private getSavedCandidateuURL = 'http://localhost:8080/employer/savedcandidates';
   private getRecommendCandidateuURL = 'http://localhost:8080/employer/recommendedcandidates';
+  private getAppliedCandidateURL = 'http://localhost:8080/employer/appliedcandidates';
   constructor(private http: HttpClient) { }
  
   gettAllCandidate (pageNo: number)
   {
    return this.http.get(`${this.gettAllCandidateURL}`+'?pageNo='+pageNo);  
+  }
+  getAppliedCandidate( ): Observable<any> {
+    return this.http.get(`${this.getAppliedCandidateURL}`);
   }
   getRecommendCandidate (pageNo: number)
   {

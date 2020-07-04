@@ -11,6 +11,7 @@ import {SearchCandidateComponent} from './search-candidate/search-candidate.comp
 import {RecommendCandidateComponent} from './recommend-candidate/recommend-candidate.component';
 import {CandidateDetailComponent} from './candidate-detail/candidate-detail.component';
 import {EmployerHistoryComponent} from 'src/app/components/employer/employer-history/employer-history.component';
+import {AppliedCandidateComponent} from 'src/app/components/employer/applied-candidate/applied-candidate.component';
 const routes: Routes = [
   {
   path: '',
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: 'savedprofile',
         component: SaveprofileComponent
+      },
+      {
+        path: 'applied-profile',
+        component: AppliedCandidateComponent
       },
       {
         path: 'searchcandidate',

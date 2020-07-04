@@ -1,0 +1,181 @@
+.scroll {
+    max-height: 150vh;
+    overflow-y: auto;
+    
+    
+  }
+  .show-more{
+     
+    line-height: 27px;
+    font-size: 12px;
+   
+  
+  }
+  .si25{
+    font-size: 11px;
+      color: #808080;
+      border: 1px solid #808080;
+      border-radius: 3px;
+      padding-right: 3px;
+      padding-left: 3px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      height: 15px;
+      line-height: 11px;
+      letter-spacing: 0px;
+      font-weight: 400;
+  }
+  a.ad-text{
+    font-size: 12px;
+    font-family: sans-serif;
+   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+  }
+  .si22{
+    font-size: 13px;
+      color: #1122cc;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-right: 3px;
+      padding-left: 3px;
+      max-width: 100%;
+      font-family: sans-serif;
+  }
+  .vnjobs-title{
+      background-color: #f1f6fb;
+      font-size: 20px;
+      font-family: sans-serif;
+    
+    }
+    .hotjobs-title{
+      background-color: #FAFFB4;
+      font-size: 20px;
+      font-family: sans-serif;
+      color: #FA830B;
+    
+    }
+    .img_cate{
+      float: left;
+        width: 120px;
+        height: 81px;
+      
+        text-align: center;
+        line-height: 76px;
+        padding: 10px;
+        margin-right: 15px;
+    }
+    .img-fluid{
+        width: 50px; 
+        height: 50px; 
+       object-fit: cover; 
+      }
+      .span-text{
+        font-size: 12px;
+      }
+      .company-name{
+        display:inline-block;
+       //width:180px;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+      
+      }
+      //search job start
+      .container-fluid{
+       // background-color: #e9e9e9;
+          padding-top: 100px;
+          padding-bottom: 40px;
+         
+      }
+      //image recommjobpost company avatar
+      .card-img-hihi{
+          width:50px; 
+          height:50px; 
+          object-fit: cover; 
+        }
+        //text
+        .recommened{
+          font-size: 14px;
+         
+        }
+        
+        .minimum-text{
+          font-size: 14px;
+        }
+      // sercech job
+      a.hovera:hover {
+          color: #ef5350 ;
+         
+         }
+         h5.hovera:hover {
+          color: #ef5350 ;
+          cursor: pointer;
+         }
+         h5.hovera {
+          color: #6491FA ;
+         
+         }
+      a.hovera{
+             color: #1122cc;
+             font-size: 16px;
+         }
+         a.hoveras:hover {
+          color: #ef5350 ;
+         
+         }
+        
+      a.hoveras{
+             color: #6491fa;
+             font-size: 16px;
+         }
+      //responsive
+      // mobile
+      @media (min-width: 306px) { 
+          .text-button{
+              font-size: 20px;
+          }
+          .form-control{
+              height: 60px;
+              font-size: 20px;
+           }
+        }
+        //ipad
+        @media (min-width: 768px) {
+          .text-button{
+              font-size: 22px;
+          }
+          .form-control{
+              height: 60px;
+              font-size: 22px;
+           }
+        }
+        //ipad pro
+        @media (min-width: 992px) {
+          .text-button{
+              font-size: 16px;
+          }
+          .form-control{
+              height: 50px;
+           }
+        }
+        //laptop
+        @media (min-width: 1200px) {
+          .text-button{
+              font-size: 16px;
+              font-weight: bold;
+          }
+          .form-control{
+             height: 50px;
+             font-size: 16px;
+          }
+          h5{
+              letter-spacing: 0.5 px;
+          }
+        }
+        
+        
+        // search job end
+      

@@ -6,12 +6,17 @@ import { Router } from '@angular/router';
 import { SaveJobpostService } from 'src/app/_services/candidate/save-jobpost.service';
 import {JobPostSummary} from 'src/app/_models/jobPostSummary';
 import { ToastService } from 'src/app/_services/toast-service.service';
+import { JobDetailService } from 'src/app/_services/candidate/job-detail.service';
+import { JobPostDetails } from 'src/app/_models/candidate/jobPostDetails';
 @Component({
   selector: 'app-savejob',
   templateUrl: './savejob.component.html',
   styleUrls: ['./savejob.component.scss']
 })
 export class SavejobComponent implements OnInit {
+  //deo bik casi j 
+  jobDetail: JobPostDetails;
+  //deo bik cai j
   user_account: User_Account;
   saveJobPost: Observable<JobPostSummary[]>;
   public pageNo: number=0;
@@ -20,7 +25,8 @@ export class SavejobComponent implements OnInit {
     private userAccountService: UserAccountService,
     private saveJobpostService: SaveJobpostService,
     private router: Router,
-    public toastService: ToastService
+    public toastService: ToastService,
+    private jobDetailService: JobDetailService,
   ) { }
   setPage(i, event:any){
     event.preventDefault();
@@ -73,4 +79,17 @@ export class SavejobComponent implements OnInit {
   jobPostDetail(id: number) {
     this.router.navigate(['candidate/jobpost-detail', id]);
   }
+  jobPostDetailURL(id: number) {
+    this.getJobDetail(id);
+    console.log("ma buon ngu qua");
+  }
+  getJobDetail(id:number) {
+   
+    this.jobDetailService.getJobPostDetail(id)
+      .subscribe(data => {
+        this.jobDetail = data;
+        console.log(data);
+      }, error => console.log(error));
+  }
+
 }

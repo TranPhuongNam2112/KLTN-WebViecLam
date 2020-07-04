@@ -80,7 +80,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   ]
 })
 export class JobpostDetailComponent implements OnInit {
-   expiredDate: NgbDateStruct;
+  expiredDate: NgbDateStruct;
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
   id: number;

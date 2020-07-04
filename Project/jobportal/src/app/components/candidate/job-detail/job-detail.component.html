@@ -1,5 +1,6 @@
+<app-share-search-job></app-share-search-job>
 <div class="view">
-    <div class="container mb-5 pb-5 pt-5 " style="margin-top: 100px;">
+    <div class="container mb-5 pb-5 pt-5 " style="margin-top: 50px;">
         <div class="row pl-3 pr-3 ">
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 border-summary-item mr-3">
@@ -53,8 +54,10 @@
                                 <label class="text-muted">REQUIRE EXPERIENCEYEARS</label>
                             </div>
                             <div class="row summary-item">
-                                <label *ngIf= "jobDetail.requiredexperienceyears" class="text-danger">{{jobDetail.requiredexperienceyears}}-year-experience</label>
-                                <label *ngIf="!jobDetail.requiredexperienceyears" class="text-danger font-weight-medium">Không
+                                <label *ngIf="jobDetail.requiredexperienceyears"
+                                    class="text-danger">{{jobDetail.requiredexperienceyears}}-year-experience</label>
+                                <label *ngIf="!jobDetail.requiredexperienceyears"
+                                    class="text-danger font-weight-medium">Không
                                     yêu cầu kinh nghiệm</label>
                             </div>
                         </div>
@@ -168,8 +171,14 @@
                         <button (click)="saveJobPost(dangerTpl,successTpl)" type="button" mdbBtn color="primary"
                             mdbWavesEffect>Save Job</button>
                     </div>
-                    <!-- <button type="button"
-                    mdbBtn color="danger" mdbWavesEffect>Apply Now</button> -->
+                    <button *ngIf="!isApply()" type="button" (click)="applyJobPost(dangerTpl,successTpl)" mdbBtn
+                        color="amber" mdbWavesEffect>Apply Now</button>
+                    <div *ngIf="isApply()" class="row ml-3 mt-3">
+
+                        <label  class=" font-weight-bold" style="font-size: 14px;color: #f7941d;">
+                            <i class="fas fa-check fa-lg " style="color: #f7941d;" ></i>
+                            Applied</label>
+                  </div>
                 </div>
                 <hr />
                 <div class="row">
@@ -177,7 +186,7 @@
                     <a class=" text-muted">
                         {{jobDetail.description}}</a>
                     <!-- them xam start -->
-                    
+
                     <div class="box_mota">
                         <h3>Mô tả công việc</h3>
                         - Chăm sóc khách hàng hiện hữu:<br>+ Duy trì mối quan hệ với các khách hàng hiện hữu.<br>+ Duy
@@ -216,8 +225,7 @@
             <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
         </ng-template>
         <ng-template #dangerTpl>
-            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>There got
-                some error</span>
+            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>You haved applied this job</span>
         </ng-template>
     </div>
 </div>

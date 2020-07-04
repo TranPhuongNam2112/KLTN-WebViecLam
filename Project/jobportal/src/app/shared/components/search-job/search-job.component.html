@@ -1,49 +1,29 @@
-<div class="heavy-rain-gradient
-                rounded-lg pl-3 pr-3 rounded-lg">
-
-    <div class="row">
-        <div class="col-lg-4 col-sm-12 col-md-12">
-            <div class="input-group mt-4">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
-                        <mdb-icon fas icon="search"></mdb-icon>
-                    </span>
-                </div>
-                <input type="text" class="form-control" placeholder="Find your expectation" aria-label="expectation"
-                    aria-describedby="basic-addon1">
+<!-- 
+<div class="container-fluid">
+    <div class="heavy-rain-gradient
+    rounded-lg pl-3 pr-3 rounded-lg">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-12 mt-4 pt-2">
+                <ng-select [items]="keywords"
+                [virtualScroll]="true"
+                placeholder="Search Job Title ..." [(ngModel)]="keyword" name="keyword">
+                </ng-select>
             </div>
-
-        </div>
-        <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
-            <div class="dropdown" mdbDropdown>
-                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                    mdbWavesEffect block="true">
-                    <span class="text-button">All Work Title</span>
-                </button>
-                <div class="dropdown-menu dropdown-primary">
-                    <!-- job -->
-                    <a class="dropdown-item" href="#">Action</a>
-                    <!-- job    -->
-                </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4  pt-2">
+                <ng-select [items]="locations" 
+                [virtualScroll]="true"
+                placeholder="All Locations" [(ngModel)]="location" name="location">
+                </ng-select>
             </div>
-        </div>
-        <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
-            <div class="dropdown" mdbDropdown>
-                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                    mdbWavesEffect block="true">
-                    <span class="text-button">All Categories</span>
-
-                </button>
-                <div class="dropdown-menu dropdown-primary">
-                    <!-- location -->
-                    <a class="dropdown-item" href="#">Action</a>
-                    <!-- location    -->
-                </div>
+            <div class="col-lg-3 col-sm-12 col-md-12 mt-4  pt-2">
+                <ng-select [items]="industries" [addTag]="true"   [virtualScroll]="true" [typeToSearchText]="industry" placeholder="All Industries" [(ngModel)]="industry" name="industry">
+                </ng-select>
             </div>
-        </div>
-        <div class="col-lg-2 col-sm-12 col-md-12">
-            <button mdbBtn color="success" block="true" class="my-4" type="submit"> <strong><span
-                        class="text-button">Search</span></strong> </button>
+            <div class="col-lg-2 col-sm-12 col-md-12">
+                <button (click)="searchJobPost(keyword,location, industry)" mdbBtn color="success" block="true"
+                    class="my-4" type="submit">
+                    <strong><span class="text-button">Search</span></strong> </button>
+            </div>
         </div>
     </div>
-</div>
+</div> -->

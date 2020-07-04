@@ -1,65 +1,4 @@
-<!-- Search jobtype start -->
-<div class="container-fluid">
-    <div class="heavy-rain-gradient
-    rounded-lg pl-3 pr-3 rounded-lg">
-
-        <div class="row">
-            <div class="col-lg-4 col-sm-12 col-md-12">
-                <div class="input-group mt-4">
-                    <!-- <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">
-                            <mdb-icon fas icon="search"></mdb-icon>
-                        </span>
-                    </div> -->
-                    <!-- tam thoi dong -->
-                    <!-- <input type="text" class="form-control" placeholder="Find your job type expectation"
-                        aria-label="expectation" aria-describedby="basic-addon1" [(ngModel)]="jobtype" name="jobtype"> -->
-                    <!-- tam thoi dong -->
-                    <!-- them -->
-                    <div class="mt-2">
-                        <ng-select2 [data]="jobTypes" [options]="options" [(ngModel)]="jobtype" name="jobtype"
-                            class="options">
-                        </ng-select2>
-                    </div>
-                    <!-- them -->
-                </div>
-
-            </div>
-            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
-                <div class="dropdown" mdbDropdown>
-                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                        mdbWavesEffect block="true">
-                        <span class="text-button">All Jobs</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-primary">
-                        <!-- job -->
-                        <a class="dropdown-item" href="#">Action</a>
-                        <!-- job    -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-12 col-md-12 mt-4">
-                <div class="dropdown" mdbDropdown>
-                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                        mdbWavesEffect block="true">
-                        <span class="text-button">All Locations</span>
-
-                    </button>
-                    <div class="dropdown-menu dropdown-primary">
-                        <!-- location -->
-                        <a class="dropdown-item" href="#">Action</a>
-                        <!-- location    -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-sm-12 col-md-12">
-                <button (click)="searchJobType()" mdbBtn color="success" block="true" class="my-4" type="submit">
-                    <strong><span class="text-button">Search</span></strong> </button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- search job end -->
+<app-share-search-job></app-share-search-job>
 <!-- Main navigation -->
 <section>
     <!-- container satisfy company -->
@@ -75,33 +14,39 @@
             </div>
             <!-- Section description -->
             <!-- Grid row -->
-            <div class="row">
-                <div *ngFor="let employer of allEmployers;" class="col-lg-2 col-md-4 col-sm-6 mb-lg-0 mb-4 pb-3 ">
-                    <!--Card-->
-                    <mdb-card class="testimonial-card">
-                        <!--Background color-->
-                        <div class="card-up blue-gradient">
-                        </div>
-                        <!--Avatar-->
-                        <div class="avatar mx-auto white mt-5">
-                            <a (click)="jobPostByCompany(employer.id)" >
-                                <img *ngIf="employer.imageUrl" src={{employer.imageUrl}} alt="fjsjk"
-                                class="rounded img-fluid" data-toogle="tooltip" title={{employer.companyname}}>
-                            <img *ngIf="employer.image" src="data:image/png;base64,{{employer.image}}"
-                                alt="Company image" class="rounded img-fluid" data-toogle="tooltip"
-                                title={{employer.companyname}}>
-                            <img *ngIf="!employer.imageUrl && !employer.image" class="img-fluid"
-                                src="./assets/images/employer/no-image.png" alt="Company image cap">
-                            </a>
-                            
-                        </div>
-                        <mdb-card-body>
-                            <!--Name-->
-                        </mdb-card-body>
-                    </mdb-card>
-                    <!--Card-->
+            <div class="">
+                <div class="row">
+
+                    <div *ngFor="let employer of allEmployers;" class="col-lg-2 col-md-4 col-sm-6 mb-lg-0 mb-4 pb-3 ">
+                        <!--Card-->
+
+                        <mdb-card class="testimonial-card">
+                            <!--Background color-->
+                            <div class="card-up blue-gradient">
+                            </div>
+                            <!--Avatar-->
+                            <div class="avatar mx-auto white mt-5">
+                                <a (click)="jobPostByCompany(employer.id, employer.companyname)">
+                                    <img *ngIf="employer.imageUrl" src={{employer.imageUrl}} alt="fjsjk"
+                                        class="rounded img-fluid" data-toogle="tooltip" title={{employer.companyname}}>
+                                    <img *ngIf="employer.image" src="data:image/png;base64,{{employer.image}}"
+                                        alt="Company image" class="rounded img-fluid" data-toogle="tooltip"
+                                        title={{employer.companyname}}>
+                                    <img *ngIf="!employer.imageUrl && !employer.image" class="img-fluid"
+                                        src="./assets/images/employer/no-image.png" alt="Company image cap">
+                                </a>
+
+                            </div>
+                            <mdb-card-body>
+                                <!--Name-->
+                            </mdb-card-body>
+                        </mdb-card>
+
+                        <!--Card-->
+
+                    </div>
+                    <!--Grid column-->
                 </div>
-                <!--Grid column-->
             </div>
             <!-- Section: feature company v.1 -->
             <div class="d-flex justify-content-end mt-3">
@@ -143,7 +88,7 @@
                                 <img src="http://my.teamobi.com/images/hot.gif">
                             </div>
                             <div class="row pl-1">
-                                <div class="col-lg-3 col-md-12 col-sm-12 mt-3">
+                                <div class="col-lg-3 col-md-12 col-sm-12 mt-3 mb-3">
                                     <img *ngIf="topjobpost.image" class="card-img-top  "
                                         src="data:image/png;base64,{{topjobpost.image}}" alt="Company image cap">
                                     <img *ngIf="topjobpost.imageUrl" src={{topjobpost.imageUrl}} alt="Company image"
@@ -164,7 +109,14 @@
 
                                                     {{topjobpost.jobtitle}}</a>
                                             </div>
+                                            <div class="row mt-1  ">
+                                                <span class="si25 mr-1 ">Ad</span>
 
+
+                                                <a (click)="jobPostDetailURL(topjobpost.id)"
+                                                    href={{topjobpost.sourceUrl}} class="text-muted ad-text"
+                                                    target="_blank">{{topjobpost.sourceUrl}}</a>
+                                            </div>
                                             <div class="row mb-1">
                                                 <div class=" company-name text-muted font-weight-normal "
                                                     data-toogle="tooltip" title={{topjobpost.companyname}}>
@@ -212,6 +164,7 @@
                                                 </label>
 
                                             </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +326,7 @@
             <div class="mb-5">
                 <mdb-card>
                     <mdb-card-body>
-                      
+
                         <!-- <div class="row ml-3 mb-2">
                             <h6 class="font-weight-bold text-muted" style="font-family: sans-serif;">
                                 <mdb-icon fas icon="search" class="fa-lg mr-1"></mdb-icon> Search Industry
@@ -388,14 +341,18 @@
                         <!-- <hr /> -->
                         <div class="row ml-5 mr-5 d-flex justify-content-start">
                             <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let industry of industries">
-                               
-                                <a (click)="getJobPostbyIndusty(industry)"
-                                class="text-industry"
-                                 data-toogle="tooltip"
-                                title={{industry}}>
 
-                                {{industry}}</a>
+                                <a (click)="getJobPostbyIndusty(industry)" class="text-industry" data-toogle="tooltip"
+                                    title={{industry}}>
+
+                                    {{industry}}</a>
                             </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3">
+                            <a [routerLink]="['/candidate/other-websites-job-lists']"
+                                class="show-more text-primary"><strong>View all jobs</strong>
+                                <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
+                            </a>
                         </div>
                     </mdb-card-body>
                 </mdb-card>

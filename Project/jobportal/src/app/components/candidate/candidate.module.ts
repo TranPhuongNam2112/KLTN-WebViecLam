@@ -25,7 +25,12 @@ import { AllEmployersComponent } from './all-employers/all-employers.component';
 import { CompanyJobpostComponent } from './company-jobpost/company-jobpost.component';
 import { CandidateHistoryComponent } from './candidate-history/candidate-history.component';
 import { IndustryJoblistComponent } from './industry-joblist/industry-joblist.component';
-
+import { HotCrawledJobComponent } from './hot-crawled-job/hot-crawled-job.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { SearchJobpostResultComponent } from './search-jobpost-result/search-jobpost-result.component';
+import { ShareSearchJobComponent } from './share-search-job/share-search-job.component';
+import { TopviewJobpostComponent } from './topview-jobpost/topview-jobpost.component';
+import { ManageAppliedJobsComponent } from './manage-applied-jobs/manage-applied-jobs.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +50,11 @@ import { IndustryJoblistComponent } from './industry-joblist/industry-joblist.co
     CompanyJobpostComponent,
     CandidateHistoryComponent,
     IndustryJoblistComponent,
+    HotCrawledJobComponent,
+    SearchJobpostResultComponent,
+    ShareSearchJobComponent,
+    TopviewJobpostComponent,
+    ManageAppliedJobsComponent,
     // ToastComponent
   ],
   imports: [
@@ -57,7 +67,7 @@ import { IndustryJoblistComponent } from './industry-joblist/industry-joblist.co
     UiSwitchModule,
     NgSelect2Module,
     PdfViewerModule,
-
+    NgSelectModule
   ]
 })
 export class CandidateModule { }

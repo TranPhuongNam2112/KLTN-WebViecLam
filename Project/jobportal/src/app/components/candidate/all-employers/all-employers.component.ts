@@ -73,8 +73,8 @@ export class AllEmployersComponent implements OnInit {
   // viewJobs(companyname){
   //   this.router.navigate(['/candidate/all-employers'], { queryParams:  { name:  companyname } });
   // }
-  jobPostByCompany(id: number) {
-    this.router.navigate(['candidate/companies', id]);
+  jobPostByCompany(id: number, companyname: string) {
+    this.router.navigate(['candidate/companies', id], { queryParams:  { companyname:  companyname } });
   }
 
 

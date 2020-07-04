@@ -22,6 +22,7 @@ export class OtherswebJoblistComponent implements OnInit {
   websitename = 'timviec365';
   jobtype: '';
   jobDetail: JobPostDetails;
+  topviewedjobposts : any;
   constructor( 
     private crawledJoblistService: CrawledJoblistService,
     private router: Router,
@@ -37,7 +38,21 @@ export class OtherswebJoblistComponent implements OnInit {
   ngOnInit(): void {
     this.getOtherWebsJobList();
     this.getRecommendJobPost();
+    this.getTopViewedJobposts();
    
+  }
+  getTopViewedJobposts(){
+    this.allJoblistService.getHotCrawledJobpost(this.pageNo).subscribe(
+      data => {
+        console.log(data);
+        this.topviewedjobposts = data['content'];
+        //this.router.navigate(['/candidate/hotcrawledjob'], { queryParams:  { page: this.pageNo} });
+        
+      },
+      (error) => {
+        console.log(error.error.message)
+      }
+    );
   }
   isRecommendJobPostEmpty(): boolean {
     let recommendkeys = Object.keys(this.recommendJobPost);

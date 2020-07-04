@@ -1,10 +1,11 @@
 <!-- Search jobtype start -->
-<div class="container-fluid">
+<app-share-search-job></app-share-search-job>
+<div class="container">
 
     <!-- search job end -->
     <!-- List jobs -->
 
-    <div class="card ml-3 mr-3 ">
+    <div class=" ml-3 mr-3 ">
         <div class="card-body container">
             <div class="d-flex justify-content-between ">
                 <div class="col-12 title ">Top Employers
@@ -16,37 +17,41 @@
             </div>
             <hr class=" hr-grey my-4 wow fadeInDown" data-wow-delay="0.4s">
             <!-- list job -->
-            <div class="row ">
-                <div *ngFor="let employer of allEmployers;" class="col-lg-3 col-md-6 col-sm-6 mb-lg-0 mb-4 pb-3 ">
-                    <!--Card-->
-                    <mdb-card class="testimonial-card bg-white">
-                        <!--Background color-->
+          
+                <div class="row ">
+                    <div *ngFor="let employer of allEmployers;" class="col-lg-3 col-md-6 col-sm-6 mb-lg-0 mb-4 pb-3 ">
 
-                        <!--Avatar-->
-                        <div class="col-lg-12 col-md-12 col-sm-12 mx-auto white mt-5 text-center mb-3">
-                            <img *ngIf="employer.imageUrl" src={{employer.imageUrl}} alt="Company image"
-                                class=" img-fluid">
-                            <img *ngIf="employer.image" class="img-fluid" src="data:image/png;base64,{{employer.image}}"
-                                alt="Company image">
-                            <img *ngIf="!employer.imageUrl && !employer.image" class="img-fluid"
-                                src="./assets/images/employer/no-image.png" alt="Company image cap">
-                            <p class="mt-3 pl-3 pr-3 top-companyname " data-toogle="tooltip"
-                                title={{employer.companyname}}>
-                                {{employer.companyname}}</p>
+                        <!--Card-->
+                        <mdb-card class="testimonial-card bg-white">
+                            <!--Background color-->
 
-                        </div>
-                        <div class="text-center mb-3">
-                            <a (click)="jobPostByCompany(employer.id)" class="hovera"><strong>View Jobs</strong>
-                                <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
-                            </a>
-                        </div>
+                            <!--Avatar-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 mx-auto white mt-5 text-center mb-3">
+                                <img *ngIf="employer.imageUrl" src={{employer.imageUrl}} alt="Company image"
+                                    class=" img-fluid">
+                                <img *ngIf="employer.image" class="img-fluid"
+                                    src="data:image/png;base64,{{employer.image}}" alt="Company image">
+                                <img *ngIf="!employer.imageUrl && !employer.image" class="img-fluid"
+                                    src="./assets/images/employer/no-image.png" alt="Company image cap">
+                                <p class="mt-3 pl-3 pr-3 top-companyname " data-toogle="tooltip"
+                                    title={{employer.companyname}}>
+                                    {{employer.companyname}}</p>
 
-                    </mdb-card>
-                    <!--Card-->
+                            </div>
+                            <div class="text-center mb-3">
+                                <a (click)="jobPostByCompany(employer.id, employer.companyname)"
+                                    class="hovera"><strong>View Jobs</strong>
+                                    <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
+                                </a>
+                            </div>
+
+                        </mdb-card>
+
+                        <!--Card-->
+                    </div>
                 </div>
-
                 <!-- list job -->
-            </div>
+           
 
             <div class="col-lg-12 d-flex justify-content-center">
                 <ul class="nav nav-pills mt-3 mb-5 d-flex justify-content-center">

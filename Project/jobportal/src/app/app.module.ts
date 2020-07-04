@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+
 // import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angularx-social-login';  
 // import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login'; 
 
@@ -33,8 +34,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 // } 
 @NgModule({
   declarations: [
-    AppComponent,
-  
+    AppComponent,  
     //HeaderForEmployerComponent,
     // HeaderForCandidateComponent
   ],

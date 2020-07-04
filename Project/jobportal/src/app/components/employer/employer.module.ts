@@ -20,6 +20,7 @@ import { CandidateDetailComponent } from './candidate-detail/candidate-detail.co
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EmployerHistoryComponent } from './employer-history/employer-history.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AppliedCandidateComponent } from './applied-candidate/applied-candidate.component';
 @NgModule({
   declarations: [
     EmployerComponent,
@@ -34,6 +35,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RecommendCandidateComponent,
     CandidateDetailComponent,
     EmployerHistoryComponent,
+    AppliedCandidateComponent,
   
   ],
   imports: [

@@ -1,7 +1,43 @@
 
-
-
-
+.scroll {
+    max-height: 200px;
+    overflow-x: auto;
+    
+    
+  }
+  .si25{
+    font-size: 11px;
+      color: #808080;
+      border: 1px solid #808080;
+      border-radius: 3px;
+      padding-right: 3px;
+      padding-left: 3px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      height: 15px;
+      line-height: 11px;
+      letter-spacing: 0px;
+      font-weight: 400;
+  }
+  a.ad-text{
+    font-size: 12px;
+    font-family: sans-serif;
+   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+  }
+  .si22{
+    font-size: 13px;
+      color: #1122cc;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-right: 3px;
+      padding-left: 3px;
+      max-width: 100%;
+      font-family: sans-serif;
+  }
 .testimonial-card:hover{
     box-shadow: 0 0 20px rgba(2, 2, 2, 0.2); 
     transform: scale(1.01);
@@ -18,7 +54,7 @@
 .show-more{
    
     line-height: 27px;
-    font-size: 14px;
+    font-size: 12px;
 
 }
 .text-banner{

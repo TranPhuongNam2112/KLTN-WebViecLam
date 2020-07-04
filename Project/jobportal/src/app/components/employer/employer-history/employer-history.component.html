@@ -91,12 +91,18 @@
                                         <img src="http://my.teamobi.com/images/hot.gif">
                                     </div>
                                     <div class="row d-flex justify-content-center">
-                                        <img class="card-img-top mb-3 border rounded-circle border-white"
+                                        <img *ngIf="recandidate.image" class="card-img-top mb-3 border rounded-circle border-white"
                                             src="data:image/png;base64,{{recandidate.image}}" alt="Candidate image cap">
+                                        <img *ngIf="recandidate.image_url"
+                                            class="card-img-top border rounded-circle border-white"
+                                            src={{recandidate.image_url}} alt="Candidate image cap">
+                                        <img *ngIf="!recandidate.image_url && !recandidate.image"
+                                            class="card-img-top border rounded-circle border-white"
+                                            src="./assets/images/employer/avatar.jpg" alt="Candidate image cap">
                                     </div>
                                     <div class="row d-flex justify-content-start ml-5">
-                                        <a (click)="candidateDetail(recandidate.id)" class=" mb-1 hovera font-weight-bold"
-                                            style="font-size:16px;">
+                                        <a (click)="candidateDetail(recandidate.id)"
+                                            class=" mb-1 hovera font-weight-bold" style="font-size:16px;">
                                             {{recandidate.name}}</a>
                                     </div>
                                     <div class="row d-flex justify-content-start ml-5">
@@ -111,11 +117,11 @@
                                         <span class=" text-muted font-weight-bold ">
                                             {{recandidate.city }}</span>
                                     </div>
-    
+
                                     <hr />
 
                                 </div>
-                                <div  *ngIf="!isRecommendCandidateEmpty()" class="text-center">
+                                <div *ngIf="!isRecommendCandidateEmpty()" class="text-center">
                                     <a [routerLink]="['/employer/recommendcandidate']"
                                         class="btn btn-primary mr-auto btn-sm"><strong>Show more</strong></a>
                                 </div>

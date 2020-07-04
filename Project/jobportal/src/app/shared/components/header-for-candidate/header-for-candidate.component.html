@@ -26,18 +26,26 @@
                     </a>
                     <div class="dropdown-menu dropdown-primary">
                         <a class="dropdown-item " [routerLink]="['/candidate/alljoblists']">
-                          
+
                             vnJobs</a>
 
 
                         <div class="divider dropdown-divider"></div>
                         <a class="dropdown-item" [routerLink]="['/candidate/other-websites-job-lists']">
-                          
+
                             Popular Websites</a>
-                            <div class="divider dropdown-divider"></div>
-                            <a class="dropdown-item" [routerLink]="['/candidate/recommendjob']">
-                              
-                                Recommended Jobs</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['/candidate/hotcrawledjob']">
+
+                            Hot Jobs</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['/candidate/topviewedjob']">
+
+                            Top Viewed Jobs</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['/candidate/recommendjob']">
+
+                            Recommended Jobs</a>
                     </div>
                 </div>
             </li>
@@ -61,7 +69,10 @@
                             <i class="fa fa-user mr-2" aria-hidden="true"></i>
                             My Account</a>
 
-
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['/candidate/appliedjobposts']">
+                            <mdb-icon fas icon="check" class="mr-1"></mdb-icon>
+                            My Applied Jobs</a>
                         <div class="divider dropdown-divider"></div>
                         <a class="dropdown-item" [routerLink]="['/candidate/history']">
                             <i class="fa fa-history mr-2" aria-hidden="true"></i>
