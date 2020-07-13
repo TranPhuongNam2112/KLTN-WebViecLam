@@ -56,7 +56,7 @@ html,
 body,
 header,
 .view {
-  min-height: 90vh !important;
+  min-height: 60vh !important;
 }
 
 @media (max-width: 740px) {
@@ -64,7 +64,7 @@ header,
   body,
   header,
   .view {
-    height: 100vh;
+    height: 70vh;
   }
 }
 
@@ -98,3 +98,223 @@ h5 {
     background-color: #80A6FF;
 }
 //res
+//canddiate dashboard css
+
+.scroll {
+  max-height: 200px;
+  overflow-x: auto;
+  
+  
+}
+.si25{
+  font-size: 11px;
+    color: #808080;
+    border: 1px solid #808080;
+    border-radius: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    height: 15px;
+    line-height: 11px;
+    letter-spacing: 0px;
+    font-weight: 400;
+}
+a.ad-text{
+  font-size: 12px;
+  font-family: sans-serif;
+ 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.si22{
+  font-size: 13px;
+    color: #1122cc;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    max-width: 100%;
+    font-family: sans-serif;
+}
+.testimonial-card:hover{
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2); 
+  transform: scale(1.01);
+}
+.img-fluid{
+  width: 100px; 
+  height: 100px; 
+ object-fit: cover; 
+}
+// .card-img-top{
+
+//     height: 100px; 
+// }
+.show-more{
+ 
+  line-height: 27px;
+  font-size: 12px;
+
+}
+.text-banner{
+  float: right;
+  line-height: 120px;
+  font-size: 16px;
+  color: #fcfcfc;
+  padding-left: 200px;
+  padding-right: 200px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.email_noti {
+  float: left;
+  width: 100%;
+  margin-top: 19px;
+  margin-bottom: 20px;
+}
+.email_nd {
+  float: left;
+  width: 100%;
+  height: 115px;
+  background-repeat: no-repeat;
+  background-color: #307df1;
+ background-position: 50px 10px;
+  padding-bottom: 100px;
+}
+.email_from {
+  width: 100%;
+  margin: auto;
+}
+.show-more-hot-job{
+ 
+  line-height: 27px;
+  font-size: 14px;
+  color: #FF7609;
+}
+.vnjobs-title{
+  background-color: #f1f6fb;
+  font-size: 20px;
+  font-family: sans-serif;
+
+}
+.hotjobs-title{
+  background-color: #FAFFB4;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #FA830B;
+
+}
+.navbar-brand{
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #f1f6fb;
+}
+.navbar-brand:hover{
+  color: #ef5350 ;
+}
+
+.company-name{
+   display:inline-block;
+  //width:180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.employer-label{
+  font-size: 26px;
+
+}
+.employer-label-text{
+  color: #047ABF;
+  font-size: 28px;
+}
+// .card{
+//   background-color: #eaeaea;
+// }
+.card-body{
+  font-size: 14px;
+}
+// sercech job
+a.hovera:hover {
+  color: #ef5350 ;
+ }
+a.hovera{
+     color: #6491FA;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+ a.text-industry:hover{
+  color: #6491FA  ;
+ }
+ //hot job
+a.hovera-hotjob:hover {
+  color: #6491FA  ;
+ }
+a.hovera-hotjob{
+     color: #FF7609;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+//responsive
+// mobile
+@media (min-width: 306px) { 
+  .text-button{
+      font-size: 20px;
+  }
+  .form-control{
+      height: 60px;
+      font-size: 20px;
+   }
+}
+//ipad
+@media (min-width: 768px) {
+  .text-button{
+      font-size: 22px;
+  }
+  .form-control{
+      height: 60px;
+      font-size: 22px;
+   }
+   
+}
+//ipad pro
+@media (min-width: 992px) {
+  .text-button{
+      font-size: 16px;
+  }
+  .form-control{
+      height: 50px;
+   }
+   
+}
+//laptop
+@media (min-width: 1200px) {
+  .text-button{
+      font-size: 16px;
+      font-weight: bold;
+  }
+  .form-control{
+     height: 50px;
+     font-size: 16px;
+  }
+  h5{
+      letter-spacing: 1px;
+  }
+ 
+}
+
+.container-fluid{
+  background-color: #6491FA     ;
+  padding-top: 100px;
+  padding-bottom: 40px;
+ 
+}
+
+
+// search job

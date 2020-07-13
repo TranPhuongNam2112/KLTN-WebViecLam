@@ -8,6 +8,7 @@ import {GuestComponent } from './guest.component';
 import { ForgotPassComponent} from './forgot-pass/forgot-pass.component';
 import {ValidateAccComponent } from './validate-acc/validate-acc.component';
 import {AllJoblistComponent} from './all-joblist/all-joblist.component';
+import {IndustryJoblistComponent} from 'src/app/components/candidate/industry-joblist/industry-joblist.component';
  const routes: Routes = [ 
    {
     path: '',
@@ -36,6 +37,10 @@ import {AllJoblistComponent} from './all-joblist/all-joblist.component';
       {
         path: 'alljoblists',
         component: AllJoblistComponent
+      },
+      {
+        path: 'industry-jobpost',
+        component: IndustryJoblistComponent
       },
     ]
   }

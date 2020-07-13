@@ -18,9 +18,9 @@ export class ShareSearchJobComponent implements OnInit {
   locations: AllJLocations;
   keywords: AllKeyWords;
   jobtype: '';
-  industry: '';
-  keyword: '';
-  location: '';
+  industry: string;
+  keyword: string;
+  location: string;
   constructor(
     private crawledJoblistService: CrawledJoblistService,
     private router: Router,
@@ -32,10 +32,11 @@ export class ShareSearchJobComponent implements OnInit {
     this.getAllIndustries();
     this.getAllLocations();
     this.getAllKeywords();
-    this.industry= '';
-    this.keyword = '';
-    this.location = '';
+    this.industry= 'All industries';
+    this.keyword = 'All job titles';
+    this.location = 'All locations';
   }
+ 
   getAllIndustries(){
     this.crawledJoblistService.getAllIndustries()
     .subscribe(data => {

@@ -4,25 +4,22 @@
     rounded-lg pl-3 pr-3 rounded-lg">
         <div class="row">
             <div class="col-lg-4 col-sm-12 col-md-12 mt-4 pt-2">
-                <ng-select [items]="keywords"
-                [virtualScroll]="true"
-                placeholder="Search Job Title ..." [(ngModel)]="job_title" name="job_title"  [typeToSearchText]="job_title" [addTag]="true">
+                <ng-select [items]="keywords" [virtualScroll]="true" placeholder="Search Job Title ..."
+                    [(ngModel)]="job_title" name="job_title" [typeToSearchText]="job_title" [addTag]="true">
                 </ng-select>
             </div>
             <div class="col-lg-3 col-sm-12 col-md-12 mt-4  pt-2">
-                <ng-select [items]="locations" 
-                [virtualScroll]="true"
-                placeholder="All Locations" [(ngModel)]="location" name="location" [typeToSearchText]="location" [addTag]="true">
+                <ng-select [items]="locations" [virtualScroll]="true" placeholder="All Locations" [(ngModel)]="location"
+                    name="location" [typeToSearchText]="location" [addTag]="true">
                 </ng-select>
             </div>
             <div class="col-lg-3 col-sm-12 col-md-12 mt-4  pt-2">
-                <ng-select [items]="industries" [addTag]="true"   [virtualScroll]="true" [typeToSearchText]="industry" placeholder="All Industries" 
-                [(ngModel)]="industry" name="industry">
+                <ng-select [items]="industries" [addTag]="true" [virtualScroll]="true" [typeToSearchText]="industry"
+                    placeholder="All Industries" [(ngModel)]="industry" name="industry">
                 </ng-select>
             </div>
             <div class="col-lg-2 col-sm-12 col-md-12">
-                <button (click)="searchJobPostBug()" mdbBtn color="success" block="true"
-                    class="my-4" type="submit">
+                <button (click)="searchJobPostBug(); " mdbBtn color="success" block="true" class="my-4" type="submit">
                     <strong><span class="text-button">Search</span></strong> </button>
             </div>
         </div>
@@ -35,11 +32,12 @@
         <div class="card-body container">
             <div class="row ">
                 <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h5 
-                        class=" d-flex justify-content-start vnjobs-title pt-3 pb-3 pl-5 mr-5 card-title   font-weight-bold ">Search Results:
+                    <h5
+                        class=" d-flex justify-content-start vnjobs-title pt-3 pb-3 pl-5 mr-5 card-title   font-weight-bold ">
+                        Search Results:
                         <span class="ml-2 text-primary">{{countSearchResult}} jobs</span>
-                        </h5>
-                       
+                    </h5>
+
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <h5 class=" hotjobs-title pt-3 pb-3 pl-5  font-weight-bold card-title  ">
@@ -144,7 +142,7 @@
                         <li class="nav-item" *ngFor="let p of pagesArray();">
                             <a class="nav-link mr-2" href="" (click)="setPage(p,$event)"
                                 [ngClass]="{'active':p==pageNo}">
-                               {{p}}
+                                {{p}}
                             </a>
                         </li>
                     </ul>

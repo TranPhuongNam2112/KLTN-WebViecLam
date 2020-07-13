@@ -31,7 +31,6 @@ import { SearchJobpostResultComponent } from './search-jobpost-result/search-job
 import { ShareSearchJobComponent } from './share-search-job/share-search-job.component';
 import { TopviewJobpostComponent } from './topview-jobpost/topview-jobpost.component';
 import { ManageAppliedJobsComponent } from './manage-applied-jobs/manage-applied-jobs.component';
-
 @NgModule({
   declarations: [
     ManageProfileComponent,
@@ -67,7 +66,7 @@ import { ManageAppliedJobsComponent } from './manage-applied-jobs/manage-applied
     UiSwitchModule,
     NgSelect2Module,
     PdfViewerModule,
-    NgSelectModule
+    NgSelectModule,
   ]
 })
 export class CandidateModule { }

@@ -175,19 +175,23 @@
                         color="amber" mdbWavesEffect>Apply Now</button>
                     <div *ngIf="isApply()" class="row ml-3 mt-3">
 
-                        <label  class=" font-weight-bold" style="font-size: 14px;color: #f7941d;">
-                            <i class="fas fa-check fa-lg " style="color: #f7941d;" ></i>
+                        <label class=" font-weight-bold" style="font-size: 14px;color: #f7941d;">
+                            <i class="fas fa-check fa-lg " style="color: #f7941d;"></i>
                             Applied</label>
-                  </div>
+                    </div>
                 </div>
                 <hr />
                 <div class="row">
                     <label style="font-size: 20px;" class="text-muted font-weight-normal">Job Description</label>
-                    <a class=" text-muted">
-                        {{jobDetail.description}}</a>
+                    <br />
+                    
                     <!-- them xam start -->
-
                     <div class="box_mota">
+                        <a class=" text-muted">
+                            {{jobDetail.description}}</a>
+                    </div>
+                    <div class="box_mota">
+                       
                         <h3>Mô tả công việc</h3>
                         - Chăm sóc khách hàng hiện hữu:<br>+ Duy trì mối quan hệ với các khách hàng hiện hữu.<br>+ Duy
                         trì doanh số của khách hàng.<br>+ Nhận phàn nàn, khiếu nại của khách hàng, xử lý hoặc đề xuất
@@ -225,7 +229,8 @@
             <span style="font-size: 18px;"><i class="fas fa-check mr-3 "></i>Successful!</span>
         </ng-template>
         <ng-template #dangerTpl>
-            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>You haved applied this job</span>
+            <span style="font-size: 18px;"><i class="fas fa-exclamation-triangle mr-3"></i>You haved applied this
+                job</span>
         </ng-template>
     </div>
 </div>

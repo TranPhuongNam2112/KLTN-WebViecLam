@@ -55,7 +55,6 @@ export class SearchJobpostResultComponent implements OnInit {
     this.getAllIndustries();
     this.getAllLocations();
     this.getAllKeywords();
-  
 
   }
   getAllIndustries() {
@@ -111,6 +110,19 @@ export class SearchJobpostResultComponent implements OnInit {
       }
       );
   }
+  reload(){
+    this.router.navigate(['/candidate/search-jobpost-result'],
+     { queryParams: { job_title: this.job_title, industry: this.industry, location: this.location } }).then(() => {
+      this.industry = this.route.snapshot.params.get('industry');
+      this.location = this.route.snapshot.params.get('joblocation');
+      this.job_title = this.route.snapshot.params.get('jobtitle');
+      console.log("test");
+      console.log(this.industry);
+      console.log(this.location);
+      console.log(this.job_title);
+      this.searchJobPostBug();
+    });
+  }
   searchJobPostBug() {
 
     this.searchJobpostService.searchJobPostHavePage(this.job_title, this.industry, this.location, this.pageNo)
@@ -123,7 +135,9 @@ export class SearchJobpostResultComponent implements OnInit {
             console.log("jobpost search count reslouts:" + data);
             console.log(data);
             this.countSearchResult = data;
-          
+            
+            // this.router.navigate(['/candidate/search-jobpost-result'],
+            //   { queryParams: { job_title: this.job_title, industry: this.industry, location: this.location, page: this.pageNo } });
           }, error => {
             console.log(error);
           }
